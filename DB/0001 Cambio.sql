@@ -48,7 +48,7 @@ CREATE TABLE Empleado(
     Calle varchar(100)not null,
     Ciudad varchar(50)not null,
     Estado varchar(50)not null,
-    Puesto char(20)not null,
+    Puesto varchar(20)not null,
     Usuario varchar(30)not null,
     Contraseña varchar(30)not null,
     FechaNacimiento date not null,
@@ -64,7 +64,7 @@ CREATE TABLE Proveedor(
     Calle varchar(100)not null,
     Ciudad varchar(50)not null,
     Estado varchar(50)not null,
-	IDCedi int not null
+	IDCedi int not null,
 )
 
 CREATE TABLE Producto(
@@ -76,6 +76,11 @@ CREATE TABLE Producto(
 	IDProveedor int not null,
 	IDCategoria int not null
 )
+CREATE TABLE Categorias(
+	IDCategoria int not null,
+	Nombre_Categoria varchar(100) not null,
+	Descripcion_Categoria varchar(100)not null,
+)
 
 CREATE TABLE Ordenes(
 	IDOrden int not null,
@@ -86,8 +91,3 @@ CREATE TABLE Ordenes(
 	IDCliente int not null
 )
 
-CREATE TABLE Categorias(
-	IDCategoria int not null,
-	Nombre_Categoria varchar(100) not null,
-	Descripcion_Categoria varchar(100)not null,
-)
