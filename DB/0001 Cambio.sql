@@ -14,7 +14,7 @@ CREATE TABLE Cliente(
 	CleTelefono char (10)not null,
 	CleRFC varchar (13) not null,
 	CleCURP varchar (18) not null,
-    unique(CleRFC, CleCURP)
+    	unique(CleRFC, CleCURP)
 );
 
 CREATE TABLE OrdenVenta(
@@ -44,7 +44,7 @@ CREATE TABLE Empleado(
 	EmpRFC varchar(13) not null,
 	EmpCURP varchar (18) not null,
 	IDSucursal int not null,
-    unique(EmpRFC, EmpUsuario, EmpContrasena, EmpCURP)
+    	unique(EmpRFC, EmpUsuario, EmpContrasena, EmpCURP)
 );
 
 CREATE TABLE Sucursal(
@@ -104,7 +104,7 @@ CREATE TABLE Proveedor(
 	ProvRFC varchar (13) not null,
 	ProvCURP varchar (13) not null,
 	IDCedi int not null,
-    unique(ProvRFC, ProvCURP)
+    	unique(ProvRFC, ProvCURP)
 );
 
 -- Llaves foraneas
