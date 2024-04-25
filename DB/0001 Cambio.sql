@@ -38,7 +38,7 @@ CREATE TABLE Empleado(
     EmpEstado varchar(50)not null,
     EmpPuesto varchar(20)not null,
     EmpUsuario varchar(30)not null,
-    EmpContrase�a varchar(30)not null,
+    EmpContrasena varchar(30)not null,
     EmpFechaNacimiento datetime not null,
     EmpFechaIncio datetime not null,
 	EmpRFC varchar(13) not null,
@@ -129,7 +129,7 @@ GO
 --LLAVES UNICAS
 ALTER TABLE Empleado ADD CONSTRAINT UC_Empleado_EmpRFC UNIQUE (EmpRFC)
 ALTER TABLE Empleado ADD CONSTRAINT UC_Empleado_EmpUsuario UNIQUE (EmpUsuario)
-ALTER TABLE Empleado ADD CONSTRAINT UC_Empleado_EmpContrase�a UNIQUE (EmpContrase�a)
+ALTER TABLE Empleado ADD CONSTRAINT UC_Empleado_EmpContrasena UNIQUE (EmpContrasena)
 ALTER TABLE Empleado ADD CONSTRAINT UC_Empleado_EmpCURP UNIQUE (EmpCURP)
 
 
