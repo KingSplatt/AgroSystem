@@ -45,7 +45,7 @@ CREATE TABLE Empleado(
     EmpEstado nvarchar(50)not null,
     EmpPuesto nvarchar(20)not null,
     EmpUsuario nvarchar(30)not null,
-    EmpContraseña nvarchar(30)not null,
+    EmpContraseÃ±a nvarchar(30)not null,
     EmpFechaNacimiento datetime not null,
     EmpFechaIncio datetime not null,
 	EmpRFC nvarchar(13) not null,
@@ -142,31 +142,33 @@ ALTER TABLE Producto ADD CONSTRAINT PK_Producto PRIMARY KEY (IDProducto)
 ALTER TABLE Categoria ADD CONSTRAINT PK_Categoria PRIMARY KEY (IDCategoria)
 --LLAVES FORANEAS
 GO
-ALTER TABLE OrdenVenta ADD CONSTRAINT FK_OrdenVenta_Cliente FOREIGN KEY (IDCliente) REFERENCES Cliente (IDCliente),
+ALTER TABLE Venta ADD CONSTRAINT FK_OrdenVenta_Cliente FOREIGN KEY (IDCliente) REFERENCES Cliente (IDCliente),
 CONSTRAINT FK_OrdenVenta_Empleado FOREIGN KEY(IDEmpleado) REFERENCES Empleado (IDEmpleado)
-GO
 ALTER TABLE Empleado ADD CONSTRAINT FK_Empleado_Sucursal FOREIGN KEY (IDSucursal) REFERENCES Sucursal (IDSucursal)
 ALTER TABLE Sucursal ADD CONSTRAINT FK_Sucursal_CEDI FOREIGN KEY (IDCedi) REFERENCES CEDI (IDCedi)
-ALTER TABLE OrdenCompra ADD CONSTRAINT FK_OrdenCompra_Producto FOREIGN KEY (IDProducto) REFERENCES Producto (IDProducto),
-CONSTRAINT FK_OrdenCompra_CEDI FOREIGN KEY (IDCedi) REFERENCES CEDI (IDCedi)
+ALTER TABLE detalleCompra ADD CONSTRAINT FK_Compra_Producto FOREIGN KEY (IDProducto) REFERENCES Producto (IDProducto),
+	CONSTRAINT FK_Compra_OC FOREIGN KEY (IDOrdenComp) REFERENCES OrdenCompra (IDOrdenComp)
+
+ALTER TABLE OrdenCompra add CONSTRAINT FK_OrdenCompra_CEDI FOREIGN KEY (IDCedi) REFERENCES CEDI (IDCedi)
 ALTER TABLE Producto ADD CONSTRAINT FK_Producto_Proveedor FOREIGN KEY (IDProveedor)REFERENCES Proveedor (IDProveedor),
-					CONSTRAINT FK_Producto_Categoria FOREIGN KEY (IDCategoria) REFERENCES Categoria (IDCategoria),
-					constraint DF_Producto_Descontinuado default(0)
+	CONSTRAINT FK_Producto_Categoria FOREIGN KEY (IDCategoria) REFERENCES Categoria (IDCategoria)
 
 
-ALTER TABLE productoSucursal add constraint FK_Sucursal_PS foreign key references Sucursal(IDSucursal),
-								constraint FK_Producto_PS foreign key references Producto(IDproducto)
+ALTER TABLE productoSucursal add constraint FK_Sucursal_PS foreign key (IDSucursal) references Sucursal(IDSucursal),
+				constraint FK_Producto_PS foreign key (IDproducto) references Producto(IDproducto)
 
-ALTER TABLE productoCEDI add constraint FK_Producto_PC foreign key references Producto(IDproducto),
-							constraint FK_CEDI_PC foreign key references CEDI(IDCedi)
+ALTER TABLE productoCEDI add constraint FK_Producto_PC foreign KEY (IDproducto)references Producto(IDproducto),
+			constraint FK_CEDI_PC foreign key (IDCedi) references CEDI(IDCedi)
 
+ALTER TABLE detalleVenta ADD CONSTRAINT FK_Producto_OV foreign key (IDproducto) references Producto(IDproducto),
+			constraint FK_Venta_OV foreign key (IDOrdenVent) references Venta(IDOrdenVent)
 
 
 GO
 --LLAVES UNICAS
 ALTER TABLE Empleado ADD CONSTRAINT UC_Empleado_EmpRFC UNIQUE (EmpRFC)
 ALTER TABLE Empleado ADD CONSTRAINT UC_Empleado_EmpUsuario UNIQUE (EmpUsuario)
-ALTER TABLE Empleado ADD CONSTRAINT UC_Empleado_EmpContraseña UNIQUE (EmpContraseña)
+ALTER TABLE Empleado ADD CONSTRAINT UC_Empleado_EmpContraseÃ±a UNIQUE (EmpContraseÃ±a)
 ALTER TABLE Empleado ADD CONSTRAINT UC_Empleado_EmpCURP UNIQUE (EmpCURP)
 
 
@@ -190,8 +192,8 @@ CONSTRAINT DF_Proveedor_ProvCorreo DEFAULT ('SIN CORREO') FOR ProvCorreo
 GO
 
 
-ALTER TABLE detalleVenta add CONSTRAINT DF_DetalleVenta_precioUnitario DEFAULT (0),
-							 CONSTRAINT DF_DetalleVenta_cantidad DEFAULT (1),
-							 CONSTRAINT DF_DetalleVenta_Descuento DEFAULT (0)
+ALTER TABLE detalleVenta add CONSTRAINT DF_DetalleVenta_precioUnitario DEFAULT (0) for precioUnitario,
+							 CONSTRAINT DF_DetalleVenta_cantidad DEFAULT (1) for cantidad,
+							 CONSTRAINT DF_DetalleVenta_Descuento DEFAULT (0) for descuento
 
 --DROP DATABASE AGROSYSTEM
