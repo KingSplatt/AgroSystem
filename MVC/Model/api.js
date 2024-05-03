@@ -23,6 +23,5 @@ async function getCiudades(){
     
 }
 
-
 getUsers();
 getCiudades(); 
