@@ -1,14 +1,14 @@
 # AgroSystem
 Proyecto de ING. SOFTWARE
 
-Para probar nuestro modelo necesitamos una instancia de SQL Server. Puede ser en On Premise, Azure o AWS. Usaremos un contenedor de Docker para las pruebas.
+Implementaremos la herramienta Git para el uso de actualizaciones mediante los cambios que le hagamos en nuestras computadoras
 
-Abrir la terminal y ejecutar el siguiente comando
+Para ello deberan descargar la applicacion de escritorio de la pagina oficial https://git-scm.com/download/win 
 
-docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Gestion8.0" -e "MSSQL_PID=Developer" -p 1433:1433 -d mcr.microsoft.com/mssql/server:latest
+una vez instalada debera reiniciar VS Code y en la terminal poner lo siguientes comandos:
 
-Estamos usando Docker para crear un servidor de SQL Server con la edición de Desarrollador desde una imagen de Microsoft. Usamos autenticación SQL, el usuario say Gestion8.0como contraseña.
+git config --global user.name ""
+git config --global user.email ""
 
-Este servidor no es persistente así que la base de datos que se cree (y los datos en ella) se perderán al detener el contenedor.
+con eso en la parte de extensiones tendran una parte llamada "Source control" donde podran hacer commits (actualizaciones del repositorio) - ES OBLIGATORIO ESCRIBIR UN MENSAJE PARA QUE SE ACTUALICE
 
-En el archivo devcontainerya están especificadas las extensiones de VSCode necesarias (mssql y mermaid)
