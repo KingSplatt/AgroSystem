@@ -19,18 +19,9 @@ create table Venta(
     FechaPedido date not null,
 	Subtotal money not null,
     Total money not null,
+	Credito bit not null,
 	IDCliente int not null,
 	IDEmpleado int not null
-)
-
-CREATE TABLE VentaCredito(
-	IDVentaCredito int not null,--
-	FechaPlazo datetime not null,
-	FechaPedido datetime not null,
-	Subtotal money not null,
-	Credito money not null,
-	IDEmpleado int not null,--
-	IDCliente int not null--
 )
 
 CREATE TABLE DetalleVenta(
@@ -42,10 +33,11 @@ CREATE TABLE DetalleVenta(
 CREATE TABLE DetalleVentaCredito(--
 	PrecioUnitario money not null,
 	Cantidad int not null,
-	IDVentaCredito int not null,--
+	FechaPlazo datetime not null,
+	PagoInicial money not null,
+	IDVenta int not null,--
 	IDProducto int not null--
 )
-
 CREATE TABLE Empleado(
 	IDEmpleado int not null,
     Nombre nvarchar(100)not null,
@@ -66,9 +58,6 @@ CREATE TABLE Empleado(
 
 CREATE TABLE Sucursal(
 	IDSucursal int not null,
-    Calle nvarchar(100) not null,
-    Ciudad nvarchar(50) not null,
-    Estado nvarchar(50)not null,
     Correo nvarchar(100)not null,
     Telefono nvarchar(10)not null,
     IDCedi int not null,
@@ -101,7 +90,8 @@ CREATE TABLE DetalleCompra(
 
 CREATE TABLE Producto(
 	IDProducto int not null,
-    ProdNombre nvarchar(100) not null,
+    Nombre nvarchar(100) not null,
+	Descripcion nvarchar(100) not null,
     PrecioUnitario int not null,
 	Descontinuado bit not null,
 	IDProveedor int not null,
@@ -151,7 +141,6 @@ GO
 --LLAVES PRIMARIAS
 ALTER TABLE Cliente ADD CONSTRAINT PK_CLIENTE PRIMARY KEY (IDCliente)
 ALTER TABLE Venta ADD CONSTRAINT PK_Venta PRIMARY KEY (IDVenta)
-ALTER TABLE VentaCredito ADD CONSTRAINT PK_VentaCredito PRIMARY KEY (IDVentaCredito)
 ALTER TABLE Empleado ADD CONSTRAINT PK_Empleado PRIMARY KEY (IDEmpleado)
 ALTER TABLE Sucursal ADD CONSTRAINT PK_Sucursal PRIMARY KEY (IDSucursal)
 ALTER TABLE CEDI ADD CONSTRAINT PK_Cedi PRIMARY KEY (IDCedi)
@@ -165,9 +154,6 @@ ALTER TABLE Ciudad ADD CONSTRAINT PK_Ciudad PRIMARY KEY (IDCiudad)
 GO
 ALTER TABLE Venta ADD CONSTRAINT FK_OrdenVenta_Cliente FOREIGN KEY (IDCliente) REFERENCES Cliente (IDCliente),
 					  CONSTRAINT FK_OrdenVenta_Empleado FOREIGN KEY(IDEmpleado) REFERENCES Empleado (IDEmpleado)
-
-ALTER TABLE VentaCredito ADD CONSTRAINT FK_VentaCredito_Cliente FOREIGN KEY (IDCliente) REFERENCES Cliente (IDCliente),
-					         CONSTRAINT FK_VentaCredito_Empleado FOREIGN KEY (IDEmpleado) REFERENCES Empleado (IDEmpleado)
 
 ALTER TABLE Empleado ADD CONSTRAINT FK_Empleado_Sucursal FOREIGN KEY (IDSucursal) REFERENCES Sucursal (IDSucursal),
 						 CONSTRAINT FK_Empleado_Ciudad FOREIGN KEY (IDCiudad) REFERENCES Ciudad (IDCiudad)
@@ -197,7 +183,7 @@ ALTER TABLE ProductoCEDI ADD CONSTRAINT FK_Producto_PC FOREIGN KEY (IDProducto)R
 ALTER TABLE DetalleVenta ADD CONSTRAINT FK_DetalleVenta_Producto FOREIGN KEY (IDProducto) REFERENCES Producto(IDProducto),
 							 CONSTRAINT FK_DetalleVenta_Venta FOREIGN KEY (IDVenta) REFERENCES Venta(IDVenta)
 
-ALTER TABLE DetalleVentaCredito ADD CONSTRAINT FK_DetalleVentaCredito_VentaCredito FOREIGN KEY (IDVentaCredito) REFERENCES VentaCredito (IDVentaCredito),
+ALTER TABLE DetalleVentaCredito ADD CONSTRAINT FK_DetalleVentaCredito_Venta FOREIGN KEY (IDVenta) REFERENCES Venta (IDVenta),
 							        CONSTRAINT FK_DetalleVentaCredito_Producto FOREIGN KEY (IDProducto) REFERENCES Producto (IDProducto)
 
 ALTER TABLE Ciudad ADD CONSTRAINT FK_Ciudad_Estado FOREIGN KEY (IDEstado) REFERENCES Estado (IDEstado)
@@ -232,7 +218,6 @@ GO
 ALTER TABLE Proveedor ADD CONSTRAINT DF_Proveedor_Telefono DEFAULT ('SIN TELEFONO') FOR Telefono,
 CONSTRAINT DF_Proveedor_Correo DEFAULT ('SIN CORREO') FOR Correo
 GO
-
 
 ALTER TABLE DetalleVenta ADD CONSTRAINT DF_DetalleVenta_PrecioUnitario DEFAULT (0) FOR PrecioUnitario,
 							 CONSTRAINT DF_DetalleVenta_Cantidad DEFAULT (1) FOR Cantidad
