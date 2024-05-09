@@ -21,4 +21,8 @@ Una vez instalado ir a la terminal y poner los siguientes comandos:
         npm --version
         npm cache clean --force
         npm install -g create-react-app
-        
+
+# Para ejecutar y ver los cambios en VS code entrar al repositorio y poner:
+
+cd MVC/view/prueba
+npm start
