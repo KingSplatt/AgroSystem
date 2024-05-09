@@ -12,3 +12,13 @@ git config --global user.email ""
 
 con eso en la parte de extensiones tendran una parte llamada "Source control" donde podran hacer commits (actualizaciones del repositorio) - ES OBLIGATORIO ESCRIBIR UN MENSAJE PARA QUE SE ACTUALICE
 
+
+# Para descargar react
+Para poder descargar React primero hay que descargar Node.js
+Una vez instalado ir a la terminal y poner los siguientes comandos:
+
+        npm install -g npm@latest
+        npm --version
+        npm cache clean --force
+        npm install -g create-react-app
+        
