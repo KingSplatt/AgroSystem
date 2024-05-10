@@ -1,27 +1,25 @@
 const pool = require('./Connection');
 
 // Ejemplo de una consulta SELECT
-async function getUsers() {
+const getUsers = async (req,res) =>{
   try {
-    const [rows, fields] = await pool.query('SELECT Nombre FROM Cliente where IDCliente = 1' );
+    const [rows, fields] = await pool.query('SELECT * FROM Cliente ' );
     console.log('Usuarios obtenidos:', rows);
-    return rows;
+    const [rows2, fields2] = await pool.query('SELECT * FROM Ciudad ' );
+    res.status(200).send({success: true,message: "putos", rows, rows2})
   } catch (err) {
-    console.error('Error al obtener usuarios:', err);
-    throw err;
+    res.status(500).send({success: false, message: 'Error al obtener usuarios'});
   }
 }
-async function getCiudades(){
+const getCiudades = async (req,res)=>{
     try {
         const [rows, fields] = await pool.query('SELECT * FROM Ciudad');
         console.log('Ciudades obtenidas:', rows);
-        return rows;
+        res.status(200).send({success: true, rows});
     } catch (err) {
         console.error('Error al obtener ciudades:', err);
-        throw err;
+        res.status(500).send({success: false, message: 'Error al obtener ciudades'});
     }
     
 }
-
-getUsers();
-getCiudades(); 
+module.exports = {getUsers, getCiudades}
