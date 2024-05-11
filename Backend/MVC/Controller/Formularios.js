@@ -1,4 +1,4 @@
-const pool = require('./Connection');
+const pool = require('../Model/Connection');
 
 //agreagar un nuevo producto
 const agregarProducto = async (req, res) => {
@@ -29,7 +29,6 @@ const actualizarProducto = async (req, res) => {
 
 const agregarProveedor = async (req, res) => {
     try {
-        //falta verificar si son legalizados
         const { Nombre, Direccion, Telefono,RFC,CURP,IDCiudad } = req.body;
         if(legalizacion){
 

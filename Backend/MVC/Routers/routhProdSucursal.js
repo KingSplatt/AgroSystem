@@ -1,5 +1,5 @@
 const express = require('express');
-const { getProductoSucursal, getProveedores, getTotalCompras } = require('../Model/api');
+const { getProductoSucursal, getProveedores, getTotalCompras } = require('../Controller/api');
 const router = express.Router();
 
 router.get('/ProductoSucursal', getProductoSucursal);

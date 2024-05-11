@@ -1,4 +1,4 @@
-const pool = require('./Connection');
+const pool = require('../Model/Connection');
 
 // Ejemplo de una consulta SELECT
 const getProductoSucursal = async (req, res) => {
