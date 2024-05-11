@@ -3,9 +3,9 @@ const pool = require('./Connection');
 // Ejemplo de una consulta SELECT
 const getProductoSucursal = async (req, res) => {
   try {
-    const [rows, fields] = await pool.query('SELECT * FROM ProductoSucursal  ');
+    const [rows, fields] = await pool.query('SELECT * FROM Cliente');
     console.log('Usuarios obtenidos:', rows);
-    res.status(200).send({ success: true, rows, })
+    res.status(200).send({ success: true, rows: rows })
   } catch (err) {
     res.status(500).send({ success: false, message: 'Error al obtener usuarios' });
   }
