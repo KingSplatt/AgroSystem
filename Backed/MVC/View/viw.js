@@ -1,1 +1,1 @@
-console.log(vw)
+console.log("pendiente para uso futuro")
