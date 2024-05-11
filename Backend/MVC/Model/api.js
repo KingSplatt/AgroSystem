@@ -31,9 +31,6 @@ const getTotalCompras = async (req, res) => {
     res.status(500).send({ success: false, message: 'Error al querer obtener los totales de compras' });
   }
 }
-
-const setProductoSucursal = async (req, res) => {
-
+const setProductoSucursal = async (req, res) => {//para añadir productos a la sucursal
 }
-
 module.exports = { getProductoSucursal, getProveedores, getTotalCompras }
