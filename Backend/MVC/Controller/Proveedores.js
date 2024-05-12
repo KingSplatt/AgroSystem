@@ -1,9 +1,10 @@
 const pool = require('../Model/Connection');
 
+//agregar un proveedor nuevo
 const agregarProveedor = async (req, res) => {
     try {
         const { Nombre, Direccion, Telefono,RFC,CURP,IDCiudad } = req.body;
-        const sql = 'INSERT INTO Proveedor (Nombre, Direccion, Telefono, RFC, CURP, IDCiudad) VALUES (?, ?, ?)';
+        const sql = 'INSERT INTO Proveedor (Nombre, Direccion, Telefono, RFC, CURP, IDCiudad) VALUES (?, ?, ?, ?, ?, ?)';
         const result = await pool.query(sql, [Nombre, Direccion, , RFC, CURP, IDCiudad]);
         console.log('Proveedor agregado:', result);
         res.status(201).send({ success: true, message: "Proveedor Añadido", rows: rows });
@@ -14,6 +15,7 @@ const agregarProveedor = async (req, res) => {
     }
 }
 
+//Obtener un proveedor de la lista
 const ObtenerProveedor = async (req, res) => {
     try {
       const [rows, fields] = await pool.query('SELECT * FROM Proveedor');
@@ -25,6 +27,7 @@ const ObtenerProveedor = async (req, res) => {
     }
   }
 
+  //Eliminar un proveedor de la lista
 const EliminarProveedor = async (req, res) => {
     try {
         const { IDProveedor } = req.body;

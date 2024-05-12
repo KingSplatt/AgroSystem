@@ -7,7 +7,7 @@ const ObtenerProductoSucursal = async (req, res) => {
             'INNER JOIN Producto P ON PS.IDproducto = P.IDProducto' +
             'INNER JOIN Proveedor Pr ON Pr.IDProveedor = P.IDProveedor' +
             'INNER JOIN Categoria C ON C.IDCategoria = P.IDCategoria;');
-        console.log('Usuarios obtenidos:', rows);
+        console.log('Productos obtenidos:', rows);
         res.status(200).send({ success: true, rows: rows })
     } catch (err) {
         res.status(500).send({ success: false, message: 'Error al obtener usuarios' });
@@ -39,7 +39,7 @@ const EliminarProductoSucursal = async (req, res) => {
         res.status(500).send({ success: false, message: 'Error al querer eliminar un producto' });
     }
 }
-
+// actualizar productos de la sucursal
 const ActualizarProductoSucursal = async (req, res) => {
     try {
         const { IDproducto, IDSucursal, FechaCaducidad, FechaSurtido } = req.body;
