@@ -15,7 +15,7 @@ const NuevoEmpleado = async (req,res) => {
 }
 
 // Ver a los empleados
-const VerEmpleado = async (req, res) => {
+const VerEmpleados = async (req, res) => {
     try{
         const [rows, fields] = await pool.query('SELECT E.IDEmpleado, E.Nombre, E.AppelidoPaterno, E.ApellidoMaterno, E.Correo, E.Telefono, E.Puesto, E.Usuario, E.Contraseña, E.FechaNacimiento, E.FechaInicio, '+
         'R.RFC, E.CURP, E.IDSucursal, E.IDCiudad,FROM Empleado E');
@@ -40,3 +40,5 @@ const EliminarEmpleado = async (req, res) => {
         res.status(500).send({ success: false, message: 'Error al querer eliminar a este empleado' });
     }
 }
+
+module.exports ={ NuevoEmpleado, VerEmpleados, EliminarEmpleado };

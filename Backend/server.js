@@ -18,8 +18,15 @@ app.get('/', (req, res) => {
 //Routers
 const routerProductos = require('./MVC/Routers/routhProductoSucursal');
 const routerProveedores = require('./MVC/Routers/routhProveedor');
+const routerEmpleados = require('./MVC/Routers/routhEmpleados');
+const routerVentaCredito = require('./MVC/Routers/routhVentaCredito');
+const routerCompra = require('./MVC/Routers/routhCompra');
+
 app.use('/productos', routerProductos);
 app.use('/proveedores', routerProveedores);
+app.use('/empleados', routerEmpleados);
+app.use('/Venta-Credito', routerVentaCredito);
+app.use('/compras', routerCompra);
 
 
 //ES PARA ABRIR EL DOTENV
