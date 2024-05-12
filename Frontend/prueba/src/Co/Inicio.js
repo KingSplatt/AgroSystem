@@ -1,6 +1,6 @@
-import React from 'react';
+/*import React from 'react';
 
-const Sidebar = () => { 
+const Inicio = () => { 
     return (
         <div>
         <h1>Inicio</h1>
@@ -8,4 +8,8 @@ const Sidebar = () => {
     );
     }
 
-export default Sidebar;
+export default Inic;*/ 
+
+
+//NO SE USA
+

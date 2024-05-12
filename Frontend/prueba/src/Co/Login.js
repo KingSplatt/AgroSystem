@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import logo from './img/login.png';
 
-function App() {
+function Login() {
   const navigate = useNavigate(); // Cambio de 'history' a 'navigate'
 
   const handleLogin = () => {
-    navigate('/Inicio'); // Cambio de 'history' a 'navigate'
+    navigate('/App'); // Cambio de 'history' a 'navigate'
   };
 
   return (
@@ -19,11 +19,11 @@ function App() {
           <label>
             <input type="text" name="name" placeholder='Usuario' />
           </label>
-          <br/>
+          <br />
           <label>
             <input type="password" name="name" placeholder='Contraseña' />
           </label>
-          <br/>
+          <br />
           {/* Usar un botón con un evento onClick para redirigir */}
           <button className="login-button" onClick={handleLogin}>Ingresar</button>
         </form>
@@ -32,4 +32,4 @@ function App() {
   );
 }
 
-export default App;
+export default Login;

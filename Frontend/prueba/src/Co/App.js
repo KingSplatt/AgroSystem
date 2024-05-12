@@ -1,18 +1,24 @@
 import React from 'react';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import Dash from './Dash';
-import Inicio from './Inicio';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import './App.css';
+//import Dash from './Dash';
+import Sidebar from './Componentes/Sidebar';
 import Login from './Login';
+import Inicio from './Pages/Inicio.jsx';
 
-function App() {
+const App = () => {
   return (
-    <Router>
+
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/Inicio" element={<Inicio />} />
-        <Route path="/Dash" element={<Dash />} />
       </Routes>
-    </Router>
+      <Sidebar>
+        <Routes>
+          <Route path="/" element={<Inicio />} />
+        </Routes>
+      </Sidebar>
+    </BrowserRouter>
   );
 }
 
