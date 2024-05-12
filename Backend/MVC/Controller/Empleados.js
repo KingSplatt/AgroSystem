@@ -23,7 +23,7 @@ const VerEmpleado = async (req, res) => {
         res.status(201).send({ success: true, message: 'Empleados consultados existosamente', rows: rows });
     }catch(err){
         console.error('Error al consultar los empleados', err);
-        res.status(500).send({ success: false, message: 'Error al consultar los empleaos' });
+        res.status(500).send({ success: false, message: 'Error al consultar los empleados' });
     }
 }
 
