@@ -8,12 +8,20 @@ const app = express();
 app.use(morgan('dev'));
 
 app.use(express.json()); //para que entienda los json que le mandamos
-app.use(express.urlencoded({ extended: true })); 
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-    return res.status(200).send("<h1>hola</h1> <br> <h2>como estas</h2>") //el 200 el ok, el 400 el not found, 500 internal server error, 300 redireccion
+    return res.status(200).send("<h1>hola</h1> <br> <h2>como estas</h2>")
 });
-app.use('/domain-expansion', require('./MVC/Routers/routhProdSucursal'));
+
+
+//Routers
+const routerProductos = require('./MVC/Routers/routhProductoSucursal');
+const routerProveedores = require('./MVC/Routers/routhProveedor');
+app.use('/productos', routerProductos);
+app.use('/proveedores', routerProveedores);
+
+
 //ES PARA ABRIR EL DOTENV
 const puerto = process.env.PUERTO || 3000;//ABRO MI PUERTO Y SI NO SE ABRE EL 3000
 
