@@ -48,3 +48,10 @@ El default es: 3030
 ```bash
   PUERTO = 8080
 ```
+link donde hay una libreria de iconos
+https://react-icons.github.io/react-icons/icons/fa/
+#Comando para iconos y para enlazar paginas
+```bash
+  npm install react-router-dom@6
+  npm install react-icons —save
+```
