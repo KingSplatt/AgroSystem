@@ -10,7 +10,7 @@ const ObtenerProductoSucursal = async (req, res) => {
         console.log('Usuarios obtenidos:', rows);
         res.status(200).send({ success: true, rows: rows })
     } catch (err) {
-        res.status(500).send({ success: false, message: 'Error al obtener usuarios' });
+        res.status(500).send({ success: false, message: 'Error al obtener Productos' });
     }
 }
 //agregar productos a la sucursal
