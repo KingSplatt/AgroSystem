@@ -7,7 +7,7 @@ const ObtenerProductoSucursal = async (req, res) => {
             'INNER JOIN Producto P ON PS.IDproducto = P.IDProducto' +
             'INNER JOIN Proveedor Pr ON Pr.IDProveedor = P.IDProveedor' +
             'INNER JOIN Categoria C ON C.IDCategoria = P.IDCategoria;');
-        console.log('Productos obtenidos:', rows);
+        console.log('Usuarios obtenidos:', rows);
         res.status(200).send({ success: true, rows: rows })
     } catch (err) {
         res.status(500).send({ success: false, message: 'Error al obtener usuarios' });
