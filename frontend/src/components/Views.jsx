@@ -5,6 +5,7 @@ import Register from "./Register";
 import Dash from "./Dash";
 import Inicio from "./Inicio";
 import Login from "./Login";
+import Productos from "../pages/Productos";
 
 const Views = () => {
   return (
@@ -15,6 +16,7 @@ const Views = () => {
           <Route path="/register" Component={Register} />
           <Route path="/login" Component={Login} />
           <Route path="/dash" Component={Dash} />
+          <Route path="/productos" Component={Productos} />
         </Routes>
       </Router>
     </>
