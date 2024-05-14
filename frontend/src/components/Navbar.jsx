@@ -13,7 +13,7 @@ const Navbar = () => {
         </div>
 
         <div className="nav-block">
-          <a href="#" className="nav-item">
+          <a href="/productos" className="nav-item">
             Productos
           </a>
         </div>
@@ -26,7 +26,7 @@ const Navbar = () => {
           />
 
           <span className="search-button">
-            <img type="button" src={searchImage} />
+            <img type="button" src={searchImage} alt="buscar" />
           </span>
         </div>
 

@@ -4,9 +4,11 @@ use AgroSystem;
 
 CREATE TABLE Cliente(
 	IDCliente int not null,
-    Nombre nvarchar(100)not null,
+    Nombre varchar(100)not null,
     ApellidoPaterno nvarchar(20)not null,
     ApellidoMaterno nvarchar(20)not null,
+    Usuario varchar(50) not null,
+    Contrasena varchar(50) not null,
     Correo nvarchar (100)not null,
     Telefono char (10)not null,
 	RFC nvarchar (13) not null,
@@ -40,34 +42,35 @@ CREATE TABLE DetalleVentaCredito(--
 );
 CREATE TABLE Empleado(
 	IDEmpleado int not null,
-    Nombre nvarchar(100)not null,
-    ApellidoPaterno nvarchar(20)not null,
-    ApellidoMaterno nvarchar(20)not null,
-    Correo nvarchar(100)not null,
-    Telefono nvarchar(15)not null,
-    Puesto nvarchar(20)not null,
-    Usuario nvarchar(30)not null,
-    Contraseña nvarchar(30)not null,
+    Nombre varchar(100)not null,
+    ApellidoPaterno varchar(20)not null,
+    ApellidoMaterno varchar(20)not null,
+    Correo varchar(100)not null,
+    Telefono varchar(15)not null,
+    Puesto varchar(20)not null,
+    Usuario varchar(30)not null,
+    Contrasena varchar(30)not null,
     FechaNacimiento datetime not null,
-    FechaIncio datetime not null,
-	RFC nvarchar(13) not null,
-	CURP nvarchar (18) not null,
+    FechaInicio datetime not null,
+	RFC varchar(13) not null,
+	CURP varchar (18) not null,
     IDSucursal int not null,
 	IDCiudad int not null
 );
 
 CREATE TABLE Sucursal(
 	IDSucursal int not null,
-    Correo nvarchar(100)not null,
-    Telefono nvarchar(10)not null,
+    Correo varchar(100)not null,
+    Telefono varchar(10)not null,
     IDCedi int not null,
 	IDCiudad int not null 
 );
 
 CREATE TABLE CEDI(
 	IDCedi int not null,
-    Correo nvarchar(100) not null,
-    Telefono nvarchar(10) not null,
+    Nombre varchar(100) not null,
+    Correo varchar(100) not null,
+    Telefono varchar(10) not null,
 	IDCiudad int not null --
 );
 
@@ -100,17 +103,18 @@ CREATE TABLE Producto(
 
 CREATE TABLE Categoria(
 	IDCategoria int not null,
-	NombreCategoria nvarchar(100) not null,--
-	DescripcionCategoria nvarchar(100)not null
+	NombreCategoria varchar(100) not null,--
+	DescripcionCategoria varchar(100)not null
 );
 
 CREATE TABLE Proveedor(
 	IDProveedor int not null,
-    Nombre nvarchar (100)not null,
-    Telefono nvarchar(10)not null,
-    Correo nvarchar(100)not null,
-	RFC nvarchar (13) not null,
-	CURP nvarchar (13) not null,
+    Nombre varchar (100)not null,
+    Telefono varchar(10)not null,
+    Correo varchar(100)not null,
+	RFC varchar (13) not null,
+	CURP varchar (13) not null,
+    Legalizado bit not null,
 	IDCiudad int not null
 );
 
@@ -129,12 +133,12 @@ CREATE TABLE ProductoCEDI(
 	IDCedi int not null
 );
 
-CREATE TABLE ESTADO(
+CREATE TABLE Estado(
 	IDEstado int not null,
 	Nombre varchar(50) not null
 );
 
-CREATE TABLE CIUDAD(
+CREATE TABLE Ciudad(
 	IDCiudad int not null,
 	Nombre varchar(50) not null,
 	IDEstado int not null
@@ -186,11 +190,13 @@ ALTER TABLE Proveedor ADD CONSTRAINT FK_Proveedor_Ciudad FOREIGN KEY (IDCiudad)R
 -- LLAVES UNICAS
 ALTER TABLE Empleado ADD CONSTRAINT UC_Empleado_RFC UNIQUE (RFC);
 ALTER TABLE Empleado ADD CONSTRAINT UC_Empleado_Usuario UNIQUE (Usuario);
-ALTER TABLE Empleado ADD CONSTRAINT UC_Empleado_Contraseña UNIQUE (Contraseña);
+ALTER TABLE Empleado ADD CONSTRAINT UC_Empleado_Contrasena UNIQUE (Contrasena);
 ALTER TABLE Empleado ADD CONSTRAINT UC_Empleado_CURP UNIQUE (CURP);
 
 ALTER TABLE Cliente ADD CONSTRAINT UC_Cliente_RFC UNIQUE (RFC);
 ALTER TABLE Cliente ADD CONSTRAINT UC_Cliente_CURP UNIQUE (CURP);
+ALTER TABLE Cliente ADD CONSTRAINT UC_Cliente_Usuario UNIQUE (Usuario);
+ALTER TABLE Cliente ADD Constraint UC_Cliente_Contrasena UNIQUE(Contrasena);
 
 ALTER TABLE Proveedor ADD CONSTRAINT UC_Proveedor_RFC UNIQUE (RFC);
 ALTER TABLE Proveedor ADD CONSTRAINT UC_Proveedor_CURP UNIQUE (CURP);
@@ -213,4 +219,5 @@ MODIFY COLUMN PrecioUnitario DECIMAL(10,2) DEFAULT 0,
 MODIFY COLUMN Cantidad INT DEFAULT 1;
 
 
--- DROP DATABASE agrosystem
+-- drop database agrosystem
+

@@ -1,1 +1,1 @@
-console.log("pendiente para uso futuro")
+console.log("pendiente para uso futurod")
