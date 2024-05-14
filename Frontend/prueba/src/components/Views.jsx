@@ -1,10 +1,10 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import React from "react";
 
-import Register from "./components/Register";
-import Dash from "./components/Dash";
-import Inicio from "./components/Inicio";
-import Login from "./components/Login";
+import Register from "./Register";
+import Dash from "./Dash";
+import Inicio from "./Inicio";
+import Login from "./Login";
 
 const Views = () => {
   return (
