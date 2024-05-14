@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./components/Navbar";
-import Views from "./components/Views";
+import Views from "./Views";
 
 function App() {
   return (
