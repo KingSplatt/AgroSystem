@@ -3,9 +3,9 @@ const pool = require('../Model/Connection');
 //agregar un proveedor nuevo
 const agregarProveedor = async (req, res) => {
     try {
-        const { Nombre, Direccion, Telefono, RFC, CURP, IDCiudad } = req.body;
-        const sql = 'INSERT INTO Proveedor (Nombre, Direccion, Telefono, RFC, CURP, IDCiudad) VALUES (?, ?, ?)';
-        const result = await pool.query(sql, [Nombre, Direccion, , RFC, CURP, IDCiudad]);
+        const { IDProveedor, Nombre, Telefono, RFC, CURP, IDCiudad } = req.body;
+        const sql = 'INSERT INTO Proveedor (IDProveedor,Nombre, Telefono, RFC, CURP, IDCiudad) VALUES (?,?,?,?, ?)';
+        const result = await pool.query(sql, [parseInt(IDProveedor), Nombre, Telefono, RFC, CURP, parseInt(IDCiudad)]);
         console.log('Proveedor agregado:', result);
         res.status(201).send({ success: true, message: "Proveedor Añadido", rows: rows });
 
@@ -32,7 +32,7 @@ const EliminarProveedor = async (req, res) => {
     try {
         const { IDProveedor } = req.body;
         const sql = 'DELETE FROM Proveedor WHERE IDProveedor = ?';
-        const result = await pool.query(sql, [IDProveedor]);
+        const result = await pool.query(sql, [parseInt(IDProveedor)]);
         console.log('Proveedor eliminado:', result);
         res.status(201).send({ success: true, message: "Proveedor eliminado", rows: rows });
     } catch (err) {
@@ -42,3 +42,4 @@ const EliminarProveedor = async (req, res) => {
 }
 
 module.exports = { agregarProveedor, ObtenerProveedor, EliminarProveedor }
+//ya quedo parseado, y comprobada en postman
