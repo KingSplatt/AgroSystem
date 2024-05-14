@@ -51,7 +51,7 @@ CREATE TABLE Empleado(
     Usuario varchar(30)not null,
     Contrasena varchar(30)not null,
     FechaNacimiento datetime not null,
-    FechaIncio datetime not null,
+    FechaInicio datetime not null,
 	RFC varchar(13) not null,
 	CURP varchar (18) not null,
     IDSucursal int not null,
@@ -220,3 +220,4 @@ MODIFY COLUMN Cantidad INT DEFAULT 1;
 
 
 -- drop database agrosystem
+
