@@ -5,11 +5,11 @@ use AgroSystem;
 CREATE TABLE Cliente(
 	IDCliente int not null,
     Nombre varchar(100)not null,
-    ApellidoPaterno nvarchar(20)not null,
-    ApellidoMaterno nvarchar(20)not null,
-    Usuario varchar(50) not null,
-    Contrasena varchar(50) not null,
-    Correo nvarchar (100)not null,
+    ApellidoPaterno varchar(20)not null,
+    ApellidoMaterno varchar(20)not null,
+	Usuario varchar(50) not null,
+	Contrasena varchar(50) not null,
+    Correo varchar (100)not null,
     Telefono char (10)not null,
 	RFC nvarchar (13) not null,
 	CURP nvarchar (18) not null,
@@ -29,29 +29,31 @@ create table Venta(
 CREATE TABLE DetalleVenta(
 	PrecioUnitario double not null,
 	Cantidad int not null,
-	IDVenta int not null,--
-	IDProducto int not null --
+	IDVenta int not null,
+	IDProducto int not null 
 );
+
 CREATE TABLE DetalleVentaCredito(--
-	PrecioUnitario double not null,
+	PrecioUnitario money not null,
 	Cantidad int not null,
 	FechaPlazo datetime not null,
 	PagoInicial double not null,
-	IDVenta int not null,
-	IDProducto int not null
+	IDVenta int not null,--
+	IDProducto int not null--
 );
+
 CREATE TABLE Empleado(
 	IDEmpleado int not null,
-    Nombre varchar(100)not null,
-    ApellidoPaterno varchar(20)not null,
-    ApellidoMaterno varchar(20)not null,
+    Nombre nvarchar(100)not null,
+    ApellidoPaterno nvarchar(20)not null,
+    ApellidoMaterno nvarchar(20)not null,
     Correo varchar(100)not null,
     Telefono varchar(15)not null,
     Puesto varchar(20)not null,
     Usuario varchar(30)not null,
     Contrasena varchar(30)not null,
     FechaNacimiento datetime not null,
-    FechaInicio datetime not null,
+    FechaIncio datetime not null,
 	RFC varchar(13) not null,
 	CURP varchar (18) not null,
     IDSucursal int not null,
@@ -63,15 +65,15 @@ CREATE TABLE Sucursal(
     Correo varchar(100)not null,
     Telefono varchar(10)not null,
     IDCedi int not null,
-	IDCiudad int not null 
+	IDCiudad int not null --
 );
 
 CREATE TABLE CEDI(
 	IDCedi int not null,
-    Nombre varchar(100) not null,
+	Nombre varchar(50) not null,
     Correo varchar(100) not null,
     Telefono varchar(10) not null,
-	IDCiudad int not null --
+	IDCiudad int not null
 );
 
 CREATE TABLE Compra(--
@@ -87,14 +89,14 @@ CREATE TABLE Compra(--
 CREATE TABLE DetalleCompra(
 	Cantidad int not null,
 	PrecioUnitario double not null,
-	IDCompra int not null,
-	IDProducto int not null
+	IDCompra int not null,--
+	IDProducto int not null--
 );
 
 CREATE TABLE Producto(
 	IDProducto int not null,
-    Nombre nvarchar(100) not null,
-	Descripcion nvarchar(100) not null,
+    Nombre varchar(100) not null,
+	Descripcion varchar(100) not null,
     PrecioUnitario int not null,
 	Descontinuado bit not null,
 	IDProveedor int not null,
@@ -114,23 +116,22 @@ CREATE TABLE Proveedor(
     Correo varchar(100)not null,
 	RFC varchar (13) not null,
 	CURP varchar (13) not null,
-    Legalizado bit not null,
+	Legalizado bit not null,
 	IDCiudad int not null
 );
 
 CREATE TABLE ProductoSucursal(
 	FechaSurtido datetime not null,
 	FechaCaducidad datetime not null,
-	IDSucursal int not null,
-	IDProducto int not null
-
+	IDSucursal int not null,--
+	IDproducto int not null--
 );
 
 CREATE TABLE ProductoCEDI(
 	FechaSurtido date not null,
 	FechaCaducidad date not null,
-	IDProducto int not null,
-	IDCedi int not null
+	IDProducto int not null,--
+	IDCedi int not null--
 );
 
 CREATE TABLE Estado(
