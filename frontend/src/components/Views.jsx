@@ -5,14 +5,12 @@ import Register from "./Register";
 import Dash from "./Dash";
 import Inicio from "./Inicio";
 import Login from "./Login";
-import Sidebar from "./Sidebar";
 import Productos from "../pages/Productos";
 
 const Views = () => {
   return (
     <>
       <Router>
-        <Sidebar />
         <Routes>
           <Route path="/" Component={Inicio} />
           <Route path="/register" Component={Register} />
