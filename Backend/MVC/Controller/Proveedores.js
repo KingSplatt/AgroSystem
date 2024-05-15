@@ -3,11 +3,11 @@ const pool = require("../Model/Connection");
 //agregar un proveedor nuevo
 const agregarProveedor = async (req, res) => {
     try {
-        const { IDProveedor, Nombre, Telefono, RFC, CURP, IDCiudad } = req.body;
-        const sql = 'INSERT INTO Proveedor (IDProveedor,Nombre, Telefono, RFC, CURP, IDCiudad) VALUES (?,?,?,?, ?)';
-        const result = await pool.query(sql, [parseInt(IDProveedor), Nombre, Telefono, RFC, CURP, parseInt(IDCiudad)]);
-        console.log('Proveedor agregado:', result);
-        res.status(201).send({ success: true, message: "Proveedor Añadido", rows: rows });
+        const { IDProveedor, Nombre, Telefono, Correo, RFC, CURP, Legalizado, IDCiudad } = req.body;
+        const insertSQL = 'INSERT INTO Proveedor (IDProveedor, Nombre, Telefono, Correo, RFC, CURP, Legalizado, IDCiudad) VALUES (?,?,?,?,?,?,?,?)';
+        const insertResult = await pool.query(insertSQL, [parseInt(IDProveedor), Nombre, Telefono, Correo, RFC, CURP, Legalizado, parseInt(IDCiudad)]);
+        console.log('Proveedor agregado:', insertResult);
+        res.status(201).send({ success: true, message: "Proveedor Añadido" });
 
     } catch (err) {
         console.error('Error al agregar proveedor:', err);
@@ -31,10 +31,10 @@ const ObtenerProveedor = async (req, res) => {
 const EliminarProveedor = async (req, res) => {
     try {
         const { IDProveedor } = req.body;
-        const sql = 'DELETE FROM Proveedor WHERE IDProveedor = ?';
-        const result = await pool.query(sql, [parseInt(IDProveedor)]);
-        console.log('Proveedor eliminado:', result);
-        res.status(201).send({ success: true, message: "Proveedor eliminado", rows: rows });
+        const deleteSQL = 'DELETE FROM Proveedor WHERE IDProveedor = ?';
+        const deleteResult = await pool.query(deleteSQL, [parseInt(IDProveedor)]);
+        console.log('Proveedor eliminado:', deleteResult);
+        res.status(201).send({ success: true, message: "Proveedor eliminado" });
     } catch (err) {
         console.error('Error al eliminar proveedor:', err);
         res.status(500).send({ success: false, message: 'Error al querer eliminar un proveedor' });

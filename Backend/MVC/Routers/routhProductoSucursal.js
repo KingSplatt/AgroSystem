@@ -1,5 +1,5 @@
 const express = require('express');
-const { ObtenerProductoSucursal, AgregarProductoSucursal, EliminarProductoSucursal, ActualizarProductoSucursal } = require('../Controller/Productos');
+const { ObtenerProductoSucursal, AgregarProductoSucursal, EliminarProductoSucursal, ActualizarProductoSucursal } = require('../Controller/ProductoSucursal');
 const router = express.Router();
 
 router.get('/', ObtenerProductoSucursal);

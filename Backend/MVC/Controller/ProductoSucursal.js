@@ -3,7 +3,7 @@ const pool = require("../Model/Connection");
 const ObtenerProductoSucursal = async (req, res) => {
     try {
         const [rows, fields] = await pool.query('SELECT PS.IDproducto, P.Nombre, P.Descripcion,P.PrecioUnitario,P.Descontinuado, ' +
-            'Pr.Nombre AS `Nombre Proveedor`, PS.IDSucursal, PS.FechaCaducidad, PS.FechaSurtido FROM ProductoSucursal PS ' +
+            'Pr.Nombre , PS.IDSucursal, PS.FechaCaducidad, PS.FechaSurtido FROM ProductoSucursal PS ' +
             'INNER JOIN Producto AS P ON PS.IDproducto = P.IDProducto ' +
             'INNER JOIN Proveedor AS Pr ON Pr.IDProveedor = P.IDProveedor ' +
             'INNER JOIN Categoria AS C ON C.IDCategoria = P.IDCategoria;');
@@ -13,19 +13,22 @@ const ObtenerProductoSucursal = async (req, res) => {
         res.status(500).send({ success: false, message: 'Error al obtener Productos' });
     }
 }
-//agregar productos a la sucursal
+//pedir productos a CEDI
 const AgregarProductoSucursal = async (req, res) => {
     try {
         const { IDproducto, IDSucursal, FechaCaducidad, FechaSurtido } = req.body;
-        const sql = 'INSERT INTO ProductoSucursal (IDproducto,IDSucursal , FechaCaducidad, FechaSurtido) VALUES (?, ?, ?, ?)';
-        const result = await pool.query(sql, [parseInt(IDproducto), parseInt(IDSucursal), FechaCaducidad, FechaSurtido]);
-        console.log('Producto agregado:', result);
-        res.status(201).send({ success: true, message: "Producto Añadido", rows: rows });
+        const insertSQL = 'INSERT INTO ProductoSucursal (IDproducto, IDSucursal, FechaCaducidad, FechaSurtido) VALUES (?, ?, ?, ?)';
+        const insertResult = await pool.query(insertSQL, [parseInt(IDproducto), parseInt(IDSucursal), FechaCaducidad, FechaSurtido]);
+        const deleteSQL = 'DELETE FROM ProductoCEDI WHERE IDProducto = ?';
+        const deleteResult = await pool.query(deleteSQL, [parseInt(IDproducto)]);
+        console.log('Producto añadido:', insertResult, deleteResult);
+        res.status(201).send({ success: true, message: "Producto añadido" });
     } catch (err) {
-        console.error('Error al agregar producto:', err);
-        res.status(500).send({ success: false, message: 'Error al querer agregar un producto' });
+        console.error('Error al añadir producto:', err);
+        res.status(500).send({ success: false, message: 'Error al querer añadir un producto' });
     }
 }
+
 //eliminara los productos (pendiente por usar), este se usara a la hora de elimnar un proveedor
 const EliminarProductoSucursal = async (req, res) => {
     try {

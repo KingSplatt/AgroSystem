@@ -4,10 +4,15 @@ const pool = require('../Model/Connection');
 const NuevaCompra = async (req, res) => {
     try {
         const { IDCompra, FechaPedido, FechaEntrega, SubTotal, Total, IDCedi, IDEmpleado } = req.body;
-        const sql = 'INSERT INTO Compra (IDCompra, FechaPedido, FechaEntrega, SubTotal, Total, IDCedi, IDEmpleado) VALUES ( ? , ? , ?, ?, ?, ?, ?)';
-        const result = await pool.query(sql, [parseInt(IDCompra), FechaPedido, FechaEntrega, parseFloat(SubTotal), parseFloat(Total), parseInt(IDCedi), parseInt(IDEmpleado)]);
-        console.log('Compra exitosa', result);
-        res.status(201).send({ success: true, message: "Compra creada exitosamente", rows: rows });
+        const { Cantidad, PrecioUnitario, IDProducto } = req.body;
+        SubTotal = Cantidad * PrecioUnitario;
+        Total = SubTotal * 1.16;
+        const compraSQL = 'INSERT INTO Compra (IDCompra, FechaPedido, FechaEntrega, SubTotal, Total, IDCedi, IDEmpleado) VALUES ( ? , ? , ?, ?, ?, ?, ?)';
+        const compraResult = await pool.query(compraSQL, [parseInt(IDCompra), FechaPedido, FechaEntrega, parseFloat(SubTotal), parseFloat(Total), parseInt(IDCedi), parseInt(IDEmpleado)]);
+        const detalleCompraSQL = 'INSERT INTO DetalleCompra (IDCompra, IDProducto, Cantidad, PrecioUnitario) VALUES (?, ?, ?, ?)';
+        const detalleCompraResult = await pool.query(detalleCompraSQL, [parseInt(IDCompra), parseInt(IDProducto), parseInt(Cantidad), parseFloat(PrecioUnitario)]);
+        console.log('Compra exitosa', compraResult, detalleCompraResult);
+        res.status(201).send({ success: true, message: "Compra creada exitosamente" });
     } catch (err) {
         console.error('Error al crear la venta', err);
         res.status(500).send({ success: false, message: 'Error al crear la venta' });
@@ -17,7 +22,8 @@ const NuevaCompra = async (req, res) => {
 // Ver el historial de compras
 const HistorialCompras = async (req, res) => {
     try {
-        const [rows, fields] = await pool.query('SELECT C.IDCompra, C.FechaPedido, C.FechaEntrega, C.SubTotal, C.Total, C.IDCedi, C.IDEmpleado FROM Compra C');
+        const [rows, fields] = await pool.query('SELECT C.IDCompra, C.FechaPedido, C.FechaEntrega, C.SubTotal, C.Total, C.IDCedi, C.IDEmpleado, DC.Cantidad, DC.PrecioUnitario FROM Compra C ' +
+            'INNER JOIN DetalleCompra DC ON C.IDCompra = DC.IDCompra ');
         console.log('Compras hechas hasta el momento', rows);
         res.status(201).send({ success: true, message: 'Compras realizadas existosamente', rows: rows });
     } catch (err) {
@@ -30,9 +36,11 @@ const HistorialCompras = async (req, res) => {
 const EliminarCompra = async (req, res) => {
     try {
         const { IDCompra } = req.body;
-        const sql = 'DELETE FROM Compra WHERE IDCompra = ?';
-        const result = await pool.query(sql, [parseInt(IDCompra)]);
-        console.log('Compra eliminada', result);
+        const deleteSQL = 'DELETE FROM Compra WHERE IDCompra = ?';
+        const deleteResult = await pool.query(deleteSQL, [parseInt(IDCompra)]);
+        const deleteDetalleSQL = 'DELETE FROM DetalleCompra WHERE IDCompra = ?';
+        const deleteDetalleResult = await pool.query(deleteDetalleSQL, [parseInt(IDCompra)]);
+        console.log('Compra eliminada', deleteResult, deleteDetalleResult);
         res.status(201).send({ success: true, message: 'La compra ha sido eliminada del historial' });
     } catch (err) {
         console.error('Error al eliminar la compra', err);

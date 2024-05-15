@@ -4,10 +4,10 @@ const pool = require('../Model/Connection');
 const NuevoEmpleado = async (req, res) => {
     try {
         const { IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad } = req.body;
-        const sql = 'INSERT INTO Empleado (IDEmpleado , Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
-        const result = await pool.query(sql, [parseInt(IDEmpleado), Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, parseInt(IDSucursal), parseInt(IDCiudad)]);
-        console.log('Empleado agregado exitosamente', result);
-        res.status(201).send({ success: true, message: "Empleado agregado exitosamente", rows: rows });
+        const insertSQL = 'INSERT INTO Empleado (IDEmpleado , Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
+        const insertResult = await pool.query(insertSQL, [parseInt(IDEmpleado), Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, parseInt(IDSucursal), parseInt(IDCiudad)]);
+        console.log('Empleado agregado exitosamente', insertResult);
+        res.status(201).send({ success: true, message: "Empleado agregado exitosamente" });
     } catch (err) {
         console.error('Error al agregar el empleado', err);
         res.status(500).send({ success: false, message: 'Error al agregar al empleado' });
@@ -31,9 +31,9 @@ const VerEmpleados = async (req, res) => {
 const EliminarEmpleado = async (req, res) => {
     try {
         const { IDEmpleado } = req.body;
-        const sql = 'DELETE FROM Empleado WHERE IDEmpleado = ?';
-        const result = await pool.query(sql, [parseInt(IDEmpleado)]);
-        console.log('Empleado eliminado', result);
+        const deleteSQL = 'DELETE FROM Empleado WHERE IDEmpleado = ?';
+        const deleteResult = await pool.query(deleteSQL, [parseInt(IDEmpleado)]);
+        console.log('Empleado eliminado', deleteResult);
         res.status(201).send({ success: true, message: 'Empleado eliminado existosamente' });
     } catch (err) {
         console.error('Error al eliminar el empleado', err);
