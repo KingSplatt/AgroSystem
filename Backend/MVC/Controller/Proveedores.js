@@ -1,4 +1,4 @@
-const pool = require('../Model/Connection');
+const pool = require("../Model/Connection");
 
 //agregar un proveedor nuevo
 const agregarProveedor = async (req, res) => {
@@ -43,3 +43,4 @@ const EliminarProveedor = async (req, res) => {
 
 module.exports = { agregarProveedor, ObtenerProveedor, EliminarProveedor }
 //ya quedo parseado, y comprobada en postman
+

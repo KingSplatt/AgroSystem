@@ -25,6 +25,7 @@ INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (9, 'Chihuahua', 8);
 INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (10, 'Juárez', 8); 
 
 -- Inserciones de datos a la tabla cliente
+
 INSERT INTO Cliente (IDCliente, Nombre, ApellidoPaterno, ApellidoMaterno, Usuario, Contrasena, Correo, Telefono, RFC, CURP, IDCiudad) 
 VALUES (1, 'Juan', 'López', 'García', 'juanito123', 'contraseña123', 'juanito@example.com', '1234567890', 'LOPG890123ABC', 'LOPG890123HDFJNS00', 1);
 
@@ -54,6 +55,7 @@ VALUES (9, 'Ricardo', 'García', 'Flores', 'ricflo', 'ricardito1', 'ricardo@exam
 
 INSERT INTO Cliente (IDCliente, Nombre, ApellidoPaterno, ApellidoMaterno, Usuario, Contrasena, Correo, Telefono, RFC, CURP, IDCiudad) 
 VALUES (10, 'Karla', 'Morales', 'Juárez', 'karlita87', 'karlita123', 'karla@example.com', '6667778889', 'MOJK900303ABC', 'MOJK900303POIUYTRE', 10);
+
 
 -- Inserciones de ejemplo a la tabla Venta
 INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
@@ -87,6 +89,7 @@ INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, ID
 VALUES (10, '2024-05-10', 400.00, 440.00, 0, 10, 2);
 
 -- Insercion de ejemplo a la tabla Proveedor
+
 INSERT INTO Proveedor (IDProveedor, Nombre, Telefono, Correo, RFC, CURP, Legalizado, IDCiudad) 
 VALUES (1, 'Proveedor1', '1234567890', 'proveedor1@example.com', 'ABC123456DEF', 'CURP123456', 1, 1);
 
@@ -116,6 +119,7 @@ VALUES (9, 'Proveedor9', '1473692580', 'proveedor9@example.com', 'YZA789012BCD',
 
 INSERT INTO Proveedor (IDProveedor, Nombre, Telefono, Correo, RFC, CURP, Legalizado, IDCiudad) 
 VALUES (10, 'Proveedor10', '3691472583', 'proveedor10@example.com', 'BCD890123EFG', 'CURP890123', 1, 1);
+
 
 -- Insercion de ejemplo a la tabla Categoria
 INSERT INTO Categoria (IDCategoria, NombreCategoria, DescripcionCategoria) 
@@ -180,6 +184,7 @@ INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontin
 VALUES (10, 'Licuadora eléctrica', 'Licuadora de alta potencia con múltiples velocidades', 60, 0, 10, 10);
 
 -- Insercion de ejemplo a la tabla CEDI
+
 INSERT INTO CEDI (IDCedi, Nombre, Correo, Telefono, IDCiudad) VALUES (1, 'Centro de Distribución Baja', 'contacto@cedibaja.com', '6641234567', 1);
 INSERT INTO CEDI (IDCedi, Nombre, Correo, Telefono, IDCiudad) VALUES (2, 'Almacén Mexicali', 'info@almacenmexicali.com', '6869876543', 2);
 INSERT INTO CEDI (IDCedi, Nombre, Correo, Telefono, IDCiudad) VALUES (3, 'Depósito La Paz', 'ventas@depositolapaz.com', '6125557890', 3);
@@ -190,6 +195,7 @@ INSERT INTO CEDI (IDCedi, Nombre, Correo, Telefono, IDCiudad) VALUES (7, 'Depós
 INSERT INTO CEDI (IDCedi, Nombre, Correo, Telefono, IDCiudad) VALUES (8, 'Bodega Nogales', 'info@bodeganogales.com', '6314445555', 8);
 INSERT INTO CEDI (IDCedi, Nombre, Correo, Telefono, IDCiudad) VALUES (9, 'Almacén Chihuahua', 'ventas@almacenchihuahua.com', '6147778888', 9);
 INSERT INTO CEDI (IDCedi, Nombre, Correo, Telefono, IDCiudad) VALUES (10, 'Centro de Distribución Juárez', 'contacto@cedijuarez.com', '6569990000', 10);
+
 
 -- Insercion de ejemplo a la tabla Sucursal
 INSERT INTO Sucursal (IDSucursal, Correo, Telefono, IDCedi, IDCiudad) VALUES (1, 'sucursal1@example.com', '1234567890', 1, 1); 
@@ -214,6 +220,7 @@ INSERT INTO DetalleVenta (PrecioUnitario, Cantidad, IDVenta, IDProducto) VALUES 
 INSERT INTO DetalleVenta (PrecioUnitario, Cantidad, IDVenta, IDProducto) VALUES (90.00, 3, 8, 8);
 INSERT INTO DetalleVenta (PrecioUnitario, Cantidad, IDVenta, IDProducto) VALUES (120.00, 1, 9, 9);
 INSERT INTO DetalleVenta (PrecioUnitario, Cantidad, IDVenta, IDProducto) VALUES (400.00, 2, 10, 10);
+
 
 -- Insercion de ejemplo a la tabla DetalleVentaCredito
 INSERT INTO DetalleVentaCredito (PrecioUnitario, Cantidad, FechaPlazo, PagoInicial, IDVenta, IDProducto) VALUES (150.00, 2, '2024-05-15 10:00:00', 50.00, 1, 1);

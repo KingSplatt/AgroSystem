@@ -5,11 +5,13 @@ use AgroSystem;
 CREATE TABLE Cliente(
 	IDCliente int not null,
     Nombre varchar(100)not null,
+
     ApellidoPaterno varchar(20)not null,
     ApellidoMaterno varchar(20)not null,
 	Usuario varchar(50) not null,
 	Contrasena varchar(50) not null,
     Correo varchar (100)not null,
+
     Telefono char (10)not null,
 	RFC nvarchar (13) not null,
 	CURP nvarchar (18) not null,
@@ -44,9 +46,11 @@ CREATE TABLE DetalleVentaCredito(--
 
 CREATE TABLE Empleado(
 	IDEmpleado int not null,
+
     Nombre nvarchar(100)not null,
     ApellidoPaterno nvarchar(20)not null,
     ApellidoMaterno nvarchar(20)not null,
+
     Correo varchar(100)not null,
     Telefono varchar(15)not null,
     Puesto varchar(20)not null,

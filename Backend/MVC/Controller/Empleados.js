@@ -44,3 +44,4 @@ const EliminarEmpleado = async (req, res) => {
 module.exports = { NuevoEmpleado, VerEmpleados, EliminarEmpleado };
 
 //ya quedo parseado, y comprobada en postman
+

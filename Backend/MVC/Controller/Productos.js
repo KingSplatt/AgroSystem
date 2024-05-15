@@ -1,4 +1,4 @@
-const pool = require('../Model/Connection');
+const pool = require("../Model/Connection");
 //obtener los productos de la sucursal
 const ObtenerProductoSucursal = async (req, res) => {
     try {
@@ -56,3 +56,4 @@ const ActualizarProductoSucursal = async (req, res) => {
 module.exports = { ObtenerProductoSucursal, AgregarProductoSucursal, EliminarProductoSucursal, ActualizarProductoSucursal }
 
 //ya quedo parseado, y comprobada en postman
+

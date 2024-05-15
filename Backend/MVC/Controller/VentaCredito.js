@@ -28,3 +28,4 @@ const HistorialCreditos = async (req, res) => {
 
 module.exports = { NuevaVentaCredito, HistorialCreditos };
 //ya quedo parseada, y comprobada en postman
+
