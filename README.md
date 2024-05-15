@@ -41,12 +41,15 @@ Lo primero es ir a la carpeta de "BACKED" y abrir una nueva terminal, estando ah
 ```
 
 este les descargara todas las dependencias y archivos que ocupan
-## Crear un archivo .env en la carpeta raiz de la carpeta Backed
-Pueden crear un puerto, este es el que uso:
+## Crear un archivo .env en la carpeta raiz de la carpeta Backend
+Si planean testear tanto el backend como el frontend, pueden colocar
+un puerto distinto, 8080 por ejemplo y para realizar la conexion con
+la base de datos, pueden colocar su contraseña en este archivo.
 
-El default es: 3030
+El default es: 3000
 ```bash
   PUERTO = 8080
+  DB_PASSWORD = passwordHere
 ```
 link donde hay una libreria de iconos
 https://react-icons.github.io/react-icons/icons/fa/
