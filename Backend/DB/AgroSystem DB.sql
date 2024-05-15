@@ -19,15 +19,15 @@ CREATE TABLE Cliente(
 create table Venta(
 	IDVenta int not null,
     FechaPedido date not null,
-	Subtotal money not null,
-    Total money not null,
+	Subtotal double not null,
+    Total double not null,
 	Credito bit not null,
 	IDCliente int not null,
 	IDEmpleado int not null
 );
 
 CREATE TABLE DetalleVenta(
-	PrecioUnitario money not null,
+	PrecioUnitario double not null,
 	Cantidad int not null,
 	IDVenta int not null,
 	IDProducto int not null 
@@ -37,7 +37,7 @@ CREATE TABLE DetalleVentaCredito(--
 	PrecioUnitario money not null,
 	Cantidad int not null,
 	FechaPlazo datetime not null,
-	PagoInicial money not null,
+	PagoInicial double not null,
 	IDVenta int not null,--
 	IDProducto int not null--
 );
@@ -80,15 +80,15 @@ CREATE TABLE Compra(--
 	IDCompra int not null,
 	FechaPedido datetime not null,
 	FechaEntrega datetime not null,
-	SubTotal money not null,
-	Total money not null,
+	SubTotal double not null,
+	Total double not null,
 	IDCedi int not null,
 	IDEmpleado int not null
 );
 
 CREATE TABLE DetalleCompra(
 	Cantidad int not null,
-	PrecioUnitario money not null,
+	PrecioUnitario double not null,
 	IDCompra int not null,--
 	IDProducto int not null--
 );
