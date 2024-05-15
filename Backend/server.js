@@ -25,7 +25,7 @@ const routerCompra = require('./MVC/Routers/routhCompra');
 app.use('/productos', routerProductos);
 app.use('/proveedores', routerProveedores);
 app.use('/empleados', routerEmpleados);
-app.use('/Venta-Credito', routerVentaCredito);
+app.use('/VentasC', routerVentaCredito);
 app.use('/compras', routerCompra);
 
 
