@@ -30,8 +30,8 @@ app.use('/productos', routerProductoSucursal);
 app.use('/productosCEDI', routerProductoCEDI);
 app.use('/proveedores', routerProveedores);
 app.use('/empleados', routerEmpleados);
-app.use('/VentasC', routerVentaCredito);
-app.use('/VentasN', routerVentaNormal);
+app.use('/ventasC', routerVentaCredito);
+app.use('/ventasN', routerVentaNormal);
 app.use('/compras', routerCompra);
 
 //ES PARA ABRIR EL DOTENV
