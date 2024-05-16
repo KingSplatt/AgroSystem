@@ -5,6 +5,10 @@ const agregarProveedor = async (req, res) => {
     try {
         const { IDProveedor, Nombre, Telefono, Correo, RFC, CURP, Legalizado, IDCiudad } = req.body;
         const insertSQL = 'INSERT INTO Proveedor (IDProveedor, Nombre, Telefono, Correo, RFC, CURP, Legalizado, IDCiudad) VALUES (?,?,?,?,?,?,?,?)';
+        Legalizado = Legalizado ? 1 : 0;
+        if (!IDProveedor || !Nombre || !Telefono || !Correo || !RFC || !CURP || !Legalizado || !IDCiudad) {
+            return res.status(400).send({ success: false, message: 'Faltan campos por llenar' });
+        }
         const insertResult = await pool.query(insertSQL, [parseInt(IDProveedor), Nombre, Telefono, Correo, RFC, CURP, Legalizado, parseInt(IDCiudad)]);
         console.log('Proveedor agregado:', insertResult);
         res.status(201).send({ success: true, message: "Proveedor Añadido" });

@@ -4,6 +4,9 @@ const pool = require('../Model/Connection');
 const NuevoEmpleado = async (req, res) => {
     try {
         const { IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad } = req.body;
+        if (!IDEmpleado || !Nombre || !ApellidoPaterno || !ApellidoMaterno || !Correo || !Telefono || !Puesto || !Usuario || !Contrasena || !FechaNacimiento || !FechaInicio || !RFC || !CURP || !IDSucursal || !IDCiudad) {
+            return res.status(400).send({ success: false, message: 'Faltan campos por llenar' });
+        }
         const insertSQL = 'INSERT INTO Empleado (IDEmpleado , Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
         const insertResult = await pool.query(insertSQL, [parseInt(IDEmpleado), Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, parseInt(IDSucursal), parseInt(IDCiudad)]);
         console.log('Empleado agregado exitosamente', insertResult);
@@ -31,6 +34,9 @@ const VerEmpleados = async (req, res) => {
 const EliminarEmpleado = async (req, res) => {
     try {
         const { IDEmpleado } = req.body;
+        if (!IDEmpleado) {
+            return res.status(400).send({ success: false, message: 'Ingresa el ID del Empleado' });
+        }
         const deleteSQL = 'DELETE FROM Empleado WHERE IDEmpleado = ?';
         const deleteResult = await pool.query(deleteSQL, [parseInt(IDEmpleado)]);
         console.log('Empleado eliminado', deleteResult);

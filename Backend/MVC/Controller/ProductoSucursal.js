@@ -17,6 +17,9 @@ const ObtenerProductoSucursal = async (req, res) => {
 const AgregarProductoSucursal = async (req, res) => {
     try {
         const { IDproducto, IDSucursal, FechaCaducidad, FechaSurtido } = req.body;
+        if (!IDproducto || !IDSucursal || !FechaCaducidad || !FechaSurtido) {
+            return res.status(400).send({ success: false, message: 'Faltan campos por llenar' });
+        }
         const insertSQL = 'INSERT INTO ProductoSucursal (IDproducto, IDSucursal, FechaCaducidad, FechaSurtido) VALUES (?, ?, ?, ?)';
         const insertResult = await pool.query(insertSQL, [parseInt(IDproducto), parseInt(IDSucursal), FechaCaducidad, FechaSurtido]);
         const deleteSQL = 'DELETE FROM ProductoCEDI WHERE IDProducto = ?';

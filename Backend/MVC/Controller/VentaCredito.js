@@ -4,10 +4,14 @@ const pool = require('../Model/Connection');
 const NuevaVentaCredito = async (req, res) => {
     try {
         const { IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado, PrecioUnitario, Cantidad, IDProducto, FechaPlazo, PagoInicial } = req.body;
+        if (!IDVenta || !FechaPedido || !Subtotal || !Total || !Credito || !IDCliente || !IDEmpleado || !PrecioUnitario || !Cantidad || !IDProducto || !FechaPlazo || !PagoInicial) {
+            return res.status(400).send({ success: false, message: 'Faltan campos por llenar' });
+        }
+        Credito = 1;
         Subtotal = PrecioUnitario * Cantidad;
         Total = Subtotal * 1.16;
         const ventaC = 'INSERT INTO Venta (  IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) VALUES (?,?, ?, ?, ?, ?, ?)';
-        const result = await pool.query(ventaC, [parseInt(IDVenta), FechaPedido, parseFloat(Subtotal), parseFloat(Total), parseInt(Credito), parseInt(IDCliente), parseInt(IDEmpleado)]);
+        const result = await pool.query(ventaC, [parseInt(IDVenta), FechaPedido, parseFloat(Subtotal), parseFloat(Total), Credito, parseInt(IDCliente), parseInt(IDEmpleado)]);
         const detalleVenta = 'INSERT INTO DetalleVentaCredito (PrecioUnitario, Cantidad, FechaPlazo, PagoInicial, IDVenta, IDProducto) VALUES (?, ?, ?, ?, ? , ?)';
         const detalleVentaResult = await pool.query(detalleVenta, [parseInt(IDVenta), parseInt(IDProducto), parseInt(Cantidad), parseFloat(PrecioUnitario), FechaPlazo, PagoInicial]);
         console.log('Venta a credito añadida', result, detalleVentaResult);

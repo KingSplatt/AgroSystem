@@ -5,6 +5,9 @@ const NuevaCompra = async (req, res) => {
     try {
         const { IDCompra, FechaPedido, FechaEntrega, SubTotal, Total, IDCedi, IDEmpleado } = req.body;
         const { Cantidad, PrecioUnitario, IDProducto } = req.body;
+        if (!IDCompra || !FechaPedido || !FechaEntrega || !SubTotal || !Total || !IDCedi || !IDEmpleado || !Cantidad || !PrecioUnitario || !IDProducto) {
+            return res.status(400).send({ success: false, message: 'Faltan campos por llenar' });
+        }
         SubTotal = Cantidad * PrecioUnitario;
         Total = SubTotal * 1.16;
         const compraSQL = 'INSERT INTO Compra (IDCompra, FechaPedido, FechaEntrega, SubTotal, Total, IDCedi, IDEmpleado) VALUES ( ? , ? , ?, ?, ?, ?, ?)';

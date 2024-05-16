@@ -115,7 +115,7 @@ CREATE TABLE Proveedor (
     Telefono varchar(10) not null,
     Correo varchar(100) not null,
     RFC varchar(13) not null,
-    CURP varchar(13) not null,
+    CURP varchar(18) not null,
     Legalizado boolean not null,
     IDCiudad int not null
 );
