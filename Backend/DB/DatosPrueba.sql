@@ -1,28 +1,28 @@
 use AgroSystem;;
 
 -- Inserciones de ejemplo a la tabla Estado
-INSERT INTO Estado (IDEstado, Nombre) VALUES (2, 'Baja California');
-INSERT INTO Estado (IDEstado, Nombre) VALUES (3, 'Baja California Sur');
-INSERT INTO Estado (IDEstado, Nombre) VALUES (25, 'Sinaloa');
-INSERT INTO Estado (IDEstado, Nombre) VALUES (26, 'Sonora');
-INSERT INTO Estado (IDEstado, Nombre) VALUES (8, 'Chihuahua');
-INSERT INTO Estado (IDEstado, Nombre) VALUES (13, 'Hidalgo');
-INSERT INTO Estado (IDEstado, Nombre) VALUES (28, 'Tamaulipas');
-INSERT INTO Estado (IDEstado, Nombre) VALUES (18, 'Nayarit');
-INSERT INTO Estado (IDEstado, Nombre) VALUES (19, 'Nuevo León');
-INSERT INTO Estado (IDEstado, Nombre) VALUES (21, 'Puebla');
+INSERT INTO Estado (IDEstado, Nombre) VALUES (1, 'Baja California');
+INSERT INTO Estado (IDEstado, Nombre) VALUES (2, 'Baja California Sur');
+INSERT INTO Estado (IDEstado, Nombre) VALUES (3, 'Sinaloa');
+INSERT INTO Estado (IDEstado, Nombre) VALUES (4, 'Sonora');
+INSERT INTO Estado (IDEstado, Nombre) VALUES (5, 'Chihuahua');
+INSERT INTO Estado (IDEstado, Nombre) VALUES (6, 'Hidalgo');
+INSERT INTO Estado (IDEstado, Nombre) VALUES (7, 'Tamaulipas');
+INSERT INTO Estado (IDEstado, Nombre) VALUES (8, 'Nayarit');
+INSERT INTO Estado (IDEstado, Nombre) VALUES (9, 'Nuevo León');
+INSERT INTO Estado (IDEstado, Nombre) VALUES (10, 'Puebla');
 
 -- Inserciones de ejemplo a la tabla Ciudad
-INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (1, 'Tijuana', 2); 
-INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (2, 'Mexicali', 2); 
-INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (3, 'La Paz', 3); 
-INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (4, 'Cabo San Lucas', 3); 
-INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (5, 'Culiacán', 25); 
-INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (6, 'Mazatlán', 25); 
-INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (7, 'Hermosillo', 26); 
-INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (8, 'Nogales', 26); 
-INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (9, 'Chihuahua', 8); 
-INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (10, 'Juárez', 8); 
+INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (1, 'Tijuana', 1); 
+INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (2, 'Mexicali', 1); 
+INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (3, 'La Paz', 2); 
+INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (4, 'Cabo San Lucas', 2); 
+INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (5, 'Culiacán', 3); 
+INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (6, 'Mazatlán', 3); 
+INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (7, 'Hermosillo', 4); 
+INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (8, 'Nogales', 4); 
+INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (9, 'Chihuahua', 5); 
+INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (10, 'Juárez', 5); 
 
 -- Inserciones de datos a la tabla cliente
 
