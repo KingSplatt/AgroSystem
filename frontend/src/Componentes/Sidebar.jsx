@@ -159,10 +159,10 @@ const Sidebar = ({ nose }) => {
 
     return (
         <div className="contenedor">
-            <div style={{ width: isOpen ? "300px" : "60px" }} className="sidebar">
+            <div style={{ width: isOpen ? "200px" : "60px" }} className="sidebar">
                 <div className="top">
                     <h1 style={{ display: isOpen ? "block" : "none" }} className="logo">Logo</h1>
-                    <div style={{ marginLeft: isOpen ? "120px" : "0px" }} className="bars">
+                    <div style={{ marginLeft: isOpen ? "90px" : "0px" }} className="bars">
                         <FaBars onClick={toggle} />
                     </div>
                 </div>
