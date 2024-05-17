@@ -1,0 +1,56 @@
+.formularioAP{
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.ADDP{
+    display:block;
+    padding:1%;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #f2f2f2;
+}
+
+.ADDP input, select {
+    padding: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: auto;
+}
+
+.form-group{
+    display:flex;
+    padding: 1%;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #f2f2f2;
+    width: 100%;
+}
+
+.grupo1, .grupo2, .grupo3{
+    display: flex;
+}
+
+.Save{
+
+    padding: 8px 16px;
+    background-color: #A5DA8C;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  .Cancel {
+
+    padding: 8px 16px;
+    background-color: #C85859;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+
+  }

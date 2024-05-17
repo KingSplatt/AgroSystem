@@ -1,38 +1,82 @@
-.App {
-  text-align: center;
+
+.contenedor {
+    display: flex;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+main {
+    width: 100%;
+    padding: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.sidebar {
+    height: 100vh;
+    background: #333;
+    color: #fff;
+  
+    width: 300px; 
+    transition: all 0.5s;
+    overflow: auto; 
+   
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.top {
+    display: flex;
+    align-items: center;
+    padding: 20px 15px;
 }
 
-.App-link {
-  color: #61dafb;
+.logo {
+    font-size: 23px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.bars {
+    display: flex;
+    font-size: 25px;
+    margin-left: auto;
+}
+
+.link {
+    display: flex;
+    color: #fff;
+    padding: 10px 15px;
+    gap: 15px;
+    transition: all 0.5s;
+
+}
+
+.link:hover {
+    background: #555;
+    color: #fff;
+    transition: all 0.5s;
+
+}
+
+.active {
+    background: #555;
+    color: #fff;
+
+}
+
+.icon,
+.link_text {
+    font-size: 20px;
+}
+
+/*Colores generales para botones modify y add*/
+.Modify {
+    background-color: #8CA2DA;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.Add {
+    background-color: #A5DA8C;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
 }

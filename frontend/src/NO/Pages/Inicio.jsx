@@ -1,12 +1,11 @@
 import React from "react";
 
-const Inicio = () => {
+const Inici = () => {
     return (
         <div>
             <h1>Inicio</h1>
-            
         </div>
     );
-};
+}
 
-export default Inicio;
+export default Inici;
