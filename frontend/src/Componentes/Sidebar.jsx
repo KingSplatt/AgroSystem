@@ -4,6 +4,7 @@ import {
     FaShoppingCart, FaSignOutAlt, FaTh, FaTruck, FaUsers
 } from "react-icons/fa"; // Importamos los iconos de react-icons
 import { NavLink } from 'react-router-dom';
+import '../Estilos/Sidebar.css';
 
 
 
@@ -74,7 +75,7 @@ const Sidebar = ({ nose }) => {
                 },
                 {
                     name: 'Ingresar compra',
-                    path: '/productos/anadir'
+                    path: '/IngresarProductos'
                 }
             ]
         },
@@ -167,6 +168,7 @@ const Sidebar = ({ nose }) => {
                 </div>
                 {menuItems.map(renderMenuItem)}
             </div>
+            
             <main>{nose}</main>
         </div>
     );

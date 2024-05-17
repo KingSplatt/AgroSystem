@@ -1,7 +1,7 @@
 import React from "react";
 import { FaExchangeAlt, FaFileExport, FaPlus, FaPrint } from "react-icons/fa";
 import "../App.css";
-import "../Estilos/Proveedores.css";
+import "../Estilos/Proveedores.css"; //cambiar a la ruta correcta
 
 const HistorialCompras = () => {
 

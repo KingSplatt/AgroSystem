@@ -1,0 +1,64 @@
+.IngresarProductos {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.FormularioProducto {
+    display: block;
+    padding:1%;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #f2f2f2;
+}
+
+.FormularioProducto input, select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: auto;
+    margin-left: 5px;
+}
+
+.TopIngreso {
+    display: flex;
+    align-items: center;
+    padding: 1%;
+    margin-bottom: 20px;
+    background-color: #f2f2f2;
+}
+
+.BottomIngreso {
+    display: flex;
+    align-items: center;
+    padding: 1%;
+    margin-bottom: 20px;
+    background-color: #f2f2f2;
+}
+
+
+.MsjIngreso{
+    display: flex;
+}
+
+.MsjIngreso hr{
+    width: 90%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.AgregarATable{
+    padding: 8px 16px;
+    background-color: #A5DA8C;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+tfoot{
+    background-color: #d4cfcf;
+    width: 100%;
+}

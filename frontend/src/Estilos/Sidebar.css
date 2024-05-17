@@ -1,0 +1,63 @@
+.contenedor {
+    display: flex;
+}
+main {
+    width: 100%;
+    padding: 20px;
+}
+
+.sidebar {
+    height: 100vh;
+    background: #333;
+    color: #fff;
+  
+    width: 300px; 
+    transition: all 0.5s;
+    overflow: auto; 
+  
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    padding: 20px 15px;
+}
+
+.logo {
+    font-size: 23px;
+}
+
+.bars {
+    display: flex;
+    font-size: 25px;
+    margin-left: auto;
+}
+
+.link {
+    display: flex;
+    color: #fff;
+    padding: 10px 15px;
+    gap: 15px;
+    transition: all 0.5s;
+
+}
+
+.link:hover {
+    background: #555;
+    color: #fff;
+    transition: all 0.5s;
+
+}
+
+.active {
+    background: #555;
+    color: #fff;
+
+}
+
+.icon,
+.link_text {
+    font-size: 20px;
+}
+
+
