@@ -12,7 +12,7 @@ import VerProveedores from './Pages/VerProveedores.jsx';
 
 const App = () => {
   return (
-    <div className='Todo'>
+    <div className='Todo' >
     <BrowserRouter>
     <Sidebar nose={Selection.path}/>
       <Routes>
