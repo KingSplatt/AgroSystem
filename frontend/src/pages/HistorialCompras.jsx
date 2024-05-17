@@ -1,7 +1,7 @@
 import React from "react";
 import { FaExchangeAlt, FaFileExport, FaPlus, FaPrint } from "react-icons/fa";
 import "../App.css";
-import "../Estilos/Proveedores.css"; //cambiar a la ruta correcta
+import "../Estilos/HistorialCompras.css"; //cambiar a la ruta correcta
 
 const HistorialCompras = () => {
 
@@ -29,9 +29,10 @@ const HistorialCompras = () => {
 
     return (
         <div>
-            <h1>Historial de compras</h1>
+           
 
             <div className="containerVP">
+                <h1>Historial de compras</h1>
                 <div className="barraSuperior">
                     <input type="search" placeholder="Buscar proveedor"/> 
                     <button className="Busqueda"> Buscar </button>

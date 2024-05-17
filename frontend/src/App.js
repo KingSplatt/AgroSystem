@@ -1,8 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-
-//import Dash from './Dash';
 import Sidebar from './Componentes/Sidebar';
 import Login from './Login';
 import ActualizarProveedor from './Pages/ActualizarProveedor.jsx';
@@ -13,11 +11,10 @@ import Inicio from './Pages/Inicio.jsx';
 import VerProveedores from './Pages/VerProveedores.jsx';
 
 const App = () => {
-
-
   return (
-
+    <div className='Todo'>
     <BrowserRouter>
+    <Sidebar nose={Selection.path}/>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/inicio" element={<Inicio />} />
@@ -27,8 +24,8 @@ const App = () => {
         <Route path="/HistorialCompras" element={<HistorialCompras />} />
         <Route path="/IngresarProductos" element={<IngresarProductos />} />
       </Routes>
-      <Sidebar nose={"Contenido"} />
     </BrowserRouter>
+    </div>
   );
 }
 
