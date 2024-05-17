@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import logo from './Images/login.png';
 import './Login.css';
-import logo from './img/login.png';
 
 function Login() {
   const navigate = useNavigate(); // Cambio de 'history' a 'navigate'

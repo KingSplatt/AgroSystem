@@ -4,11 +4,11 @@ import './App.css';
 //import Dash from './Dash';
 import Sidebar from './Componentes/Sidebar';
 import Login from './Login';
-import ActualizarProveedor from './pages/ActualizarProveedor.jsx';
-import AnadirProveedor from './pages/AnadirProveedor.jsx';
-import HistorialCompras from './pages/HistorialCompras.jsx';
-import Inicio from './pages/Inicio.jsx';
-import VerProveedores from './pages/VerProveedores.jsx';
+import ActualizarProveedor from './Pages/ActualizarProveedor.jsx';
+import AnadirProveedor from './Pages/AnadirProveedor.jsx';
+import HistorialCompras from './Pages/HistorialCompras.jsx';
+import Inicio from './Pages/Inicio.jsx';
+import VerProveedores from './Pages/VerProveedores.jsx';
 
 const App = () => {
 
