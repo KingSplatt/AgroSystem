@@ -31,7 +31,7 @@ const ActualizarProveedor = () => {
 
           <div className="form-group">
             <label htmlFor="telefono">Teléfono: </label>
-            <input type="text" id="telefono" />
+            <input type="tel" id="telefono" />
           </div>
 
           <div className="form-group">

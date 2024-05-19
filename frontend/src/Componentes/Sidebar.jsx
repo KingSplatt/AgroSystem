@@ -56,7 +56,7 @@ const Sidebar = ({ nose }) => {
                 },
                 {
                     name: 'Añadir Productos',
-                    path: '/productos/anadir'
+                    path: '/AnadirProductos'
                 },
                 {
                     name: 'Modificar Productos',
