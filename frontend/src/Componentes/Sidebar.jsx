@@ -12,13 +12,26 @@ const Sidebar = ({ nose }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [expandedMenus, setExpandedMenus] = useState({});
 
-    const toggle = () => setIsOpen(!isOpen);
+    const toggle = () => {
+        if (isOpen) {
+            // Cerrar todos los submenús al minimizar el sidebar
+            setExpandedMenus({});
+        }
+        setIsOpen(!isOpen);
+    };
 
     const toggleSubMenu = (index) => {
-        setExpandedMenus(prevState => ({
-            ...prevState,
-            [index]: !prevState[index]
-        }));
+        if (!isOpen) {
+            // Si el sidebar está cerrado, abrir el sidebar
+            setIsOpen(true);
+            setExpandedMenus({[index]: true});
+        } else {
+            // Alternar el submenú si el sidebar está abierto
+            setExpandedMenus(prevState => ({
+                ...prevState,
+                [index]: !prevState[index]
+            }));
+        }
     };
 
     const menuItems = [

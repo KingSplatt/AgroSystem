@@ -5,7 +5,7 @@ import "../Estilos/AddProveedores.css";
 const ActualizarProveedor = () => {
   return (
     <div className="formularioAP">
-      <h2>Añadir proveedor</h2>
+      <h2>Actualizar proveedor</h2>
 
 
       <form className="ADDP">
