@@ -60,7 +60,7 @@ const Sidebar = ({ nose }) => {
                 },
                 {
                     name: 'Modificar Productos',
-                    path: '/productos/anadir'
+                    path: '/ModificarProductos'
                 }
             ]
         },

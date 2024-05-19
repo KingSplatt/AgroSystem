@@ -1,16 +1,23 @@
-import React, { useState } from "react";
-import { FaPlus, FaRegSave, FaRegTimesCircle, FaTrash } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import { FaRegSave, FaRegTimesCircle, FaTrash } from "react-icons/fa";
 
 const ModificarProductos = () => {
+  const [filas, setFilas] = useState([]);
 
+  // Función para cargar los productos desde la base de datos (simulado)
+  useEffect(() => {
+    // Simulación de carga de productos desde la base de datos
+    cargarProductos();
+  }, []);
 
-  const [filas, setFilas] = useState([
-    { id: 1 }
-  ]);
-
-  const agregarFila = () => {
-    const nuevaFila = { id: filas.length + 1, articulo: "", cantidad: "", descripcion: "", precio: "", proveedor: "" };
-    setFilas([...filas, nuevaFila]);
+  const cargarProductos = () => {
+    // Simulación de datos de productos desde la base de datos
+    const productosDesdeBaseDeDatos = [
+      { id: 1, articulo: "Producto 1", cantidad: 10, descripcion: "Descripción 1", precio: 100, proveedor: "Proveedor 1" },
+      { id: 2, articulo: "Producto 2", cantidad: 5, descripcion: "Descripción 2", precio: 50, proveedor: "Proveedor 2" },
+      { id: 3, articulo: "Producto 3", cantidad: 8, descripcion: "Descripción 3", precio: 80, proveedor: "Proveedor 3" }
+    ];
+    setFilas(productosDesdeBaseDeDatos);
   };
 
   const eliminarFila = (id) => {
@@ -18,7 +25,7 @@ const ModificarProductos = () => {
   };
 
   const manejarCambioInput = (id, campo, valor) => {
-    const filasActualizadas = filas.map(fila => 
+    const filasActualizadas = filas.map(fila =>
       fila.id === id ? { ...fila, [campo]: valor } : fila
     );
     setFilas(filasActualizadas);
@@ -26,7 +33,7 @@ const ModificarProductos = () => {
 
   return (
     <div className='IngresarProductos'>
-      <h2>Añadir Productos</h2>
+      <h2>Modificar Productos</h2>
       <div className='barraSuperior'>
         <input type='search' placeholder="Buscar producto" />
         <button className="Busqueda">Buscar</button>
@@ -44,40 +51,35 @@ const ModificarProductos = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td colSpan="7" style={{ textAlign: 'center' }}>
-                <button className="Add" onClick={agregarFila}><FaPlus /> Añadir compra</button>
-              </td>
-            </tr>
             {filas.map(fila => (
               <tr key={fila.id}>
                 <td>{fila.id}</td>
                 <td>
-                  <input 
-                    type="text" 
-                    value={fila.articulo} 
-                    onChange={(e) => manejarCambioInput(fila.id, 'articulo', e.target.value)} 
+                  <input
+                    type="text"
+                    value={fila.articulo}
+                    onChange={(e) => manejarCambioInput(fila.id, 'articulo', e.target.value)}
                   />
                 </td>
                 <td>
-                  <input 
-                    type="text" 
-                    value={fila.descripcion} 
-                    onChange={(e) => manejarCambioInput(fila.id, 'descripcion', e.target.value)} 
+                  <input
+                    type="text"
+                    value={fila.descripcion}
+                    onChange={(e) => manejarCambioInput(fila.id, 'descripcion', e.target.value)}
                   />
                 </td>
                 <td>
-                  <input 
-                    type="number" 
-                    value={fila.precio} 
-                    onChange={(e) => manejarCambioInput(fila.id, 'precio', e.target.value)} 
+                  <input
+                    type="number"
+                    value={fila.precio}
+                    onChange={(e) => manejarCambioInput(fila.id, 'precio', e.target.value)}
                   />
                 </td>
                 <td>
-                  <input 
-                    type="text" 
-                    value={fila.proveedor} 
-                    onChange={(e) => manejarCambioInput(fila.id, 'proveedor', e.target.value)} 
+                  <input
+                    type="text"
+                    value={fila.proveedor}
+                    onChange={(e) => manejarCambioInput(fila.id, 'proveedor', e.target.value)}
                   />
                 </td>
                 <td><button onClick={() => eliminarFila(fila.id)}><FaTrash /></button></td>
@@ -89,10 +91,9 @@ const ModificarProductos = () => {
       </div>
 
       <div className="CyG">
-           <button className="Cancel"><FaRegTimesCircle /> Cancelar</button>
-           <button className= "Save"><FaRegSave /> Guardar</button>
-        </div>
-        
+        <button className="Cancel"><FaRegTimesCircle /> Cancelar</button>
+        <button className="Save"><FaRegSave /> Guardar</button>
+      </div>
 
     </div>
   );

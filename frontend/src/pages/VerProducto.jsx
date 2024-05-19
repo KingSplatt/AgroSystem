@@ -1,9 +1,31 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { FaExchangeAlt, FaPlus } from "react-icons/fa";
+
 import "../App.css";
 import "../Estilos/Productos.css";
 
 const VerProducto = () => {
+
+    const [productos, setProductos] = useState([]);
+
+    useEffect(() => {
+        fetchProductos(); // Llamamos a una función para cargar los productos
+    }, []);
+
+    const fetchProductos = async () => {
+
+        try {
+            const response = await fetch('https://tu-api.com/productos');
+            const data = await response.json();
+            setProductos(data);
+        }
+        catch (error) {
+            alert('Error al obtener los productos:', error);
+        }
+
+    };
+
+
     return (
         <div>
 
@@ -27,22 +49,28 @@ const VerProducto = () => {
                             <tr>
                                 <th>Clave</th>
                                 <th>Nombre</th>
-                                <th>Categoria ?</th>
+                                <th>Descripcion</th>
+                                <th>Precio unitario</th>
                                 <th>Stock</th>
-                                <th>Precio</th>
-                                <th>Estado</th>
+                                <th>Descontinuado</th>
+                                <th>Categoria</th>
+                                <th>Proveedor</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td>167382</td>
-                                <td>Producto 1</td>
-                                <td>fungicidas</td>
-                                <td>56</td>
-                                <td>789</td>
-                                <td>Activo</td>
-                            </tr>
+                            {productos.map((producto, index) => (
+                                <tr key={index}>
+                                    <td>{producto.clave}</td>
+                                    <td>{producto.nombre}</td>
+                                    <td>{producto.descripcion}</td>
+                                    <td>{producto.precio}</td>
+                                    <td>{producto.stock}</td>
+                                    <td>{producto.descontinuado}</td>
+                                    <td>{producto.categoria}</td>
+                                    <td>{producto.proveedor}</td>
+                                </tr>
+                            ))}
                         </tbody>
 
                     </table>
