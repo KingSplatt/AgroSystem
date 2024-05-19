@@ -6,7 +6,7 @@ import "../Estilos/Proveedores.css";
 const VerProveedores = () => {
     return (
         <div>
-            <h1>Proveedores</h1>
+            <h2>Proveedores</h2>
 
             <div className="containerVP">
 
