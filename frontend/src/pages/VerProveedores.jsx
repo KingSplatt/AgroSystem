@@ -19,16 +19,15 @@ const VerProveedores = () => {
             const data = await response.json();
             setProveedores(data); // Actualizamos el estado con los datos obtenidos
         } catch (error) {
-            console.error('Error al obtener los proveedores:', error);
+            alert('Error al obtener los proveedores:', error);
         }
     };
 
     return (
-        <div>
-            <h2>Proveedores</h2>
 
+        
             <div className="containerVP">
-
+            <h2>Proveedores</h2>
                 <div className="barraSuperior">
                     <input type="search" placeholder="Buscar proveedor" />
                     <button className="Busqueda">Buscar</button>
@@ -68,7 +67,7 @@ const VerProveedores = () => {
                     </table>
                 </div>
             </div>
-        </div>
+     
     );
 };
 

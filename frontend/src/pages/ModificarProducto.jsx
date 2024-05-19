@@ -2,22 +2,23 @@ import React, { useEffect, useState } from "react";
 import { FaRegSave, FaRegTimesCircle, FaTrash } from "react-icons/fa";
 
 const ModificarProductos = () => {
+  const [productosOriginales, setProductosOriginales] = useState([]);
   const [filas, setFilas] = useState([]);
 
-  // Función para cargar los productos desde la base de datos (simulado)
   useEffect(() => {
-    // Simulación de carga de productos desde la base de datos
-    cargarProductos();
+    fetchProductos();
   }, []);
 
-  const cargarProductos = () => {
-    // Simulación de datos de productos desde la base de datos
-    const productosDesdeBaseDeDatos = [
-      { id: 1, articulo: "Producto 1", cantidad: 10, descripcion: "Descripción 1", precio: 100, proveedor: "Proveedor 1" },
-      { id: 2, articulo: "Producto 2", cantidad: 5, descripcion: "Descripción 2", precio: 50, proveedor: "Proveedor 2" },
-      { id: 3, articulo: "Producto 3", cantidad: 8, descripcion: "Descripción 3", precio: 80, proveedor: "Proveedor 3" }
-    ];
-    setFilas(productosDesdeBaseDeDatos);
+  const fetchProductos = async () => {
+    try {
+      // aqui se llama a la API para obtener los productos
+      const response = await fetch('https://tu-api.com/productos');
+      const data = await response.json();
+      setProductosOriginales(data); 
+      setFilas(data); 
+    } catch (error) {
+      console.error('Error al obtener los productos:', error);
+    }
   };
 
   const eliminarFila = (id) => {
@@ -29,6 +30,18 @@ const ModificarProductos = () => {
       fila.id === id ? { ...fila, [campo]: valor } : fila
     );
     setFilas(filasActualizadas);
+  };
+
+  const guardarCambios = () => {
+    // Aquí puedes enviar los cambios al servidor
+    console.log('Guardando cambios:', filas);
+    // Puedes implementar aquí la lógica para enviar los cambios al servidor
+    // Por ejemplo, usando fetch o axios
+  };
+
+  const cancelarCambios = () => {
+    // Al cancelar, restauramos los productos originales
+    setFilas(productosOriginales);
   };
 
   return (
@@ -91,8 +104,8 @@ const ModificarProductos = () => {
       </div>
 
       <div className="CyG">
-        <button className="Cancel"><FaRegTimesCircle /> Cancelar</button>
-        <button className="Save"><FaRegSave /> Guardar</button>
+        <button className="Cancel" onClick={cancelarCambios}><FaRegTimesCircle /> Cancelar</button>
+        <button className="Save" onClick={guardarCambios}><FaRegSave /> Guardar</button>
       </div>
 
     </div>
