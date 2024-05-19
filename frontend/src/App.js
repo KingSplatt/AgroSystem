@@ -5,6 +5,7 @@ import Sidebar from './Componentes/Sidebar';
 import Login from './Login';
 import ActualizarProveedor from './Pages/ActualizarProveedor.jsx';
 import AnadirProveedor from './Pages/AnadirProveedor.jsx';
+import Cotizar from './Pages/Cotizar.jsx';
 import HistorialCompras from './Pages/HistorialCompras.jsx';
 import IngresarProductos from './Pages/IngresarProductos';
 import Inicio from './Pages/Inicio.jsx';
@@ -27,6 +28,7 @@ const App = () => {
                   <Route path="/HistorialCompras" element={<HistorialCompras />} />
                   <Route path="/IngresarProductos" element={<IngresarProductos />} />
                   <Route path="/VerProducto" element={<VerProducto />} />
+                  <Route path="/Cotizar" element={<Cotizar />} />
                 </Routes>
               </>
             }

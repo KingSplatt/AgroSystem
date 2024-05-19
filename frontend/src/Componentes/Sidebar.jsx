@@ -117,7 +117,7 @@ const Sidebar = ({ nose }) => {
         },
         {
             name: 'Cotizar',
-            path: '/cotizar',
+            path: '/Cotizar',
             icon: <FaMoneyCheckAlt />
 
         },
