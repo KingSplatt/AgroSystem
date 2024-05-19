@@ -8,6 +8,7 @@ import AnadirProveedor from './Pages/AnadirProveedor.jsx';
 import HistorialCompras from './Pages/HistorialCompras.jsx';
 import IngresarProductos from './Pages/IngresarProductos';
 import Inicio from './Pages/Inicio.jsx';
+import VerProducto from './Pages/VerProducto';
 import VerProveedores from './Pages/VerProveedores.jsx';
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
                   <Route path="/ActualizarProveedor" element={<ActualizarProveedor />} />
                   <Route path="/HistorialCompras" element={<HistorialCompras />} />
                   <Route path="/IngresarProductos" element={<IngresarProductos />} />
+                  <Route path="/VerProducto" element={<VerProducto />} />
                 </Routes>
               </>
             }

@@ -5,25 +5,25 @@ import "../Estilos/HistorialCompras.css"; //cambiar a la ruta correcta
 
 const HistorialCompras = () => {
 
-    const handlePrint = (proveedor) => {
+    const handlePrint = (compra) => {
         // logica para imprimir
 
-        alert("Imprimiendo detalles de proveedor")
+        alert("Imprimiendo detalles de compra")
     
     };
 
 
-    const handleExport = (proveedor) => {
+    const handleExport = (compra) => {
         //logica para exportar
    
-        alert("Exportando detalles de proveedor")
+        alert("Exportando detalles de compra")
     };
 
-    // Datos de ejemplo de proveedores
-    const proveedores = [
-        { clave: '1234567890', fechaPedido: '2024-05-15', fechaRecibido: '2024-05-16', nombre: 'Proveedor 1' },
-        { clave: '123456jj7890', fechaPedido: '2024-05-15', fechaRecibido: '2024-05-16', nombre: 'Proveedor 1' },
-        { clave: '12345ddd6jj7890', fechaPedido: '2024-05-15', fechaRecibido: '2024-05-16', nombre: 'Proveedor 1' },
+    // Datos de ejemplo de compras
+    const compras = [
+        { clave: '1234567890', fechaPedido: '2024-05-15', fechaRecibido: '2024-05-16', nombre: 'compra 1' },
+        { clave: '123456jj7890', fechaPedido: '2024-05-15', fechaRecibido: '2024-05-16', nombre: 'compra 1' },
+        { clave: '12345ddd6jj7890', fechaPedido: '2024-05-15', fechaRecibido: '2024-05-16', nombre: 'compra 1' },
 
     ];
 
@@ -32,13 +32,13 @@ const HistorialCompras = () => {
            
 
             <div className="containerVP">
-                <h1>Historial de compras</h1>
+                <h2>Historial de compras</h2>
                 <div className="barraSuperior">
-                    <input type="search" placeholder="Buscar proveedor"/> 
+                    <input type="search" placeholder="Buscar compra"/> 
                     <button className="Busqueda"> Buscar </button>
                     <div className="OpcionesP">
-                        <button className="Add"> <FaPlus/> Añadir proveedor </button>
-                        <button className="Modify"><FaExchangeAlt /> Modificar proveedor</button>
+                        <button className="Add"> <FaPlus/> Añadir compra </button>
+                        <button className="Modify"><FaExchangeAlt /> Modificar compra</button>
                     </div>
                 </div>
 
@@ -49,23 +49,23 @@ const HistorialCompras = () => {
                                 <th>Clave</th>
                                 <th>Fecha de pedido</th>
                                 <th>Fecha de recibido</th>
-                                <th>Proveedor</th>
+                                <th>compra</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            {proveedores.map((proveedor, index) => (
+                            {compras.map((compra, index) => (
                                 <tr key={index}>
-                                    <td>{proveedor.clave}</td>
-                                    <td>{proveedor.fechaPedido}</td>
-                                    <td>{proveedor.fechaRecibido}</td>
-                                    <td>{proveedor.nombre}</td>
+                                    <td>{compra.clave}</td>
+                                    <td>{compra.fechaPedido}</td>
+                                    <td>{compra.fechaRecibido}</td>
+                                    <td>{compra.nombre}</td>
                                     <td>
                                         {/* Botón de imprimir con icono */}
-                                        <button onClick={() => handlePrint(proveedor.nombre)}><FaPrint /></button>
+                                        <button onClick={() => handlePrint(compra.nombre)}><FaPrint /></button>
                                         {/* Botón de exportar con icono */}
-                                        <button onClick={() => handleExport(proveedor.nombre)}><FaFileExport /></button>
+                                        <button onClick={() => handleExport(compra.nombre)}><FaFileExport /></button>
                                     </td>
                                 </tr>
                             ))}

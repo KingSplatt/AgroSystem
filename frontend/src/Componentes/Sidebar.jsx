@@ -39,7 +39,7 @@ const Sidebar = ({ nose }) => {
             submenu: [
                 {
                     name: 'Ver Productos',
-                    path: 'Pages/VerProductos'
+                    path: '/VerProducto'
                 },
                 {
                     name: 'Añadir Productos',
