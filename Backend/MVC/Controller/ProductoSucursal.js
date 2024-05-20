@@ -3,7 +3,7 @@ const pool = require("../Model/Connection");
 const ObtenerProductoSucursal = async (req, res) => {
     try {
         const [rows, fields] = await pool.query('SELECT PS.IDproducto, P.Nombre, P.Descripcion,P.PrecioUnitario,P.Descontinuado, ' +
-            'Pr.Nombre , PS.IDSucursal, PS.FechaCaducidad, PS.FechaSurtido FROM ProductoSucursal PS ' +
+            'Pr.Nombre AS ProveedorN , PS.IDSucursal, PS.FechaCaducidad, PS.FechaSurtido FROM ProductoSucursal PS ' +
             'INNER JOIN Producto AS P ON PS.IDproducto = P.IDProducto ' +
             'INNER JOIN Proveedor AS Pr ON Pr.IDProveedor = P.IDProveedor ' +
             'INNER JOIN Categoria AS C ON C.IDCategoria = P.IDCategoria;');

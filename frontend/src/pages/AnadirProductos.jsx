@@ -91,8 +91,7 @@ const AnadirProductos = () => {
       <div className="CyG">
            <button className="Cancel"><FaRegTimesCircle /> Cancelar</button>
            <button className= "Save"><FaRegSave /> Guardar</button>
-        </div>
-        
+      </div>
 
     </div>
   );
