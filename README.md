@@ -30,9 +30,6 @@ Una vez instalado ir a la terminal y poner los siguientes comandos:
 
 Lo primero es ir a la carpeta de "BACKED" y abrir una nueva terminal, estando ahi ejecutaran el siguiente comando:
 
-
-
-
 ## Comando
 
 
