@@ -1,4 +1,4 @@
-use AgroSystem;;
+use AgroSystem;
 
 -- Inserciones de ejemplo a la tabla Estado
 INSERT INTO Estado (IDEstado, Nombre) VALUES (1, 'Baja California');
@@ -56,38 +56,6 @@ VALUES (9, 'Ricardo', 'García', 'Flores', 'ricflo', 'ricardito1', 'ricardo@exam
 INSERT INTO Cliente (IDCliente, Nombre, ApellidoPaterno, ApellidoMaterno, Usuario, Contrasena, Correo, Telefono, RFC, CURP, IDCiudad) 
 VALUES (10, 'Karla', 'Morales', 'Juárez', 'karlita87', 'karlita123', 'karla@example.com', '6667778889', 'MOJK900303ABC', 'MOJK900303POIUYTRE', 10);
 
-
--- Inserciones de ejemplo a la tabla Venta
-INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
-VALUES (1, '2024-05-01', 150.00, 165.00, 1, 1, 1);
-
-INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
-VALUES (2, '2024-05-02', 200.00, 220.00, 0, 2, 2);
-
-INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
-VALUES (3, '2024-05-03', 100.00, 110.00, 1, 3, 1);
-
-INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
-VALUES (4, '2024-05-04', 75.00, 82.50, 0, 4, 2);
-
-INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
-VALUES (5, '2024-05-05', 300.00, 330.00, 1, 5, 3);
-
-INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
-VALUES (6, '2024-05-06', 250.00, 275.00, 0, 6, 1);
-
-INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
-VALUES (7, '2024-05-07', 180.00, 198.00, 1, 7, 2);
-
-INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
-VALUES (8, '2024-05-08', 90.00, 99.00, 0, 8, 3);
-
-INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
-VALUES (9, '2024-05-09', 120.00, 132.00, 1, 9, 1);
-
-INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
-VALUES (10, '2024-05-10', 400.00, 440.00, 0, 10, 2);
-
 -- Insercion de ejemplo a la tabla Proveedor
 
 INSERT INTO Proveedor (IDProveedor, Nombre, Telefono, Correo, RFC, CURP, Legalizado, IDCiudad) 
@@ -106,16 +74,16 @@ INSERT INTO Proveedor (IDProveedor, Nombre, Telefono, Correo, RFC, CURP, Legaliz
 VALUES (5, 'Proveedor5', '3692581470', 'proveedor5@example.com', 'MNO345678PQR', 'CURP345678', 1, 2);
 
 INSERT INTO Proveedor (IDProveedor, Nombre, Telefono, Correo, RFC, CURP, Legalizado, IDCiudad) 
-VALUES (6, 'Proveedor6', '2583691470', 'proveedor6@example.com', 'PQR456789STU', 'CURP456789', 0, 3);
+VALUES (6, 'Proveedor6', '2583691470', 'proveedor6@example.com', 'PQR456789STU', 'CURP456589', 0, 3);
 
 INSERT INTO Proveedor (IDProveedor, Nombre, Telefono, Correo, RFC, CURP, Legalizado, IDCiudad) 
-VALUES (7, 'Proveedor7', '1472583690', 'proveedor7@example.com', 'STU567890VWX', 'CURP567890', 1, 1);
+VALUES (7, 'Proveedor7', '1472583690', 'proveedor7@example.com', 'STU567890VWX', 'CURP567190', 1, 1);
 
 INSERT INTO Proveedor (IDProveedor, Nombre, Telefono, Correo, RFC, CURP, Legalizado, IDCiudad) 
 VALUES (8, 'Proveedor8', '3691472580', 'proveedor8@example.com', 'VWX678901YZA', 'CURP678901', 0, 2);
 
 INSERT INTO Proveedor (IDProveedor, Nombre, Telefono, Correo, RFC, CURP, Legalizado, IDCiudad) 
-VALUES (9, 'Proveedor9', '1473692580', 'proveedor9@example.com', 'YZA789012BCD', 'CURP789012', 1, 3);
+VALUES (9, 'Proveedor9', '1473692580', 'proveedor9@example.com', 'YZA789012BCD', 'CURP781012', 1, 3);
 
 INSERT INTO Proveedor (IDProveedor, Nombre, Telefono, Correo, RFC, CURP, Legalizado, IDCiudad) 
 VALUES (10, 'Proveedor10', '3691472583', 'proveedor10@example.com', 'BCD890123EFG', 'CURP890123', 1, 1);
@@ -196,7 +164,6 @@ INSERT INTO CEDI (IDCedi, Nombre, Correo, Telefono, IDCiudad) VALUES (8, 'Bodega
 INSERT INTO CEDI (IDCedi, Nombre, Correo, Telefono, IDCiudad) VALUES (9, 'Almacén Chihuahua', 'ventas@almacenchihuahua.com', '6147778888', 9);
 INSERT INTO CEDI (IDCedi, Nombre, Correo, Telefono, IDCiudad) VALUES (10, 'Centro de Distribución Juárez', 'contacto@cedijuarez.com', '6569990000', 10);
 
-
 -- Insercion de ejemplo a la tabla Sucursal
 INSERT INTO Sucursal (IDSucursal, Correo, Telefono, IDCedi, IDCiudad) VALUES (1, 'sucursal1@example.com', '1234567890', 1, 1); 
 INSERT INTO Sucursal (IDSucursal, Correo, Telefono, IDCedi, IDCiudad) VALUES (2, 'sucursal2@example.com', '9876543210', 2, 2); 
@@ -208,6 +175,68 @@ INSERT INTO Sucursal (IDSucursal, Correo, Telefono, IDCedi, IDCiudad) VALUES (7,
 INSERT INTO Sucursal (IDSucursal, Correo, Telefono, IDCedi, IDCiudad) VALUES (8, 'sucursal8@example.com', '3691472580', 8, 2); 
 INSERT INTO Sucursal (IDSucursal, Correo, Telefono, IDCedi, IDCiudad) VALUES (9, 'sucursal9@example.com', '1473692580', 9, 3); 
 INSERT INTO Sucursal (IDSucursal, Correo, Telefono, IDCedi, IDCiudad) VALUES (10, 'sucursal10@example.com', '3691472583', 10, 1); 
+
+-- Inserciones de ejemplo a la tabla Empleado
+INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad) 
+VALUES (1, 'Juan', 'García', 'López', 'juan.garcia@example.com', '1234567890', 'Vendedor', 'juangarcia', 'password123', '1990-05-10', '2022-01-15', 'GARJ900510XXX', 'GALJ900510HDFLRN09', 1, 1);
+
+INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad) 
+VALUES (2, 'María', 'Martínez', 'Hernández', 'maria.martinez@example.com', '9876543210', 'Cajero', 'mariamartinez', 'password456', '1992-08-20', '2022-02-10', 'MARH920820XXX', 'MAHM920820MDFRNN08', 2, 2);
+
+INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad) 
+VALUES (3, 'Carlos', 'López', 'Sánchez', 'carlos.lopez@example.com', '7418529630', 'Gerente', 'carloslopez', 'password789', '1985-04-15', '2022-03-05', 'LOSC850415XXX', 'LOSC850415HDFLRN02', 3, 3);
+
+INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad) 
+VALUES (4, 'Ana', 'Gómez', 'Pérez', 'ana.gomez@example.com', '1593578520', 'Vendedor', 'anagomez', 'passwordabc', '1988-12-03', '2022-04-20', 'GOMA881203XXX', 'GOPA881203MDFRRN03', 4, 1);
+
+INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad) 
+VALUES (5, 'Pedro', 'Rodríguez', 'Díaz', 'pedro.rodriguez@example.com', '3692581470', 'Cajero', 'pedrorodriguez', 'passworddef', '1995-10-25', '2022-05-12', 'RODP951025XXX', 'RODP951025HDFRRR05', 5, 2);
+
+INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad) 
+VALUES (6, 'Laura', 'Hernández', 'López', 'laura.hernandez@example.com', '2583691470', 'Gerente', 'laurahernandez', 'passwordghi', '1983-07-18', '2022-06-08', 'HERL830718XXX', 'HELJ830718MDFLRN06', 6, 3);
+
+INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad) 
+VALUES (7, 'Diego', 'Martínez', 'Gómez', 'diego.martinez@example.com', '1472583690', 'Vendedor', 'diegomartinez', 'passwordjkl', '1993-09-30', '2022-07-17', 'MAGD930930XXX', 'MAGD930930HDFLRN07', 7, 1);
+
+INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad) 
+VALUES (8, 'Elena', 'Sánchez', 'Martínez', 'elena.sanchez@example.com', '3691472580', 'Cajero', 'elenasanchez', 'passwordmno', '1997-02-12', '2022-08-22', 'SAME970212XXX', 'SAMM970212MDFLRN08', 8, 2);
+
+INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad) 
+VALUES (9, 'Javier', 'González', 'López', 'javier.gonzalez@example.com', '1473692580', 'Vendedor', 'javiergonzalez', 'passwordpqr', '1990-11-05', '2022-09-30', 'GOLJ901105XXX', 'GOLJ901105HDFLRN09', 9, 3);
+
+INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad) 
+VALUES (10, 'Sofía', 'Pérez', 'García', 'sofia.perez@example.com', '3691472583', 'Gerente', 'sofiaperez', 'passwordstu', '1987-06-28', '2022-10-10', 'PEGM870628XXX', 'PEGM870628MDFLRN10', 10, 1);
+
+-- Inserciones de ejemplo a la tabla Venta
+INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
+VALUES (1, '2024-05-01', 150.00, 165.00, 1, 1, 1);
+
+INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
+VALUES (2, '2024-05-02', 200.00, 220.00, 0, 2, 2);
+
+INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
+VALUES (3, '2024-05-03', 100.00, 110.00, 1, 3, 1);
+
+INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
+VALUES (4, '2024-05-04', 75.00, 82.50, 0, 4, 2);
+
+INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
+VALUES (5, '2024-05-05', 300.00, 330.00, 1, 5, 3);
+
+INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
+VALUES (6, '2024-05-06', 250.00, 275.00, 0, 6, 1);
+
+INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
+VALUES (7, '2024-05-07', 180.00, 198.00, 1, 7, 2);
+
+INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
+VALUES (8, '2024-05-08', 90.00, 99.00, 0, 8, 3);
+
+INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
+VALUES (9, '2024-05-09', 120.00, 132.00, 1, 9, 1);
+
+INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
+VALUES (10, '2024-05-10', 400.00, 440.00, 0, 10, 2);
 
 -- Insercion de ejemplo a la tabla DetalleVenta
 INSERT INTO DetalleVenta (PrecioUnitario, Cantidad, IDVenta, IDProducto) VALUES (150.00, 2, 1, 1);
@@ -221,7 +250,6 @@ INSERT INTO DetalleVenta (PrecioUnitario, Cantidad, IDVenta, IDProducto) VALUES 
 INSERT INTO DetalleVenta (PrecioUnitario, Cantidad, IDVenta, IDProducto) VALUES (120.00, 1, 9, 9);
 INSERT INTO DetalleVenta (PrecioUnitario, Cantidad, IDVenta, IDProducto) VALUES (400.00, 2, 10, 10);
 
-
 -- Insercion de ejemplo a la tabla DetalleVentaCredito
 INSERT INTO DetalleVentaCredito (PrecioUnitario, Cantidad, FechaPlazo, PagoInicial, IDVenta, IDProducto) VALUES (150.00, 2, '2024-05-15 10:00:00', 50.00, 1, 1);
 INSERT INTO DetalleVentaCredito (PrecioUnitario, Cantidad, FechaPlazo, PagoInicial, IDVenta, IDProducto) VALUES (200.00, 1, '2024-05-20 09:00:00', 75.00, 2, 2);
@@ -233,37 +261,6 @@ INSERT INTO DetalleVentaCredito (PrecioUnitario, Cantidad, FechaPlazo, PagoInici
 INSERT INTO DetalleVentaCredito (PrecioUnitario, Cantidad, FechaPlazo, PagoInicial, IDVenta, IDProducto) VALUES (90.00, 3, '2024-06-15 12:00:00', 30.00, 8, 8);
 INSERT INTO DetalleVentaCredito (PrecioUnitario, Cantidad, FechaPlazo, PagoInicial, IDVenta, IDProducto) VALUES (120.00, 1, '2024-06-20 08:00:00', 40.00, 9, 9);
 INSERT INTO DetalleVentaCredito (PrecioUnitario, Cantidad, FechaPlazo, PagoInicial, IDVenta, IDProducto) VALUES (400.00, 2, '2024-06-25 11:00:00', 150.00, 10, 10);
-
--- Inserciones de ejemplo a la tabla Empleado
-INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contraseña, FechaNacimiento, FechaIncio, RFC, CURP, IDSucursal, IDCiudad) 
-VALUES (1, 'Juan', 'García', 'López', 'juan.garcia@example.com', '1234567890', 'Vendedor', 'juangarcia', 'password123', '1990-05-10', '2022-01-15', 'GARJ900510XXX', 'GALJ900510HDFLRN09', 1, 1);
-
-INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contraseña, FechaNacimiento, FechaIncio, RFC, CURP, IDSucursal, IDCiudad) 
-VALUES (2, 'María', 'Martínez', 'Hernández', 'maria.martinez@example.com', '9876543210', 'Cajero', 'mariamartinez', 'password456', '1992-08-20', '2022-02-10', 'MARH920820XXX', 'MAHM920820MDFRNN08', 2, 2);
-
-INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contraseña, FechaNacimiento, FechaIncio, RFC, CURP, IDSucursal, IDCiudad) 
-VALUES (3, 'Carlos', 'López', 'Sánchez', 'carlos.lopez@example.com', '7418529630', 'Gerente', 'carloslopez', 'password789', '1985-04-15', '2022-03-05', 'LOSC850415XXX', 'LOSC850415HDFLRN02', 3, 3);
-
-INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contraseña, FechaNacimiento, FechaIncio, RFC, CURP, IDSucursal, IDCiudad) 
-VALUES (4, 'Ana', 'Gómez', 'Pérez', 'ana.gomez@example.com', '1593578520', 'Vendedor', 'anagomez', 'passwordabc', '1988-12-03', '2022-04-20', 'GOMA881203XXX', 'GOPA881203MDFRRN03', 4, 1);
-
-INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contraseña, FechaNacimiento, FechaIncio, RFC, CURP, IDSucursal, IDCiudad) 
-VALUES (5, 'Pedro', 'Rodríguez', 'Díaz', 'pedro.rodriguez@example.com', '3692581470', 'Cajero', 'pedrorodriguez', 'passworddef', '1995-10-25', '2022-05-12', 'RODP951025XXX', 'RODP951025HDFRRR05', 5, 2);
-
-INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contraseña, FechaNacimiento, FechaIncio, RFC, CURP, IDSucursal, IDCiudad) 
-VALUES (6, 'Laura', 'Hernández', 'López', 'laura.hernandez@example.com', '2583691470', 'Gerente', 'laurahernandez', 'passwordghi', '1983-07-18', '2022-06-08', 'HERL830718XXX', 'HELJ830718MDFLRN06', 6, 3);
-
-INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contraseña, FechaNacimiento, FechaIncio, RFC, CURP, IDSucursal, IDCiudad) 
-VALUES (7, 'Diego', 'Martínez', 'Gómez', 'diego.martinez@example.com', '1472583690', 'Vendedor', 'diegomartinez', 'passwordjkl', '1993-09-30', '2022-07-17', 'MAGD930930XXX', 'MAGD930930HDFLRN07', 7, 1);
-
-INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contraseña, FechaNacimiento, FechaIncio, RFC, CURP, IDSucursal, IDCiudad) 
-VALUES (8, 'Elena', 'Sánchez', 'Martínez', 'elena.sanchez@example.com', '3691472580', 'Cajero', 'elenasanchez', 'passwordmno', '1997-02-12', '2022-08-22', 'SAME970212XXX', 'SAMM970212MDFLRN08', 8, 2);
-
-INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contraseña, FechaNacimiento, FechaIncio, RFC, CURP, IDSucursal, IDCiudad) 
-VALUES (9, 'Javier', 'González', 'López', 'javier.gonzalez@example.com', '1473692580', 'Vendedor', 'javiergonzalez', 'passwordpqr', '1990-11-05', '2022-09-30', 'GOLJ901105XXX', 'GOLJ901105HDFLRN09', 9, 3);
-
-INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contraseña, FechaNacimiento, FechaIncio, RFC, CURP, IDSucursal, IDCiudad) 
-VALUES (10, 'Sofía', 'Pérez', 'García', 'sofia.perez@example.com', '3691472583', 'Gerente', 'sofiaperez', 'passwordstu', '1987-06-28', '2022-10-10', 'PEGM870628XXX', 'PEGM870628MDFLRN10', 10, 1);
 
 --  Inserciones de ejemplo a la tabla Compra
 INSERT INTO Compra (IDCompra, FechaPedido, FechaEntrega, SubTotal, Total, IDCedi, IDEmpleado) VALUES (1, '2024-05-01 08:00:00', '2024-05-05 10:00:00', 500.00, 550.00, 1, 1);
