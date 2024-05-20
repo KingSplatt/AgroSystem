@@ -24,6 +24,7 @@ const routerEmpleados = require('./MVC/Routers/routhEmpleados');
 const routerVentaCredito = require('./MVC/Routers/routhVentaCredito');
 const routerVentaNormal = require('./MVC/Routers/routhVentaNormal');
 const routerCompra = require('./MVC/Routers/routhCompra');
+const routerCliente = require('./MVC/Routers/routhClientes');
 
 
 app.use('/productos', routerProductoSucursal);
@@ -33,6 +34,7 @@ app.use('/empleados', routerEmpleados);
 app.use('/ventasC', routerVentaCredito);
 app.use('/ventasN', routerVentaNormal);
 app.use('/compras', routerCompra);
+app.use('/clientes', routerCliente);
 
 //ES PARA ABRIR EL DOTENV
 const puerto = process.env.PUERTO || 3000; //ABRO MI PUERTO Y SI NO SE ABRE EL 3000

@@ -20,8 +20,7 @@ const NuevoEmpleado = async (req, res) => {
 // Ver a los empleados
 const VerEmpleados = async (req, res) => {
     try {
-        const [rows, fields] = await pool.query('SELECT E.IDEmpleado, E.Nombre, E.ApellidoPaterno, E.ApellidoMaterno, E.Correo, E.Telefono, E.Puesto, E.FechaNacimiento, E.FechaInicio, ' +
-            'E.RFC, E.CURP, E.IDSucursal, E.IDCiudad FROM Empleado AS E;');
+        const [rows, fields] = await pool.query('SELECT * FROM Empleado;');
         console.log('Empleados obtenidos', rows);
         res.status(201).send({ success: true, message: 'Empleados consultados existosamente', rows: rows });
     } catch (err) {
