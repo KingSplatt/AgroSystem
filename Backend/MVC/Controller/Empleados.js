@@ -3,10 +3,12 @@ const pool = require('../Model/Connection');
 // Crear nuevos empleados
 const NuevoEmpleado = async (req, res) => {
     try {
-        const { IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad } = req.body;
-        if (!IDEmpleado || !Nombre || !ApellidoPaterno || !ApellidoMaterno || !Correo || !Telefono || !Puesto || !Usuario || !Contrasena || !FechaNacimiento || !FechaInicio || !RFC || !CURP || !IDSucursal || !IDCiudad) {
+        const { Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad } = req.body;
+        //OBTENER ULTIMO IDEMPLEADO
+        if (!Nombre || !ApellidoPaterno || !ApellidoMaterno || !Correo || !Telefono || !Puesto || !Usuario || !Contrasena || !FechaNacimiento || !FechaInicio || !RFC || !CURP || !IDSucursal || !IDCiudad) {
             return res.status(400).send({ success: false, message: 'Faltan campos por llenar' });
         }
+        const IDEmpleado = "SELECT COUNT(IDEmpleado)+1 AS IDEmpleado FROM Empleado;"
         const insertSQL = 'INSERT INTO Empleado (IDEmpleado , Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
         const insertResult = await pool.query(insertSQL, [parseInt(IDEmpleado), Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, parseInt(IDSucursal), parseInt(IDCiudad)]);
         console.log('Empleado agregado exitosamente', insertResult);

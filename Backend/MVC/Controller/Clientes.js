@@ -3,7 +3,7 @@ const pool = require('../Model/Connection');
 //Ver clientes
 const VerClientes = async (req, res) => {
     try {
-        const [rows, fields] = await pool.query('select C.Nombre AS "Nombre Cliente" ,C.Correo, C.Telefono,C.RFC,C.CURP, CI.Nombre  from cliente AS C ' +
+        const [rows, fields] = await pool.query('select C.Nombre+" "+C.ApellidoPaterno AS "Nombre Cliente" ,C.Correo, C.Telefono,C.RFC,C.CURP, CI.Nombre AS Ciudad  from cliente AS C ' +
             ' INNER JOIN CIUDAD AS CI ON C.IDCiudad = CI.IDCiudad;');
         console.log('Clientes obtenidos', rows);
         res.status(201).send({ success: true, message: 'Clientes consultados existosamente', rows: rows });
@@ -16,11 +16,15 @@ const VerClientes = async (req, res) => {
 const NuevoCliente = async (req, res) => {
     try {
         const { Nombre, ApellidoPaterno, ApellidoMaterno, Usuario, Contrasena, Correo, Telefono, RFC, CURP, Ciudad } = req.body;
+        if(!Nombre || !ApellidoPaterno || !ApellidoMaterno || !Usuario || !Contrasena || !Telefono || !RFC || !CURP || !Ciudad){
+            return res.status(500).send({success: false, message: 'Faltan campos por llenar'});
+        }
+        const IDCliente = 'SELECT COUNT(IDCliente)+1 AS IDCliente FROM Cliente'
         //obtener IDCiudad
         const IDCiudad = await pool.query('SELECT IDCiudad FROM Ciudad WHERE Nombre = ?;', [Ciudad]);
 
-        await pool.query('INSERT INTO Cliente (Nombre, ApellidoPaterno, ApellidoMaterno, Usuario, Contrasena, Correo, Telefono, RFC, CURP, IDCiudad) VALUES (?,?,?,?,?);',
-            [Nombre, ApellidoPaterno, ApellidoMaterno, Usuario, Contrasena, Correo, Telefono, RFC, CURP, IDCiudad[0].IDCiudad]);
+        await pool.query('INSERT INTO Cliente (IDCliente,Nombre, ApellidoPaterno, ApellidoMaterno, Usuario, Contrasena, Correo, Telefono, RFC, CURP, IDCiudad) VALUES (?,?,?,?,?,?,?,?,?,?,?);',
+            [IDCliente, Nombre, ApellidoPaterno, ApellidoMaterno, Usuario, Contrasena, Correo, Telefono, RFC, CURP, IDCiudad[0].IDCiudad]);
         res.status(201).send({ success: true, message: 'Cliente Registrado Correctamente' });
     } catch (err) {
         console.error('Error al crear el cliente', err); s
@@ -31,6 +35,9 @@ const NuevoCliente = async (req, res) => {
 const ActualizarCliente = async (req, res) => {
     try {
         const { Nombre, ApellidoPaterno, ApellidoMaterno, Usuario, Contrasena, Correo, Telefono, RFC, CURP, Ciudad } = req.body;
+        if(!Nombre || !ApellidoPaterno || !ApellidoMaterno || !Usuario || !Contrasena || !Telefono || !RFC || !CURP || !Ciudad){
+            return res.status(500).send({success: false, message: 'Faltan campos por llenar'});
+        }
         //obtener IDCiudad
         const IDCiudad = await pool.query('SELECT IDCiudad FROM Ciudad WHERE Nombre = ?;', [Ciudad]);
         //obtener IDCliente

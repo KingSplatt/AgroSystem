@@ -3,7 +3,7 @@ const pool = require("../Model/Connection");
 //Obtener los productos del almacen de la CEDI
 const ObtenerProductosCEDI = async (req, res) => {
     try {
-        const [rows, fields] = await pool.query('SELECT P.IDProducto, P.Nombre, P.Descripcion, P.PrecioUnitario, P.Descontinuado, ' +
+        const [rows, fields] = await pool.query('SELECT DISTINCT P.IDProducto, P.Nombre, P.Descripcion, P.PrecioUnitario, P.Descontinuado, ' +
             'Pr.Nombre AS `Nombre Proveedor`, P.IDCategoria FROM Producto AS P ' +
             'INNER JOIN Proveedor AS Pr ON Pr.IDProveedor = P.IDProveedor ' +
             'INNER JOIN Categoria AS C ON C.IDCategoria = P.IDCategoria;');
