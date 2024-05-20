@@ -3,7 +3,8 @@ const pool = require('../Model/Connection');
 //Ver clientes
 const VerClientes = async (req, res) => {
     try {
-        const [rows, fields] = await pool.query('SELECT * FROM Cliente;');
+        const [rows, fields] = await pool.query('select C.Nombre AS "Nombre Cliente" ,C.Correo, C.Telefono,C.RFC,C.CURP, CI.Nombre  from cliente AS C ' +
+            ' INNER JOIN CIUDAD AS CI ON C.IDCiudad = CI.IDCiudad;');
         console.log('Clientes obtenidos', rows);
         res.status(201).send({ success: true, message: 'Clientes consultados existosamente', rows: rows });
     } catch (err) {
@@ -22,7 +23,7 @@ const NuevoCliente = async (req, res) => {
             [Nombre, ApellidoPaterno, ApellidoMaterno, Usuario, Contrasena, Correo, Telefono, RFC, CURP, IDCiudad[0].IDCiudad]);
         res.status(201).send({ success: true, message: 'Cliente Registrado Correctamente' });
     } catch (err) {
-        console.error('Error al crear el cliente', err);
+        console.error('Error al crear el cliente', err); s
         res.status(500).send({ success: false, message: 'Error al crear el cliente' });
     }
 }
