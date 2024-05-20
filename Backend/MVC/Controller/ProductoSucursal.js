@@ -2,11 +2,14 @@ const pool = require("../Model/Connection");
 //obtener los productos de la sucursal
 const ObtenerProductoSucursal = async (req, res) => {
     try {
-        const [rows, fields] = await pool.query('SELECT PS.IDproducto, P.Nombre, P.Descripcion,P.PrecioUnitario,P.Descontinuado, ' +
-            'Pr.Nombre AS ProveedorN , PS.IDSucursal, PS.FechaCaducidad, PS.FechaSurtido FROM ProductoSucursal PS ' +
+        //Obtener ID de los productos de la sucursal
+        const [rows, fields] = await pool.query('SELECT DISTINCT PS.IDproducto, P.Nombre, P.Descripcion,P.PrecioUnitario,P.Descontinuado, ' +
+            'Pr.Nombre AS ProveedorN , PS.IDSucursal, COUNT(PS.IDProducto) AS Stock FROM ProductoSucursal PS ' +
             'INNER JOIN Producto AS P ON PS.IDproducto = P.IDProducto ' +
             'INNER JOIN Proveedor AS Pr ON Pr.IDProveedor = P.IDProveedor ' +
-            'INNER JOIN Categoria AS C ON C.IDCategoria = P.IDCategoria;');
+            'INNER JOIN Categoria AS C ON C.IDCategoria = P.IDCategoria ' +
+            'Group By PS.IDProducto, P.Nombre, P.Descripcion,P.PrecioUnitario,P.Descontinuado, Pr.Nombre, PS.IDSucursal;');
+
         res.status(200).send({ success: true, rows: rows })
     } catch (err) {
         console.error('Error al obtener productos:', err);
