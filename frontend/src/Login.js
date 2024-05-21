@@ -10,6 +10,9 @@ function Login() {
     navigate('/App'); // Cambio de 'history' a 'navigate'
   };
 
+
+  const URI = 'http://localhost:8080/Empleados';
+
   return (
     <div className="Login">
       <header className="Login-header">
