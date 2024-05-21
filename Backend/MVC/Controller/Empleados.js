@@ -1,16 +1,19 @@
 const pool = require('../Model/Connection');
-
+/*
+    API de Empleados : FUNCIONANDO CORRECTAMENTE
+*/
 // Crear nuevos empleados
 const NuevoEmpleado = async (req, res) => {
     try {
         const { Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad } = req.body;
-        //OBTENER ULTIMO IDEMPLEADO
         if (!Nombre || !ApellidoPaterno || !ApellidoMaterno || !Correo || !Telefono || !Puesto || !Usuario || !Contrasena || !FechaNacimiento || !FechaInicio || !RFC || !CURP || !IDSucursal || !IDCiudad) {
             return res.status(400).send({ success: false, message: 'Faltan campos por llenar' });
         }
-        const IDEmpleado = "SELECT COUNT(IDEmpleado)+1 AS IDEmpleado FROM Empleado;"
+        //Obtener el ultimo IDEmpleado
+        const [IDEmpleado, fields] = await pool.query('SELECT COUNT(IDEmpleado)+1 AS IDEmpleado FROM Empleado;');
+
         const insertSQL = 'INSERT INTO Empleado (IDEmpleado , Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
-        const insertResult = await pool.query(insertSQL, [parseInt(IDEmpleado), Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, parseInt(IDSucursal), parseInt(IDCiudad)]);
+        const insertResult = await pool.query(insertSQL, [parseInt(IDEmpleado[0].IDEmpleado), Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, parseInt(IDSucursal), parseInt(IDCiudad)]);
         console.log('Empleado agregado exitosamente', insertResult);
         res.status(201).send({ success: true, message: "Empleado agregado exitosamente" });
     } catch (err) {
@@ -49,6 +52,3 @@ const EliminarEmpleado = async (req, res) => {
 }
 
 module.exports = { NuevoEmpleado, VerEmpleados, EliminarEmpleado };
-
-//ya quedo parseado, y comprobada en postman
-

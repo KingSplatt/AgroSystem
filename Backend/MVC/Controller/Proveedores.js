@@ -1,15 +1,20 @@
 const pool = require("../Model/Connection");
-
+/*
+    API de Proveedores : FUNCIONANDO CORRECTAMENTE
+*/
 //agregar un proveedor nuevo
 const agregarProveedor = async (req, res) => {
     try {
-        const { IDProveedor, Nombre, Telefono, Correo, RFC, CURP, Legalizado, IDCiudad } = req.body;
-        const insertSQL = 'INSERT INTO Proveedor (IDProveedor, Nombre, Telefono, Correo, RFC, CURP, Legalizado, IDCiudad) VALUES (?,?,?,?,?,?,?,?)';
-        Legalizado = Legalizado ? 1 : 0;
-        if (!IDProveedor || !Nombre || !Telefono || !Correo || !RFC || !CURP || !Legalizado || !IDCiudad) {
+        const { Nombre, Telefono, Correo, RFC, CURP, Ciudad } = req.body;
+        let { Legalizado } = req.body;
+        if (!Nombre || !Telefono || !Correo || !RFC || !CURP || !Legalizado || !Ciudad) {
             return res.status(400).send({ success: false, message: 'Faltan campos por llenar' });
         }
-        const insertResult = await pool.query(insertSQL, [parseInt(IDProveedor), Nombre, Telefono, Correo, RFC, CURP, Legalizado, parseInt(IDCiudad)]);
+        const [IDProveedor, fields] = await pool.query('SELECT COUNT(IDProveedor)+1 AS IDProveedor FROM Proveedor');
+        const [IDCiudad, campos] = await pool.query('SELECT IDCiudad FROM Ciudad WHERE Nombre = ?;', [Ciudad]);
+        const insertSQL = 'INSERT INTO Proveedor (IDProveedor, Nombre, Telefono, Correo, RFC, CURP, Legalizado, IDCiudad) VALUES (?,?,?,?,?,?,?,?);';
+        Legalizado = Legalizado ? 1 : 0;
+        const insertResult = await pool.query(insertSQL, [parseInt(IDProveedor[0].IDProveedor), Nombre, Telefono, Correo, RFC, CURP, parseInt(Legalizado), parseInt(IDCiudad[0].IDCiudad)]);
         console.log('Proveedor agregado:', insertResult);
         res.status(201).send({ success: true, message: "Proveedor Añadido" });
 
@@ -46,5 +51,3 @@ const EliminarProveedor = async (req, res) => {
 }
 
 module.exports = { agregarProveedor, ObtenerProveedor, EliminarProveedor }
-//ya quedo parseado, y comprobada en postman
-

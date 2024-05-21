@@ -3,17 +3,21 @@ const pool = require('../Model/Connection');
 // Crear una nueva compra
 const NuevaCompra = async (req, res) => {
     try {
-        const { IDCompra, FechaPedido, FechaEntrega, SubTotal, Total, IDCedi, IDEmpleado } = req.body;
-        const { Cantidad, PrecioUnitario, IDProducto } = req.body;
-        if (!IDCompra || !FechaPedido || !FechaEntrega || !SubTotal || !Total || !IDCedi || !IDEmpleado || !Cantidad || !PrecioUnitario || !IDProducto) {
+        const { FechaPedido, FechaEntrega, SubTotal, Total, CEDI, Empleado } = req.body;
+        const { Cantidad, PrecioUnitario, Producto } = req.body;
+        if (!FechaPedido || !FechaEntrega || !SubTotal || !Total || !CEDI || !Empleado || !Cantidad || !PrecioUnitario || !Producto) {
             return res.status(400).send({ success: false, message: 'Faltan campos por llenar' });
         }
+        const [IDCompra, fields] = await pool.query('SELECT COUNT(IDCompra)+1 AS IDCompra FROM Compra');
+        const [IDCedi, campos] = await pool.query('SELECT IDCedi FROM CEDI WHERE Nombre = ?;', [CEDI]);
+        const [IDEmpleado, campos2] = await pool.query('SELECT IDEmpleado FROM Empleado WHERE Nombre = ?;', [Empleado]);
+        const [IDProducto, campos3] = await pool.query('SELECT IDProducto FROM Producto WHERE Nombre = ?;', [Producto]);
         SubTotal = Cantidad * PrecioUnitario;
         Total = SubTotal * 1.16;
         const compraSQL = 'INSERT INTO Compra (IDCompra, FechaPedido, FechaEntrega, SubTotal, Total, IDCedi, IDEmpleado) VALUES ( ? , ? , ?, ?, ?, ?, ?)';
-        const compraResult = await pool.query(compraSQL, [parseInt(IDCompra), FechaPedido, FechaEntrega, parseFloat(SubTotal), parseFloat(Total), parseInt(IDCedi), parseInt(IDEmpleado)]);
+        const compraResult = await pool.query(compraSQL, [parseInt(IDCompra[0].IDCompra), FechaPedido, FechaEntrega, parseFloat(SubTotal), parseFloat(Total), parseInt(IDCedi[0].IDCedi), parseInt(IDEmpleado[0].IDEmpleado)]);
         const detalleCompraSQL = 'INSERT INTO DetalleCompra (IDCompra, IDProducto, Cantidad, PrecioUnitario) VALUES (?, ?, ?, ?)';
-        const detalleCompraResult = await pool.query(detalleCompraSQL, [parseInt(IDCompra), parseInt(IDProducto), parseInt(Cantidad), parseFloat(PrecioUnitario)]);
+        const detalleCompraResult = await pool.query(detalleCompraSQL, [parseInt(IDCompra[0].IDCompra), parseInt(IDProducto[0].IDEmpleado), parseInt(Cantidad), parseFloat(PrecioUnitario)]);
         console.log('Compra exitosa', compraResult, detalleCompraResult);
         res.status(201).send({ success: true, message: "Compra creada exitosamente" });
     } catch (err) {
