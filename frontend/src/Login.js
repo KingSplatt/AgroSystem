@@ -59,23 +59,12 @@ function Login() {
         <form onSubmit={handleLogin}>
           <label>
             <input 
-              className='IS' 
-              type="text" 
-              name="usuario" 
-              placeholder='Usuario' 
-              value={usuario} 
-              onChange={(e) => setUsuario(e.target.value)} 
+              className='IS' type="text" name="usuario" placeholder='Usuario' value={usuario} onChange={(e) => setUsuario(e.target.value)} 
             />
           </label>
           <br />
           <label>
-            <input 
-              className='IS' 
-              type="password" 
-              name="contrasena" 
-              placeholder='Contraseña' 
-              value={contrasena} 
-              onChange={(e) => setContrasena(e.target.value)} 
+            <input className='IS' type="password" name="contrasena" placeholder='Contraseña' value={contrasena} onChange={(e) => setContrasena(e.target.value)} 
             />
           </label>
           <br />
