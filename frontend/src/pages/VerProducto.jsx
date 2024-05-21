@@ -54,9 +54,8 @@ const VerProducto = () => {
                                 <th>Nombre</th>
                                 <th>Descripcion</th>
                                 <th>Precio unitario</th>
-
+                                <th>Existencia</th>
                                 <th>Descontinuado</th>
-                                
                                 <th>Proveedor</th>
                             </tr>
                         </thead>
@@ -67,6 +66,7 @@ const VerProducto = () => {
                                     <td>{producto.Nombre}</td>
                                     <td>{producto.Descripcion}</td>
                                     <td>{producto.PrecioUnitario}</td>
+                                    <td>{producto.Stock}</td>
                                     <td>{producto.Descontinuado ? "Sí" : "No"}</td>
                                     <td>{producto.ProveedorN}</td>
                                 </tr>

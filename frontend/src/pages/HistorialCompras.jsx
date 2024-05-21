@@ -1,43 +1,59 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaExchangeAlt, FaFileExport, FaPlus, FaPrint } from "react-icons/fa";
 import "../App.css";
 import "../Estilos/HistorialCompras.css"; //cambiar a la ruta correcta
 
+const URI = "http://localhost:8080/Compras";
+
 const HistorialCompras = () => {
-
     const handlePrint = (compra) => {
-        // logica para imprimir
-
-        alert("Imprimiendo detalles de compra")
-    
+        alert("Imprimiendo detalles de compra");
     };
-
 
     const handleExport = (compra) => {
-        //logica para exportar
-   
-        alert("Exportando detalles de compra")
+        alert("Exportando detalles de compra");
     };
 
-    // Datos de ejemplo de compras
-    const compras = [
-        { clave: '1234567890', fechaPedido: '2024-05-15', fechaRecibido: '2024-05-16', nombre: 'compra 1' },
-        { clave: '123456jj7890', fechaPedido: '2024-05-15', fechaRecibido: '2024-05-16', nombre: 'compra 1' },
-        { clave: '12345ddd6jj7890', fechaPedido: '2024-05-15', fechaRecibido: '2024-05-16', nombre: 'compra 1' },
+    const [compras, setCompras] = useState([]);
 
-    ];
+    useEffect(() => {
+        fetchCompras();
+    }, []);
+
+    const fetchCompras = async () => {
+        try {
+            const response = await fetch(URI);
+            const data = await response.json();
+            const rows = data.rows;
+
+            console.log("Data:", data.rows);
+
+            if (Array.isArray(rows)) {
+                setCompras(rows);
+            } else {
+                console.error("La respuesta no es un array", data);
+                alert("Error al obtener los Compras: la respuesta no es un array");
+            }
+        } catch (error) {
+            console.error("Error al obtener los Compras:", error);
+            alert("Error al obtener los Compras:", error);
+        }
+    };
+
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    };
 
     return (
         <div>
-           
-
             <div className="containerVP">
                 <h2>Historial de compras</h2>
                 <div className="barraSuperior">
-                    <input type="search" placeholder="Buscar compra"/> 
+                    <input type="search" placeholder="Buscar compra" />
                     <button className="Busqueda"> Buscar </button>
                     <div className="OpcionesP">
-                        <button className="Add"> <FaPlus/> Añadir compra </button>
+                        <button className="Add"><FaPlus /> Añadir compra</button>
                         <button className="Modify"><FaExchangeAlt /> Modificar compra</button>
                     </div>
                 </div>
@@ -49,7 +65,7 @@ const HistorialCompras = () => {
                                 <th>Clave</th>
                                 <th>Fecha de pedido</th>
                                 <th>Fecha de recibido</th>
-                                <th>compra</th>
+                                <th>Total</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>
@@ -57,14 +73,12 @@ const HistorialCompras = () => {
                         <tbody>
                             {compras.map((compra, index) => (
                                 <tr key={index}>
-                                    <td>{compra.clave}</td>
-                                    <td>{compra.fechaPedido}</td>
-                                    <td>{compra.fechaRecibido}</td>
-                                    <td>{compra.nombre}</td>
+                                    <td>{compra.IDCompra}</td>
+                                    <td>{formatDate(compra.FechaPedido)}</td>
+                                    <td>{formatDate(compra.FechaEntrega)}</td>
+                                    <td>{compra.Total}</td>
                                     <td>
-                                        {/* Botón de imprimir con icono */}
                                         <button onClick={() => handlePrint(compra.nombre)}><FaPrint /></button>
-                                        {/* Botón de exportar con icono */}
                                         <button onClick={() => handleExport(compra.nombre)}><FaFileExport /></button>
                                     </td>
                                 </tr>
