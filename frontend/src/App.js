@@ -13,7 +13,8 @@ import Inicio from "./pages/Inicio.jsx";
 import ModificarProductos from "./pages/ModificarProducto";
 import VerProducto from "./pages/VerProducto";
 import VerProveedores from "./pages/VerProveedores.jsx";
-
+import VerVentas from "./pages/VerVentas.jsx";
+import RealizarVenta from "./pages/RealizarVenta.jsx";
 const App = () => {
   return (
     <div className="Todo">
@@ -53,6 +54,14 @@ const App = () => {
                   <Route
                     path="/ModificarProductos"
                     element={<ModificarProductos />}
+                  />
+                  <Route
+                    path="/VerVentas"
+                    element={<VerVentas />}
+                  />
+                  <Route
+                    path="/RealizarVenta"
+                    element={<RealizarVenta />}
                   />
                 </Routes>
               </>

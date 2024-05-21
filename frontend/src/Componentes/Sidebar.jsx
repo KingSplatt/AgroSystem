@@ -6,16 +6,14 @@ import {
 import { NavLink } from 'react-router-dom';
 import '../Estilos/Sidebar.css';
 
-
-
 const Sidebar = ({ nose }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [expandedMenus, setExpandedMenus] = useState({});
+    const [expandedMenuIndex, setExpandedMenuIndex] = useState(null);
 
     const toggle = () => {
         if (isOpen) {
             // Cerrar todos los submenús al minimizar el sidebar
-            setExpandedMenus({});
+            setExpandedMenuIndex(null);
         }
         setIsOpen(!isOpen);
     };
@@ -24,13 +22,10 @@ const Sidebar = ({ nose }) => {
         if (!isOpen) {
             // Si el sidebar está cerrado, abrir el sidebar
             setIsOpen(true);
-            setExpandedMenus({[index]: true});
+            setExpandedMenuIndex(index);
         } else {
             // Alternar el submenú si el sidebar está abierto
-            setExpandedMenus(prevState => ({
-                ...prevState,
-                [index]: !prevState[index]
-            }));
+            setExpandedMenuIndex(prevIndex => (prevIndex === index ? null : index));
         }
     };
 
@@ -70,11 +65,11 @@ const Sidebar = ({ nose }) => {
             submenu: [
                 {
                     name: 'Ver ventas',
-                    path: '/productos/ver'
+                    path: '/VerVentas'
                 },
                 {
                     name: 'Realizar venta',
-                    path: '/productos/anadir'
+                    path: '/RealizarVenta'
                 }
             ]
         },
@@ -132,18 +127,16 @@ const Sidebar = ({ nose }) => {
             name: 'Cotizar',
             path: '/Cotizar',
             icon: <FaMoneyCheckAlt />
-
         },
         {
             name: 'Salir',
             path: '/logout',
             icon: <FaSignOutAlt />
-
         }
-        // Puedes agregar más elementos de menú aquí con submenús si lo deseas
     ];
 
     const renderMenuItem = (item, index) => {
+        const isExpanded = expandedMenuIndex === index;
         if (item.submenu) {
             return (
                 <div key={index}>
@@ -151,9 +144,9 @@ const Sidebar = ({ nose }) => {
                         <div className="icon">{item.icon}</div>
                         <div style={{ display: isOpen ? "block" : "none" }} className="link_text">{item.name}</div>
                     </div>
-                    <div style={{ marginLeft: isOpen && expandedMenus[index] ? "20px" : "0px" }}>
-                        {expandedMenus[index] && item.submenu.map((subitem, subindex) => (
-                            <NavLink to={subitem.path} key={subindex} className="link" activeclassName="active">
+                    <div style={{ marginLeft: isOpen && isExpanded ? "20px" : "0px" }}>
+                        {isExpanded && item.submenu.map((subitem, subindex) => (
+                            <NavLink to={subitem.path} key={subindex} className="link" activeclassname="active">
                                 <div className="submenu_text">{subitem.name}</div>
                             </NavLink>
                         ))}
@@ -162,7 +155,7 @@ const Sidebar = ({ nose }) => {
             );
         } else {
             return (
-                <NavLink to={item.path} key={index} className="link" activeclassName="active">
+                <NavLink to={item.path} key={index} className="link" activeclassname="active">
                     <div className="icon">{item.icon}</div>
                     <div style={{ display: isOpen ? "block" : "none" }} className="link_text">{item.name}</div>
                 </NavLink>
@@ -181,7 +174,6 @@ const Sidebar = ({ nose }) => {
                 </div>
                 {menuItems.map(renderMenuItem)}
             </div>
-            
             <main>{nose}</main>
         </div>
     );

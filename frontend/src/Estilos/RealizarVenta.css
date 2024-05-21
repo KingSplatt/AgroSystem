@@ -1,0 +1,89 @@
+/* RealizarVenta.css */
+
+.realizar-venta-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.productos-disponibles, .productos-seleccionados {
+    width: 48%;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+}
+
+.busqueda {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cantidad-input {
+    width: 60px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.metodo-pago, .monto-recibido {
+    margin-bottom: 20px;
+}
+
+.metodo-pago label, .monto-recibido label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.metodo-pago select, .monto-recibido input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.botones {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.realizar {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.cancelar {
+    background-color: #C85859;
+    color: white;
+}
