@@ -3,25 +3,38 @@ import { FaExchangeAlt, FaPlus } from "react-icons/fa";
 import "../App.css";
 import "../Estilos/Proveedores.css";
 
+
+const URI = "http://localhost:8080/proveedores";
+
 const VerProveedores = () => {
-    const [proveedores, setProveedores] = useState([]);
+    const [Proveedores, setProveedores] = useState([]);
 
     useEffect(() => {
-        // Aquí simularemos una función que obtiene los proveedores de una base de datos
-        fetchProveedores(); // Llamamos a una función para cargar los proveedores
+        fetchProveedores();
+        // Llamamos a una función para cargar los Proveedores
     }, []);
 
     const fetchProveedores = async () => {
-        // Aquí deberías hacer una llamada a tu API o base de datos para obtener los proveedores
         try {
-            // Supongamos que obtienes los datos de una API
-            const response = await fetch('https://tu-api.com/proveedores');
+            const response = await fetch(URI);
             const data = await response.json();
-            setProveedores(data); // Actualizamos el estado con los datos obtenidos
+            const rows = data.rows;
+
+            console.log("Data:", data.rows);
+
+            // Asegúrate de que `data` es un array
+            if (Array.isArray(rows)) {
+                setProveedores(rows);
+            } else {
+                console.error("La respuesta no es un array", data);
+                alert("Error al obtener los Proveedores: la respuesta no es un array");
+            }
         } catch (error) {
-            alert('Error al obtener los proveedores:', error);
+            console.error("Error al obtener los Proveedores:", error);
+            alert("Error al obtener los Proveedores:", error);
         }
     };
+
 
     return (
 
@@ -48,19 +61,19 @@ const VerProveedores = () => {
                                 <th>Correo</th>
                                 <th>RFC</th>
                                 <th>CURP</th>
-                                <th>Estado de legalización</th>
+                                <th>Legalizado</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {proveedores.map((proveedor, index) => (
+                            {Proveedores.map((proveedor, index) => (
                                 <tr key={index}>
-                                    <td>{proveedor.clave}</td>
-                                    <td>{proveedor.nombre}</td>
-                                    <td>{proveedor.telefono}</td>
-                                    <td>{proveedor.correo}</td>
-                                    <td>{proveedor.rfc}</td>
-                                    <td>{proveedor.curp}</td>
-                                    <td>{proveedor.estadoLegalizacion}</td>
+                                    <td>{proveedor.IDProveedor}</td>
+                                    <td>{proveedor.Nombre}</td>
+                                    <td>{proveedor.Telefono}</td>
+                                    <td>{proveedor.Correo}</td>
+                                    <td>{proveedor.RFC}</td>
+                                    <td>{proveedor.CURP}</td>
+                                    <td>{proveedor.Legalizado ? "Sí" : "No"}</td>
                                 </tr>
                             ))}
                         </tbody>

@@ -4,12 +4,14 @@ import "./App.css";
 import Sidebar from "./Componentes/Sidebar";
 import Login from "./Login";
 import ActualizarProveedor from "./Pages/ActualizarProveedor.jsx";
+import AnadirCliente from "./Pages/AnadirCliente.jsx";
 import AnadirProductos from "./Pages/AnadirProductos";
 import AnadirProveedor from "./Pages/AnadirProveedor.jsx";
 import Cotizar from "./Pages/Cotizar.jsx";
 import HistorialCompras from "./Pages/HistorialCompras.jsx";
 import IngresarProductos from "./Pages/IngresarProductos";
 import Inicio from "./Pages/Inicio.jsx";
+import ModificarCliente from "./Pages/ModificarCliente.jsx";
 import ModificarProductos from "./Pages/ModificarProducto";
 import RealizarVenta from "./Pages/RealizarVenta.jsx";
 import VerProducto from "./Pages/VerProducto";
@@ -40,6 +42,8 @@ const App = () => {
                   <Route path="/ModificarProductos" element={<ModificarProductos />} />
                   <Route path="/RealizarVenta" element={<RealizarVenta />} />
                   <Route path="/VerVentas" element={<VerVentas />} />
+                  <Route path="/AnadirCliente" element={<AnadirCliente />} />
+                  <Route path="/ModificarCliente" element={<ModificarCliente />} />
                 </Routes>
               </>
             }

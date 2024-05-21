@@ -1,29 +1,46 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { FaPlus } from 'react-icons/fa';
 import '../Estilos/VerVentas.css';
 
+const URI = "http://localhost:8080/ventasN"; 
+
 const VerVentas = () => {
-    // Ejemplo de datos de ventas
-    const [ventas, setVentas] = useState([
-        { id: 1, producto: 'Herbicida', cantidad: 10, precio: 100 },
-        { id: 2, producto: 'Fertilizante', cantidad: 5, precio: 50 },
-        { id: 3, producto: 'Pesticida', cantidad: 8, precio: 80 },
-    ]);
+    const [ventas, setVentas] = useState([]);
 
-    const addVenta = () => {
-        const newVenta = { id: ventas.length + 1, producto: 'Nuevo Producto', cantidad: 1, precio: 10 };
-        setVentas([...ventas, newVenta]);
+    useEffect(() => {
+        fetchVentas();
+    }, []);
+
+    const fetchVentas = async () => {
+        try {
+            const response = await fetch(URI);
+            const data = await response.json();
+            const rows = data.rows;
+            
+            console.log("Data:", data.rows);
+
+            if (Array.isArray(rows)) {
+                setVentas(rows);
+            }
+            else {
+                console.error("La respuesta no es un array", data);
+                alert("Error al obtener las ventas: la respuesta no es un array");
+            }
+        }
+        catch (error) {
+            console.error("Error al obtener las ventas:", error);
+            alert("Error al obtener las ventas:", error);
+        }
     };
-
-
-    const deleteVenta = () => {
-        const ventaId = prompt('Ingrese el ID de la venta a eliminar:');
-        setVentas(ventas.filter(venta => venta.id !== parseInt(ventaId, 10)));    };
 
     return (
         <div className="containerVP">
             <div className="barraSuperior">
-                <button className="Save" onClick={addVenta}>Añadir Venta</button>
-                <button className="Cancel" onClick={deleteVenta}>Eliminar Venta</button>
+                <input type="search" placeholder="Buscar venta" />
+                <button className="Busqueda">Buscar</button>
+                <div className="OpcionesP">
+                    <button className="Add"><FaPlus /> Nueva venta</button>
+                </div>
             </div>
             <table>
                 <thead>
@@ -36,11 +53,11 @@ const VerVentas = () => {
                 </thead>
                 <tbody>
                     {ventas.map((venta) => (
-                        <tr key={venta.id}>
-                            <td>{venta.id}</td>
-                            <td>{venta.producto}</td>
-                            <td>{venta.cantidad}</td>
-                            <td>{venta.precio}</td>
+                        <tr key={venta.IDVenta}>
+                            <td>{venta.IDVenta}</td>
+                            <td>{venta.Nombre}</td>
+                            <td>{venta.Cantidad}</td>
+                            <td>{venta.PrecioUnitario}</td>
                         </tr>
                     ))}
                 </tbody>

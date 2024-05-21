@@ -111,15 +111,15 @@ const Sidebar = ({ nose }) => {
             submenu: [
                 {
                     name: 'Ver clientes',
-                    path: '/productos/ver'
+                    path: '/VerClientes'
                 },
                 {
                     name: 'Añadir cliente',
-                    path: '/productos/anadir'
+                    path: '/AnadirCliente'
                 },
                 {
                     name: 'Modificar cliente',
-                    path: '/productos/anadir'
+                    path: '/ModificarCliente'
                 }
             ]
         },
