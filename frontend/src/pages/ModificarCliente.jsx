@@ -160,3 +160,5 @@ const ModificarCliente = () => {
     </div>
   );
 };
+
+export default ModificarCliente();
