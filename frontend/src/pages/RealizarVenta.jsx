@@ -197,6 +197,7 @@ const RealizarVenta = () => {
                         <label>Monto Recibido:</label>
                         <input
                             type="number"
+                            placeholder='$'
                             value={montoRecibido}
                             onChange={(e) => setMontoRecibido(e.target.value)}
                         />
@@ -240,13 +241,13 @@ const RealizarVenta = () => {
                             <tr>
                                 <td><label>Plazo acordado:</label></td>
                                 <td>
-                                    <input className='tarjeta-input'
-                                        type="text"
+                                    <input type = "number" className='cantidad-input-meses'
                                         name="plazo"
-                                        placeholder="Plazo acordado"
+                                        placeholder="0"
                                         value={tarjetaInfo.plazo}
                                         onChange={handleTarjetaInfoChange}
                                     />
+                                    <span> meses</span>
                                 </td>
                             </tr>
                             <tr>
@@ -255,7 +256,7 @@ const RealizarVenta = () => {
                                     <input className='tarjeta-input'
                                         type="text"
                                         name="anticipo"
-                                        placeholder="Anticipo recibido"
+                                        placeholder="$"
                                         value={tarjetaInfo.anticipo}
                                         onChange={handleTarjetaInfoChange}
                                     />
@@ -321,17 +322,9 @@ const RealizarVenta = () => {
                 <div className="precio-total">
                     <label>Total A Pagar:</label>
                     
-                    {metodoPago === 'credito' && (
-                     <span>
-                        ${productosSeleccionados.reduce((total, producto) => (total + producto.precio * producto.cantidad)*0.75, 0)}
-                    </span>
-                    
-                    )}
-                    {metodoPago !== 'credito' && (
-                        <span>
+                    <span>
                             ${productosSeleccionados.reduce((total, producto) => (total + producto.precio * producto.cantidad), 0)}
-                        </span>
-                    )}
+                    </span>
                 </div>
                 <div className="botones">
                     <button className="confirmar-venta" onClick={realizarVenta}><MdOutlinePointOfSale/></button>

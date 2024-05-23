@@ -80,6 +80,16 @@ li {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
+
+.cantidad-input-meses {
+    width: 40px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
 .centro-td {
     text-align: center;
 }
@@ -171,7 +181,7 @@ td {
     text-align: center;
     font-size: 1em;
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #dddddd00;
 }
 
 th {
