@@ -32,7 +32,8 @@ main {
 .bars {
     display: flex;
     font-size: 25px;
-    margin-left: auto;
+    cursor: pointer;
+    margin-left : auto;
 }
 
 .link {

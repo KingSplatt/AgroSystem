@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import '../Estilos/RealizarVenta.css';
+import { FaTrashAlt } from "react-icons/fa";
+import { FaCirclePlus } from "react-icons/fa6";
+import { MdOutlinePointOfSale } from "react-icons/md";
+import { TbBasketCancel } from "react-icons/tb";
+
 
 const RealizarVenta = () => {
     const [productos, setProductos] = useState([
@@ -12,21 +17,27 @@ const RealizarVenta = () => {
     const [busqueda, setBusqueda] = useState('');
     const [metodoPago, setMetodoPago] = useState('');
     const [montoRecibido, setMontoRecibido] = useState('');
+    const [tarjetaInfo, setTarjetaInfo] = useState({
+        numero: '',
+        vencimiento: '',
+        cvv: '',
+        nombre: ''
+    });
 
     const handleBusqueda = (e) => {
         setBusqueda(e.target.value);
     };
 
     const handleCantidadChange = (id, cantidad) => {
-        setProductos(prevProductos => 
-            prevProductos.map(producto => 
+        setProductos(prevProductos =>
+            prevProductos.map(producto =>
                 producto.id === id ? { ...producto, cantidad: parseInt(cantidad, 10) } : producto
             )
         );
     };
 
     const agregarProducto = (producto) => {
-        setProductosSeleccionados(prevSeleccionados => 
+        setProductosSeleccionados(prevSeleccionados =>
             [...prevSeleccionados, { ...producto, cantidad: producto.cantidad || 1 }]
         );
     };
@@ -36,16 +47,36 @@ const RealizarVenta = () => {
         setProductosSeleccionados([]);
         setMetodoPago('');
         setMontoRecibido('');
+        setTarjetaInfo({
+            numero: '',
+            vencimiento: '',
+            cvv: '',
+            nombre: ''
+        });
     };
 
     const cancelarVenta = () => {
         setProductosSeleccionados([]);
         setMetodoPago('');
         setMontoRecibido('');
+        setTarjetaInfo({
+            numero: '',
+            vencimiento: '',
+            cvv: '',
+            nombre: ''
+        });
     };
 
-    const productosFiltrados = productos.filter(producto => 
-        producto.nombre.toLowerCase().includes(busqueda.toLowerCase()) || 
+    const handleTarjetaInfoChange = (e) => {
+        const { name, value } = e.target;
+        setTarjetaInfo(prevInfo => ({
+            ...prevInfo,
+            [name]: value
+        }));
+    };
+
+    const productosFiltrados = productos.filter(producto =>
+        producto.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
         producto.id.toString().includes(busqueda)
     );
 
@@ -53,58 +84,162 @@ const RealizarVenta = () => {
         <div className="realizar-venta-container">
             <div className="productos-disponibles">
                 <h2>Productos Disponibles</h2>
-                <input 
+                <input
                     type="text"
                     placeholder="Buscar por nombre o ID"
                     value={busqueda}
                     onChange={handleBusqueda}
                     className="busqueda"
                 />
-                <ul>
-                    {productosFiltrados.map((producto) => (
-                        <li key={producto.id}>
-                            <div>{producto.nombre} (ID: {producto.id}) - ${producto.precio} - {producto.disponibles} disponibles</div>
-                            <input 
-                                type="number"
-                                min="1"
-                                placeholder="Cantidad"
-                                onChange={(e) => handleCantidadChange(producto.id, e.target.value)}
-                                className="cantidad-input"
-                            />
-                            <button onClick={() => agregarProducto(producto)}>Agregar</button>
-                        </li>
-                    ))}
-                </ul>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>ID</th>
+                            <th>Precio</th>
+                            <th>Disponibles</th>
+                            <th>Cantidad</th>
+                            <th>Agregar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {productosFiltrados.map((producto) => (
+                            <tr key={producto.id}>
+                                <td className='centro-td'>{producto.nombre}</td>
+                                <td className='centro-td'>{producto.id}</td>
+                                <td className='centro-td'>${producto.precio}</td>
+                                <td className='centro-td'>{producto.disponibles}</td>
+                                <td className='centro-td'>
+                                    <input
+                                        type="number"
+                                        min="1"
+                                        placeholder="Cantidad"
+                                        onChange={(e) => handleCantidadChange(producto.id, e.target.value)}
+                                        className="cantidad-input"
+                                    />
+                                </td>
+                                <td className='centro-td'>
+                                    <button className="realizar" onClick={() => agregarProducto(producto)}><FaCirclePlus /></button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
             <div className="productos-seleccionados">
                 <h2>Productos en la Venta</h2>
-                <ul>
-                    {productosSeleccionados.map((producto, index) => (
-                        <li key={index}>
-                            <div>{producto.nombre} - {producto.cantidad} unidades - ${producto.precio * producto.cantidad}</div>
-                        </li>
-                    ))}
-                </ul>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {productosSeleccionados.map((producto, index) => (
+                            <tr key={index}>
+                                <td className='centro-td'>{producto.nombre}</td>
+                                <td className='centro-td'>{producto.cantidad} unidades</td>
+                                <td className='centro-td'>${producto.precio * producto.cantidad}</td>
+                                <td className='centro-td'>
+                                    <button className='btn-eliminar' onClick={() => setProductosSeleccionados(
+                                        productosSeleccionados.filter((_, i) => i !== index)
+                                    )}><FaTrashAlt /></button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
                 <div className="metodo-pago">
                     <label>Método de Pago:</label>
                     <select value={metodoPago} onChange={(e) => setMetodoPago(e.target.value)}>
-                        <option value="">Seleccione...</option>
+                        <option value="">Seleccionar</option>
                         <option value="efectivo">Efectivo</option>
-                        <option value="tarjeta">Tarjeta</option>
                         <option value="transferencia">Transferencia</option>
+                        <option value="tarjeta">Tarjeta</option>
                     </select>
                 </div>
-                <div className="monto-recibido">
-                    <label>Monto Recibido:</label>
-                    <input 
-                        type="number"
-                        value={montoRecibido}
-                        onChange={(e) => setMontoRecibido(e.target.value)}
-                    />
+                {metodoPago === 'efectivo' && (
+                    <div className="monto-recibido">
+                        <label>Monto Recibido:</label>
+                        <input
+                            type="number"
+                            value={montoRecibido}
+                            onChange={(e) => setMontoRecibido(e.target.value)}
+                        />
+                    </div>
+                )}
+                {metodoPago === 'transferencia' && (
+                    <div className="clabe">
+                        <label>CLABE INTERBANCARIA:</label>
+                        <span>2345345ERFG</span>
+                    </div>
+                )}
+                {metodoPago === 'tarjeta' && (
+                    <table className="detalles-tarjeta">
+                        <tbody>
+                            <tr>
+                                <td><label>Número de Tarjeta:</label></td>
+                                <td>
+                                    <input className='tarjeta-input'
+                                        type="text"
+                                        name="numero"
+                                        placeholder="Número de Tarjeta"
+                                        value={tarjetaInfo.numero}
+                                        onChange={handleTarjetaInfoChange}
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Fecha de Vencimiento:</label></td>
+                                <td>
+                                    <input className='tarjeta-input'
+                                        type="text"
+                                        name="vencimiento"
+                                        placeholder="MM/AA"
+                                        value={tarjetaInfo.vencimiento}
+                                        onChange={handleTarjetaInfoChange}
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>CVV:</label></td>
+                                <td>
+                                    <input className='tarjeta-input'
+                                        type="text"
+                                        name="cvv"
+                                        placeholder="CVV"
+                                        value={tarjetaInfo.cvv}
+                                        onChange={handleTarjetaInfoChange}
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Nombre del Titular:</label></td>
+                                <td>
+                                    <input className='tarjeta-input'
+                                        type="text"
+                                        name="nombre"
+                                        placeholder="Nombre del Titular"
+                                        value={tarjetaInfo.nombre}
+                                        onChange={handleTarjetaInfoChange}
+                                    />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                )}
+                <div className="precio-total">
+                    <label>Precio Total:</label>
+                    <span>
+                        ${productosSeleccionados.reduce((total, producto) => total + producto.precio * producto.cantidad, 0)}
+                    </span>
                 </div>
                 <div className="botones">
-                    <button className="realizar" onClick={realizarVenta}>Realizar Venta</button>
-                    <button className="cancelar" onClick={cancelarVenta}>Cancelar Venta</button>
+                    <button className="confirmar-venta" onClick={realizarVenta}><MdOutlinePointOfSale/></button>
+                    <button className="cancelar-venta" onClick={cancelarVenta}><TbBasketCancel /></button>
                 </div>
             </div>
         </div>

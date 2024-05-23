@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { FaPlus } from 'react-icons/fa';
+import { FaPlus, FaSearch } from 'react-icons/fa';
 import '../Estilos/VerVentas.css';
+
 
 const URI = "http://localhost:8080/ventasN"; 
 
@@ -35,29 +36,34 @@ const VerVentas = () => {
 
     return (
         <div className="containerVP">
+            <h2>Ventas</h2>
+
             <div className="barraSuperior">
                 <input type="search" placeholder="Buscar venta" />
                 <button className="Busqueda">Buscar</button>
                 <div className="OpcionesP">
-                    <button className="Add"><FaPlus /> Nueva venta</button>
+                    <button className="Add" onClick={() => window.location.href = "./RealizarVenta"}><FaPlus /> Nueva venta</button>
                 </div>
             </div>
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <th>Precio</th>
+                        <th>Orden</th>
+                        <th>Fecha de Orden</th>
+                        <th>Fecha de Entrega</th>
+                        <th>Subtotal</th>
+                        <th>Total</th>
+                        <th>Cliente</th>
                     </tr>
                 </thead>
                 <tbody>
                     {ventas.map((venta) => (
-                        <tr key={venta.IDVenta}>
-                            <td>{venta.IDVenta}</td>
-                            <td>{venta.Nombre}</td>
-                            <td>{venta.Cantidad}</td>
-                            <td>{venta.PrecioUnitario}</td>
+                        <tr key={venta.orden}>
+                            <td>{venta.fechaOrden}</td>
+                            <td>{venta.fechaEntrega}</td>
+                            <td>{venta.subtotal}</td>
+                            <td>{venta.total}</td>
+                            <td>{venta.cliente}</td>
                         </tr>
                     ))}
                 </tbody>

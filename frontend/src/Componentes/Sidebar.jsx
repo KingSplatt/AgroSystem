@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
     FaBars, FaHandHoldingUsd, FaMoneyCheckAlt, FaProductHunt,
     FaShoppingCart, FaSignOutAlt, FaTh, FaTruck, FaUsers
-} from "react-icons/fa"; // Importamos los iconos de react-icons
+} from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 import '../Estilos/Sidebar.css';
 
@@ -12,7 +12,6 @@ const Sidebar = ({ nose }) => {
 
     const toggle = () => {
         if (isOpen) {
-            // Cerrar todos los submenús al minimizar el sidebar
             setExpandedMenuIndex(null);
         }
         setIsOpen(!isOpen);
@@ -20,11 +19,9 @@ const Sidebar = ({ nose }) => {
 
     const toggleSubMenu = (index) => {
         if (!isOpen) {
-            // Si el sidebar está cerrado, abrir el sidebar
             setIsOpen(true);
             setExpandedMenuIndex(index);
         } else {
-            // Alternar el submenú si el sidebar está abierto
             setExpandedMenuIndex(prevIndex => (prevIndex === index ? null : index));
         }
     };
@@ -35,92 +32,50 @@ const Sidebar = ({ nose }) => {
             path: '/inicio',
             icon: <FaTh />,
             submenu: [
-                {
-                    name: 'Ver Inicio',
-                    path: '/inicio'
-                }
+                { name: 'Ver Inicio', path: '/inicio' }
             ]
         },
         {
             name: 'Productos',
             icon: <FaProductHunt />,
             submenu: [
-                {
-                    name: 'Ver Productos',
-                    path: '/VerProducto'
-                },
-                {
-                    name: 'Añadir Productos',
-                    path: '/AnadirProductos'
-                },
-                {
-                    name: 'Modificar Productos',
-                    path: '/ModificarProductos'
-                }
+                { name: 'Ver Productos', path: '/VerProducto' },
+                { name: 'Añadir Productos', path: '/AnadirProductos' },
+                { name: 'Modificar Productos', path: '/ModificarProductos' }
             ]
         },
         {
             name: 'Ventas',
             icon: <FaHandHoldingUsd />,
             submenu: [
-                {
-                    name: 'Ver ventas',
-                    path: '/VerVentas'
-                },
-                {
-                    name: 'Realizar venta',
-                    path: '/RealizarVenta'
-                }
+                { name: 'Ver ventas', path: '/VerVentas' },
+                { name: 'Realizar venta', path: '/RealizarVenta' }
             ]
         },
         {
             name: 'Compras',
             icon: <FaShoppingCart />,
             submenu: [
-                {
-                    name: 'Historial de compras',
-                    path: '/HistorialCompras'
-                },
-                {
-                    name: 'Ingresar compra',
-                    path: '/IngresarProductos'
-                }
+                { name: 'Historial de compras', path: '/HistorialCompras' },
+                { name: 'Ingresar compra', path: '/IngresarProductos' }
             ]
         },
         {
             name: 'Proveedores',
             icon: <FaTruck />,
             submenu: [
-                {
-                    name: 'Ver proveedores',
-                    path: '/VerProveedores'
-                },
-                {
-                    name: 'Añadir proveedor',
-                    path: '/AnadirProveedor'
-                },
-                {
-                    name: 'Modificar proveedor',
-                    path: '/ActualizarProveedor'
-                }
+                { name: 'Ver proveedores', path: '/VerProveedores' },
+                { name: 'Añadir proveedor', path: '/AnadirProveedor' },
+                { name: 'Modificar proveedor', path: '/ActualizarProveedor' }
             ]
         },
         {
             name: 'Clientes',
             icon: <FaUsers />,
             submenu: [
-                {
-                    name: 'Ver clientes',
-                    path: '/VerClientes'
-                },
-                {
-                    name: 'Añadir cliente',
-                    path: '/AnadirCliente'
-                },
-                {
-                    name: 'Modificar cliente',
-                    path: '/ModificarCliente'
-                }
+                { name: 'Ver clientes', path: '/VerClientes' },
+                { name: 'Añadir cliente', path: '/AnadirCliente' },
+                { name: 'Modificar cliente', path: '/ModificarCliente' }
             ]
         },
         {
@@ -139,18 +94,19 @@ const Sidebar = ({ nose }) => {
         const isExpanded = expandedMenuIndex === index;
         if (item.submenu) {
             return (
+            
                 <div key={index}>
+                    
                     <div className="link" onClick={() => toggleSubMenu(index)}>
+                        
                         <div className="icon">{item.icon}</div>
                         <div style={{ display: isOpen ? "block" : "none" }} className="link_text">{item.name}</div>
                     </div>
-                    <div style={{ marginLeft: isOpen && isExpanded ? "20px" : "0px" }}>
-                        {isExpanded && item.submenu.map((subitem, subindex) => (
-                            <NavLink to={subitem.path} key={subindex} className="link" activeclassname="active">
-                                <div className="submenu_text">{subitem.name}</div>
-                            </NavLink>
-                        ))}
-                    </div>
+                    {isExpanded && item.submenu.map((subitem, subindex) => (
+                        <NavLink to={subitem.path} key={subindex} className="link sublink" activeclassname="active">
+                            <div className="submenu_text">{subitem.name}</div>
+                        </NavLink>
+                    ))}
                 </div>
             );
         } else {
@@ -165,14 +121,16 @@ const Sidebar = ({ nose }) => {
 
     return (
         <div className="contenedor">
+            
             <div style={{ width: isOpen ? "200px" : "60px" }} className="sidebar">
                 <div className="top">
                     <h1 style={{ display: isOpen ? "block" : "none" }} className="logo">Logo</h1>
-                    <div style={{ marginLeft: isOpen ? "90px" : "0px" }} className="bars">
-                        <FaBars onClick={toggle} />
+                    <div style={{ display: isOpen ? "0px" : "0px" }} className="bars" onClick={toggle}>
+                        <FaBars/>
                     </div>
                 </div>
                 {menuItems.map(renderMenuItem)}
+                
             </div>
             <main>{nose}</main>
         </div>

@@ -10,8 +10,7 @@ INSERT INTO Estado (IDEstado, Nombre) VALUES (6, 'Hidalgo');
 INSERT INTO Estado (IDEstado, Nombre) VALUES (7, 'Tamaulipas');
 INSERT INTO Estado (IDEstado, Nombre) VALUES (8, 'Nayarit');
 INSERT INTO Estado (IDEstado, Nombre) VALUES (9, 'Nuevo León');
-INSERT INTO Estado (IDEstado, Nombre) VALUES (10, 'Puebla');
-
+INSERT INTO Estado (IDEstado, Nombre) VALUES (10, 'Puebla')
 -- Inserciones de ejemplo a la tabla Ciudad
 INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (1, 'Tijuana', 1); 
 INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (2, 'Mexicali', 1); 
