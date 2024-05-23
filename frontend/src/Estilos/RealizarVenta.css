@@ -6,10 +6,9 @@
     justify-content: space-between;
     padding: 20px;
     padding-left: 50px;
-    align-items: flex-start; 
+    align-items: flex-start;
     overflow: auto;
-    
-    /* Add this line to align items to the top */
+ /* Permitir que los elementos se envuelvan en varias líneas si es necesario */
 }
 
 .productos-seleccionados {
@@ -18,20 +17,24 @@
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Añadir margen inferior para separación en pantallas pequeñas */
+    order: 2; /* Mantener los productos seleccionados a la derecha por defecto */
 }
 
 .productos-disponibles {
     width: 48%;
     padding: 20px;
-    background-color: #f9f9f9;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Añadir margen inferior para separación en pantallas pequeñas */
+    order: 1; /* Mantener los productos disponibles a la izquierda por defecto */
 }
-h1{
+
+h1 {
     text-align: center;
     padding: 20px;
     margin-bottom: 20px;
 }
+
 h2 {
     text-align: center;
 }
@@ -80,6 +83,7 @@ li {
 .centro-td {
     text-align: center;
 }
+
 button {
     padding: 8px 16px;
     border: none;
@@ -116,13 +120,11 @@ button:hover {
 
 .realizar {
     background-color: #4CAF50;
-    
     color: white;
 }
 
 .confirmar {
     background-color: #4CAF50;
-    
     color: white;
 }
 
@@ -143,7 +145,6 @@ button:hover {
     color: white;
 }
 
-
 .btn-eliminar {
     background-color: #C85859;
     color: white;
@@ -151,12 +152,12 @@ button:hover {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin: 0 auto; /* Add this line to center the button */
+    margin: 0 auto; /* Centrar el botón */
 }
+
 .btn-eliminar:hover {
     opacity: 0.8;
 }
-
 
 .precio-total {
     margin-top: 20px;
@@ -166,21 +167,57 @@ button:hover {
     margin-bottom: 20px;
 }
 
-
 td {
     text-align: center;
     font-size: 1em;
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
-th{
+
+th {
     text-align: center;
     font-size: 1.2em;
     padding: 10px;
     border-bottom: 1px solid #ddd;
-
-
 }
 
+/* Media query para dispositivos móviles */
+@media (max-width: 768px) {
+    .realizar-venta-container {
+        flex-direction: column; /* Cambiar la dirección del flex a columna en pantallas pequeñas */
+        padding: 10px; /* Ajustar el padding para pantallas más pequeñas */
+        align-items: center; /* Centrar los elementos en pantallas pequeñas */
+    }
 
+    .productos-seleccionados, .productos-disponibles {
+        width: 100%; /* Hacer que los elementos ocupen el ancho completo de la pantalla */
+        margin-bottom: 20px; /* Añadir margen inferior para separación entre secciones */
+    }
 
+    .productos-seleccionados {
+        order: 2; /* Asegurarse de que los productos seleccionados aparezcan primero en pantallas pequeñas */
+    }
+
+    .productos-disponibles {
+        order: 1; /* Asegurarse de que los productos disponibles aparezcan después en pantallas pequeñas */
+    }
+
+    .productos-disponibles table, .productos-seleccionados table {
+        width: 100%; /* Asegurarse de que las tablas ocupen el ancho completo */
+    }
+
+    .metodo-pago, .monto-recibido, .precio-total, .botones {
+        width: 100%; /* Hacer que los elementos ocupen el ancho completo de la pantalla */
+        text-align: center; /* Centrar el texto dentro de estos elementos */
+    }
+
+    .metodo-pago select, .monto-recibido input {
+        width: 100%; /* Hacer que los inputs ocupen el ancho completo */
+        margin: 10px 0; /* Añadir margen para separación */
+    }
+
+    .botones button {
+        width: 100%; /* Hacer que los botones ocupen el ancho completo */
+        margin-top: 10px; /* Añadir margen superior para separación */
+    }
+}

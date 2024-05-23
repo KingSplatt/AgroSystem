@@ -7,9 +7,9 @@ import { TbBasketCancel } from "react-icons/tb";
 
 const RealizarVenta = () => {
     const [productos, setProductos] = useState([
-        { id: 1, nombre: 'Herbicida', precio: 100, disponibles: 50 },
-        { id: 2, nombre: 'Fertilizante', precio: 50, disponibles: 30 },
-        { id: 3, nombre: 'Pesticida', precio: 80, disponibles: 20 },
+        { id: 1, nombre: 'Herbicida', precio: 100, disponibles: 50, cantidad: 0 },
+        { id: 2, nombre: 'Fertilizante', precio: 50, disponibles: 30, cantidad: 0 },
+        { id: 3, nombre: 'Pesticida', precio: 80, disponibles: 20, cantidad: 0 },
     ]);
 
     const [productosSeleccionados, setProductosSeleccionados] = useState([]);
@@ -34,15 +34,33 @@ const RealizarVenta = () => {
     const handleCantidadChange = (id, cantidad) => {
         setProductos(prevProductos =>
             prevProductos.map(producto =>
-                producto.id === id ? { ...producto, cantidad: parseInt(cantidad, 10) } : producto
+                producto.id === id ? { ...producto, cantidad: Math.min(parseInt(cantidad, 10), producto.disponibles) } : producto
             )
         );
     };
 
     const agregarProducto = (producto) => {
-        setProductosSeleccionados(prevSeleccionados =>
-            [...prevSeleccionados, { ...producto, cantidad: producto.cantidad || 1 }]
-        );
+        if (!producto.cantidad || producto.cantidad <= 0) {
+            alert('La cantidad debe ser mayor que 0.');
+            return;
+        }
+
+        if (producto.cantidad > producto.disponibles) {
+            alert('No se puede añadir más cantidad de la disponible.');
+            return;
+        }
+
+        setProductosSeleccionados(prevSeleccionados => {
+            const productoExistente = prevSeleccionados.find(p => p.id === producto.id);
+            if (productoExistente) {
+                return prevSeleccionados.map(p =>
+                    p.id === producto.id
+                        ? { ...p, cantidad: Math.min(p.cantidad + producto.cantidad, producto.disponibles) }
+                        : p
+                );
+            }
+            return [...prevSeleccionados, { ...producto }];
+        });
     };
 
     const realizarVenta = () => {
@@ -127,6 +145,7 @@ const RealizarVenta = () => {
                                         placeholder="Cantidad"
                                         onChange={(e) => handleCantidadChange(producto.id, e.target.value)}
                                         className="cantidad-input"
+                                        value={producto.cantidad}
                                     />
                                 </td>
                                 <td className='centro-td'>
@@ -204,28 +223,18 @@ const RealizarVenta = () => {
                                     />
                                 </td>
                             </tr>
-                            <tr>
-                                <td><label>Cantidad a pagar:</label></td>
-                                <td>
-                                    <input className='tarjeta-input'
-                                        type="text"
-                                        name="cantidad"
-                                        placeholder="$"
-                                        value={tarjetaInfo.cantidad}
-                                        onChange={handleTarjetaInfoChange}
-                                    />
-                                </td>
-                            </tr>
+                           
                             <tr>
                                 <td><label>Anticipo mínimo:</label></td>
                                 <td>
-                                    <input className='tarjeta-input'
-                                        type="text"
-                                        name="anticipominimo"
-                                        placeholder="Anticipo mínimo"
-                                        value={tarjetaInfo.anticipominimo}
-                                        onChange={handleTarjetaInfoChange}
-                                    />
+                                <span>
+                                <label>75% del Total: </label>
+                                ${productosSeleccionados.reduce((total, producto) => (total + producto.precio * producto.cantidad), 0)}
+                                <label> = </label>
+                                ${productosSeleccionados.reduce((total, producto) => (total + producto.precio * producto.cantidad)*0.75, 0)}
+                              </span>
+
+                              <span></span>
                                 </td>
                             </tr>
                             <tr>
@@ -310,10 +319,19 @@ const RealizarVenta = () => {
                     </table>
                 )}
                 <div className="precio-total">
-                    <label>Precio Total:</label>
-                    <span>
-                        ${productosSeleccionados.reduce((total, producto) => total + producto.precio * producto.cantidad, 0)}
+                    <label>Total A Pagar:</label>
+                    
+                    {metodoPago === 'credito' && (
+                     <span>
+                        ${productosSeleccionados.reduce((total, producto) => (total + producto.precio * producto.cantidad)*0.75, 0)}
                     </span>
+                    
+                    )}
+                    {metodoPago !== 'credito' && (
+                        <span>
+                            ${productosSeleccionados.reduce((total, producto) => (total + producto.precio * producto.cantidad), 0)}
+                        </span>
+                    )}
                 </div>
                 <div className="botones">
                     <button className="confirmar-venta" onClick={realizarVenta}><MdOutlinePointOfSale/></button>
