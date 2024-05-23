@@ -59,10 +59,6 @@ const VerClientes = () => {
             <tr>
               <th>Clave</th>
               <th>Nombre</th>
-              <th>Apellido Paterno</th>
-              <th>Apellido Materno</th>
-              <th>Usuario</th>
-              <th>Constraseña</th>
               <th>Correo</th>
               <th>Telefono</th>
               <th>RFC</th>
@@ -75,15 +71,11 @@ const VerClientes = () => {
               <tr key={index}>
                 <td>{clientes.IDCliente}</td>
                 <td>{clientes.Nombre}</td>
-                <td>{clientes.ApellidoPaterno}</td>
-                <td>{clientes.ApellidoMaterno}</td>
-                <td>{clientes.Usuario}</td>
-                <td>{clientes.Contrasena}</td>
                 <td>{clientes.Correo}</td>
                 <td>{clientes.Telefono}</td>
                 <td>{clientes.RFC}</td>
                 <td>{clientes.CURP}</td>
-                <td>{clientes.IDCiudad}</td>
+                <td>{clientes.Ciudad}</td>
               </tr>
             ))}
             ;
