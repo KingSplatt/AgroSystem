@@ -42,8 +42,8 @@ const VerProducto = () => {
                     <input type="search" placeholder="Buscar producto" />
                     <button className="Busqueda">Buscar</button>
                     <div className="OpcionesP">
-                        <button className="Add"><FaPlus /> Añadir producto</button>
-                        <button className="Modify"><FaExchangeAlt /> Modificar producto</button>
+                        <button className="Add" onClick={() => window.location.href = "./AnadirProductos"} ><FaPlus /> Añadir producto</button>
+                        <button className="Modify" onClick={() => window.location.href = "./ModificarProducto"} ><FaExchangeAlt /> Modificar producto</button>
                     </div>
                 </div>
                 <div className="tabla">
