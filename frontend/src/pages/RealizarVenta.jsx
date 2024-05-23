@@ -5,7 +5,6 @@ import { FaCirclePlus } from "react-icons/fa6";
 import { MdOutlinePointOfSale } from "react-icons/md";
 import { TbBasketCancel } from "react-icons/tb";
 
-
 const RealizarVenta = () => {
     const [productos, setProductos] = useState([
         { id: 1, nombre: 'Herbicida', precio: 100, disponibles: 50 },
@@ -21,7 +20,11 @@ const RealizarVenta = () => {
         numero: '',
         vencimiento: '',
         cvv: '',
-        nombre: ''
+        nombre: '',
+        nombreCliente: '',
+        cantidad: '',
+        anticipominimo: '',
+        anticipo: ''
     });
 
     const handleBusqueda = (e) => {
@@ -51,7 +54,11 @@ const RealizarVenta = () => {
             numero: '',
             vencimiento: '',
             cvv: '',
-            nombre: ''
+            nombre: '',
+            nombreCliente: '',
+            cantidad: '',
+            anticipominimo: '',
+            anticipo: ''
         });
     };
 
@@ -63,7 +70,11 @@ const RealizarVenta = () => {
             numero: '',
             vencimiento: '',
             cvv: '',
-            nombre: ''
+            nombre: '',
+            nombreCliente: '',
+            cantidad: '',
+            anticipominimo: '',
+            anticipo: ''
         });
     };
 
@@ -159,6 +170,7 @@ const RealizarVenta = () => {
                         <option value="efectivo">Efectivo</option>
                         <option value="transferencia">Transferencia</option>
                         <option value="tarjeta">Tarjeta</option>
+                        <option value="credito">Credito</option>
                     </select>
                 </div>
                 {metodoPago === 'efectivo' && (
@@ -176,6 +188,72 @@ const RealizarVenta = () => {
                         <label>CLABE INTERBANCARIA:</label>
                         <span>2345345ERFG</span>
                     </div>
+                )}
+                {metodoPago === 'credito' && (
+                    <table className="detalles-tarjeta">
+                        <tbody>
+                            <tr>
+                                <td><label>Cliente:</label></td>
+                                <td>
+                                    <input className='tarjeta-input'
+                                        type="text"
+                                        name="nombreCliente"
+                                        placeholder="Nombre Cliente"
+                                        value={tarjetaInfo.nombreCliente}
+                                        onChange={handleTarjetaInfoChange}
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Cantidad a pagar:</label></td>
+                                <td>
+                                    <input className='tarjeta-input'
+                                        type="text"
+                                        name="cantidad"
+                                        placeholder="$"
+                                        value={tarjetaInfo.cantidad}
+                                        onChange={handleTarjetaInfoChange}
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Anticipo mínimo:</label></td>
+                                <td>
+                                    <input className='tarjeta-input'
+                                        type="text"
+                                        name="anticipominimo"
+                                        placeholder="Anticipo mínimo"
+                                        value={tarjetaInfo.anticipominimo}
+                                        onChange={handleTarjetaInfoChange}
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Plazo acordado:</label></td>
+                                <td>
+                                    <input className='tarjeta-input'
+                                        type="text"
+                                        name="plazo"
+                                        placeholder="Plazo acordado"
+                                        value={tarjetaInfo.plazo}
+                                        onChange={handleTarjetaInfoChange}
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Anticipo recibido:</label></td>
+                                <td>
+                                    <input className='tarjeta-input'
+                                        type="text"
+                                        name="anticipo"
+                                        placeholder="Anticipo recibido"
+                                        value={tarjetaInfo.anticipo}
+                                        onChange={handleTarjetaInfoChange}
+                                    />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 )}
                 {metodoPago === 'tarjeta' && (
                     <table className="detalles-tarjeta">
