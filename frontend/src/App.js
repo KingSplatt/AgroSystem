@@ -5,18 +5,19 @@ import Sidebar from "./Componentes/Sidebar";
 import Login from "./Login";
 import ActualizarProveedor from "./Pages/ActualizarProveedor.jsx";
 import AnadirCliente from "./Pages/AnadirCliente.jsx";
-import AnadirProductos from "./Pages/AnadirProductos";
+import AnadirProductos from "./Pages/AnadirProductos.jsx";
 import AnadirProveedor from "./Pages/AnadirProveedor.jsx";
 import Cotizar from "./Pages/Cotizar.jsx";
 import HistorialCompras from "./Pages/HistorialCompras.jsx";
-import IngresarProductos from "./Pages/IngresarProductos";
+import IngresarProductos from "./Pages/IngresarProductos.jsx";
 import Inicio from "./Pages/Inicio.jsx";
 import ModificarCliente from "./Pages/ModificarCliente.jsx";
-import ModificarProductos from "./Pages/ModificarProducto";
+import ModificarProductos from "./Pages/ModificarProducto.jsx";
 import RealizarVenta from "./Pages/RealizarVenta.jsx";
-import VerProducto from "./Pages/VerProducto";
+import VerProducto from "./Pages/VerProducto.jsx";
 import VerProveedores from "./Pages/VerProveedores.jsx";
-import VerVentas from "./Pages/VerVentas";
+import VerClientes from "./Pages/VerCliente.jsx";
+import VerVentas from "./Pages/VerVentas.jsx";
 
 const App = () => {
   return (
@@ -43,6 +44,7 @@ const App = () => {
                   <Route path="/RealizarVenta" element={<RealizarVenta />} />
                   <Route path="/VerVentas" element={<VerVentas />} />
                   <Route path="/AnadirCliente" element={<AnadirCliente />} />
+                  <Route path="/VerClientes" element={<VerClientes/>}/>
                   <Route path="/ModificarCliente" element={<ModificarCliente />} />
                 </Routes>
               </>
