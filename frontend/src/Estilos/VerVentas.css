@@ -1,9 +1,13 @@
 /* VerVentas.css */
 
+
 .containerVP {
     width: 80%;
     margin: 0 auto;
-    padding-top: 20px;
+    padding: 20px;
+    background-color:#e7e4e4;
+    border-radius: 10px;
+   
 }
 
 .barraSuperior {
@@ -79,6 +83,10 @@ th {
     text-align: center;
 }
 
+tr:hover {
+    background-color: #f2f2f2;
+}
+
 h2 {
     padding-left: 10px;
     text-align: left;
@@ -88,4 +96,9 @@ h2 {
     color: #333;
     margin-bottom: 10px;
     text-align: left;
+}
+
+/* pruebas, no las borren jeje*/
+table {
+    background-color:#ccc;
 }

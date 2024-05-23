@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaPlus, FaSearch } from 'react-icons/fa';
+import { FaPlus } from 'react-icons/fa';
 import '../Estilos/VerVentas.css';
 
 
@@ -32,6 +32,13 @@ const VerVentas = () => {
             console.error("Error al obtener las ventas:", error);
             alert("Error al obtener las ventas:", error);
         }
+
+    
+    };
+
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
     };
 
     return (
@@ -50,7 +57,6 @@ const VerVentas = () => {
                     <tr>
                         <th>Orden</th>
                         <th>Fecha de Orden</th>
-                        <th>Fecha de Entrega</th>
                         <th>Subtotal</th>
                         <th>Total</th>
                         <th>Cliente</th>
@@ -58,12 +64,12 @@ const VerVentas = () => {
                 </thead>
                 <tbody>
                     {ventas.map((venta) => (
-                        <tr key={venta.orden}>
-                            <td>{venta.fechaOrden}</td>
-                            <td>{venta.fechaEntrega}</td>
-                            <td>{venta.subtotal}</td>
-                            <td>{venta.total}</td>
-                            <td>{venta.cliente}</td>
+                        <tr key={venta.IDVenta}>
+                            <td>{venta.IDVenta}</td>
+                            <td>{formatDate(venta.FechaPedido)}</td>
+                            <td>{venta.Subtotal}</td>
+                            <td>{venta.Total}</td>
+                            <td>{venta.Nombre}</td>
                         </tr>
                     ))}
                 </tbody>
