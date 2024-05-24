@@ -10,7 +10,8 @@ INSERT INTO Estado (IDEstado, Nombre) VALUES (6, 'Hidalgo');
 INSERT INTO Estado (IDEstado, Nombre) VALUES (7, 'Tamaulipas');
 INSERT INTO Estado (IDEstado, Nombre) VALUES (8, 'Nayarit');
 INSERT INTO Estado (IDEstado, Nombre) VALUES (9, 'Nuevo León');
-INSERT INTO Estado (IDEstado, Nombre) VALUES (10, 'Puebla')
+INSERT INTO Estado (IDEstado, Nombre) VALUES (10, 'Puebla');
+
 -- Inserciones de ejemplo a la tabla Ciudad
 INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (1, 'Tijuana', 1); 
 INSERT INTO Ciudad (IDCiudad, Nombre, IDEstado) VALUES (2, 'Mexicali', 1); 
@@ -150,6 +151,17 @@ VALUES(9, 'Score 250 EC', 'Fungicida sistémico para el control de enfermedades 
 INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
 VALUES(10, 'Neemix 4.5', 'Insecticida orgánico a base de aceite de neem', 2600, 0, 10, 10);
 
+-- Insercion para la tabla Cotizacion
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDProveedor, IDProducto) VALUES (1,'2023-10-10', 1, 1);
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDProveedor, IDProducto) VALUES (2, '2023-11-11', 2, 2);
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDProveedor, IDProducto) VALUES (3, '2023-12-5', 3, 3);
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDProveedor, IDProducto) VALUES (4, '2024-01-14', 4, 4);
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDProveedor, IDProducto) VALUES (5, '2024-01-15', 5, 5);
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDProveedor, IDProducto) VALUES (6, '2024-01-20', 6, 6);
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDProveedor, IDProducto) VALUES (7, '2024-02-10', 7, 3);
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDProveedor, IDProducto) VALUES (8, '2024-02-11', 3, 7);
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDProveedor, IDProducto) VALUES (9, '2024-02-20', 9,  6);
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDProveedor, IDProducto) VALUES (10, '2024-03-01', 10, 4);
 
 -- Insercion de ejemplo a la tabla CEDI
 

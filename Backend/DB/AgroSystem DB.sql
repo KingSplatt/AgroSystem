@@ -120,6 +120,13 @@ CREATE TABLE Proveedor (
     IDCiudad int not null
 );
 
+CREATE TABLE Cotizacion (
+	IDCotizacion int not null,
+    FechaCotizacion date not null,
+    IDProveedor int not null,
+    IDProducto int not null
+);
+
 CREATE TABLE ProductoSucursal(
 	FechaSurtido datetime not null,
 	FechaCaducidad datetime not null,
@@ -148,6 +155,9 @@ CREATE TABLE Ciudad (
 );
 
 -- LLAVES PRIMARIAS
+
+ALTER TABLE Cotizacion ADD PRIMARY KEY PK_Cotizacion (IDCotizacion);
+
 ALTER TABLE Cliente ADD PRIMARY KEY PK_CLIENTE (IDCliente);
 
 ALTER TABLE Venta ADD PRIMARY KEY PK_Venta (IDVenta);
@@ -171,6 +181,10 @@ ALTER TABLE Estado ADD PRIMARY KEY PK_Estado (IDEstado);
 ALTER TABLE Ciudad ADD PRIMARY KEY PK_Ciudad (IDCiudad);
 
 -- LLAVES FORANEAS
+
+ALTER TABLE Cotizacion
+ADD CONSTRAINT FK_Cotizacion_Producto FOREIGN KEY (IDProducto) REFERENCES Producto (IDProducto),
+ADD CONSTRAINT FK_Cotizacion_Proveedor FOREIGN KEY (IDProveedor) REFERENCES Proveedor (IDProveedor);
 
 ALTER TABLE Venta
 ADD CONSTRAINT FK_OrdenVenta_Cliente FOREIGN KEY (IDCliente) REFERENCES Cliente (IDCliente),
@@ -266,4 +280,4 @@ ALTER TABLE DetalleVenta
 MODIFY COLUMN PrecioUnitario DECIMAL(10, 2) DEFAULT 0,
 MODIFY COLUMN Cantidad INT DEFAULT 1;
 
--- drop database agrosystem
+ -- drop database agrosystem;
