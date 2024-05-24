@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { FaExchangeAlt, FaFileExport, FaPlus, FaPrint } from "react-icons/fa";
+import { FaFileExport, FaPlus, FaPrint } from "react-icons/fa";
 import "../App.css";
 import "../Estilos/HistorialCompras.css"; //cambiar a la ruta correcta
 
 const URI = "http://localhost:8080/Compras";
 
 const HistorialCompras = () => {
+
+    const [buscar, setBuscar] = useState("");
+
     const handlePrint = (compra) => {
         alert("Imprimiendo detalles de compra");
     };
@@ -40,21 +43,26 @@ const HistorialCompras = () => {
         }
     };
 
-    const formatDate = (dateString) => {
-        const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-        return new Date(dateString).toLocaleDateString(undefined, options);
+    const handleBuscar = (e) => {
+        setBuscar(e.target.value);
     };
+
+    const BusquedaCompras = compras.filter((compra => (compra.IDCompra?.toString().includes(buscar) || compra.Total?.toString().includes(buscar))));
+
+    const formatDate = (date) => {
+        const fecha = new Date(date);
+        return fecha.toLocaleDateString();
+    }
+    
 
     return (
         <div>
             <div className="containerVP">
                 <h2>Historial de compras</h2>
                 <div className="barraSuperior">
-                    <input type="search" placeholder="Buscar compra" />
-                    <button className="Busqueda"> Buscar </button>
+                    <input type="search" placeholder="Buscar compra" value={buscar} onChange={handleBuscar}/>
                     <div className="OpcionesP">
                         <button className="Add"><FaPlus /> Añadir compra</button>
-                        <button className="Modify"><FaExchangeAlt /> Modificar compra</button>
                     </div>
                 </div>
 
@@ -71,7 +79,7 @@ const HistorialCompras = () => {
                         </thead>
 
                         <tbody>
-                            {compras.map((compra, index) => (
+                            {BusquedaCompras.map((compra, index) => (
                                 <tr key={index}>
                                     <td>{compra.IDCompra}</td>
                                     <td>{formatDate(compra.FechaPedido)}</td>

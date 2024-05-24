@@ -10,7 +10,9 @@ const URI = "http://localhost:8080/productos";
 const RealizarVenta = () => {
     const [productos, setProductos] = useState([]);
     const [productosSeleccionados, setProductosSeleccionados] = useState([]);
+
     const [busqueda, setBusqueda] = useState('');
+    
     const [metodoPago, setMetodoPago] = useState('');
     const [montoRecibido, setMontoRecibido] = useState('');
     const [cantidadPorProducto, setCantidadPorProducto] = useState({});

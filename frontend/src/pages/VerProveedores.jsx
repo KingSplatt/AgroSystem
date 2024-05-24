@@ -35,6 +35,14 @@ const VerProveedores = () => {
         }
     };
 
+    const [buscar, setBuscar] = useState("");
+
+    const handleBuscar = (e) => {
+        setBuscar(e.target.value);
+    }
+
+    const BusquedaProveedores = Proveedores.filter((proveedor => (proveedor.IDProveedor?.toString().includes(buscar) || proveedor.Nombre?.includes(buscar)  || proveedor.RFC?.includes(buscar) || proveedor.CURP?.includes(buscar))));
+
 
     return (
 
@@ -42,12 +50,12 @@ const VerProveedores = () => {
             <div className="containerVP">
             <h2>Proveedores</h2>
                 <div className="barraSuperior">
-                    <input type="search" placeholder="Buscar proveedor" />
+                    <input type="search" placeholder="Buscar proveedor" value={buscar} onChange={handleBuscar}/>
                     <button className="Busqueda">Buscar</button>
 
                     <div className="OpcionesP">
-                        <button className="Add"> <FaPlus/> Añadir proveedor </button>
-                        <button className="Modify"><FaExchangeAlt /> Modificar proveedor</button>
+                        <button className="Add" onClick={() => window.location.href = "./AnadirProveedor" }> <FaPlus/> Añadir proveedor </button>
+                        <button className="Modify"  onClick={() => window.location.href = "./ActualizarProveedor"}><FaExchangeAlt /> Modificar proveedor</button>
                     </div>
                 </div>
 
@@ -65,7 +73,7 @@ const VerProveedores = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {Proveedores.map((proveedor, index) => (
+                            {BusquedaProveedores.map((proveedor, index) => (
                                 <tr key={index}>
                                     <td>{proveedor.IDProveedor}</td>
                                     <td>{proveedor.Nombre}</td>
