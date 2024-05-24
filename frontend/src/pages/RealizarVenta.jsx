@@ -13,6 +13,7 @@ const RealizarVenta = () => {
     const [busqueda, setBusqueda] = useState('');
     const [metodoPago, setMetodoPago] = useState('');
     const [montoRecibido, setMontoRecibido] = useState('');
+    const [cantidadPorProducto, setCantidadPorProducto] = useState({});
     const [tarjetaInfo, setTarjetaInfo] = useState({
         numero: '',
         vencimiento: '',
@@ -53,14 +54,13 @@ const RealizarVenta = () => {
     };
 
     const handleCantidadChange = (id, value) => {
-        setCantidad((prevCantidad) => ({
-            ...prevCantidad,
+        setCantidadPorProducto((prevCantidadPorProducto) => ({
+            ...prevCantidadPorProducto,
             [id]: parseInt(value)
         }));
     };
-
     const agregarProducto = (producto) => {
-        const productoCantidad = cantidad[producto.IDProducto];
+        const productoCantidad = cantidadPorProducto[producto.IDProducto] || 0;
         if (!productoCantidad || productoCantidad <= 0) {
             alert('La cantidad debe ser mayor que 0.');
             return;
@@ -83,6 +83,7 @@ const RealizarVenta = () => {
             return [...prevSeleccionados, { ...producto, cantidad: productoCantidad }];
         });
 
+        console.log('Productos seleccionados:', productosSeleccionados);
         setCantidad((prevCantidad) => ({
             ...prevCantidad,
             [producto.IDProducto]: ''
@@ -134,7 +135,10 @@ const RealizarVenta = () => {
 
     const productosFiltrados = productos.filter(producto =>
         (producto.Nombre?.toLowerCase().includes(busqueda.toLowerCase()) || producto.IDProducto?.toString().includes(busqueda))
+
+       
     );
+
 
     return (
         <div className="realizar-venta-container">
