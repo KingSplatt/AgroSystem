@@ -27,6 +27,7 @@ const routerVentaCredito = require('./MVC/Routers/routhVentaCredito');
 const routerVentaNormal = require('./MVC/Routers/routhVentaNormal');
 const routerCompra = require('./MVC/Routers/routhCompra');
 const routerCliente = require('./MVC/Routers/routhClientes');
+const routerCategoria = require('./MVC/Routers/routhCategorias');
 
 app.use('/ciudades', routerCiudad);
 app.use('/estados', routerEstado);
@@ -38,6 +39,7 @@ app.use('/ventasC', routerVentaCredito);
 app.use('/ventasN', routerVentaNormal);
 app.use('/compras', routerCompra);
 app.use('/clientes', routerCliente);
+app.use('/categorias', routerCategoria);
 
 //ES PARA ABRIR EL DOTENV
 const puerto = process.env.PUERTO || 3000; //ABRO MI PUERTO Y SI NO SE ABRE EL 3000
