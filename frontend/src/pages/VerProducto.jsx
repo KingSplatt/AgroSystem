@@ -34,13 +34,20 @@ const VerProducto = () => {
         }
     };
 
+    const [buscar, setBuscar] = useState("");
+
+    const handleBuscar = (e) => {
+        setBuscar(e.target.value);
+    }
+
+    const BusquedaProductos = productos.filter((producto => (producto.IDproducto?.toString().includes(buscar) || producto.Nombre?.includes(buscar) || producto.ProveedorN?.includes(buscar))));
+
     return (
         <div>
             <div className="containerVP">
                 <h2>Productos</h2>
                 <div className="barraSuperior">
-                    <input type="search" placeholder="Buscar producto" />
-                    <button className="Busqueda">Buscar</button>
+                    <input type="search" placeholder="Buscar producto" onChange={handleBuscar} value={buscar}/>
                     <div className="OpcionesP">
                         <button className="Add" onClick={() => window.location.href = "./AnadirProductos"} ><FaPlus /> Añadir producto</button>
                         <button className="Modify" onClick={() => window.location.href = "./ModificarProducto"} ><FaExchangeAlt /> Modificar producto</button>
@@ -60,7 +67,7 @@ const VerProducto = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {productos.map((producto, index) => (
+                            {BusquedaProductos.map((producto, index) => (
                                 <tr key={index}>
                                     <td>{producto.IDproducto}</td>
                                     <td>{producto.Nombre}</td>
