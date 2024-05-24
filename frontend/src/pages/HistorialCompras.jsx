@@ -1,22 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { FaFileExport, FaPlus, FaPrint } from "react-icons/fa";
 import "../App.css";
-import "../Estilos/HistorialCompras.css"; //cambiar a la ruta correcta
+import "../Estilos/HistorialCompras.css"; // Cambiar a la ruta correcta
 
 const URI = "http://localhost:8080/Compras";
 
 const HistorialCompras = () => {
-
     const [buscar, setBuscar] = useState("");
-
-    const handlePrint = (compra) => {
-        alert("Imprimiendo detalles de compra");
-    };
-
-    const handleExport = (compra) => {
-        alert("Exportando detalles de compra");
-    };
-
     const [compras, setCompras] = useState([]);
 
     useEffect(() => {
@@ -35,11 +25,11 @@ const HistorialCompras = () => {
                 setCompras(rows);
             } else {
                 console.error("La respuesta no es un array", data);
-                alert("Error al obtener los Compras: la respuesta no es un array");
+                alert("Error al obtener las Compras: la respuesta no es un array");
             }
         } catch (error) {
-            console.error("Error al obtener los Compras:", error);
-            alert("Error al obtener los Compras:", error);
+            console.error("Error al obtener las Compras:", error);
+            alert("Error al obtener las Compras:", error);
         }
     };
 
@@ -47,22 +37,94 @@ const HistorialCompras = () => {
         setBuscar(e.target.value);
     };
 
-    const BusquedaCompras = compras.filter((compra => (compra.IDCompra?.toString().includes(buscar) || compra.Total?.toString().includes(buscar))));
+    const BusquedaCompras = compras.filter((compra) => 
+        compra.IDCompra?.toString().includes(buscar) || 
+        compra.Total?.toString().includes(buscar)
+    );
 
     const formatDate = (date) => {
         const fecha = new Date(date);
         return fecha.toLocaleDateString();
-    }
-    
+    };
+
+    const handlePrint = (compra) => {
+        const content = preparePrintContent(compra);
+        const windowPrint = window.open("", "Impresión");
+        windowPrint.document.body.innerHTML = content;
+        windowPrint.print();
+    };
+
+    const preparePrintContent = (compra) => {
+        return `
+            <html>
+                <head>
+                    <title>Detalles de Compra</title>
+                    <style>
+                        /* Estilos CSS para la impresión */
+                        body {
+                            font-family: Arial, sans-serif;
+                        }
+                        table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            margin-bottom: 10px;
+                        }
+                        th, td {
+                            border: 1px solid #dddddd;
+                            text-align: left;
+                            padding: 8px;
+                        }
+                        th {
+                            background-color: #f2f2f2;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <h2>Detalles de Compra</h2>
+                    <table>
+                        <tr>
+                            <th>Clave</th>
+                            <td>${compra.IDCompra}</td>
+                        </tr>
+                        <tr>
+                            <th>Fecha de Pedido</th>
+                            <td>${formatDate(compra.FechaPedido)}</td>
+                        </tr>
+                        <tr>
+                            <th>Fecha de Entrega</th>
+                            <td>${formatDate(compra.FechaEntrega)}</td>
+                        </tr>
+                        <tr>
+                            <th>Total</th>
+                            <td>${compra.Total}</td>
+                        </tr>
+                        <!-- Agrega más detalles según sea necesario -->
+                    </table>
+                </body>
+            </html>
+        `;
+    };
+
+    const handleExport = (compra) => {
+        // Aquí deberías implementar la lógica para exportar
+        alert("Exportando detalles de compra");
+    };
 
     return (
         <div>
             <div className="containerVP">
                 <h2>Historial de compras</h2>
                 <div className="barraSuperior">
-                    <input type="search" placeholder="Buscar compra" value={buscar} onChange={handleBuscar}/>
+                    <input
+                        type="search"
+                        placeholder="Buscar compra"
+                        value={buscar}
+                        onChange={handleBuscar}
+                    />
                     <div className="OpcionesP">
-                        <button className="Add"><FaPlus /> Añadir compra</button>
+                        <button className="Add">
+                            <FaPlus /> Añadir compra
+                        </button>
                     </div>
                 </div>
 
@@ -86,8 +148,16 @@ const HistorialCompras = () => {
                                     <td>{formatDate(compra.FechaEntrega)}</td>
                                     <td>{compra.Total}</td>
                                     <td>
-                                        <button onClick={() => handlePrint(compra.nombre)}><FaPrint /></button>
-                                        <button onClick={() => handleExport(compra.nombre)}><FaFileExport /></button>
+                                        <button
+                                            onClick={() => handlePrint(compra)}
+                                        >
+                                            <FaPrint />
+                                        </button>
+                                        <button
+                                            onClick={() => handleExport(compra)}
+                                        >
+                                            <FaFileExport />
+                                        </button>
                                     </td>
                                 </tr>
                             ))}
