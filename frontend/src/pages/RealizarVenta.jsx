@@ -111,7 +111,9 @@ const RealizarVenta = () => {
 
     return (
         <div className="realizar-venta-container">
+            
             <div className="productos-disponibles">
+                
                 <h2>Productos Disponibles</h2>
                 <input
                     type="text"

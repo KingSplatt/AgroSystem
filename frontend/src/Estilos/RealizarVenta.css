@@ -1,18 +1,26 @@
 /* RealizarVenta.css */
 
 .realizar-venta-container {
-    width: 100%;
+    width: 80%;
+    margin: auto;
     display: flex;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     justify-content: space-between;
     padding: 20px;
     padding-left: 50px;
     align-items: flex-start;
     overflow: auto;
+
+
+   
+    
  /* Permitir que los elementos se envuelvan en varias líneas si es necesario */
 }
 
 .productos-seleccionados {
-    width: 48%;
+    width: 50%;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 10px;
@@ -22,8 +30,9 @@
 }
 
 .productos-disponibles {
-    width: 48%;
+    width: 50%;
     padding: 20px;
+    padding-right:10% ;
     border-radius: 10px;
     margin-bottom: 20px; /* Añadir margen inferior para separación en pantallas pequeñas */
     order: 1; /* Mantener los productos disponibles a la izquierda por defecto */
