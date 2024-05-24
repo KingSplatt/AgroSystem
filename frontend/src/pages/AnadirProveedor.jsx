@@ -88,7 +88,7 @@ const AnadirProveedor = () => {
     const { id, value } = e.target;
     setFormProveedores({ ...formProveedores, [id]: value });
   };
-
+  //PENDIENTE VER PARA GUARDAR EL PROVEEDOR
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -114,7 +114,7 @@ const AnadirProveedor = () => {
 
 
 
-
+  //ELIMINAR IDPROVEEDOR
   return (
     <div className="formularioAP">
       <h2>Añadir proveedor</h2>
@@ -182,7 +182,7 @@ const AnadirProveedor = () => {
 
         <div className="CyG">
           <button className="Cancel"><FaRegTimesCircle /> Cancelar</button>
-          <button className="Save"><FaRegSave /> Guardar</button>
+          <button className="Save" onClick={handleSubmit}><FaRegSave /> Guardar</button>
         </div>
 
       </form>
