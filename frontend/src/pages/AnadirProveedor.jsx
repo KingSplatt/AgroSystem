@@ -13,15 +13,12 @@ const AnadirProveedor = () => {
   const [Estados, setEstados] = useState([]);
   const [formProveedores, setFormProveedores] = useState({
     nombre: "",
-    apellidopaterno: "",
-    apellidomaterno: "",
-    usuario: "",
-    contrasena: "",
-    correo: "",
-    telefono: "",
     rfc: "",
     curp: "",
-    ciudad: ""
+    ciudad: "",
+    correo: "",
+    telefono: "",
+    legalizado: "",
   });
 
   useEffect(() => {
@@ -58,6 +55,7 @@ const AnadirProveedor = () => {
     } catch (error) {
       console.error("Error al obtener las ciudades:", error);
       alert("Error al obtener las ciudades:", error);
+      console.log(formProveedores);
     }
   };
 
@@ -88,71 +86,57 @@ const AnadirProveedor = () => {
     const { id, value } = e.target;
     setFormProveedores({ ...formProveedores, [id]: value });
   };
-  //PENDIENTE VER PARA GUARDAR EL PROVEEDOR
+
+  //funcion para enviar los datos
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(formProveedores, {
+      const response = await fetch(URI_Proveedores, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formProveedores),
       });
-      if (response.ok) {
-        alert('Proveedor agregado correctamente');
-        const data = await response.json();
-        console.log(data);
+      const data = await response.json();
+      if (data.success) {
+        alert("Proveedor añadido correctamente");
         fetchProveedores();
       } else {
-        alert('Error al agregar proveedor');
+        alert("Error al añadir proveedor");
       }
     } catch (error) {
-      console.error("Error en la petición de proveedores", error);
+      console.error("Error al añadir proveedor:", error);
+      alert("Error al añadir proveedor:", error);
     }
   };
 
-
-
-  //ELIMINAR IDPROVEEDOR
   return (
     <div className="formularioAP">
       <h2>Añadir proveedor</h2>
 
 
-      <form className="ADDP" onSubmit={handleSubmit}>
+      <form className="ADDP">
 
         <div className="grupo1">
-
-          <div className="form-group">
-            <label htmlFor="clave">Clave: </label>
-            <input type="text" id="clave" value={formProveedores.id} onChange={handleChange} />
-          </div>
           <div className="form-group">
             <label htmlFor="nombre">Nombre: </label>
             <input type="text" id="nombre" value={formProveedores.nombre} onChange={handleChange} />
           </div>
+
           <div className="form-group">
             <label htmlFor="rfc">RFC: </label>
             <input type="text" id="rfc" value={formProveedores.rfc} onChange={handleChange} />
           </div>
 
+          <div className="form-group">
+            <label htmlFor="curp">CURP: </label>
+            <input type="text" id="curp" value={formProveedores.curp} onChange={handleChange} />
+          </div>
+
         </div>
 
         <div className="grupo2">
-
-          <div className="form-group">
-            <label htmlFor="telefono">Teléfono: </label>
-            <input type="tel" id="telefono" value={formProveedores.telefono} onChange={handleChange} />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="correo">Correo: </label>
-            <input type="email" id="correo" value={formProveedores.correo} onChange={handleChange} />
-          </div>
-        </div>
-
-        <div className="grupo3">
 
           <div className="form-group">
             <label htmlFor="ciudad">Ciudad: </label>
@@ -163,18 +147,28 @@ const AnadirProveedor = () => {
               ))}
             </select>
           </div>
+
           <div className="form-group">
-            <label htmlFor="estado">Estado: </label>
-            <select id="estado">
-              <option value="">Seleccionar: </option>
-              {Estados.map((estado, index) => (
-                <option key={index} value={estado.IDEstado}>{estado.Nombre}</option>
-              ))}
-            </select>
+            <label htmlFor="correo">Correo: </label>
+            <input type="email" id="correo" value={formProveedores.correo} onChange={handleChange} />
           </div>
+
           <div className="form-group">
-            <label htmlFor="calle">Calle: </label>
-            <input type="text" id="calle" />
+            <label htmlFor="telefono">Telefono: </label>
+            <input type="text" id="telefono" value={formProveedores.telefono} onChange={handleChange} />
+          </div>
+
+        </div>
+
+        <div className="grupo3">
+
+          <div className="form-group">
+            <label htmlFor="legalizado">Legalizado: </label>
+            <select id="legalizado">
+              <option value="">Seleccionar: </option>
+              <option value="1">Si</option>
+              <option value="0">No</option>
+            </select>
           </div>
 
         </div>
