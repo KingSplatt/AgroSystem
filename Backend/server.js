@@ -17,6 +17,8 @@ app.get("/", (req, res) => {
 });
 
 //Routers
+const routerCiudad = require("./MVC/Routers/routhCiudad");
+const routerEstado = require("./MVC/Routers/routhEstado");
 const routerProductoSucursal = require('./MVC/Routers/routhProductoSucursal');
 const routerProductoCEDI = require('./MVC/Routers/routhProductoCEDI');
 const routerProveedores = require('./MVC/Routers/routhProveedor');
@@ -26,7 +28,8 @@ const routerVentaNormal = require('./MVC/Routers/routhVentaNormal');
 const routerCompra = require('./MVC/Routers/routhCompra');
 const routerCliente = require('./MVC/Routers/routhClientes');
 
-
+app.use('/ciudades', routerCiudad);
+app.use('/estados', routerEstado);
 app.use('/productos', routerProductoSucursal);
 app.use('/productosCEDI', routerProductoCEDI);
 app.use('/proveedores', routerProveedores);
