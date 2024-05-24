@@ -120,35 +120,36 @@ INSERT INTO Categoria (IDCategoria, NombreCategoria, DescripcionCategoria)
 VALUES (10, 'Electrodomésticos', 'Productos electrónicos para el hogar y la cocina.');
 
 -- Inserciones de ejemplo a la tabla Producto
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria) 
-VALUES (1, 'Teléfono inteligente', 'Teléfono móvil con funciones avanzadas', 500, 0, 1, 1);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
+VALUES(1, 'Roundup Ultra', 'Herbicida sistémico no selectivo para control de malezas', 3500, 0, 1, 1);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria) 
-VALUES (2, 'Camiseta deportiva', 'Camiseta cómoda y transpirable para actividades deportivas', 25, 0, 2, 2);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
+VALUES(2, 'Folicur EW', 'Fungicida sistémico de amplio espectro para cultivos', 4200, 0, 2, 2);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria) 
-VALUES (3, 'Juego de sábanas', 'Sábanas de algodón suave para cama matrimonial', 40, 0, 3, 3);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
+VALUES(3, 'Actara 25 WG', 'Insecticida sistémico para el control de plagas en cultivos', 3100, 0, 3, 3);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria) 
-VALUES (4, 'Leche entera', 'Leche fresca en envase de un litro', 20, 0, 4, 4);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
+VALUES(4, 'YaraMila Complex', 'Fertilizante granulado NPK 12-11-18', 2700, 0, 4, 4);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria) 
-VALUES (5, 'Champú revitalizante', 'Champú para todo tipo de cabello con ingredientes naturales', 15, 0, 5, 5);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
+VALUES(5, 'ProGibb T&O', 'Regulador de crecimiento para mejorar el tamaño de los frutos', 1500, 0, 5, 5);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria) 
-VALUES (6, 'Aceite de motor', 'Aceite sintético para motores de gasolina', 30, 0, 6, 6);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
+VALUES(6, 'Silwet L-77', 'Adyuvante para mejorar la adherencia de pesticidas', 1200, 0, 6, 6);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria) 
-VALUES (7, 'Balón de fútbol', 'Balón oficial de tamaño y peso reglamentario', 50, 0, 7, 7);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
+VALUES(7, 'Viva', 'Bioestimulante líquido para aumentar la resistencia de las plantas', 5400, 0, 7, 7);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria) 
-VALUES (8, 'Set de bloques de construcción', 'Set de bloques de plástico para construcción y juegos creativos', 20, 0, 8, 8);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
+VALUES(8, 'Prowl H2O', 'Herbicida pre-emergente para control de malezas en cultivos de maíz', 3800, 1, 8, 8);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria) 
-VALUES (9, 'Novela de ficción', 'Libro de ciencia ficción best-seller', 15, 0, 9, 9);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
+VALUES(9, 'Score 250 EC', 'Fungicida sistémico para el control de enfermedades foliares', 2900, 0, 9, 9);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria) 
-VALUES (10, 'Licuadora eléctrica', 'Licuadora de alta potencia con múltiples velocidades', 60, 0, 10, 10);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
+VALUES(10, 'Neemix 4.5', 'Insecticida orgánico a base de aceite de neem', 2600, 0, 10, 10);
+
 
 -- Insercion de ejemplo a la tabla CEDI
 
