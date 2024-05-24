@@ -3,38 +3,34 @@ const pool = require('../Model/Connection');
 // agregar venta a normal
 const NuevaVentaNormal = async (req, res) => {
     try {
-        const { IDVenta, FechaPedido, Credito, IDCliente, IDEmpleado, productos} = req.body;
-        let Subtotal = 0;
-        let Total = 0;
-        Credito = 0;
+        const { productos, metodoPago, montoRecibido, tarjetaInfo, totalPagar, Cliente, Empleado } = req.body;
 
-        if (!IDVenta || !FechaPedido || !Subtotal || !Total || !Credito || !IDCliente || !IDEmpleado || !PrecioUnitario || !Cantidad || !IDProducto) {
+        if (!productos || !metodoPago || !montoRecibido || !totalPagar) {
             return res.status(400).send({ success: false, message: 'Faltan campos por llenar' });
         }
-
-        // Calcular el subtotal sumando el costo de cada producto
+        let Subtotal = 0;
         productos.forEach(producto => {
-            const { PrecioUnitario, Cantidad } = producto;
-            Subtotal += PrecioUnitario * Cantidad;
-        });
-        //Calcular el total tomando en cuanta el subtotal calculado anteriormente
-        Total = Subtotal * 1.16;
-
-        const sql = 'INSERT INTO Venta (  IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) VALUES ( ?, ?, ?, ?, ?, ?, ?)';
-        const result = await pool.query(sql, [parseInt(IDVenta), FechaPedido, parseFloat(Subtotal), parseFloat(Total), Credito, parseInt(IDCliente), parseInt(IDEmpleado)]);
-        const sql2 = 'INSERT INTO DetalleVenta (PrecioUnitario, Cantidad, IDVenta, IDProducto) VALUES ( ?, ?, ?, ?)';
-        for (let producto of productos) {
-            const { PrecioUnitario, Cantidad, IDProducto } = producto;
-            await pool.query(sql2, [parseFloat(PrecioUnitario), parseInt(Cantidad), parseInt(IDVenta), parseInt(IDProducto)]);
+            Subtotal += producto.PrecioUnitario * producto.Cantidad;
         }
+        );
+        const Total = Subtotal * 1.16;
 
-        //const result2 = await pool.query(sql2, [parseFloat(PrecioUnitario), parseInt(Cantidad), parseInt(IDVenta), parseInt(IDProducto)]);
-        
-        console.log('Venta a credito añadida', result, result2);
-        res.status(201).send({ success: true, message: "Venta a credido creada" });
-    } catch (err) {
-        console.error('Error al crear la venta', err);
-        res.status(500).send({ success: false, message: 'Error al crear la venta a credotp' });
+        const IDVenta = await pool.query('SELECT count(IDVenta)+1 FROM Venta;');
+        const FechaPedido = new Date();
+        const IDCliente = await pool.query('SELECT IDCliente FROM Cliente WHERE Nombre = ?', [Cliente]);
+        const IDEmpleado = await pool.query('SELECT IDEmpleado FROM Empleado WHERE Nombre = ?', [Empleado]);
+
+        const sqlVenta = 'INSERT INTO Venta (IDVenta, FechaPedido, SubTotal, Total, Credito, IDCliente, IDEmpleado) VALUES ( ?, ?, ?, ?, ?, ?, ?)';
+        const result = await pool.query(sqlVenta, parseInt(IDVenta[0].IDVenta), FechaPedido, parseFloat(Subtotal), parseFloat(Total), 0, parseInt(IDCliente[0].IDCliente), parseInt(IDEmpleado[0].IDEmpleado));
+
+        productos.forEach(async producto => {
+            const sqlDetalleVenta = 'INSERT INTO DetalleVenta (IDVenta, IDProducto, Cantidad, PrecioUnitario) VALUES ( ?, ?, ?, ?)';
+            await pool.query(sqlDetalleVenta, parseInt(IDVenta[0].IDVenta), parseInt(producto.IDProducto), parseInt(producto.Cantidad), parseFloat(producto.PrecioUnitario));
+        });
+
+        res.status(201).send({ success: true, message: 'Venta registrada' });
+    } catch (error) {
+
     }
 }
 
