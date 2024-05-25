@@ -86,6 +86,24 @@ const ModificarCliente = () => {
     }
   };
 
+  const Cancell = () => {
+
+
+    setFormClientes({
+      Nombre: "",
+      ApellidoPaterno: "",
+      ApellidoMaterno: "",
+      Usuario: "",
+      Contrasena: "",
+      Correo: "",
+      Telefono: "",
+      RFC: "",
+      CURP: "",
+      Ciudad: "",
+    });
+
+  }
+
   return (
     <div className="Formulario-Cliente">
       <h2>Modificar cliente</h2>
@@ -152,7 +170,7 @@ const ModificarCliente = () => {
         </form>
       </div>
       <div className="Cancelar-y-Guardar">
-        <button className="Cancelar">
+        <button className="Cancelar" onClick={Cancell}>
           <FaRegTimesCircle />Cancelar
         </button>
         <button className="Guardar" onClick={handleSubmit}>

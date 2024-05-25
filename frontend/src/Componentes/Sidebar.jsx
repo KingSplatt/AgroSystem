@@ -80,8 +80,11 @@ const Sidebar = ({ nose }) => {
         },
         {
             name: 'Cotizar',
-            path: '/Cotizar',
-            icon: <FaMoneyCheckAlt />
+            icon: <FaMoneyCheckAlt />,
+            submenu: [
+                { name: 'Cotizar', path: '/Cotizar' },
+                { name: 'Historial de cotizaciones', path: '/HistorialCotizaciones' }
+            ]
         },
         {
             name: 'Salir',
@@ -94,11 +97,11 @@ const Sidebar = ({ nose }) => {
         const isExpanded = expandedMenuIndex === index;
         if (item.submenu) {
             return (
-            
+
                 <div key={index}>
-                    
+
                     <div className="link" onClick={() => toggleSubMenu(index)}>
-                        
+
                         <div className="icon">{item.icon}</div>
                         <div style={{ display: isOpen ? "block" : "none" }} className="link_text">{item.name}</div>
                     </div>
@@ -121,16 +124,16 @@ const Sidebar = ({ nose }) => {
 
     return (
         <div className="contenedor">
-            
+
             <div style={{ width: isOpen ? "200px" : "60px" }} className="sidebar">
                 <div className="top">
                     <h1 style={{ display: isOpen ? "block" : "none" }} className="logo">Logo</h1>
                     <div style={{ display: isOpen ? "0px" : "0px" }} className="bars" onClick={toggle}>
-                        <FaBars/>
+                        <FaBars />
                     </div>
                 </div>
                 {menuItems.map(renderMenuItem)}
-                
+
             </div>
             <main>{nose}</main>
         </div>
