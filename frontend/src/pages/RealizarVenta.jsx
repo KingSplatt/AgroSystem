@@ -64,7 +64,7 @@ const RealizarVenta = () => {
     };
 
     const agregarProducto = (producto) => {
-        console.log('Agregando producto:', producto.IDproducto);
+
         const productoCantidad = cantidad[producto.IDproducto];
         if (!productoCantidad || productoCantidad <= 0) {
             alert('La cantidad debe ser mayor que 0.');
@@ -89,7 +89,7 @@ const RealizarVenta = () => {
 
         setCantidad((prevCantidad) => ({
             ...prevCantidad,
-            [producto.IDproducto]: 0 // Establecer la cantidad a cero al agregar el producto
+            [producto.IDproducto]: 0
         }));
 
     };

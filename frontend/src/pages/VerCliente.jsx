@@ -9,7 +9,7 @@ const VerClientes = () => {
   const [Clientes, setClientes] = useState([]);
 
   useEffect(() => {
-    //Funcion para cargar los Clientes
+    // Funcion para cargar los Clientes
     fetchClientes();
   }, []);
 
@@ -21,7 +21,7 @@ const VerClientes = () => {
 
       console.log("Data: ", data.rows);
 
-      //Verificando de que data sea un array
+      // Verificando de que data sea un array
       if (Array.isArray(rows)) {
         setClientes(rows);
       } else {
@@ -34,20 +34,35 @@ const VerClientes = () => {
     }
   };
 
-  return (
-    //Contenedor de la pagina
-    <div className="todo">
+  const [buscar, setBuscar] = useState("");
 
+  const Busqueda = Clientes.filter((cliente) =>
+    cliente.IDCliente?.toString().includes(buscar) ||
+    cliente.Nombre?.toLowerCase().includes(buscar.toLowerCase()) ||
+    cliente.Correo?.toLowerCase().includes(buscar.toLowerCase()) ||
+    cliente.Telefono?.includes(buscar.toLowerCase()) ||
+    cliente.RFC?.toLowerCase().includes(buscar.toLowerCase()) ||
+    cliente.CURP?.toLowerCase().includes(buscar.toLowerCase()) ||
+    cliente.Ciudad?.toLowerCase().includes(buscar.toLowerCase())
+  );
+
+  const handleBuscar = (e) => {
+    setBuscar(e.target.value);
+  };
+
+  return (
+
+    <div className="todo">
       <div className="containerVP">
         <h2>Clientes</h2>
         <div className="barraSuperior">
-          <input type="search" placeholder="Buscar Cliente" />
+          <input type="search" placeholder="Buscar Cliente" value={buscar} onChange={handleBuscar} />
           <div className="OpcionesP">
-            <button className="Add">
+            <button className="Add" onClick={() => window.location.href = "./AnadirCliente"} >
               <FaPlus />
               Añadir Cliente
             </button>
-            <button className="Modify">
+            <button className="Modify" onClick={() => window.location.href = "./ModificarCliente"}  >
               <FaExchangeAlt />
               Modificar Cliente
             </button>
@@ -68,18 +83,17 @@ const VerClientes = () => {
               </tr>
             </thead>
             <tbody>
-              {Clientes.map((clientes, index) => (
+              {Busqueda.map((cliente, index) => (
                 <tr key={index}>
-                  <td>{clientes.IDCliente}</td>
-                  <td>{clientes.Nombre}</td>
-                  <td>{clientes.Correo}</td>
-                  <td>{clientes.Telefono}</td>
-                  <td>{clientes.RFC}</td>
-                  <td>{clientes.CURP}</td>
-                  <td>{clientes.Ciudad}</td>
+                  <td>{cliente.IDCliente}</td>
+                  <td>{cliente.Nombre}</td>
+                  <td>{cliente.Correo}</td>
+                  <td>{cliente.Telefono}</td>
+                  <td>{cliente.RFC}</td>
+                  <td>{cliente.CURP}</td>
+                  <td>{cliente.Ciudad}</td>
                 </tr>
               ))}
-
             </tbody>
           </table>
         </div>

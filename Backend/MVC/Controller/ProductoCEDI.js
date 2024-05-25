@@ -14,6 +14,7 @@ const ObtenerProductosCEDI = async (req, res) => {
     }
 }
 
+
 module.exports = { ObtenerProductosCEDI };
 
 // probado con Postman
