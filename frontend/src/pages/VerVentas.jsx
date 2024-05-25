@@ -42,12 +42,15 @@ const VerVentas = () => {
     };
 
     return (
+
+        <div className="todo">
+             <h2>Ventas</h2>
+       
         <div className="containerVP">
-            <h2>Ventas</h2>
+        
 
             <div className="barraSuperior">
                 <input type="search" placeholder="Buscar venta" />
-                <button className="Busqueda">Buscar</button>
                 <div className="OpcionesP">
                     <button className="Add" onClick={() => window.location.href = "./RealizarVenta"}><FaPlus /> Nueva venta</button>
                 </div>
@@ -74,6 +77,7 @@ const VerVentas = () => {
                     ))}
                 </tbody>
             </table>
+        </div>
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaExchangeAlt, FaPlus } from "react-icons/fa";
-import "../App.css";
-import "../Estilos/Proveedores.css";
+
+import "../Estilos/VerClientes.css";
 
 const URL = "http://localhost:8080/Clientes";
 
@@ -39,8 +39,6 @@ const VerClientes = () => {
       <h2>Clientes</h2>
       <div className="barraSuperior">
         <input type="search" placeholder="Buscar Cliente" />
-        <button className="Busqueda">Buscar</button>
-
         <div className="OpcionesP">
           <button className="Add">
             <FaPlus />
@@ -78,7 +76,7 @@ const VerClientes = () => {
                 <td>{clientes.Ciudad}</td>
               </tr>
             ))}
-            ;
+
           </tbody>
         </table>
       </div>

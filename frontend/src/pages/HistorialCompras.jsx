@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaFileExport, FaPlus, FaPrint } from "react-icons/fa";
-import "../App.css";
+
 import "../Estilos/HistorialCompras.css"; // Cambiar a la ruta correcta
 
 const URI = "http://localhost:8080/Compras";
@@ -111,9 +111,10 @@ const HistorialCompras = () => {
     };
 
     return (
-        <div>
+        <div className="Principal">
+            <h2>Historial de compras</h2>
             <div className="containerVP">
-                <h2>Historial de compras</h2>
+                
                 <div className="barraSuperior">
                     <input
                         type="search"
