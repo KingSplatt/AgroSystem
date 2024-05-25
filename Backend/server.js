@@ -41,6 +41,10 @@ app.use('/compras', routerCompra);
 app.use('/clientes', routerCliente);
 app.use('/categorias', routerCategoria);
 
+
+
+
+
 //ES PARA ABRIR EL DOTENV
 const puerto = process.env.PUERTO || 3000; //ABRO MI PUERTO Y SI NO SE ABRE EL 3000
 

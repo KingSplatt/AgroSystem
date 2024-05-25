@@ -1,95 +1,100 @@
-/* AddClientes.css */
-
 .add-client-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    align-items: flex-start;
-  }
-  
-  .add-client-form {
-    width: 80%;
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  align-items: flex-start;
+  background-color: #f7f7f7; /* added a light gray background */
+}
 
-  h2{
-    display: block;
-    margin-bottom: 5px;
-    width: 100%;
-    padding: 10px;
-    text-align: center;
-  }
-  
-  table {
-    width: 90%;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    padding: 10px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-    font-size: 1.2em;
-  }
-  
-  td label {
-    display: block;
-    margin-bottom: 5px;
-    width: 30%;
+.add-client-form {
+  width: 50%;
+  background-color: #fff; /* changed to white background */
+  padding: 30px; /* increased padding for more breathing room */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-  }
-  .td-izq{
-    display: block;
-    margin-bottom: 5px;
-    width: 30%;
-  }
+select, input[type="text"], input[type="password"] {
+  width: 85%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
+  font-size: 16px; /* added font size for consistency */
+}
 
-  .td-der{
-    display: block;
-    margin-bottom: 5px;
-    width: 70%;
-  }
+h2 {
+  
+  display: block;
+  margin-bottom: 10px; /* increased margin for better spacing */
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  font-size: 24px; /* increased font size for better readability */
+  font-weight: bold;
+  font-weight: bold; /* added bold font weight for emphasis */
+}
 
+table {
+  width: 90%;
+  border-collapse: collapse;
+  margin-bottom: 20px; /* added margin for better spacing */
+}
 
-  input[type="text"], input[type="password"], select {
-    width: 80%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-top: 5px;
-  }
-  
-  .buttons-container {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 0 10px;
-  }
-  
-  button:hover {
-    opacity: 0.8;
-  }
-  
-  .cancel-button {
-    background-color: #C85859;
-    color: white;
-  }
-  
-  .save-button {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
+th, td {
+  padding: 15px; /* increased padding for better readability */
+  text-align: left;
+  border-bottom: 1px solid #ddd; /* added border for better separation */
+}
+
+th {
+  background-color: #f2f2f2;
+  font-size: 18px; /* increased font size for better readability */
+  font-weight: bold; /* added bold font weight for emphasis */
+}
+
+td label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  width: 30%;
+  font-size: 16px; /* added font size for consistency */
+}
+
+.td-izq, .td-der {
+  display: block;
+  margin-bottom: 5px;
+  width: 30%;
+  font-size: 16px; /* added font size for consistency */
+}
+
+.buttons-container {
+  margin-top: 30px; /* increased margin for better spacing */
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 10px;
+  font-size: 16px; /* added font size for consistency */
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cancel-button {
+  background-color: #C85859;
+  color: white;
+  border: none; /* removed border for a cleaner look */
+}
+
+.save-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none; /* removed border for a cleaner look */
+}

@@ -10,12 +10,9 @@ const URI = "http://localhost:8080/productos";
 const RealizarVenta = () => {
     const [productos, setProductos] = useState([]);
     const [productosSeleccionados, setProductosSeleccionados] = useState([]);
-
     const [busqueda, setBusqueda] = useState('');
-    
     const [metodoPago, setMetodoPago] = useState('');
     const [montoRecibido, setMontoRecibido] = useState('');
-    const [cantidadPorProducto, setCantidadPorProducto] = useState({});
     const [tarjetaInfo, setTarjetaInfo] = useState({
         numero: '',
         vencimiento: '',
@@ -56,39 +53,38 @@ const RealizarVenta = () => {
     };
 
     const handleCantidadChange = (id, value) => {
-        setCantidadPorProducto((prevCantidadPorProducto) => ({
-            ...prevCantidadPorProducto,
+        setCantidad((prevCantidad) => ({
+            ...prevCantidad,
             [id]: parseInt(value)
         }));
     };
+
     const agregarProducto = (producto) => {
-        const productoCantidad = cantidadPorProducto[producto.IDProducto] || 0;
+        const productoCantidad = cantidad[producto.IDProducto];
         if (!productoCantidad || productoCantidad <= 0) {
             alert('La cantidad debe ser mayor que 0.');
             return;
         }
-
+    
         if (productoCantidad > producto.Stock) {
             alert('No se puede añadir más cantidad de la disponible.');
             return;
         }
-
+    
         setProductosSeleccionados(prevSeleccionados => {
-            const productoExistente = prevSeleccionados.find(p => p.IDProducto === producto.IDProducto);
-            if (productoExistente) {
-                return prevSeleccionados.map(p =>
-                    p.IDProducto === producto.IDProducto
-                        ? { ...p, cantidad: Math.min(p.cantidad + productoCantidad, producto.Stock) }
-                        : p
-                );
+            const productoExistenteIndex = prevSeleccionados.findIndex(p => p.IDProducto === producto.IDProducto);
+            if (productoExistenteIndex !== -1) {
+                const updatedProductosSeleccionados = [...prevSeleccionados];
+                updatedProductosSeleccionados[productoExistenteIndex].cantidad += productoCantidad;
+                return updatedProductosSeleccionados;
+            } else {
+                return [...prevSeleccionados, { ...producto, cantidad: productoCantidad }];
             }
-            return [...prevSeleccionados, { ...producto, cantidad: productoCantidad }];
         });
-
-        console.log('Productos seleccionados:', productosSeleccionados);
+    
         setCantidad((prevCantidad) => ({
             ...prevCantidad,
-            [producto.IDProducto]: ''
+            [producto.IDProducto]: 0 // Establecer la cantidad a cero al agregar el producto
         }));
     };
 
@@ -137,10 +133,7 @@ const RealizarVenta = () => {
 
     const productosFiltrados = productos.filter(producto =>
         (producto.Nombre?.toLowerCase().includes(busqueda.toLowerCase()) || producto.IDProducto?.toString().includes(busqueda))
-
-       
     );
-
 
     return (
         <div className="realizar-venta-container">
