@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaPlus, FaRegSave, FaRegTimesCircle, FaTrash } from "react-icons/fa";
+import "../Estilos/AddProductos.css";
 
 const AnadirProductos = () => {
 
@@ -31,9 +32,9 @@ const AnadirProductos = () => {
   return (
     <div className='IngresarProductos'>
       <h2>Añadir Productos</h2>
+      <divn className='Cuadro'>
       <div className='barraSuperior'>
         <input type='search' placeholder="Buscar producto" />
-        <button className="Busqueda">Buscar</button>
       </div>
       <div className='AddTabla'>
         <table>
@@ -89,8 +90,8 @@ const AnadirProductos = () => {
             ))}
           </tbody>
         </table>
-
-      </div>
+        </div>
+      </divn>
 
       <div className="CyG">
            <button className="Cancel" onClick={Cancelar}><FaRegTimesCircle /> Cancelar</button>

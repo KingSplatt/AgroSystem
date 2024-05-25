@@ -1,47 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaRegSave, FaRegTimesCircle } from "react-icons/fa";
 import "../Estilos/AddClientes.css";
+import Input from "../Componentes/Input";
+import Option from "../Componentes/Option";
+
+const URI_Ciudades = "http://localhost:8080/ciudades";
+const URI_Clientes = "http://localhost:8080/clientes";
 
 const AnadirCliente = () => {
-    const [selectedState, setSelectedState] = useState("");
-    const [cities, setCities] = useState([]);
-    const [formData, setFormData] = useState({
-        Nombre: '',
-        ApellidoPaterno: '',
-        ApellidoMaterno: '',
-        Usuario: '',
-        Contrasena: '',
-        Correo: '',
-        Telefono: '',
-        RFC: '',
-        CURP: '',
-        Ciudad: ''
+    const [Clientes, setClientes] = useState([]);
+    const [Ciudades, setCiudades] = useState([]);
+    const [formClientes, setFormClientes] = useState({
+        Nombre: "",
+        ApellidoPaterno: "",
+        ApellidoMaterno: "",
+        Usuario: "",
+        Contrasena: "",
+        Correo: "",
+        Telefono: "",
+        RFC: "",
+        CURP: "",
+        Ciudad: "",
     });
 
-    const handleStateChange = (e) => {
-        const state = e.target.value;
-        setSelectedState(state);
-        switch (state) {
-            case "Aguascalientes":
-                setCities(["Aguascalientes City"]);
-                break;
-            case "Baja California":
-                setCities(["Tijuana", "Mexicali", "Ensenada"]);
-                break;
-            default:
-                setCities([]);
-                break;
+    useEffect(() => {
+        fetchClientes();
+        fetchCiudades();
+    }, []);
+
+    //ver ciudades en el combobox
+    const fetchCiudades = async () => {
+        try {
+            const response = await fetch(URI_Ciudades);
+            const Ciudades = await response.json();
+            const rows = Ciudades.rows;
+            if (Array.isArray(rows)) {
+                setCiudades(rows);
+            }
+        } catch (error) {
+            alert("Error al obtener las ciudades:", error);
         }
     };
 
-    const handleInputChange = (e) => {
-        const { id, value } = e.target;
-        setFormData(prevData => ({
-            ...prevData,
-            [id]: value
-        }));
+    //funcion para agregar clientes
+    const fetchClientes = async () => {
+        try {
+            const response = await fetch(URI_Clientes);
+            const Clientes = await response.json();
+            setClientes(Clientes);
+        } catch (error) {
+            console.error("Error en la petición de clientes", error);
+        }
     };
 
+    //funcion para enviar los datos del formulario
     const handleSubmit = async (e) => {
         e.preventDefault();
         // Check if any field is empty
@@ -52,141 +64,134 @@ const AnadirCliente = () => {
         }
       }
         try {
-            const response = await fetch('http://localhost:8080/clientes', {
-                method: 'POST',
+            const response = await fetch(URI_Clientes, {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json'
+                    "Content-Type": "application/json",
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(formClientes),
             });
-
-            if (response.ok) {
-                alert('Cliente añadido con éxito');
-                setFormData({
-                    Nombre: '',
-                    ApellidoPaterno: '',
-                    ApellidoMaterno: '',
-                    Usuario: '',
-                    Contrasena: '',
-                    Correo: '',
-                    Telefono: '',
-                    RFC: '',
-                    CURP: '',
-                    Ciudad: ''
-                });
-                setSelectedState('');
-                setCities([]);
-            } else {
-                alert('Error al añadir el cliente');
-            }
+            const data = await response.json();
+            console.log(data);
         } catch (error) {
-            console.error('Error:', error);
-            alert('Error al añadir el cliente');
+            console.error("Error en la petición de clientes", error);
         }
     };
 
+    //funcion para cambiar los valores del formulario
+    const handleInputChange = (e) => {
+        const { id, value } = e.target;
+        setFormClientes({ ...formClientes, [id]: value });
+    };
+
     return (
-        <div className="add-client-container">
-            <form className="add-client-form" onSubmit={handleSubmit}>
-                <h2>Añadir Cliente</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th colSpan="2">Datos del Usuario</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><label htmlFor="Nombre">Nombre(s)</label></td>
-                            <td><input type="text" id="Nombre" value={formData.Nombre} onChange={handleInputChange} /></td>
-                        </tr>
-                        <tr>
-                            <td><label htmlFor="ApellidoPaterno">Apellido Paterno</label></td>
-                            <td><input type="text" id="ApellidoPaterno" value={formData.ApellidoPaterno} onChange={handleInputChange} /></td>
-                        </tr>
-                        <tr>
-                            <td><label htmlFor="ApellidoMaterno">Apellido Materno</label></td>
-                            <td><input type="text" id="ApellidoMaterno" value={formData.ApellidoMaterno} onChange={handleInputChange} /></td>
-                        </tr>
-                    </tbody>
-                    <thead>
-                        <tr>
-                            <th colSpan="2">Datos de Contacto</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><label htmlFor="Usuario">Usuario</label></td>
-                            <td><input type="text" id="Usuario" value={formData.Usuario} onChange={handleInputChange} /></td>
-                        </tr>
-                        <tr>
-                            <td><label htmlFor="Contrasena">Contraseña</label></td>
-                            <td><input type="password" id="Contrasena" value={formData.Contrasena} onChange={handleInputChange} /></td>
-                        </tr>
-                        <tr>
-                            <td><label htmlFor="Correo">Correo</label></td>
-                            <td><input type="text" id="Correo" value={formData.Correo} onChange={handleInputChange} /></td>
-                        </tr>
-                        <tr>
-                            <td><label htmlFor="Telefono">Teléfono</label></td>
-                            <td><input type="text" id="Telefono" value={formData.Telefono} onChange={handleInputChange} /></td>
-                        </tr>
-                    </tbody>
-                    <thead>
-                        <tr>
-                            <th colSpan="2">Datos Financieros</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><label htmlFor="RFC">RFC</label></td>
-                            <td><input type="text" id="RFC" value={formData.RFC} onChange={handleInputChange} /></td>
-                        </tr>
-                        <tr>
-                            <td><label htmlFor="CURP">CURP</label></td>
-                            <td><input type="text" id="CURP" value={formData.CURP} onChange={handleInputChange} /></td>
-                        </tr>
-                        <tr>
-                            <td><label htmlFor="Estado">Estado</label></td>
-                            <td>
-                                <select id="Estado" onChange={handleStateChange} value={selectedState}>
-                                    <option value="">Selecciona tu estado</option>
-                                    <option value="Aguascalientes">Aguascalientes</option>
-                                    <option value="Baja California">Baja California</option>
-                                    <option value="Baja California Sur">Baja California Sur</option>
-                                    <option value="Campeche">Campeche</option>
-                                    <option value="Chiapas">Chiapas</option>
-                                    <option value="Chihuahua">Chihuahua</option>
-                                    <option value="Coahuila">Coahuila</option>
-                                    <option value="Colima">Colima</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label htmlFor="Ciudad">Ciudad</label></td>
-                            <td>
-                                <select id="Ciudad" disabled={!selectedState} value={formData.Ciudad} onChange={handleInputChange}>
-                                    <option value="">Selecciona tu ciudad</option>
-                                    {cities.map((city) => (
-                                        <option key={city} value={city}>
-                                            {city}
-                                        </option>
-                                    ))}
-                                </select>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div className="buttons-container">
-                    <button className="cancel-button" type="button">
-                        <FaRegTimesCircle /> Cancelar
-                    </button>
-                    <button className="save-button" type="submit">
-                        <FaRegSave /> Guardar
-                    </button>
-                </div>
-            </form>
-        </div>
+        <div className="Formulario-Cliente">
+            <h2>Añadir cliente</h2>
+            <div className="Clientes">
+
+                <form className="Datos-del-usuario">
+                    <h3>Datos del usuario</h3>
+                    <div className="grupo1">
+                        <Input
+                            label="Nombre: "
+                            onChange={handleInputChange}
+                            id="Nombre"
+                            value={formClientes.Nombre}
+                            type="text"
+                        />
+                        <Input
+                            label="Apellido Paterno: "
+                            onChange={handleInputChange}
+                            id="ApellidoPaterno"
+                            value={formClientes.ApellidoPaterno}
+                            type="text"
+                        />
+                        <Input
+                            label="Apellido Materno: "
+                            onChange={handleInputChange}
+                            id="ApellidoMaterno"
+                            value={formClientes.ApellidoMaterno}
+                            type="text"
+                        />
+                    </div>
+                </form>
+
+                <form className="Datos-de-contacto">
+                    <h3>Datos de contacto</h3>
+                    <div className="grupo2">
+                        <Input
+                            label="Usuario: "
+                            onChange={handleInputChange}
+                            id="Usuario"
+                            value={formClientes.Usuario}
+                            type="text"
+                        />
+                        <Input
+                            label="Contraseña: "
+                            onChange={handleInputChange}
+                            id="Contrasena"
+                            value={formClientes.Contrasena}
+                            type="password"
+                        />
+                        <Input
+                            label="Correo: "
+                            onChange={handleInputChange}
+                            id="Correo"
+                            value={formClientes.Correo}
+                            type="email"
+                        />
+                        <Input
+                            label="Teléfono: "
+                            onChange={handleInputChange}
+                            id="Telefono"
+                            value={formClientes.Telefono}
+                            type="text"
+                        />
+                    </div>
+                </form>
+
+                <form className="Datos-financieros">
+                    <h3>Datos financieros</h3>
+                    <div className="grupo3">
+                        <Input
+                            label="RFC: "
+                            onChange={handleInputChange}
+                            id="RFC"
+                            value={formClientes.RFC}
+                            type="text"
+                        />
+                        <Input
+                            label="CURP: "
+                            onChange={handleInputChange}
+                            id="CURP"
+                            value={formClientes.CURP}
+                            type="text"
+                        />
+                    </div>
+                </form>
+
+                <form className="Datos-de-ubicacion">
+                    <h3>Datos de ubicación</h3>
+                    <div className="grupo4">
+                        <Option
+                            label="Ciudad: "
+                            id="Ciudad"
+                            onChange={handleInputChange}
+                            value={formClientes.Ciudad}
+                            ciudades={Ciudades}
+                        />
+                    </div>
+                </form>
+            </div>
+            <div className="Cancelar-y-Guardar">
+                <button className="Cancelar">
+                    <FaRegTimesCircle />Cancelar
+                </button>
+                <button className="Guardar" onClick={handleSubmit}>
+                    <FaRegSave /> Guardar
+                </button>
+            </div>
+        </div >
     );
 };
 

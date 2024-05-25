@@ -1,76 +1,112 @@
-.add-client-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  align-items: flex-start;
-  background-color: #f7f7f7; /* added a light gray background */
+.Formulario-Cliente {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 40px;
+  ;
 }
 
-.add-client-form {
-  width: 50%;
-  background-color: #fff; /* changed to white background */
-  padding: 30px; /* increased padding for more breathing room */
+.Encabezado {
+  text-align: center;
+}
+
+.Clientes {
+  background-color: #fff;
+  padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-select, input[type="text"], input[type="password"] {
+h3 {
+  margin-top: 0cm;
+  text-align: left;
+  padding: 5px;
+
+}
+
+.Datos-del-usuario {
+  display: block;
+  padding: 1%;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #f2f2f2;
+}
+
+.Datos-de-contacto {
+  display: block;
+  padding: 1%;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #f2f2f2;
+}
+
+.Datos-financieros {
+  display: block;
+  padding: 1%;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #f2f2f2;
+}
+
+.Datos-de-ubicacion {
+  display: block;
+  padding: 1%;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #f2f2f2;
+}
+
+.Clientes input,
+select {
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: auto;
+}
+
+.form-group {
+  display: flex;
+  padding: 1%;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #f2f2f2;
+  width: 100%;
+}
+
+.grupo1,
+.grupo2,
+.grupo3,
+.grupo4 {
+  display: flex;
+}
+
+select,
+input[type="text"],
+input[type="password"],
+input[type="email"] {
   width: 85%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-top: 5px;
-  font-size: 16px; /* added font size for consistency */
+  font-size: 16px;
+  /* added font size for consistency */
 }
 
 h2 {
-  
-  display: block;
-  margin-bottom: 10px; /* increased margin for better spacing */
-  width: 100%;
-  padding: 10px;
+  margin-top: 0cm;
   text-align: center;
-  font-size: 24px; /* increased font size for better readability */
-  font-weight: bold;
-  font-weight: bold; /* added bold font weight for emphasis */
 }
 
-table {
-  width: 90%;
-  border-collapse: collapse;
-  margin-bottom: 20px; /* added margin for better spacing */
+label {
+  padding: 10px;
+  /* added font size for consistency */
+
 }
 
-th, td {
-  padding: 15px; /* increased padding for better readability */
-  text-align: left;
-  border-bottom: 1px solid #ddd; /* added border for better separation */
-}
-
-th {
-  background-color: #f2f2f2;
-  font-size: 18px; /* increased font size for better readability */
-  font-weight: bold; /* added bold font weight for emphasis */
-}
-
-td label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  width: 30%;
-  font-size: 16px; /* added font size for consistency */
-}
-
-.td-izq, .td-der {
-  display: block;
-  margin-bottom: 5px;
-  width: 30%;
-  font-size: 16px; /* added font size for consistency */
-}
-
-.buttons-container {
-  margin-top: 30px; /* increased margin for better spacing */
+.Cancelar-y-Guardar {
+  margin-top: 30px;
+  /* increased margin for better spacing */
   text-align: center;
 }
 
@@ -80,21 +116,26 @@ button {
   border-radius: 4px;
   cursor: pointer;
   margin: 0 10px;
-  font-size: 16px; /* added font size for consistency */
+  font-size: 16px;
+  /* added font size for consistency */
 }
 
 button:hover {
   opacity: 0.8;
 }
 
-.cancel-button {
+.Cancelar {
   background-color: #C85859;
   color: white;
-  border: none; /* removed border for a cleaner look */
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  /* removed border for a cleaner look */
 }
 
-.save-button {
+.Guardar {
   background-color: #4CAF50;
   color: white;
-  border: none; /* removed border for a cleaner look */
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  /* removed border for a cleaner look */
 }
