@@ -35,6 +35,8 @@ const VerClientes = () => {
   };
 
   return (
+    //Contenedor de la pagina
+    <div className="todo">
     <div className="containerVP">
       <h2>Clientes</h2>
       <div className="barraSuperior">
@@ -80,6 +82,7 @@ const VerClientes = () => {
           </tbody>
         </table>
       </div>
+    </div>
     </div>
   );
 };

@@ -1,6 +1,9 @@
 /* Proveedores.css */
-
+.todoProd{
+  padding-top: 60px;
+}
 .containerVP {
+  
     width: 80%;
     margin: 0 auto;
   }
