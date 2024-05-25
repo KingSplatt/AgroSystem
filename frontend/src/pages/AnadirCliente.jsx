@@ -50,6 +50,14 @@ const AnadirCliente = () => {
             }
         }
 
+        if (id === "RFC" && value.length > 13) {
+            return;
+        }
+
+        if (id === "CURP" && value.length > 18) {
+            return;
+        }
+
         // Convertir RFC y CURP a mayúsculas
         let newValue = value;
         if (id === "RFC" || id === "CURP") {
