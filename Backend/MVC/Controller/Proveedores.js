@@ -48,6 +48,7 @@ const agregarProveedor = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "Error al querer agregar un proveedor",
+      error: err.message,
     });
   }
 };
