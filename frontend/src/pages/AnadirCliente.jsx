@@ -8,7 +8,6 @@ const URI_Ciudades = "http://localhost:8080/ciudades";
 const URI_Clientes = "http://localhost:8080/clientes";
 
 const AnadirCliente = () => {
-    const [Clientes, setClientes] = useState([]);
     const [Ciudades, setCiudades] = useState([]);
     const [formClientes, setFormClientes] = useState({
         Nombre: "",
@@ -24,7 +23,6 @@ const AnadirCliente = () => {
     });
 
     useEffect(() => {
-        fetchClientes();
         fetchCiudades();
     }, []);
 
@@ -42,27 +40,29 @@ const AnadirCliente = () => {
         }
     };
 
-    //funcion para agregar clientes
-    const fetchClientes = async () => {
-        try {
-            const response = await fetch(URI_Clientes);
-            const Clientes = await response.json();
-            setClientes(Clientes);
-        } catch (error) {
-            console.error("Error en la petición de clientes", error);
+    const handleInputChange = (e) => {
+        const { id, value } = e.target;
+
+        // Validar número de teléfono solo acepta números
+        if (id === "Telefono") {
+            if (!/^\d*$/.test(value) || value.length > 10) {
+                return;
+            }
         }
+
+        // Convertir RFC y CURP a mayúsculas
+        let newValue = value;
+        if (id === "RFC" || id === "CURP") {
+            newValue = value.toUpperCase();
+        }
+
+        setFormClientes({ ...formClientes, [id]: newValue });
     };
 
     //funcion para enviar los datos del formulario
     const handleSubmit = async (e) => {
         e.preventDefault();
         // Check if any field is empty
-      for (const key in formData) {
-        if (formData[key].trim() === '') {
-            alert('Por favor completa todos los campos');
-            return;
-        }
-      }
         try {
             const response = await fetch(URI_Clientes, {
                 method: "POST",
@@ -76,12 +76,6 @@ const AnadirCliente = () => {
         } catch (error) {
             console.error("Error en la petición de clientes", error);
         }
-    };
-
-    //funcion para cambiar los valores del formulario
-    const handleInputChange = (e) => {
-        const { id, value } = e.target;
-        setFormClientes({ ...formClientes, [id]: value });
     };
 
     return (
