@@ -84,5 +84,26 @@ const EliminarProveedor = async (req, res) => {
     });
   }
 };
+// Obtener un proveedor por clave
+const ObtenerProveedorByClave = async (req, res) => {
+  try {
+    const { clave } = req.params;
+    const [rows, fields] = await pool.query("SELECT * FROM Proveedor WHERE IDProveedor = ?", [clave]);
+    if (rows.length === 0) {
+      return res.status(404).send({
+        success: false,
+        message: "Proveedor no encontrado",
+      });
+    }
+    console.log("Proveedor:", rows[0]);
+    res.status(200).send({ success: true, proveedor: rows[0] });
+  } catch (err) {
+    console.error("Error al obtener proveedor por clave:", err);
+    res.status(500).send({
+      success: false,
+      message: "Error al querer obtener el proveedor",
+    });
+  }
+};
 
-module.exports = { agregarProveedor, ObtenerProveedor, EliminarProveedor };
+module.exports = { agregarProveedor, ObtenerProveedor, EliminarProveedor,ObtenerProveedorByClave };
