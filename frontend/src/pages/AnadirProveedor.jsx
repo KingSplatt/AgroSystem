@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import ProveedorForm from "../Componentes/ProveedorForm";
 import "../Estilos/AddProveedores.css";
+import useInputChange from "../Hooks/useInputChange";
+import ProveedorForm from "../Componentes/ProveedorForm";
 
 const URI_Proveedores = "http://localhost:8080/proveedores";
 const URI_Ciudades = "http://localhost:8080/ciudades";
 
 const AnadirProveedor = () => {
   const [Ciudades, setCiudades] = useState([]);
-  const [formProveedores, setFormProveedores] = useState({
+  const { formValues: formProveedores, setFormProveedores, handleChange } = useInputChange({
     Nombre: "",
     RFC: "",
     CURP: "",
@@ -16,6 +17,18 @@ const AnadirProveedor = () => {
     Telefono: "",
     Legalizado: "",
   });
+
+  const Cancell = () => {
+    setFormProveedores({
+      Nombre: "",
+      RFC: "",
+      CURP: "",
+      Ciudad: "",
+      Correo: "",
+      Telefono: "",
+      Legalizado: "",
+    });
+  }
 
   useEffect(() => {
     fetchCiudades();
@@ -38,33 +51,6 @@ const AnadirProveedor = () => {
       alert("Error al obtener las ciudades:", error);
       console.log(formProveedores);
     }
-  };
-
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-
-    // Validar número de teléfono solo acepta números
-    if (id === "Telefono") {
-      if (!/^\d*$/.test(value) || value.length > 10) {
-        return;
-      }
-    }
-
-    if (id === "RFC" && value.length > 13) {
-      return;
-    }
-
-    if (id === "CURP" && value.length > 18) {
-      return;
-    }
-
-    // Convertir RFC y CURP a mayúsculas
-    let newValue = value;
-    if (id === "RFC" || id === "CURP") {
-      newValue = value.toUpperCase();
-    }
-
-    setFormProveedores({ ...formProveedores, [id]: value });
   };
 
   //funcion para enviar los datos
@@ -90,9 +76,10 @@ const AnadirProveedor = () => {
   return (
     <ProveedorForm
       formData={formProveedores}
+      handleChange={handleChange}
       ciudades={Ciudades}
       handleSubmit={handleSubmit}
-      changeHandler={handleChange}
+      Cancelled={Cancell}
     />
   );
 };

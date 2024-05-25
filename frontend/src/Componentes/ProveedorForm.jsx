@@ -3,7 +3,7 @@ import { FaRegSave, FaRegTimesCircle } from "react-icons/fa";
 import Input from "../Componentes/Input";
 import Option from "../Componentes/Option";
 
-const ProveedorForm = ({ formData, changeHandler, handleSubmit, ciudades }) => {
+const ProveedorForm = ({ formData, handleChange, handleSubmit, ciudades, Cancell }) => {
   return (
     <div className="formularioAP">
       <h2>Añadir proveedor</h2>
@@ -12,21 +12,21 @@ const ProveedorForm = ({ formData, changeHandler, handleSubmit, ciudades }) => {
         <div className="grupo1">
           <Input
             label="Nombre: "
-            onChange={changeHandler}
+            onChange={handleChange}
             id="Nombre"
             value={formData.Nombre}
             type="text"
           />
           <Input
             label="RFC: "
-            onChange={changeHandler}
+            onChange={handleChange}
             id="RFC"
             value={formData.RFC}
             type="text"
           />
           <Input
             label="CURP: "
-            onChange={changeHandler}
+            onChange={handleChange}
             id="CURP"
             value={formData.CURP}
             type="text"
@@ -37,21 +37,21 @@ const ProveedorForm = ({ formData, changeHandler, handleSubmit, ciudades }) => {
           <Option
             label="Ciudad: "
             id="Ciudad"
-            onChange={changeHandler}
+            onChange={handleChange}
             value={formData.Ciudad}
             ciudades={ciudades}
           />
 
           <Input
             label="Correo: "
-            onChange={changeHandler}
+            onChange={handleChange}
             id="Correo"
             value={formData.Correo}
             type="email"
           />
           <Input
             label="Telefono: "
-            onChange={changeHandler}
+            onChange={handleChange}
             id="Telefono"
             value={formData.Telefono}
             type="text"
@@ -64,7 +64,7 @@ const ProveedorForm = ({ formData, changeHandler, handleSubmit, ciudades }) => {
             <select
               id="Legalizado"
               value={formData.Legalizado}
-              onChange={changeHandler}
+              onChange={handleChange}
             >
               <option value="">Seleccionar: </option>
               <option value="1">Si</option>
@@ -74,7 +74,7 @@ const ProveedorForm = ({ formData, changeHandler, handleSubmit, ciudades }) => {
         </div>
 
         <div className="CyG">
-          <button className="Cancel">
+          <button className="Cancel" onClick={Cancell}>
             <FaRegTimesCircle /> Cancelar
           </button>
           <button className="Save" onClick={handleSubmit}>
