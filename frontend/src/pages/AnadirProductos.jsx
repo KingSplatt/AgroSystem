@@ -24,6 +24,10 @@ const AnadirProductos = () => {
     setFilas(filasActualizadas);
   };
 
+  const Cancelar = () => { 
+   //vuelve a su estado inicial
+    setFilas([]);
+  }
   return (
     <div className='IngresarProductos'>
       <h2>Añadir Productos</h2>
@@ -89,7 +93,7 @@ const AnadirProductos = () => {
       </div>
 
       <div className="CyG">
-           <button className="Cancel"><FaRegTimesCircle /> Cancelar</button>
+           <button className="Cancel" onClick={Cancelar}><FaRegTimesCircle /> Cancelar</button>
            <button className= "Save"><FaRegSave /> Guardar</button>
       </div>
 
