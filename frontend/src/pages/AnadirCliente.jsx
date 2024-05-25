@@ -44,6 +44,13 @@ const AnadirCliente = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // Check if any field is empty
+      for (const key in formData) {
+        if (formData[key].trim() === '') {
+            alert('Por favor completa todos los campos');
+            return;
+        }
+      }
         try {
             const response = await fetch('http://localhost:8080/clientes', {
                 method: 'POST',
