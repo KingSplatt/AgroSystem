@@ -4,12 +4,9 @@ import "../Estilos/AddProveedores.css";
 
 const URI_Proveedores = "http://localhost:8080/proveedores";
 const URI_Ciudades = "http://localhost:8080/ciudades";
-const URI_Estados = "http://localhost:8080/estados";
 
 const AnadirProveedor = () => {
-  const [Proveedores, setProveedores] = useState([]);
   const [Ciudades, setCiudades] = useState([]);
-  const [Estados, setEstados] = useState([]);
   const [formProveedores, setFormProveedores] = useState({
     Nombre: "",
     RFC: "",
@@ -21,21 +18,9 @@ const AnadirProveedor = () => {
   });
 
   useEffect(() => {
-    fetchProveedores();
     fetchCiudades();
-    fetchEstados();
   }, []);
 
-  //funcion para agregar proveedores
-  const fetchProveedores = async () => {
-    try {
-      const response = await fetch(URI_Proveedores);
-      const Proveedores = await response.json();
-      setProveedores(Proveedores);
-    } catch (error) {
-      console.error("Error en la petición de proveedores", error);
-    }
-  };
   //funcion para obtener ciudades
   const fetchCiudades = async () => {
     try {
@@ -55,25 +40,30 @@ const AnadirProveedor = () => {
     }
   };
 
-  //funcion para obtener estados
-  const fetchEstados = async () => {
-    try {
-      const response = await fetch(URI_Estados);
-      const Estados = await response.json();
-      const rows = Estados.rows;
-
-      if (Array.isArray(rows)) {
-        setEstados(rows);
-      } else {
-        alert("Error al obtener los estados: la respuesta no es un array");
-      }
-    } catch (error) {
-      alert("Error al obtener los estados:", error);
-    }
-  };
-
   const handleChange = (e) => {
     const { id, value } = e.target;
+
+    // Validar número de teléfono solo acepta números
+    if (id === "Telefono") {
+      if (!/^\d*$/.test(value) || value.length > 10) {
+        return;
+      }
+    }
+
+    if (id === "RFC" && value.length > 13) {
+      return;
+    }
+
+    if (id === "CURP" && value.length > 18) {
+      return;
+    }
+
+    // Convertir RFC y CURP a mayúsculas
+    let newValue = value;
+    if (id === "RFC" || id === "CURP") {
+      newValue = value.toUpperCase();
+    }
+
     setFormProveedores({ ...formProveedores, [id]: value });
   };
 
