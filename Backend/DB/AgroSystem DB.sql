@@ -154,6 +154,10 @@ CREATE TABLE Ciudad (
     IDEstado int not null
 );
 
+CREATE TABLE ProductoProveedor (
+    IDProveedor int not null,
+    IDProducto int not null
+);
 -- LLAVES PRIMARIAS
 
 ALTER TABLE Cotizacion ADD PRIMARY KEY PK_Cotizacion (IDCotizacion);
@@ -185,6 +189,11 @@ ALTER TABLE Ciudad ADD PRIMARY KEY PK_Ciudad (IDCiudad);
 ALTER TABLE Cotizacion
 ADD CONSTRAINT FK_Cotizacion_Producto FOREIGN KEY (IDProducto) REFERENCES Producto (IDProducto),
 ADD CONSTRAINT FK_Cotizacion_Proveedor FOREIGN KEY (IDProveedor) REFERENCES Proveedor (IDProveedor);
+
+ALTER TABLE ProductoProveedor
+ADD CONSTRAINT FK_ProductoProveedor_Proveedor FOREIGN KEY (IDProveedor) REFERENCES Proveedor (IDProveedor),
+ADD CONSTRAINT FK_ProductoProveedor_Producto FOREIGN KEY (IDProducto) REFERENCES Producto (IDProducto);
+
 
 ALTER TABLE Venta
 ADD CONSTRAINT FK_OrdenVenta_Cliente FOREIGN KEY (IDCliente) REFERENCES Cliente (IDCliente),
