@@ -15,7 +15,7 @@ const Cotizar = () => {
   const [proveedors, setProveedors] = useState([]);
   const [productors, setProductors] = useState([]);
 
-  useEffect(() => { 
+  useEffect(() => {
     fetchProveedores();
     fetchProductos();
   }, []);
@@ -38,7 +38,7 @@ const Cotizar = () => {
     }
   };
 
-  const fetchProductos = async () => { 
+  const fetchProductos = async () => {
     try {
       const response = await fetch(URL);
       const data = await response.json();
@@ -91,7 +91,7 @@ const Cotizar = () => {
     console.log('nuevoProducto:', nuevoProducto);
     console.log('producto:', producto);
     console.log(productos);
-    
+
     if (producto) {
       setProductors([...productors, producto]);
       setNuevoProducto('');
@@ -109,7 +109,15 @@ const Cotizar = () => {
     const newProductors = productors.filter((_, i) => i !== index);
     setProductors(newProductors);
   };
-  
+  //patra cancelar
+  const cancelar = () => {
+    //limpiar campos
+    setNuevoProveedor('');
+    setNuevoProducto('');
+    setProveedors([]);
+    setProductors([]);
+  }
+
   return (
     <div className='ContenedorC'>
       <div className='Completo'>
@@ -117,7 +125,7 @@ const Cotizar = () => {
         <div className='Superior'>
           <div>
             <label>Proveedor: </label>
-            <input type="text" value={nuevoProveedor} onChange={handleProveedorChange}  />
+            <input type="text" value={nuevoProveedor} onChange={handleProveedorChange} />
             <button onClick={agregarProveedor} >Añadir proveedor</button>
           </div>
           <div>
@@ -159,7 +167,7 @@ const Cotizar = () => {
                     <td>
                       <FaRegTimesCircle
                         onClick={() => eliminarProducto(index)}
-                        style={{ cursor: 'pointer', textAlign: 'center'}}
+                        style={{ cursor: 'pointer', textAlign: 'center' }}
                       />
                     </td>
                   </tr>
@@ -170,7 +178,7 @@ const Cotizar = () => {
         </div>
       </div>
       <div className="CyG">
-        <button className="Cancel"><FaRegTimesCircle /> Cancelar</button>
+        <button className="Cancel" onClick={cancelar}><FaRegTimesCircle /> Cancelar</button>
         <button className="Save"><FaRegSave /> Guardar</button>
       </div>
     </div>

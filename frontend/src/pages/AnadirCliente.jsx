@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { FaRegSave, FaRegTimesCircle } from "react-icons/fa";
-import "../Estilos/AddClientes.css";
 import Input from "../Componentes/Input";
 import Option from "../Componentes/Option";
+import "../Estilos/AddClientes.css";
 
 const URI_Ciudades = "http://localhost:8080/ciudades";
 const URI_Clientes = "http://localhost:8080/clientes";
@@ -50,6 +50,14 @@ const AnadirCliente = () => {
             }
         }
 
+        if (id === "RFC" && value.length > 13) {
+            return;
+        }
+
+        if (id === "CURP" && value.length > 18) {
+            return;
+        }
+
         // Convertir RFC y CURP a mayúsculas
         let newValue = value;
         if (id === "RFC" || id === "CURP") {
@@ -77,6 +85,22 @@ const AnadirCliente = () => {
             console.error("Error en la petición de clientes", error);
         }
     };
+
+    const Cancell = () => {
+
+        setFormClientes({
+            Nombre: "",
+            ApellidoPaterno: "",
+            ApellidoMaterno: "",
+            Usuario: "",
+            Contrasena: "",
+            Correo: "",
+            Telefono: "",
+            RFC: "",
+            CURP: "",
+            Ciudad: "",
+        });
+    }
 
     return (
         <div className="Formulario-Cliente">
@@ -178,7 +202,7 @@ const AnadirCliente = () => {
                 </form>
             </div>
             <div className="Cancelar-y-Guardar">
-                <button className="Cancelar">
+                <button className="Cancelar" onClick={Cancell}>
                     <FaRegTimesCircle />Cancelar
                 </button>
                 <button className="Guardar" onClick={handleSubmit}>

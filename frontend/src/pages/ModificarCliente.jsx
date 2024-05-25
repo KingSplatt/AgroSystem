@@ -1,132 +1,183 @@
-import React, { useEffect, useState, userEffect } from "react";
-import { FaRegSave, FaRegTimesCircle, FaTrash } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import { FaRegSave, FaRegTimesCircle } from "react-icons/fa";
+import Input from "../Componentes/Input";
+import Option from "../Componentes/Option";
+import "../Estilos/AddClientes.css";
+
+const URI_Ciudades = "http://localhost:8080/ciudades";
+const URI_Clientes = "http://localhost:8080/clientes";
 
 const ModificarCliente = () => {
-  const [DatosOriginales, setDatosOriginales] = useState([]);
-  const [Filas, setFilas] = useState([]);
-
-  useEffect(() => {
-    fetchClientes();
+  const [Ciudades, setCiudades] = useState([]);
+  const [formClientes, setFormClientes] = useState({
+    Nombre: "",
+    ApellidoPaterno: "",
+    ApellidoMaterno: "",
+    Usuario: "",
+    Contrasena: "",
+    Correo: "",
+    Telefono: "",
+    RFC: "",
+    CURP: "",
+    Ciudad: "",
   });
 
-  const fetchClientes = async () => {
+  useEffect(() => {
+    fetchCiudades();
+  }, []);
+
+  //ver ciudades en el combobox
+  const fetchCiudades = async () => {
     try {
-      //Aqui se llama a la API para obtener los clientes
-      const response = await fetch();
-      const data = await response.json();
-      setDatosOriginales(data);
-      setFilas(data);
+      const response = await fetch(URI_Ciudades);
+      const Ciudades = await response.json();
+      const rows = Ciudades.rows;
+      if (Array.isArray(rows)) {
+        setCiudades(rows);
+      }
     } catch (error) {
-      console.log("Error al obtener los clientes", error);
+      alert("Error al obtener las ciudades:", error);
     }
   };
 
-  const EliminarClientes = (id) => {
-    setFilas(Filas.filter((Filas) => Filas.id !== id));
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+
+    // Validar número de teléfono solo acepta números
+    if (id === "Telefono") {
+      if (!/^\d*$/.test(value) || value.length > 10) {
+        return;
+      }
+    }
+
+    if (id === "RFC" && value.length > 13) {
+      return;
+    }
+
+    if (id === "CURP" && value.length > 18) {
+      return;
+    }
+
+    // Convertir RFC y CURP a mayúsculas
+    let newValue = value;
+    if (id === "RFC" || id === "CURP") {
+      newValue = value.toUpperCase();
+    }
+
+    setFormClientes({ ...formClientes, [id]: newValue });
   };
 
-  const ModificarCliente = (id, campo, valor) => {
-    const FilasActualizadas = Filas.map((Fila) =>
-      Fila.id === id ? { ...Fila, [campo]: valor } : Fila
-    );
-    setFilas(FilasActualizadas);
+  //funcion para enviar los datos del formulario
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // Check if any field is empty
+    try {
+      const response = await fetch(URI_Clientes, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formClientes),
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error("Error en la petición de clientes", error);
+    }
   };
 
-  const Guardar = () => {
-    //Falta implementar la logica para enviar los cambios al servidor
-    console.log("Los cambios han sido guardados");
-  };
+  const Cancell = () => {
 
-  const Cancelar = () => {
-    //Si cancelarmos, restauramos los datos originales
-    setFilas(DatosOriginales);
-  };
+
+    setFormClientes({
+      Nombre: "",
+      ApellidoPaterno: "",
+      ApellidoMaterno: "",
+      Usuario: "",
+      Contrasena: "",
+      Correo: "",
+      Telefono: "",
+      RFC: "",
+      CURP: "",
+      Ciudad: "",
+    });
+
+  }
 
   return (
-    <div className="ConsultarClientes">
-      <h2>Modificar Cliente</h2>
-      <div className="barraSuperior">
-        <input type="search" placeholder="Buscar producto" />
-        <button className="Busqueda">Buscar</button>
-      </div>
-      <div className="AddTabla">
-        <table>
-          <thead>
-            <tr>
-              <th>Clave</th>
-              <th>Nombre(s)</th>
-              <th>Apellido Paterno</th>
-              <th>Apellido Materno</th>
-              <th>Usuario</th>
-              <th>Constraseña</th>
-              <th>Correo</th>
-              <th>Telefono</th>
-              <th>RFC</th>
-              <th>CURP</th>
-              <th>Ciudad</th>
-            </tr>
-          </thead>
-          <tbody>
-          {Filas.map((fila) => (
-              <tr key={fila.id}>
-                <td>{fila.id}</td>
-                <td>
-                  <input
-                    type="text"
-                    value={fila.Usuario}
-                    onChange={(e) =>
-                      ModificarCliente(fila.id, "Usuario", e.target.value)
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={fila.Contraseña}
-                    onChange={(e) =>
-                      ModificarCliente(fila.id, "Contraseña", e.target.value)
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={fila.Correo}
-                    onChange={(e) =>
-                      ModificarCliente(fila.id, "Correo", e.target.value)
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={fila.proveedor}
-                    onChange={(e) =>
-                      ModificarCliente(fila.id, "Ciudad", e.target.value)
-                    }
-                  />
-                </td>
-                <td>
-                  <button onClick={() => EliminarClientes(fila.id)}>
-                    <FaTrash />
-                  </button>
-                </td>
-              </tr>
-            ))}
-            </tbody>
-        </table>
-      </div>
+    <div className="Formulario-Cliente">
+      <h2>Modificar cliente</h2>
+      <div className="Clientes">
 
-      <div className="CyG">
-        <button className="Cancelar" onClick={Cancelar}>
-          <FaRegTimesCircle /> Cancelar
+        <form className="Datos-del-usuario">
+          <h3>Datos del usuario</h3>
+          <div className="grupo1">
+            <Input
+              label="Clave: "
+              onChange={handleInputChange}
+              id="Clave"
+              value={formClientes.Nombre}
+              type="text"
+            />
+          </div>
+        </form>
+
+        <form className="Datos-de-contacto">
+          <h3>Datos de contacto</h3>
+          <div className="grupo2">
+            <Input
+              label="Usuario: "
+              onChange={handleInputChange}
+              id="Usuario"
+              value={formClientes.Usuario}
+              type="text"
+            />
+            <Input
+              label="Contraseña: "
+              onChange={handleInputChange}
+              id="Contrasena"
+              value={formClientes.Contrasena}
+              type="password"
+            />
+            <Input
+              label="Correo: "
+              onChange={handleInputChange}
+              id="Correo"
+              value={formClientes.Correo}
+              type="email"
+            />
+            <Input
+              label="Teléfono: "
+              onChange={handleInputChange}
+              id="Telefono"
+              value={formClientes.Telefono}
+              type="text"
+            />
+          </div>
+        </form>
+
+        <form className="Datos-de-ubicacion">
+          <h3>Datos de ubicación</h3>
+          <div className="grupo4">
+            <Option
+              label="Ciudad: "
+              id="Ciudad"
+              onChange={handleInputChange}
+              value={formClientes.Ciudad}
+              ciudades={Ciudades}
+            />
+          </div>
+        </form>
+      </div>
+      <div className="Cancelar-y-Guardar">
+        <button className="Cancelar" onClick={Cancell}>
+          <FaRegTimesCircle />Cancelar
         </button>
-        <button className="Guardar" onClick={Guardar}>
-          <FaRegSave />
-          Guardar
+        <button className="Guardar" onClick={handleSubmit}>
+          <FaRegSave /> Guardar
         </button>
       </div>
-    </div>
+    </div >
   );
 };
 

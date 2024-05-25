@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaExchangeAlt, FaPlus } from "react-icons/fa";
-import "../App.css";
+
 import "../Estilos/Productos.css";
 
 const URI = "http://localhost:8080/productos";
@@ -43,7 +43,7 @@ const VerProducto = () => {
     const BusquedaProductos = productos.filter((producto => (producto.IDproducto?.toString().includes(buscar) || producto.Nombre?.includes(buscar) || producto.ProveedorN?.includes(buscar))));
 
     return (
-        <div>
+        <div className="todoProd">
             <div className="containerVP">
                 <h2>Productos</h2>
                 <div className="barraSuperior">

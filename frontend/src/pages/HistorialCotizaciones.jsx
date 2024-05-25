@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { FaFileExport, FaPlus, FaPrint } from "react-icons/fa";
+import { FaFileExport, FaPrint } from "react-icons/fa";
 
-import "../Estilos/HistorialCompras.css"; // Cambiar a la ruta correcta
+import "../Estilos/HistorialCotizacion.css"; // Cambiar a la ruta correcta
 
-const URI = "http://localhost:8080/Compras";
+const URI = "http://localhost:8080/Cotizacion";
 
-const HistorialCompras = () => {
+const HistorialCotizacion = () => {
     const [buscar, setBuscar] = useState("");
-    const [compras, setCompras] = useState([]);
+    const [Cotizacion, setCotizacion] = useState([]);
 
     useEffect(() => {
-        fetchCompras();
+        fetchCotizacion();
     }, []);
 
-    const fetchCompras = async () => {
+    const fetchCotizacion = async () => {
         try {
             const response = await fetch(URI);
             const data = await response.json();
@@ -22,14 +22,14 @@ const HistorialCompras = () => {
             console.log("Data:", data.rows);
 
             if (Array.isArray(rows)) {
-                setCompras(rows);
+                setCotizacion(rows);
             } else {
                 console.error("La respuesta no es un array", data);
-                alert("Error al obtener las Compras: la respuesta no es un array");
+                alert("Error al obtener las Cotizacion: la respuesta no es un array");
             }
         } catch (error) {
-            console.error("Error al obtener las Compras:", error);
-            alert("Error al obtener las Compras:", error);
+            console.error("Error al obtener las Cotizacion:", error);
+            alert("Error al obtener las Cotizacion:", error);
         }
     };
 
@@ -37,8 +37,8 @@ const HistorialCompras = () => {
         setBuscar(e.target.value);
     };
 
-    const BusquedaCompras = compras.filter((compra) => 
-        compra.IDCompra?.toString().includes(buscar) || 
+    const BusquedaCotizacion = Cotizacion.filter((compra) =>
+        compra.IDCompra?.toString().includes(buscar) ||
         compra.Total?.toString().includes(buscar)
     );
 
@@ -112,37 +112,31 @@ const HistorialCompras = () => {
 
     return (
         <div className="Principal">
-            <h2>Historial de compras</h2>
+            <h2>Historial de Cotizacion</h2>
             <div className="containerVP">
-                
+
                 <div className="barraSuperior">
                     <input
                         type="search"
-                        placeholder="Buscar compra"
+                        placeholder="Buscar cotizacion"
                         value={buscar}
                         onChange={handleBuscar}
                     />
-                    <div className="OpcionesP">
-                        <button className="Add">
-                            <FaPlus /> Añadir compra
-                        </button>
-                    </div>
                 </div>
 
                 <div className="tabla">
                     <table>
                         <thead>
                             <tr>
-                                <th>Clave</th>
-                                <th>Fecha de pedido</th>
-                                <th>Fecha de recibido</th>
-                                <th>Total</th>
-                                <th>Opciones</th>
+                                <th>Numero de cot.</th>
+                                <th>Fecha de cotizacion</th>
+                                <th>Proveedor</th>
+                                <th>Producto</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            {BusquedaCompras.map((compra, index) => (
+                            {BusquedaCotizacion.map((compra, index) => (
                                 <tr key={index}>
                                     <td>{compra.IDCompra}</td>
                                     <td>{formatDate(compra.FechaPedido)}</td>
@@ -170,4 +164,4 @@ const HistorialCompras = () => {
     );
 };
 
-export default HistorialCompras;
+export default HistorialCotizacion;

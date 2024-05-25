@@ -3,7 +3,7 @@ import { FaPlus } from 'react-icons/fa';
 import '../Estilos/VerVentas.css';
 
 
-const URI = "http://localhost:8080/ventasN"; 
+const URI = "http://localhost:8080/ventasN";
 
 const VerVentas = () => {
     const [ventas, setVentas] = useState([]);
@@ -17,7 +17,7 @@ const VerVentas = () => {
             const response = await fetch(URI);
             const data = await response.json();
             const rows = data.rows;
-            
+
             console.log("Data:", data.rows);
 
             if (Array.isArray(rows)) {
@@ -33,7 +33,7 @@ const VerVentas = () => {
             alert("Error al obtener las ventas:", error);
         }
 
-    
+
     };
 
     const formatDate = (dateString) => {
@@ -42,38 +42,42 @@ const VerVentas = () => {
     };
 
     return (
-        <div className="containerVP">
-            <h2>Ventas</h2>
 
-            <div className="barraSuperior">
-                <input type="search" placeholder="Buscar venta" />
-                <button className="Busqueda">Buscar</button>
-                <div className="OpcionesP">
-                    <button className="Add" onClick={() => window.location.href = "./RealizarVenta"}><FaPlus /> Nueva venta</button>
+        <div className="todo">
+
+
+            <div className="containerVP">
+                <h2>Ventas</h2>
+
+                <div className="barraSuperior">
+                    <input type="search" placeholder="Buscar venta" />
+                    <div className="OpcionesP">
+                        <button className="Add" onClick={() => window.location.href = "./RealizarVenta"}><FaPlus /> Nueva venta</button>
+                    </div>
                 </div>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Orden</th>
-                        <th>Fecha de Orden</th>
-                        <th>Subtotal</th>
-                        <th>Total</th>
-                        <th>Cliente</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {ventas.map((venta) => (
-                        <tr key={venta.IDVenta}>
-                            <td>{venta.IDVenta}</td>
-                            <td>{formatDate(venta.FechaPedido)}</td>
-                            <td>{venta.Subtotal}</td>
-                            <td>{venta.Total}</td>
-                            <td>{venta.Nombre}</td>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Orden</th>
+                            <th>Fecha de Orden</th>
+                            <th>Subtotal</th>
+                            <th>Total</th>
+                            <th>Cliente</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {ventas.map((venta) => (
+                            <tr key={venta.IDVenta}>
+                                <td>{venta.IDVenta}</td>
+                                <td>{formatDate(venta.FechaPedido)}</td>
+                                <td>{venta.Subtotal}</td>
+                                <td>{venta.Total}</td>
+                                <td>{venta.Nombre}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
