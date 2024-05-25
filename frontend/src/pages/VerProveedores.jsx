@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaExchangeAlt, FaPlus } from "react-icons/fa";
-import "../App.css";
+
 import "../Estilos/Proveedores.css";
 
 
@@ -41,25 +41,24 @@ const VerProveedores = () => {
         setBuscar(e.target.value);
     }
 
-    const BusquedaProveedores = Proveedores.filter((proveedor => (proveedor.IDProveedor?.toString().includes(buscar) || proveedor.Nombre?.includes(buscar)  || proveedor.RFC?.includes(buscar) || proveedor.CURP?.includes(buscar))));
+    const BusquedaProveedores = Proveedores.filter((proveedor => (proveedor.IDProveedor?.toString().includes(buscar) || proveedor.Nombre?.includes(buscar) || proveedor.RFC?.includes(buscar) || proveedor.CURP?.includes(buscar))));
 
 
     return (
 
-        
-            <div className="containerVP">
-            <h2>Proveedores</h2>
-                <div className="barraSuperior">
-                    <input type="search" placeholder="Buscar proveedor" value={buscar} onChange={handleBuscar}/>
-                    <button className="Busqueda">Buscar</button>
+        <div className="TodoP">
+            <div className="containerVPr">
+                <h2>Proveedores</h2>
+                <div className="barraSuperiorP">
+                    <input type="searchP" placeholder="Buscar proveedor" value={buscar} onChange={handleBuscar} />
 
                     <div className="OpcionesP">
-                        <button className="Add" onClick={() => window.location.href = "./AnadirProveedor" }> <FaPlus/> Añadir proveedor </button>
-                        <button className="Modify"  onClick={() => window.location.href = "./ActualizarProveedor"}><FaExchangeAlt /> Modificar proveedor</button>
+                        <button className="Add" onClick={() => window.location.href = "./AnadirProveedor"}> <FaPlus /> Añadir proveedor </button>
+                        <button className="Modify" onClick={() => window.location.href = "./ActualizarProveedor"}><FaExchangeAlt /> Modificar proveedor</button>
                     </div>
                 </div>
 
-                <div className="tabla">
+                <div className="tablaP">
                     <table>
                         <thead>
                             <tr>
@@ -88,7 +87,8 @@ const VerProveedores = () => {
                     </table>
                 </div>
             </div>
-     
+        </div>
+
     );
 };
 

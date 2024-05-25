@@ -1,112 +1,68 @@
 /* Proveedores.css */
-
-.containerVP {
-    width: 80%;
-    margin: 0 auto;
-  }
-  
-  .barraSuperior {
-    display: flex;
-    padding:1%;
-    align-items: center;
-    margin-bottom: 20px;
-    background-color: #f2f2f2;
-    
-  }
-  
-  .barraSuperior input {
-    
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-right: auto;
-  }
-  
-  .barraSuperior button {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 5%;;
-
-  }
-
-  .tabla{
-    text-align: center;
-  }
-
-
-/*
-.Cancel{
-
-    padding: 8px 16px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;
-  }
-
-  .Save{
-
-    padding: 8px 16px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;
-  }
-*/
-
-.Busqueda{
-    padding: 8px;
-    color: black;
-    border-radius: 4px;
-    margin-right: auto;
+.TodoP {
+  padding-top: 60px;
 }
-  .Save{
 
-    padding: 8px 16px;
-    background-color: #A5DA8C;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;
-  }
+.containerVPr {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #e7e4e4;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 
-  .Cancel {
+}
 
-    padding: 8px 16px;
-    background-color: #C85859;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;
+.barraSuperiorP {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #f2f2f2;
+  padding: 1%;
 
-  }
+}
+
+.barraSuperiorP input {
+
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: auto;
+}
+
+.barraSuperiorP button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 5%;
+  ;
+
+}
+
+.tablaP {
+  text-align: center;
+}
 
 
-  
-  th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
 
-  h2 {
-    margin-top: 0cm;
-  }
+th {
+  background-color: #f2f2f2;
+}
+
+h2 {
+  margin-top: 0cm;
+}
