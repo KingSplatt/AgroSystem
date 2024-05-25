@@ -45,7 +45,6 @@ const VerProveedores = () => {
 
 
     return (
-
         <div className="TodoP">
             <div className="containerVPr">
                 <h2>Proveedores</h2>
