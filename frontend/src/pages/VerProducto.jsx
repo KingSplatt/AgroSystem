@@ -40,7 +40,7 @@ const VerProducto = () => {
         setBuscar(e.target.value);
     }
 
-    const BusquedaProductos = productos.filter((producto => (producto.IDproducto?.toString().includes(buscar) || producto.Nombre?.includes(buscar) || producto.ProveedorN?.includes(buscar))));
+    const BusquedaProductos = productos.filter((producto => (producto.IDproducto?.toString().toLowerCase().includes(buscar.toLowerCase()) || producto.Nombre.toLowerCase()?.includes(buscar.toLowerCase()) || producto.ProveedorN.toLowerCase()?.includes(buscar.toLowerCase()))));
 
     return (
         <div className="todoProd">
