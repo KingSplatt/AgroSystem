@@ -3,7 +3,7 @@ const { ObtenerProductoSucursal, AgregarProductoSucursal, EliminarProductoSucurs
 const router = express.Router();
 
 router.get('/', ObtenerProductoSucursal);
-router.post('/', AgregarProductoSucursal);
+router.post('/:ID', AgregarProductoSucursal);
 router.delete('/', EliminarProductoSucursal);
 router.patch('/:id', ActualizarProducto);
 
