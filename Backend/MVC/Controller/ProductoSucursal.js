@@ -3,15 +3,20 @@ const pool = require("../Model/Connection");
 const ObtenerProductoSucursal = async (req, res) => {
     const IDSucursal = req.params.IDSucursal;
     try {
-        //Obtener ID de los productos de la sucursal
-        const [rows, fields] = await pool.query('SELECT DISTINCT PS.IDproducto, P.Nombre, P.Descripcion,P.PrecioUnitario,P.Descontinuado, ' +
-            'Pr.Nombre AS ProveedorN , PS.IDSucursal, COUNT(PS.IDProducto) AS Stock FROM ProductoSucursal PS ' +
+        // Obtener ID de los productos de la sucursal
+        const [rows] = await pool.query(
+            'SELECT DISTINCT PS.IDproducto, P.Nombre, P.Descripcion, P.PrecioUnitario, P.Descontinuado, ' +
+            'Pr.Nombre AS ProveedorN, PS.IDSucursal, COUNT(PS.IDProducto) AS Stock ' +
+            'FROM ProductoSucursal PS ' +
             'INNER JOIN Producto AS P ON PS.IDproducto = P.IDProducto ' +
             'INNER JOIN Proveedor AS Pr ON Pr.IDProveedor = P.IDProveedor ' +
             'INNER JOIN Categoria AS C ON C.IDCategoria = P.IDCategoria ' +
-            'Group By PS.IDProducto, P.Nombre, P.Descripcion,P.PrecioUnitario,P.Descontinuado, Pr.Nombre, PS.IDSucursal;');
+            'WHERE PS.IDSucursal = ? ' +
+            'GROUP BY PS.IDProducto, P.Nombre, P.Descripcion, P.PrecioUnitario, P.Descontinuado, Pr.Nombre, PS.IDSucursal',
+            [IDSucursal]
+        );
 
-        res.status(200).send({ success: true, rows: rows });
+        res.status(200).send({ success: true, rows: rows, message: IDSucursal});
     } catch (err) {
         console.error('Error al obtener productos:', err);
         res.status(500).send({ success: false, message: 'Error al obtener productos' });
@@ -34,7 +39,7 @@ const AgregarProductoSucursal = async (req, res) => {
         console.error('Error al añadir producto:', err);
         res.status(500).send({ success: false, message: 'Error al querer añadir un producto' });
     }
-}
+};
 
 //eliminara los productos (pendiente por usar), este se usara a la hora de elimnar un proveedor
 const EliminarProductoSucursal = async (req, res) => {
@@ -48,24 +53,8 @@ const EliminarProductoSucursal = async (req, res) => {
         console.error('Error al eliminar producto:', err);
         res.status(500).send({ success: false, message: 'Error al querer eliminar un producto' });
     }
-}
-
-/*
-// actualizar productos de la sucursal
+};
 const ActualizarProductoSucursal = async (req, res) => {
-    try {
-        const { IDproducto, IDSucursal, FechaCaducidad, FechaSurtido } = req.body;
-        const sql = 'UPDATE ProductoSucursal SET FechaCaducidad = ?, FechaSurtido = ? WHERE IDproducto = ? AND IDSucursal = ?';
-        const result = await pool.query(sql, [FechaCaducidad, FechaSurtido, parseInt(IDproducto), parseInt(IDSucursal)]);
-        console.log('Producto actualizado:', result);
-        res.status(203).send({ success: true, message: "Producto actualizado" });
-    } catch (err) {
-        console.error('Error al actualizar producto:', err);
-        res.status(500).send({ success: false, message: 'Error al querer actualizar un producto' });
-    }
-}
-*/
-const ActualizarProducto = async (req, res) => {
     try {
         const { IDproducto, Nombre, Descripcion, PrecioUnitario, Descontinuado } = req.body;
         const id = req.params.id; // Obtener el ID del producto desde el parámetro de la URL
@@ -87,6 +76,6 @@ const ActualizarProducto = async (req, res) => {
         console.error('Error al actualizar producto:', err);
         res.status(500).send({ success: false, message: 'Error al querer actualizar un producto' });
     }
-}
+};
 
-module.exports = { ObtenerProductoSucursal, AgregarProductoSucursal, EliminarProductoSucursal, ActualizarProducto }
+module.exports = { ObtenerProductoSucursal, AgregarProductoSucursal, EliminarProductoSucursal, ActualizarProductoSucursal }

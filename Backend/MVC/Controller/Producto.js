@@ -42,39 +42,6 @@ const AgregarProducto = async (req, res) => {
     }
 };
 
-const ObtenerProducto = async (req, res) => {
-    try {
-        const [rows, fields] = await pool.query('SELECT * FROM Producto');
-        res.status(200).send({ success: true, rows: rows });
-    } catch (err) {
-        console.error('Error al obtener productos:', err);
-        res.status(500).send({ success: false, message: 'Error al obtener productos' });
-    }
-};
 
-
-const ActualizarProducto = async (req, res) => {
-    try {
-        const { IDproducto, Nombre, Descripcion, PrecioUnitario, Descontinuado } = req.body;
-        const id = req.params.id; // Obtener el ID del producto desde el parámetro de la URL
-        console.log('ID del producto:', id);
-
-        //VALIDAR QUE LA ID SI EXISTA EN LA BASE DE DATOS
-
-        if (!Nombre || !Descripcion || !PrecioUnitario || !Descontinuado) {
-            return res.status(400).send({ success: false, message: 'Faltan campos por llenar' });
-        }
-
-        // Aquí puedes ejecutar la consulta de actualización utilizando el ID obtenido
-        const sql = 'UPDATE Producto SET Nombre = ?, Descripcion = ?, PrecioUnitario = ?, Descontinuado = ? WHERE IDProducto = ?';
-        const result = await pool.query(sql, [Nombre, Descripcion, PrecioUnitario, parseInt(Descontinuado), parseInt(id)]);
-
-        console.log('Producto actualizado:', result);
-        res.status(200).send({ success: true, message: "Producto actualizado" });
-    } catch (err) {
-        console.error('Error al actualizar producto:', err);
-        res.status(500).send({ success: false, message: 'Error al querer actualizar un producto' });
-    }
-};
 
 module.exports = { AgregarProducto };
