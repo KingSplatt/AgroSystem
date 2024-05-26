@@ -66,7 +66,19 @@ const AnadirProveedor = () => {
       });
       const data = await response.json();
       console.log(data);
-      alert("Proveedor añadido correctamente");
+      if (response.ok) {
+        alert("Proveedor añadido correctamente");
+      }
+      else {
+        // Manejo de errores específicos devueltos por el servidor
+        if (data.message.includes("RFC ya existe")) {
+          alert("Error: El RFC ya existe en la base de datos");
+        } else if (data.message.includes("CURP ya existe")) {
+          alert("Error: El CURP ya existe en la base de datos");
+        } else {
+          alert("Error al añadir proveedor: " + data.message);
+        }
+      }
     } catch (error) {
       console.error("Error al añadir proveedor:", error);
       alert("Error al añadir proveedor:", error);
