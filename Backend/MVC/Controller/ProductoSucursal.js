@@ -48,6 +48,8 @@ const EliminarProductoSucursal = async (req, res) => {
         res.status(500).send({ success: false, message: 'Error al querer eliminar un producto' });
     }
 }
+
+/*
 // actualizar productos de la sucursal
 const ActualizarProductoSucursal = async (req, res) => {
     try {
@@ -61,5 +63,19 @@ const ActualizarProductoSucursal = async (req, res) => {
         res.status(500).send({ success: false, message: 'Error al querer actualizar un producto' });
     }
 }
+*/
+const ActualizarProducto = async (req, res) => {
+    try {
+        const { IDproducto, Nombre, Descripcion, PrecioUnitario, Descontinuado } = req.body;
+        const sql = 'UPDATE Producto SET Nombre = ?, Descripcion = ?, PrecioUnitario = ?, Descontinuado = ? WHERE IDproducto = ?';
+        const result = await pool.query(sql, [Nombre, Descripcion, PrecioUnitario, Descontinuado, parseInt(IDproducto)]);
+        console.log('Producto actualizado:', result);
+        res.status(203).send({ success: true, message: "Producto actualizado" });
+    } catch (err) {
+        console.error('Error al actualizar producto:', err);
+        res.status(500).send({ success: false, message: 'Error al querer actualizar un producto' });
+    }
+}
 
-module.exports = { ObtenerProductoSucursal, AgregarProductoSucursal, EliminarProductoSucursal, ActualizarProductoSucursal }
+
+module.exports = { ObtenerProductoSucursal, AgregarProductoSucursal, EliminarProductoSucursal, ActualizarProducto }

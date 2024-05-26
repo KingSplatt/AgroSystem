@@ -47,7 +47,30 @@ const ModificarProductos = () => {
   const guardarCambios = async () => {
     console.log("Productos modificados: ", productosModificados);
 
-    setProductosModificados([]); // Limpiar los productos modificados una vez guardados
+    try {
+      const promises = productosModificados.map(async (producto) => {
+        const response = await fetch(`http://localhost:8080/productos/${producto.IDproducto}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(producto),
+        });
+        if (!response.ok) {
+          throw new Error(`Error al actualizar el producto ${producto.IDproducto}`);
+        }
+        return response.json();
+      });
+
+      const results = await Promise.all(promises);
+      console.log("Resultados de actualización:", results);
+      alert("Productos actualizados con éxito");
+      setProductosModificados([]); // Limpiar los productos modificados una vez guardados
+      fetchProductos(); // Recargar los productos después de guardar cambios
+    } catch (error) {
+      console.error("Error al guardar los cambios:", error);
+      alert("Ocurrió un error al guardar los cambios.");
+    }
   };
 
   const cancelarCambios = () => {
@@ -96,12 +119,8 @@ const ModificarProductos = () => {
             {filas.map((fila) => (
               <tr key={fila.IDproducto}>
                 <td>{fila.IDproducto}</td>
-                <td>
-                  {fila.Nombre}
-                </td>
-                <td>
-                  {fila.Descripcion}
-                </td>
+                <td>{fila.Nombre}</td>
+                <td>{fila.Descripcion}</td>
                 <td>
                   <input
                     type="number"
@@ -111,9 +130,7 @@ const ModificarProductos = () => {
                     }
                   />
                 </td>
-                <td>
-                  {fila.ProveedorN}
-                </td>
+                <td>{fila.ProveedorN}</td>
                 <td>
                   <input
                     type="checkbox"
