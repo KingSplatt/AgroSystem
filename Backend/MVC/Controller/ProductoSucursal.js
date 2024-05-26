@@ -68,7 +68,7 @@ const ActualizarProducto = async (req, res) => {
     try {
         const { IDproducto, Nombre, Descripcion, PrecioUnitario, Descontinuado } = req.body;
         const sql = 'UPDATE Producto SET Nombre = ?, Descripcion = ?, PrecioUnitario = ?, Descontinuado = ? WHERE IDproducto = ?';
-        const result = await pool.query(sql, [Nombre, Descripcion, PrecioUnitario, Descontinuado, parseInt(IDproducto)]);
+        const result = await pool.query(sql, [Nombre, Descripcion, PrecioUnitario, parseInt(Descontinuado), parseInt(IDproducto)]);
         console.log('Producto actualizado:', result);
         res.status(203).send({ success: true, message: "Producto actualizado" });
     } catch (err) {
