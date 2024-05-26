@@ -5,6 +5,6 @@ const router = express.Router();
 router.get('/', ObtenerProductoSucursal);
 router.post('/', AgregarProductoSucursal);
 router.delete('/', EliminarProductoSucursal);
-router.patch('/', ActualizarProducto);
+router.patch('/:id', ActualizarProducto);
 
 module.exports = router;

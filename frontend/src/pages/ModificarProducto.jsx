@@ -49,6 +49,7 @@ const ModificarProductos = () => {
 
     try {
       const promises = productosModificados.map(async (producto) => {
+        console.log("Actualizando producto:", producto.IDproducto);
         const response = await fetch(`http://localhost:8080/productos/${producto.IDproducto}`, {
           method: "PATCH",
           headers: {

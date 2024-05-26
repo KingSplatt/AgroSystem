@@ -67,15 +67,18 @@ const ActualizarProductoSucursal = async (req, res) => {
 const ActualizarProducto = async (req, res) => {
     try {
         const { IDproducto, Nombre, Descripcion, PrecioUnitario, Descontinuado } = req.body;
-        const sql = 'UPDATE Producto SET Nombre = ?, Descripcion = ?, PrecioUnitario = ?, Descontinuado = ? WHERE IDproducto = ?';
-        const result = await pool.query(sql, [Nombre, Descripcion, PrecioUnitario, parseInt(Descontinuado), parseInt(IDproducto)]);
+        const id = req.params.id; // Obtener el ID del producto desde el parámetro de la URL
+
+        // Aquí puedes ejecutar la consulta de actualización utilizando el ID obtenido
+        const sql = 'UPDATE Producto SET Nombre = ?, Descripcion = ?, PrecioUnitario = ?, Descontinuado = ? WHERE IDProducto = ?';
+        const result = await pool.query(sql, [Nombre, Descripcion, PrecioUnitario, parseInt(Descontinuado), parseInt(id)]);
+
         console.log('Producto actualizado:', result);
-        res.status(203).send({ success: true, message: "Producto actualizado" });
+        res.status(200).send({ success: true, message: "Producto actualizado" });
     } catch (err) {
         console.error('Error al actualizar producto:', err);
         res.status(500).send({ success: false, message: 'Error al querer actualizar un producto' });
     }
 }
-
 
 module.exports = { ObtenerProductoSucursal, AgregarProductoSucursal, EliminarProductoSucursal, ActualizarProducto }
