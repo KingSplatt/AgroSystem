@@ -1,93 +1,76 @@
-import React from 'react';
+import React from 'react'
+
+const HEADER_CLASSES = 'bg-teal-600 p-4 flex justify-between items-center'
+const INPUT_CLASSES = 'p-2 rounded-md border border-zinc-300'
+const NAV_LINK_CLASSES = 'hover:underline'
+const BUTTON_CLASSES = 'bg-blue-500 text-white py-1 px-4 rounded-md'
+const PRODUCT_CARD_CLASSES = 'bg-white p-4 rounded-md shadow-md'
+const PRODUCT_IMAGE_CLASSES = 'w-full h-40 object-cover mb-4'
+const PRODUCT_NAME_CLASSES = 'text-lg font-semibold'
+const PRODUCT_PRICE_CLASSES = 'text-zinc-500'
 
 const InicioClientes = () => {
-    <div class="min-h-screen bg-zinc-100">
-    <header class="bg-teal-600 p-4 flex justify-between items-center">
-      <div class="flex items-center space-x-4">
-        <img src="https://placehold.co/100x50" alt="Logo" class="h-12" />
-        <input type="text" placeholder="Buscar" class="p-2 rounded-md border border-zinc-300" />
-      </div>
-      <nav class="flex space-x-4 text-white">
-        <a href="#" class="hover:underline">Inicio</a>
-        <a href="#" class="hover:underline">Nosotros</a>
-        <a href="#" class="hover:underline">Productos</a>
-        <a href="#" class="hover:underline">Contacto</a>
-      </nav>
-      <div class="flex items-center space-x-4">
-        <a href="#" class="text-white"><img src="https://placehold.co/24x24" alt="Cart" /></a>
-        <a href="#" class="text-white">Ayuda</a>
-      </div>
-    </header>
-  
-    <section class="relative bg-white">
-      <img src="https://placehold.co/1200x300" alt="Banner" class="w-full" />
-      <div class="absolute inset-0 flex items-center justify-center">
-        <div class="text-center">
-          <p class="text-4xl font-bold text-white">2.5% de descuento</p>
-          <p class="text-xl text-yellow-300">Esta es una imagen de ejemplo</p>
-          <button class="mt-4 bg-pink-500 text-white py-2 px-4 rounded-full">
-            Explorar catálogo
-          </button>
+  return (
+    <div className="min-h-screen bg-zinc-100">
+      <header className={HEADER_CLASSES}>
+        <div className="flex items-center space-x-4">
+          <img src="https://placehold.co/100x50" alt="Logo" className="h-12" />
+          <input type="text" placeholder="Buscar" className={INPUT_CLASSES} />
         </div>
-      </div>
-    </section>
-  
-    <section class="p-4">
-      <h2 class="text-xl font-bold mb-4">Sugerencias</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-        <div class="bg-white p-4 rounded-md shadow-md">
-          <img
-            src="https://placehold.co/150x150"
-            alt="Producto"
-            class="w-full h-40 object-cover mb-4"
-          />
-          <h3 class="text-lg font-semibold">Nombre</h3>
-          <p class="text-zinc-500">$ XXXX.XX</p>
-          <button class="mt-2 bg-blue-500 text-white py-1 px-4 rounded-md">Ver producto</button>
+        <nav className="flex space-x-4 text-white">
+          <a href="#" className={NAV_LINK_CLASSES}>
+            Inicio
+          </a>
+          <a href="#" className={NAV_LINK_CLASSES}>
+            Nosotros
+          </a>
+          <a href="#" className={NAV_LINK_CLASSES}>
+            Productos
+          </a>
+          <a href="#" className={NAV_LINK_CLASSES}>
+            Contacto
+          </a>
+        </nav>
+        <div className="flex items-center space-x-4">
+          <a href="#" className="text-white">
+            <img src="https://placehold.co/24x24" alt="Cart" />
+          </a>
+          <a href="#" className="text-white">
+            Ayuda
+          </a>
         </div>
-        <div class="bg-white p-4 rounded-md shadow-md">
-          <img
-            src="https://placehold.co/150x150"
-            alt="Producto"
-            class="w-full h-40 object-cover mb-4"
-          />
-          <h3 class="text-lg font-semibold">Nombre</h3>
-          <p class="text-zinc-500">$ XXXX.XX</p>
-          <button class="mt-2 bg-blue-500 text-white py-1 px-4 rounded-md">Ver producto</button>
+      </header>
+
+      <section className="relative bg-white">
+        <img src="https://placehold.co/1200x300" alt="Banner" className="w-full" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center">
+            <p className="text-4xl font-bold text-white">2.5% de descuento</p>
+            <p className="text-xl text-yellow-300">Esta es una imagen de ejemplo</p>
+            <button className={BUTTON_CLASSES}>Explorar catálogo</button>
+          </div>
         </div>
-        <div class="bg-white p-4 rounded-md shadow-md">
-          <img
-            src="https://placehold.co/150x150"
-            alt="Producto"
-            class="w-full h-40 object-cover mb-4"
-          />
-          <h3 class="text-lg font-semibold">Nombre</h3>
-          <p class="text-zinc-500">$ XXXX.XX</p>
-          <button class="mt-2 bg-blue-500 text-white py-1 px-4 rounded-md">Ver producto</button>
+      </section>
+
+      <section className="p-4">
+        <h2 className="text-xl font-bold mb-4">Sugerencias</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {[...Array(5)].map((_, index) => (
+            <div key={index} className={PRODUCT_CARD_CLASSES}>
+              <img
+                src="https://placehold.co/150x150"
+                alt="Producto"
+                className={PRODUCT_IMAGE_CLASSES}
+              />
+              <h3 className={PRODUCT_NAME_CLASSES}>Nombre</h3>
+              <p className={PRODUCT_PRICE_CLASSES}>$ XXXX.XX</p>
+              <button className={BUTTON_CLASSES}>Ver producto</button>
+            </div>
+          ))}
         </div>
-        <div class="bg-white p-4 rounded-md shadow-md">
-          <img
-            src="https://placehold.co/150x150"
-            alt="Producto"
-            class="w-full h-40 object-cover mb-4"
-          />
-          <h3 class="text-lg font-semibold">Nombre</h3>
-          <p class="text-zinc-500">$ XXXX.XX</p>
-          <button class="mt-2 bg-blue-500 text-white py-1 px-4 rounded-md">Ver producto</button>
-        </div>
-        <div class="bg-white p-4 rounded-md shadow-md">
-          <img
-            src="https://placehold.co/150x150"
-            alt="Producto"
-            class="w-full h-40 object-cover mb-4"
-          />
-          <h3 class="text-lg font-semibold">Nombre</h3>
-          <p class="text-zinc-500">$ XXXX.XX</p>
-          <button class="mt-2 bg-blue-500 text-white py-1 px-4 rounded-md">Ver producto</button>
-        </div>
-      </div>
-    </section>
-  </div>
+      </section>
+    </div>
+  )
 }
 
-export default InicioClientes();
+export default InicioClientes
