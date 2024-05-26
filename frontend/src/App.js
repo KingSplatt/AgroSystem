@@ -19,6 +19,8 @@ import VerClientes from "./Pages/VerCliente.jsx";
 import VerProducto from "./Pages/VerProducto.jsx";
 import VerProveedores from "./Pages/VerProveedores.jsx";
 import VerVentas from "./Pages/VerVentas.jsx";
+import InicioClientes from "./Pages/InicioClientes.jsx";
+
 
 const App = () => {
   return (
@@ -48,6 +50,7 @@ const App = () => {
                   <Route path="/VerClientes" element={<VerClientes />} />
                   <Route path="/ModificarCliente" element={<ModificarCliente />} />
                   <Route path="/HistorialCotizaciones" element={<HistorialCotizaciones />} />
+                  <Route path="/InicioClientes" element={ <InicioClientes /> } />
                 </Routes>
               </>
             }
