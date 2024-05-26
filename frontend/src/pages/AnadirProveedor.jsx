@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "../Estilos/AddProveedores.css";
-import useInputChange from "../Hooks/useInputChange";
 import ProveedorForm from "../Componentes/ProveedorForm";
+import useInputChange from "../Hooks/useInputChange";
 
 const URI_Proveedores = "http://localhost:8080/proveedores";
 const URI_Ciudades = "http://localhost:8080/ciudades";
@@ -67,6 +66,7 @@ const AnadirProveedor = () => {
       });
       const data = await response.json();
       console.log(data);
+      alert("Proveedor añadido correctamente");
     } catch (error) {
       console.error("Error al añadir proveedor:", error);
       alert("Error al añadir proveedor:", error);

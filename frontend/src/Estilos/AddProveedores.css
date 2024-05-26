@@ -1,27 +1,34 @@
-.formularioAP{
+.todoAP {
+    padding-top: 40px;
+}
+
+.formularioAP {
     width: 80%;
     margin: 0 auto;
     text-align: center;
-    padding-top: 40px;;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.ADDP{
-    display:block;
-    padding:1%;
+.ADDP {
+    display: block;
+    padding: 1%;
     align-items: center;
     margin-bottom: 20px;
     background-color: #f2f2f2;
 }
 
-.ADDP input, select {
+.ADDP input,
+select {
     padding: 4px;
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-right: auto;
 }
 
-.form-group{
-    display:flex;
+.form-group {
+    display: flex;
     padding: 1%;
     align-items: center;
     margin-bottom: 20px;
@@ -29,11 +36,13 @@
     width: 100%;
 }
 
-.grupo1, .grupo2, .grupo3{
+.grupo1,
+.grupo2,
+.grupo3 {
     display: flex;
 }
 
-.Save{
+.Save {
 
     padding: 8px 16px;
     background-color: #A5DA8C;
@@ -42,9 +51,9 @@
     border-radius: 4px;
     cursor: pointer;
     margin-right: 10px;
-  }
+}
 
-  .Cancel {
+.Cancel {
 
     padding: 8px 16px;
     background-color: #C85859;
@@ -54,8 +63,8 @@
     cursor: pointer;
     margin-right: 10px;
 
-  }
+}
 
-  h2 {
+h2 {
     margin-top: 0cm;
-  }
+}
