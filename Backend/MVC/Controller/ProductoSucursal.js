@@ -3,18 +3,13 @@ const pool = require("../Model/Connection");
 const ObtenerProductoSucursal = async (req, res) => {
     const IDSucursal = req.params.IDSucursal;
     try {
-        // Obtener ID de los productos de la sucursal
-        const [rows, fields] = await pool.query(
-            'SELECT DISTINCT PS.IDproducto, P.Nombre, P.Descripcion, P.PrecioUnitario, P.Descontinuado, ' +
-            'Pr.Nombre AS ProveedorN, PS.IDSucursal, COUNT(PS.IDProducto) AS Stock ' +
-            'FROM ProductoSucursal PS ' +
+        //Obtener ID de los productos de la sucursal
+        const [rows, fields] = await pool.query('SELECT DISTINCT PS.IDproducto, P.Nombre, P.Descripcion,P.PrecioUnitario,P.Descontinuado, ' +
+            'Pr.Nombre AS ProveedorN , PS.IDSucursal, COUNT(PS.IDProducto) AS Stock FROM ProductoSucursal PS ' +
             'INNER JOIN Producto AS P ON PS.IDproducto = P.IDProducto ' +
             'INNER JOIN Proveedor AS Pr ON Pr.IDProveedor = P.IDProveedor ' +
             'INNER JOIN Categoria AS C ON C.IDCategoria = P.IDCategoria ' +
-            'WHERE PS.IDSucursal = ? ' +
-            'GROUP BY PS.IDProducto, P.Nombre, P.Descripcion, P.PrecioUnitario, P.Descontinuado, Pr.Nombre, PS.IDSucursal',
-            [IDSucursal]
-        );
+            'Group By PS.IDProducto, P.Nombre, P.Descripcion,P.PrecioUnitario,P.Descontinuado, Pr.Nombre, PS.IDSucursal;');
 
         res.status(200).send({ success: true, rows: rows });
     } catch (err) {
