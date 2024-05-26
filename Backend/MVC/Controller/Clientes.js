@@ -36,17 +36,13 @@ const NuevoCliente = async (req, res) => {
 //CREO QUE NO LO OCUPAMOS
 const ActualizarCliente = async (req, res) => {
     try {
-        const { Nombre, ApellidoPaterno, ApellidoMaterno, Usuario, Contrasena, Correo, Telefono, RFC, CURP, Ciudad } = req.body;
-        if (!Nombre || !ApellidoPaterno || !ApellidoMaterno || !Usuario || !Contrasena || !Telefono || !RFC || !CURP || !Ciudad) {
+        const IDCliente = req.params.ID;
+        const { Usuario, Contrasena, Correo, Telefono } = req.body;
+        if (!Usuario || !Contrasena || !Correo || !Telefono || !IDCliente) {
             return res.status(500).send({ success: false, message: 'Faltan campos por llenar' });
         }
-        //obtener IDCiudad
-        const [IDCiudad, fields] = await pool.query('SELECT IDCiudad FROM Ciudad WHERE Nombre = ?;', [Ciudad]);
-        //obtener IDCliente
-        const [IDCliente, campos] = await pool.query('SELECT IDCliente FROM Cliente WHERE Nombre = ?;', [Nombre]);
-        await pool.query('UPDATE Cliente SET Nombre = ?, ApellidoPaterno = ?, ApellidoMaterno = ?, Usuario = ?, Contrasena = ?, Correo = ?, Telefono = ?, RFC = ?, CURP = ?, IDCiudad = ? WHERE IDCliente = ?;',
-            [Nombre, ApellidoPaterno, ApellidoMaterno, Usuario, Contrasena, Correo, Telefono, RFC, CURP, parseInt(IDCiudad[0].IDCiudad), parseInt(IDCliente[0].IDCliente)]);
-
+        await pool.query('UPDATE Cliente SET Usuario = ?, Contrasena = ?, Correo = ?, Telefono = ? WHERE IDCliente = ?;',
+            [Usuario, Contrasena, Correo, Telefono, parseInt(IDCliente[0].IDCliente)]);
 
         res.status(201).send({ success: true, message: 'Cliente Actualizado Correctamente' });
     } catch (err) {
