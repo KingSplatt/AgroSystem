@@ -37,19 +37,20 @@ function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    //RECORRER ARREGLO DE EMPLEADOS para validar 
+    // Validar el usuario y la contraseña
     const empleado = Empleados.find((empleado) => {
-      if (empleado.Usuario === usuario && empleado.Contrasena === contrasena) {
-        return empleado;
-      }
+      return empleado.Usuario === usuario && empleado.Contrasena === contrasena;
     });
 
     if (empleado) {
+      // Guardar los datos del empleado en el localStorage
+      localStorage.setItem('empleado', JSON.stringify(empleado));
+      console.log("Empleado:", empleado);
+      // Navegar a la siguiente página
       navigate('/App');
     } else {
       alert("Usuario o contraseña incorrectos");
     }
-    
   };
 
   return (

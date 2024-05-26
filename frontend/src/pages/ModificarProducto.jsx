@@ -7,6 +7,8 @@ const ModificarProductos = () => {
   const [busqueda, setBusqueda] = useState("");
   const [productosModificados, setProductosModificados] = useState([]);
 
+  const [empleado, setEmpleado] = useState(null);
+
   useEffect(() => {
     fetchProductos();
   }, []);
@@ -14,7 +16,7 @@ const ModificarProductos = () => {
   const fetchProductos = async () => {
     try {
       // Aqui se llama a la API para obtener los productos
-      const response = await fetch("http://localhost:8080/productos");
+      const response = await fetch("http://localhost:8080/productoSucursal/${producto.IDproducto}");
       const data = await response.json();
       const rows = data.rows;
       setProductosOriginales(rows);
@@ -50,7 +52,7 @@ const ModificarProductos = () => {
     try {
       const promises = productosModificados.map(async (producto) => {
         console.log("Actualizando producto:", producto.IDproducto);
-        const response = await fetch(`http://localhost:8080/productos/${producto.IDproducto}`, {
+        const response = await fetch(`http://localhost:8080/productoSucursal/${producto.IDproducto}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",

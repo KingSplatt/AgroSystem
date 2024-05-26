@@ -7,9 +7,16 @@ const URL = "http://localhost:8080/Clientes";
 
 const VerClientes = () => {
   const [Clientes, setClientes] = useState([]);
+  const [empleado, setEmpleado] = useState(null);
+
 
   useEffect(() => {
     // Funcion para cargar los Clientes
+    const savedEmpleado = localStorage.getItem('empleado');
+    if (savedEmpleado) {
+      setEmpleado(JSON.parse(savedEmpleado));
+    }
+    console.log("Empleado:", empleado);
     fetchClientes();
   }, []);
 

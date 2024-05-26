@@ -17,8 +17,12 @@ import ModificarProductos from "./Pages/ModificarProducto.jsx";
 import RealizarVenta from "./Pages/RealizarVenta.jsx";
 import VerClientes from "./Pages/VerCliente.jsx";
 import VerProducto from "./Pages/VerProducto.jsx";
+
+
 import VerProveedores from "./Pages/VerProveedores.jsx";
 import VerVentas from "./Pages/VerVentas.jsx";
+
+
 
 
 
@@ -41,6 +45,10 @@ const App = () => {
                   <Route path="/HistorialCompras" element={<HistorialCompras />} />
                   <Route path="/IngresarProductos" element={<IngresarProductos />} />
                   <Route path="/VerProducto" element={<VerProducto />} />
+                  
+
+
+
                   <Route path="/Cotizar" element={<Cotizar />} />
                   <Route path="/AnadirProductos" element={<AnadirProductos />} />
                   <Route path="/ModificarProductos" element={<ModificarProductos />} />

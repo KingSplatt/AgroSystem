@@ -1,21 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { FaExchangeAlt, FaPlus } from "react-icons/fa";
-
 import "../Estilos/Productos.css";
 
-const URI = "http://localhost:8080/productosSucursal";
 
 const VerProducto = () => {
     const [productos, setProductos] = useState([]);
+    const [empleado, setEmpleado] = useState(null);
 
     useEffect(() => {
-        fetchProductos();
-        // Llamamos a una función para cargar los productos
+        const savedEmpleado = localStorage.getItem('empleado');
+        if (savedEmpleado) {
+            setEmpleado(JSON.parse(savedEmpleado));
+        }
+        console.log("Empleado (inicial):", savedEmpleado);
     }, []);
 
+    useEffect(() => {
+        if (empleado) {
+            console.log("Empleado:", empleado);
+            fetchProductos();
+        }
+    }, [empleado]);
+
     const fetchProductos = async () => {
+        if (!empleado) return; // Verificación adicional
+        console.log("Empleado (fetchProductos):", empleado.IDSucursal);
         try {
-            const response = await fetch(URI);
+            const response = await fetch(`http://localhost:8080/productosSucursal/${empleado.IDSucursal}`);
             const data = await response.json();
             const rows = data.rows;
 
@@ -40,17 +51,30 @@ const VerProducto = () => {
         setBuscar(e.target.value);
     }
 
-    const BusquedaProductos = productos.filter((producto => (producto.IDproducto?.toString().toLowerCase().includes(buscar.toLowerCase()) || producto.Nombre.toLowerCase()?.includes(buscar.toLowerCase()) || producto.ProveedorN.toLowerCase()?.includes(buscar.toLowerCase()))));
+    const BusquedaProductos = productos.filter((producto) => (
+        producto.IDproducto?.toString().toLowerCase().includes(buscar.toLowerCase()) || 
+        producto.Nombre.toLowerCase()?.includes(buscar.toLowerCase()) || 
+        producto.ProveedorN.toLowerCase()?.includes(buscar.toLowerCase())
+    ));
 
     return (
         <div className="todoProd">
             <div className="containerVP">
                 <h2>Productos</h2>
+                {empleado && (
+                    <>
+                        <h3>Sucursal {empleado.IDSucursal}</h3>
+                        <div>
+                            <p>Empleado: {empleado.Nombre} </p>                       
+                            <p>Puesto: {empleado.Puesto}</p>
+                        </div>
+                    </>
+                )}
                 <div className="barraSuperior">
-                    <input type="search" placeholder="Buscar producto" onChange={handleBuscar} value={buscar}/>
+                    <input type="search" placeholder="Buscar producto" onChange={handleBuscar} value={buscar} />
                     <div className="OpcionesP">
-                        <button className="Add" onClick={() => window.location.href = "./AnadirProductos"} ><FaPlus /> Añadir producto</button>
-                        <button className="Modify" onClick={() => window.location.href = "./ModificarProducto"} ><FaExchangeAlt /> Modificar producto</button>
+                        <button className="Add" onClick={() => window.location.href = "./AnadirProductos"}><FaPlus /> Añadir producto</button>
+                        <button className="Modify" onClick={() => window.location.href = "./ModificarProducto"}><FaExchangeAlt /> Modificar producto</button>
                     </div>
                 </div>
                 <div className="tabla">
