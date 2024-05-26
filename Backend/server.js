@@ -28,6 +28,7 @@ const routerVentaNormal = require('./MVC/Routers/routhVentaNormal');
 const routerCompra = require('./MVC/Routers/routhCompra');
 const routerCliente = require('./MVC/Routers/routhClientes');
 const routerCategoria = require('./MVC/Routers/routhCategorias');
+const routerCotizacion = require('./MVC/Routers/routhCotizacion');
 
 app.use('/ciudades', routerCiudad);
 app.use('/estados', routerEstado);
@@ -40,7 +41,7 @@ app.use('/ventasN', routerVentaNormal);
 app.use('/compras', routerCompra);
 app.use('/clientes', routerCliente);
 app.use('/categorias', routerCategoria);
-
+app.use('/cotizaciones', routerCotizacion);
 
 
 
