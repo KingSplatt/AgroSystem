@@ -1,223 +1,299 @@
 import React, { useEffect, useState } from 'react';
-import { FaRegSave, FaRegTimesCircle } from "react-icons/fa";
-import "../Estilos/AddProveedores.css";
+import { FaRegSave, FaRegTimesCircle, FaSearch } from "react-icons/fa";
+
+import "../Estilos/ActProveedores.css";
+const URI_Ciudades = "http://localhost:8080/ciudades";
+
 
 const ActualizarProveedor = () => {
-  const [claveBusqueda, setClaveBusqueda] = useState('');
+  const [Ciudades, setCiudades] = useState([]);
+  const [IDProveedorBusqueda, setIDProveedorBusqueda] = useState('');
   const [proveedor, setProveedor] = useState({
-    clave: '',
-    nombre: '',
-    rfc: '',
-    curp: '',
-    telefono: '',
-    correo: '',
-    legalizacion: false,
-    ciudad: ''
+    IDProveedor: '',
+    Nombre: '',
+    Telefono: '',
+    Correo: '',
+    RFC: '',
+    CURP: '',
+    Legalizado: false,
+    IDCuidad: ''
   });
 
   useEffect(() => {
-    // Si la clave cambia, cargamos los datos del proveedor correspondiente
-    if (claveBusqueda) {
-      fetchProveedor(claveBusqueda);
+    fetchCiudades();
+    if (IDProveedorBusqueda) {
+      console.log('Buscando proveedor con IDProveedor:', IDProveedorBusqueda);
+      fetchProveedor(IDProveedorBusqueda);
     }
-  }, [claveBusqueda]);
+  }, [IDProveedorBusqueda]);
 
-  const fetchProveedor = async (clave) => {
+  const fetchCiudades = async () => {
     try {
-      // Simulamos la obtención de los datos del proveedor desde una API o base de datos
-      const response = await fetch(`http://localhost:8080/proveedores/${clave}`);
+        const response = await fetch(URI_Ciudades);
+        const Ciudades = await response.json();
+        const rows = Ciudades.rows;
+        if (Array.isArray(rows)) {
+            setCiudades(rows);
+        }
+    } catch (error) {
+        alert("Error al obtener las ciudades:", error);
+    }
+};
+
+  const fetchProveedor = async (IDProveedor) => {
+    try {
+      const response = await fetch(`http://localhost:8080/proveedores/${IDProveedor}`);
       if (!response.ok) {
+        alert('Proveedor no encontrado');
         throw new Error('Proveedor no encontrado');
       }
       const data = await response.json();
-      setProveedor(data); // Actualizamos el estado con los datos del proveedor obtenidos
+      console.log(data.proveedor.CURP);
+      const nuevoProveedor = {
+        IDProveedor: data.proveedor.IDProveedor,
+        Nombre: data.proveedor.Nombre || '',
+        Telefono: data.proveedor.Telefono || '',
+        Correo: data.proveedor.Correo || '',
+        RFC: data.proveedor.RFC || '',
+        CURP: data.proveedor.CURP || '',
+        Legalizado: data.proveedor.Legalizado === 1,
+        IDCuidad: data.proveedor.IDCiudad || ''
+      };
+      console.log('Proveedor encontrado:', nuevoProveedor);
+      setProveedor(nuevoProveedor);
+      actualizarLabels(nuevoProveedor);
+      console.log(data);
     } catch (error) {
       console.error('Error al obtener el proveedor:', error);
-      // Limpiar los datos si ocurre un error
-      setProveedor({
-        clave: '',
-        nombre: '',
-        rfc: '',
-        curp: '',
-        telefono: '',
-        correo: '',
-        legalizacion: false,
-        ciudad: ''
-      });
+      const limpiarProveedor = {
+        IDProveedor: '',
+        Nombre: '',
+        Telefono: '',
+        Correo: '',
+        RFC: '',
+        CURP: '',
+        Legalizado: false,
+        IDCuidad: ''
+      };
+      setProveedor(limpiarProveedor);
+      actualizarLabels(limpiarProveedor);
     }
   };
 
+  const actualizarLabels = (data) => {
+    const ciudadesBuscar = Ciudades.find(ciudad => ciudad.IDCiudad === data.IDCuidad);
+    const fields = ['Nombre', 'RFC', 'CURP', 'Telefono', 'Correo', 'Legalizado', 'IDCuidad'];
+    fields.forEach(field => {
+      const label = document.querySelector(`.valor-anterior-${field}`);
+      if (label) {
+        if (field === 'IDCuidad') {
+          label.textContent = ciudadesBuscar ? ciudadesBuscar.Nombre : '';
+        }
+        else if (field === 'Legalizado') {
+          label.textContent = data[field] ? 'Sí' : 'No';
+        } else {
+          label.textContent = data[field] !== undefined ? data[field] : '';
+        }
+      }
+    });
+  };
+
   const manejarCambioInput = (campo, valor) => {
+    console.log('campo:', campo, 'valor:', valor);
     let newValue = valor;
 
-    // Validar número de teléfono solo acepta números y máximo 10 caracteres
-    if (campo === "telefono") {
+    if (campo === "Telefono") {
       if (!/^\d*$/.test(valor) || valor.length > 10) {
         return;
       }
     }
 
-    // Convertir RFC y CURP a mayúsculas
-    if (campo === "rfc" || campo === "curp") {
+    if (campo === "RFC" || campo === "CURP") {
       newValue = valor.toUpperCase();
     }
 
+    setProveedor({
+      ...proveedor,
+      [campo]: newValue
+    });
   };
 
   const manejarCambioCheckbox = () => {
     setProveedor({
       ...proveedor,
-      legalizacion: !proveedor.legalizacion
+      Legalizado: !proveedor.Legalizado
     });
   };
 
-  const guardarCambios = (e) => {
+  const guardarCambios = async (e) => {
     e.preventDefault();
-    // Aquí puedes enviar los cambios al servidor
+  
+    // Convertir legalizacion a 1 o 0 y obtener el ID de la ciudad correspondiente
+    const ciudadEncontrada = Ciudades.find(ciudad => ciudad.Nombre === proveedor.IDCuidad).IDCiudad;
+    console.log('ciudadEncontrada:', ciudadEncontrada);
+    if (!ciudadEncontrada) {
+      alert("Ciudad no encontrada");
+      return;
+    }
+
+    proveedor.IDCuidad = ciudadEncontrada;
+    proveedor.Legalizado = proveedor.Legalizado ? 1 : 0;
+    console.log('proveedor:', JSON.stringify(proveedor));
+    
+  
     console.log('Guardando cambios del proveedor:', proveedor);
-    // Puedes implementar aquí la lógica para enviar los cambios al servidor
-    // Por ejemplo, usando fetch o axios
+  
+    try {
+      const response = await fetch(`http://localhost:8080/proveedores`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(proveedor),
+      });
+
+      const data = await response.json();
+      console.log(data);
+      alert("Proveedor modificado correctamente");
+    } catch (error) {
+      console.error("Error en la petición de proveedores", error);
+    }
+  
+    cancelarCambios(e);
   };
 
   const cancelarCambios = (e) => {
     e.preventDefault();
-    // Al cancelar, recargamos los datos originales del proveedor
-    setProveedor({
-      clave: '',
-      nombre: '',
-      rfc: '',
-      curp: '',
-      telefono: '',
-      correo: '',
-      legalizacion: false,
-      ciudad: ''
-    });
-    setClaveBusqueda('');
+    const limpiarProveedor = {
+      IDProveedor: '',
+      Nombre: '',
+      Telefono: '',
+      Correo: '',
+      RFC: '',
+      CURP: '',
+      Legalizado: false,
+      IDCuidad: ''
+    };
+    document.getElementById('Nombre').value = '';
+    document.getElementById('RFC').value = '';
+    document.getElementById('CURP').value = '';
+    document.getElementById('Telefono').value = '';
+    document.getElementById('Correo').value = '';
+    document.getElementById('Legalizado').checked = false;
+    document.getElementById('valor-anterior-ciudad-select').value = '';
+    setProveedor(limpiarProveedor);
+    actualizarLabels(limpiarProveedor);
+    setIDProveedorBusqueda('');
   };
 
+
   return (
-    <div className="formularioAP">
+    <div className="Formulario-Proveedor">
       <h2>Actualizar proveedor</h2>
-  
       <div className="buscador">
-        <label htmlFor="claveBusqueda">Buscar por clave: </label>
-        <input
-          type="text"
-          id="claveBusqueda"
-          value={claveBusqueda}
-          onChange={(e) => setClaveBusqueda(e.target.value)}
-        />
-      </div>
-  
-      <form className="ADDP">
-  
-        <div className="grupo1"> 
-          <h3>Datos generales</h3>
-          <div className="form-group">
-            <label>Clave:</label>
-            <label className="valor-anterior">{proveedor.clave}</label>
-            <input
-              type="text"
-              id="clave"
-              value={proveedor.clave}
-              onChange={(e) => manejarCambioInput('clave', e.target.value)}
-            />
-          </div>
-  
-          <div className="form-group">
-            <label>Nombre:</label>
-            <label className="valor-anterior">{proveedor.nombre}</label>
-            <input
-              type="text"
-              id="nombre"
-              value={proveedor.nombre}
-              onChange={(e) => manejarCambioInput('nombre', e.target.value)}
-            />
-          </div>
-  
-          <div className="form-group">
-            <label>RFC:</label>
-            <label className="valor-anterior">{proveedor.rfc}</label>
-            <input
-              type="text"
-              id="rfc"
-              value={proveedor.rfc}
-              onChange={(e) => manejarCambioInput('rfc', e.target.value)}
-            />
-          </div>
+        <div className="grupo-buscador">
+          <label htmlFor="IDProveedorBusqueda"><FaSearch className='lupa' /></label>
+          <input
+            type="text"
+            id="IDProveedorBusqueda"
+            placeholder='IDProveedor del proveedor'
+            value={IDProveedorBusqueda}
+            onChange={(e) => setIDProveedorBusqueda(e.target.value)}
+          />
         </div>
-  
-        <div className="grupo2">
-          <h3>Datos de contacto</h3>
-          <div className="form-group">
-            <label>CURP:</label>
-            <label className="valor-anterior">{proveedor.curp}</label>
+      </div>
+      <div className="Datos-del-usuario">
+        <form className="Datos-del-usuario-form">
+          <h3>Datos generales</h3>
+          <div className="grupo1">
+            <label htmlFor="Nombre">Nombre:</label>
+            <label className="valor-anterior-Nombre"></label>
             <input
               type="text"
-              id="curp"
-              value={proveedor.curp}
-              onChange={(e) => manejarCambioInput('curp', e.target.value)}
+              id="Nombre"
+              placeholder={proveedor.Nombre}
+              onChange={(e) => manejarCambioInput('Nombre', e.target.value)}
+            />
+            <label htmlFor="RFC">RFC:</label>
+            <label className="valor-anterior-RFC"></label>
+            <input
+              type="text"
+              id="RFC"
+              placeholder={proveedor.RFC}
+              onChange={(e) => manejarCambioInput('RFC', e.target.value)}
+            />
+            <label htmlFor="CURP">CURP:</label>
+            <label className="valor-anterior-CURP"></label>
+            <input
+              type="text"
+              id="CURP"
+              placeholder={proveedor.CURP}
+              onChange={(e) => manejarCambioInput('CURP', e.target.value)}
             />
           </div>
-  
-          <div className="form-group">
-            <label>Teléfono:</label>
-            <label className="valor-anterior">{proveedor.telefono}</label>
+        </form>
+      </div>
+      <div className="Datos-de-contacto">
+        <form className="Datos-de-contacto-form">
+          <h3>Datos de contacto</h3>
+          <div className="grupo2">
+            <label htmlFor="Telefono">Teléfono:</label>
+            <label className="valor-anterior-Telefono"></label>
             <input
               type="tel"
-              id="telefono"
-              value={proveedor.telefono}
-              onChange={(e) => manejarCambioInput('telefono', e.target.value)}
+              id="Telefono"
+              placeholder={proveedor.Telefono}
+              onChange={(e) => manejarCambioInput('Telefono', e.target.value)}
             />
-          </div>
-  
-          <div className="form-group">
-            <label>Correo:</label>
-            <label className="valor-anterior">{proveedor.correo}</label>
+            <label htmlFor="Correo">Correo:</label>
+            <label className="valor-anterior-Correo"></label>
             <input
               type="email"
-              id="correo"
-              value={proveedor.correo}
-              onChange={(e) => manejarCambioInput('correo', e.target.value)}
+              id="Correo"
+              placeholder={proveedor.Correo}
+              onChange={(e) => manejarCambioInput('Correo', e.target.value)}
             />
           </div>
-        </div>
-  
-        <div className="grupo3">
+        </form>
+      </div>
+      <div className="Otros-datos">
+        <form className="Otros-datos-form">
           <h3>Otros datos</h3>
-          <div className="form-group">
-            <label>Estado de legalización:</label>
-            <label className="valor-anterior">{proveedor.legalizacion ? 'Sí' : 'No'}</label>
+          <div className="grupo3">
+            <label htmlFor="Legalizado">Estado de legalización:</label>
+            <label className="valor-anterior-Legalizado">{proveedor.Legalizado ? 'Sí' : 'No'}</label>
             <input
               type="checkbox"
-              id="legalizacion"
-              checked={proveedor.legalizacion}
+              id="Legalizado"
+              checked={proveedor.Legalizado}
               onChange={manejarCambioCheckbox}
             />
+            <label htmlFor="IDCuidad">Ciudad:</label>
+            <label className="valor-anterior-IDCuidad"></label>
+
+            <select id="valor-anterior-ciudad-select" onChange={(e) => manejarCambioInput('IDCuidad', e.target.value)} value={proveedor.ciudad}>
+               <option>Seleccionar: </option>
+                  {Ciudades
+                  ? Ciudades.map((ciudad, index) => (
+                      <option key={index} value={ciudad.Nombre}>
+                        {ciudad.Nombre}
+                      </option>
+                    ))
+                  : ""}
+              </select>
           </div>
-  
-          <div className="form-group">
-            <label>Ciudad:</label>
-            <label className="valor-anterior">{proveedor.ciudad}</label>
-            <select
-              id="ciudad"
-              value={proveedor.ciudad}
-              onChange={(e) => manejarCambioInput('ciudad', e.target.value)}
-            >
-              <option value="">Seleccionar: </option>
-              {/* Opciones de ciudad */}
-            </select>
-          </div>
-        </div>
-  
-        <div className="CyG">
-          <button className="Cancel" onClick={cancelarCambios}><FaRegTimesCircle /> Cancelar</button>
-          <button className="Save" onClick={guardarCambios}><FaRegSave /> Guardar</button>
-        </div>
-      </form>
+        </form>
+      </div>
+      <div className="Cancelar-y-Guardar">
+        <button className="Cancelar" onClick={cancelarCambios}>
+          <FaRegTimesCircle /> Cancelar
+        </button>
+        <button className="Guardar" onClick={guardarCambios}>
+          <FaRegSave /> Guardar
+        </button>
+      </div>
     </div>
   );
 };
-  
-export default ActualizarProveedor;
 
+export default ActualizarProveedor;

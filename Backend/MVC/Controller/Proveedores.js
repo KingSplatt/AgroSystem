@@ -84,6 +84,42 @@ const EliminarProveedor = async (req, res) => {
     });
   }
 };
+
+
+const ActualizarProveedor = async (req, res) => {
+  try {
+    const { IDProveedor, Nombre,Telefono,Correo, RFC, CURP, Legalizado, IDCiudad } = req.body;
+
+    // Crear un objeto con los campos a actualizar
+    const camposActualizar = {};
+    if (Nombre) camposActualizar.Nombre = Nombre;
+    if (RFC) camposActualizar.RFC = RFC;
+    if (CURP) camposActualizar.CURP = CURP;
+    if (IDCiudad) camposActualizar.IDCiudad = parseInt(IDCiudad);
+    if (Correo) camposActualizar.Correo = Correo;
+    if (Telefono) camposActualizar.Telefono = Telefono;
+    if (Legalizado) camposActualizar.Legalizado = parseInt(Legalizado);
+
+
+    // Construir la consulta SQL
+    const updateSQL = "UPDATE Proveedor SET Nombre = ?, RFC = ?, CURP = ?, IDCiudad = ?, Correo = ?, Telefono = ?, Legalizado = ? WHERE IDProveedor = ?";
+    const updateResult = await pool.query(updateSQL, [camposActualizar.Nombre, camposActualizar.RFC, camposActualizar.CURP, camposActualizar.IDCiudad, camposActualizar.Correo, camposActualizar.Telefono, camposActualizar.Legalizado, IDProveedor]);
+
+    console.log("Proveedor actualizado:", updateResult);
+    res.status(200).send({ success: true, message: "Proveedor actualizado correctamente" });
+  } catch (err) {
+    console.error("Error al actualizar proveedor:", err);
+    res.status(500).send({
+      success: false,
+      message: "Error al querer actualizar el proveedor",
+      error: err.message,
+    });
+  }
+};
+
+
+
+
 // Obtener un proveedor por clave
 const ObtenerProveedorByClave = async (req, res) => {
   try {
@@ -106,4 +142,4 @@ const ObtenerProveedorByClave = async (req, res) => {
   }
 };
 
-module.exports = { agregarProveedor, ObtenerProveedor, EliminarProveedor,ObtenerProveedorByClave };
+module.exports = { agregarProveedor, ObtenerProveedor, EliminarProveedor,ObtenerProveedorByClave,ActualizarProveedor };
