@@ -10,15 +10,11 @@ const URI_Clientes = "http://localhost:8080/clientes";
 const ModificarCliente = () => {
   const [Ciudades, setCiudades] = useState([]);
   const [formClientes, setFormClientes] = useState({
-    Nombre: "",
-    ApellidoPaterno: "",
-    ApellidoMaterno: "",
+    Clave: "",
     Usuario: "",
     Contrasena: "",
     Correo: "",
     Telefono: "",
-    RFC: "",
-    CURP: "",
     Ciudad: "",
   });
 
@@ -67,38 +63,39 @@ const ModificarCliente = () => {
     setFormClientes({ ...formClientes, [id]: newValue });
   };
 
+
+
   //funcion para enviar los datos del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Check if any field is empty
+
     try {
-      const response = await fetch(URI_Clientes, {
-        method: "POST",
+      console.log("Enviando datos del cliente... ", formClientes);
+      const response = await fetch(`http://localhost:8080/clientes/${formClientes.Clave}`, {
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formClientes),
       });
+      if (!response.ok) {
+        throw new Error("Error al modificar el cliente");
+      }
       const data = await response.json();
       console.log(data);
+      alert("Cliente modificado correctamente");
     } catch (error) {
       console.error("Error en la petición de clientes", error);
     }
   };
 
   const Cancell = () => {
-
-
     setFormClientes({
-      Nombre: "",
-      ApellidoPaterno: "",
-      ApellidoMaterno: "",
+      Clave: "",
       Usuario: "",
       Contrasena: "",
       Correo: "",
       Telefono: "",
-      RFC: "",
-      CURP: "",
       Ciudad: "",
     });
 
@@ -116,7 +113,7 @@ const ModificarCliente = () => {
               label="Clave: "
               onChange={handleInputChange}
               id="Clave"
-              value={formClientes.Nombre}
+              value={formClientes.Clave}
               type="text"
             />
           </div>
@@ -145,6 +142,7 @@ const ModificarCliente = () => {
               id="Correo"
               value={formClientes.Correo}
               type="email"
+
             />
             <Input
               label="Teléfono: "
@@ -152,6 +150,7 @@ const ModificarCliente = () => {
               id="Telefono"
               value={formClientes.Telefono}
               type="text"
+
             />
           </div>
         </form>

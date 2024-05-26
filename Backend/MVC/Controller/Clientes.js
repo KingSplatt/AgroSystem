@@ -37,12 +37,23 @@ const NuevoCliente = async (req, res) => {
 const ActualizarCliente = async (req, res) => {
     try {
         const IDCliente = req.params.ID;
-        const { Usuario, Contrasena, Correo, Telefono } = req.body;
-        if (!Usuario || !Contrasena || !Correo || !Telefono || !IDCliente) {
+        const { Usuario, Contrasena, Correo, Telefono, Ciudad } = req.body;
+
+        //verificar que la ID exista en la base de datos
+        const [Cliente, fields] = await pool.query('SELECT * FROM Cliente WHERE IDCliente = ?;', [IDCliente]);
+        if (Cliente.length === 0) {
+            return res.status(500).send({ success: false, message: 'El cliente no existe' });
+        }
+
+
+        if (!IDCliente || !Usuario || !Contrasena || !Correo || !Telefono || !Ciudad) {
             return res.status(500).send({ success: false, message: 'Faltan campos por llenar' });
         }
-        await pool.query('UPDATE Cliente SET Usuario = ?, Contrasena = ?, Correo = ?, Telefono = ? WHERE IDCliente = ?;',
-            [Usuario, Contrasena, Correo, Telefono, parseInt(IDCliente[0].IDCliente)]);
+
+        const [IDCiudad, campos] = await pool.query('SELECT IDCiudad FROM Ciudad WHERE Nombre = ?;', [Ciudad]);
+
+        await pool.query('UPDATE Cliente SET Usuario = ?, Contrasena = ?, Correo = ?, Telefono = ?, IDCiudad = ? WHERE IDCliente = ?;',
+            [Usuario, Contrasena, Correo, Telefono, IDCiudad[0].IDCiudad, parseInt(IDCliente)]);
 
         res.status(201).send({ success: true, message: 'Cliente Actualizado Correctamente' });
     } catch (err) {

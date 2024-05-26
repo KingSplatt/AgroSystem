@@ -68,6 +68,13 @@ const ActualizarProducto = async (req, res) => {
     try {
         const { IDproducto, Nombre, Descripcion, PrecioUnitario, Descontinuado } = req.body;
         const id = req.params.id; // Obtener el ID del producto desde el parámetro de la URL
+        console.log('ID del producto:', id);
+
+        //VALIDAR QUE LA ID SI EXISTA EN LA BASE DE DATOS
+
+        if (!Nombre || !Descripcion || !PrecioUnitario || !Descontinuado) {
+            return res.status(400).send({ success: false, message: 'Faltan campos por llenar' });
+        }
 
         // Aquí puedes ejecutar la consulta de actualización utilizando el ID obtenido
         const sql = 'UPDATE Producto SET Nombre = ?, Descripcion = ?, PrecioUnitario = ?, Descontinuado = ? WHERE IDProducto = ?';
