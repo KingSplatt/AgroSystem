@@ -1,76 +1,79 @@
-import React from 'react'
+import ImageSlider from "../Componentes/ImageSlider.jsx";
+import "../Estilos/InicioClientes.css";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import ProductList from '../Componentes/ProductList.jsx';
 
-const HEADER_CLASSES = 'bg-teal-600 p-4 flex justify-between items-center'
-const INPUT_CLASSES = 'p-2 rounded-md border border-zinc-300'
-const NAV_LINK_CLASSES = 'hover:underline'
-const BUTTON_CLASSES = 'bg-blue-500 text-white py-1 px-4 rounded-md'
-const PRODUCT_CARD_CLASSES = 'bg-white p-4 rounded-md shadow-md'
-const PRODUCT_IMAGE_CLASSES = 'w-full h-40 object-cover mb-4'
-const PRODUCT_NAME_CLASSES = 'text-lg font-semibold'
-const PRODUCT_PRICE_CLASSES = 'text-zinc-500'
+const mockProducts = [
+  { id: 1, name: 'Producto 1', price: 19.99, image: 'https://via.placeholder.com/200' },
+  { id: 2, name: 'Producto 2', price: 29.99, image: 'https://via.placeholder.com/200' },
+  { id: 3, name: 'Producto 3', price: 39.99, image: 'https://via.placeholder.com/200' },
+  // Añade más productos según sea necesario
+];
 
-const InicioClientes = () => {
+// Componente de detalles del producto (debes crearlo)
+const ProductDetail = ({ match }) => {
+  const productId = match.params.id;
+  const product = mockProducts.find(p => p.id === parseInt(productId));
+
+  if (!product) {
+    return <div>Producto no encontrado</div>;
+  }
+
   return (
-    <div className="min-h-screen bg-zinc-100">
-      <header className={HEADER_CLASSES}>
-        <div className="flex items-center space-x-4">
-          <img src="https://placehold.co/100x50" alt="Logo" className="h-12" />
-          <input type="text" placeholder="Buscar" className={INPUT_CLASSES} />
-        </div>
-        <nav className="flex space-x-4 text-white">
-          <a href="#" className={NAV_LINK_CLASSES}>
-            Inicio
-          </a>
-          <a href="#" className={NAV_LINK_CLASSES}>
-            Nosotros
-          </a>
-          <a href="#" className={NAV_LINK_CLASSES}>
-            Productos
-          </a>
-          <a href="#" className={NAV_LINK_CLASSES}>
-            Contacto
-          </a>
-        </nav>
-        <div className="flex items-center space-x-4">
-          <a href="#" className="text-white">
-            <img src="https://placehold.co/24x24" alt="Cart" />
-          </a>
-          <a href="#" className="text-white">
-            Ayuda
-          </a>
-        </div>
-      </header>
+    <div className="product-detail">
+      <img src={product.image} alt={product.name} className="product-detail-image" />
+      <h1>{product.name}</h1>
+      <p>${product.price.toFixed(2)}</p>
+      <p>Detalles del producto...</p>
+    </div>
+  );
+};
 
-      <section className="relative bg-white">
-        <img src="https://placehold.co/1200x300" alt="Banner" className="w-full" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center">
-            <p className="text-4xl font-bold text-white">2.5% de descuento</p>
-            <p className="text-xl text-yellow-300">Esta es una imagen de ejemplo</p>
-            <button className={BUTTON_CLASSES}>Explorar catálogo</button>
+const InicioClientes =() =>
+  {
+    return(
+      
+      
+      
+
+
+        <div className="Encabezado">
+          <h2>
+            Gallo Giro - Agroquimicos.
+              <div className="barraSuperior">
+              <input className="input" type='search' placeholder="Buscar" />
+              </div>
+          </h2>
+          <div>
+            <nav className="centrado">
+              <a href="#" className="separacion">
+              Inicio
+              </a>
+              <a href="#" className="separacion">
+                Nosotros
+              </a>
+              <a href="#" className="separacion">
+                Productos
+              </a>
+              <a href="#" className="separacion">
+                Contacto
+              </a>
+              <a href="#" className="separacion">
+                Carrito
+              </a>
+            </nav>
+          </div>
+          <div className="txtSugerencias">
+            Sugerencias
+              <Switch>
+                <Route path="/" exact>
+                  <ProductList products={mockProducts} />
+                </Route>
+                {/* Ruta para los detalles del producto */}
+                <Route path="/product/:id" component={ProductDetail} />
+              </Switch>
           </div>
         </div>
-      </section>
-
-      <section className="p-4">
-        <h2 className="text-xl font-bold mb-4">Sugerencias</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-          {[...Array(5)].map((_, index) => (
-            <div key={index} className={PRODUCT_CARD_CLASSES}>
-              <img
-                src="https://placehold.co/150x150"
-                alt="Producto"
-                className={PRODUCT_IMAGE_CLASSES}
-              />
-              <h3 className={PRODUCT_NAME_CLASSES}>Nombre</h3>
-              <p className={PRODUCT_PRICE_CLASSES}>$ XXXX.XX</p>
-              <button className={BUTTON_CLASSES}>Ver producto</button>
-            </div>
-          ))}
-        </div>
-      </section>
-    </div>
-  )
-}
-
-export default InicioClientes
+    )
+  }
+  export default InicioClientes

@@ -1,0 +1,56 @@
+.Encabezado {
+margin-top: 0%;
+width: 100%;
+height: 100px;
+background-color: rgb(55, 202, 170);
+}
+a {
+    color: inherit; /* Hereda el color del elemento padre */
+    text-decoration: none; /* Quita el subrayado */
+    font-size: 20px;
+
+  }
+a:hover{
+    color:#ccc
+}
+.centrado{
+    text-align: center;
+  }
+.separacion{
+    padding-left: 50px;
+    padding-right: 100px;
+}
+
+.barraSuperior {
+    margin-left: 330px;
+    margin-top: -35px;
+    font-size: 16px;
+  }
+  
+  .mySwiper {
+    width: 1200px;
+    height: 300px;
+    margin: auto;
+  }
+  
+  .mySwiper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+.input{
+    width: 40%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+.txtSugerencias{
+    text-align: left;
+    padding-left: 170px;
+    margin-top: 50px;
+    font-size:20px;
+}
