@@ -5,7 +5,7 @@ import { MdOutlinePointOfSale } from "react-icons/md";
 import { TbBasketCancel } from "react-icons/tb";
 import '../Estilos/RealizarVenta.css';
 
-const URI = "http://localhost:8080/productos";
+const URI = "http://localhost:8080/productosSucursal";
 
 const RealizarVenta = () => {
     const [productos, setProductos] = useState([]);
