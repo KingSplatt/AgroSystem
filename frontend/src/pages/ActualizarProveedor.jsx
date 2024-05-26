@@ -4,7 +4,6 @@ import { FaRegSave, FaRegTimesCircle, FaSearch } from "react-icons/fa";
 import "../Estilos/ActProveedores.css";
 const URI_Ciudades = "http://localhost:8080/ciudades";
 
-
 const ActualizarProveedor = () => {
   const [Ciudades, setCiudades] = useState([]);
   const [IDProveedorBusqueda, setIDProveedorBusqueda] = useState('');
@@ -16,7 +15,7 @@ const ActualizarProveedor = () => {
     RFC: '',
     CURP: '',
     Legalizado: false,
-    IDCuidad: ''
+    IDCiudad: ''
   });
 
   useEffect(() => {
@@ -29,26 +28,24 @@ const ActualizarProveedor = () => {
 
   const fetchCiudades = async () => {
     try {
-        const response = await fetch(URI_Ciudades);
-        const Ciudades = await response.json();
-        const rows = Ciudades.rows;
-        if (Array.isArray(rows)) {
-            setCiudades(rows);
-        }
+      const response = await fetch(URI_Ciudades);
+      const Ciudades = await response.json();
+      const rows = Ciudades.rows;
+      if (Array.isArray(rows)) {
+        setCiudades(rows);
+      }
     } catch (error) {
-        alert("Error al obtener las ciudades:", error);
+      alert("Error al obtener las ciudades:", error);
     }
-};
+  };
 
   const fetchProveedor = async (IDProveedor) => {
     try {
       const response = await fetch(`http://localhost:8080/proveedores/${IDProveedor}`);
       if (!response.ok) {
-        alert('Proveedor no encontrado');
         throw new Error('Proveedor no encontrado');
       }
       const data = await response.json();
-      console.log(data.proveedor.CURP);
       const nuevoProveedor = {
         IDProveedor: data.proveedor.IDProveedor,
         Nombre: data.proveedor.Nombre || '',
@@ -57,12 +54,10 @@ const ActualizarProveedor = () => {
         RFC: data.proveedor.RFC || '',
         CURP: data.proveedor.CURP || '',
         Legalizado: data.proveedor.Legalizado === 1,
-        IDCuidad: data.proveedor.IDCiudad || ''
+        IDCiudad: data.proveedor.IDCiudad || ''
       };
-      console.log('Proveedor encontrado:', nuevoProveedor);
       setProveedor(nuevoProveedor);
       actualizarLabels(nuevoProveedor);
-      console.log(data);
     } catch (error) {
       console.error('Error al obtener el proveedor:', error);
       const limpiarProveedor = {
@@ -73,7 +68,7 @@ const ActualizarProveedor = () => {
         RFC: '',
         CURP: '',
         Legalizado: false,
-        IDCuidad: ''
+        IDCiudad: ''
       };
       setProveedor(limpiarProveedor);
       actualizarLabels(limpiarProveedor);
@@ -81,12 +76,13 @@ const ActualizarProveedor = () => {
   };
 
   const actualizarLabels = (data) => {
-    const ciudadesBuscar = Ciudades.find(ciudad => ciudad.IDCiudad === data.IDCuidad);
-    const fields = ['Nombre', 'RFC', 'CURP', 'Telefono', 'Correo', 'Legalizado', 'IDCuidad'];
+    
+    const ciudadesBuscar = Ciudades.find(ciudad => ciudad.IDCiudad === data.IDCiudad);
+    const fields = ['Nombre', 'RFC', 'CURP', 'Telefono', 'Correo', 'Legalizado', 'IDCiudad'];
     fields.forEach(field => {
       const label = document.querySelector(`.valor-anterior-${field}`);
       if (label) {
-        if (field === 'IDCuidad') {
+        if (field === 'IDCiudad') {
           label.textContent = ciudadesBuscar ? ciudadesBuscar.Nombre : '';
         }
         else if (field === 'Legalizado') {
@@ -99,7 +95,6 @@ const ActualizarProveedor = () => {
   };
 
   const manejarCambioInput = (campo, valor) => {
-    console.log('campo:', campo, 'valor:', valor);
     let newValue = valor;
 
     if (campo === "Telefono") {
@@ -128,20 +123,14 @@ const ActualizarProveedor = () => {
   const guardarCambios = async (e) => {
     e.preventDefault();
   
-    // Convertir legalizacion a 1 o 0 y obtener el ID de la ciudad correspondiente
-    const ciudadEncontrada = Ciudades.find(ciudad => ciudad.Nombre === proveedor.IDCuidad).IDCiudad;
-    console.log('ciudadEncontrada:', ciudadEncontrada);
+    const ciudadEncontrada = Ciudades.find(ciudad => ciudad.Nombre === proveedor.IDCiudad);
     if (!ciudadEncontrada) {
       alert("Ciudad no encontrada");
       return;
     }
 
-    proveedor.IDCuidad = ciudadEncontrada;
+    proveedor.IDCiudad = ciudadEncontrada.IDCiudad;
     proveedor.Legalizado = proveedor.Legalizado ? 1 : 0;
-    console.log('proveedor:', JSON.stringify(proveedor));
-    
-  
-    console.log('Guardando cambios del proveedor:', proveedor);
   
     try {
       const response = await fetch(`http://localhost:8080/proveedores`, {
@@ -172,7 +161,7 @@ const ActualizarProveedor = () => {
       RFC: '',
       CURP: '',
       Legalizado: false,
-      IDCuidad: ''
+      IDCiudad: ''
     };
     document.getElementById('Nombre').value = '';
     document.getElementById('RFC').value = '';
@@ -180,12 +169,11 @@ const ActualizarProveedor = () => {
     document.getElementById('Telefono').value = '';
     document.getElementById('Correo').value = '';
     document.getElementById('Legalizado').checked = false;
-    document.getElementById('valor-anterior-ciudad-select').value = '';
+    document.getElementById('valor-anterior-ciudad-select').value = 'Seleccionar:';
     setProveedor(limpiarProveedor);
     actualizarLabels(limpiarProveedor);
     setIDProveedorBusqueda('');
   };
-
 
   return (
     <div className="Formulario-Proveedor">
@@ -268,19 +256,17 @@ const ActualizarProveedor = () => {
               checked={proveedor.Legalizado}
               onChange={manejarCambioCheckbox}
             />
-            <label htmlFor="IDCuidad">Ciudad:</label>
-            <label className="valor-anterior-IDCuidad"></label>
+            <label htmlFor="IDCiudad">Ciudad:</label>
+            <label className="valor-anterior-IDCiudad"></label>
 
-            <select id="valor-anterior-ciudad-select" onChange={(e) => manejarCambioInput('IDCuidad', e.target.value)} value={proveedor.ciudad}>
-               <option>Seleccionar: </option>
-                  {Ciudades
-                  ? Ciudades.map((ciudad, index) => (
-                      <option key={index} value={ciudad.Nombre}>
-                        {ciudad.Nombre}
-                      </option>
-                    ))
-                  : ""}
-              </select>
+            <select id="valor-anterior-ciudad-select" onChange={(e) => manejarCambioInput('IDCiudad', e.target.value)} value={proveedor.IDCiudad}>
+              <option>Seleccionar: </option>
+              {Ciudades.map((ciudad, index) => (
+                <option key={index} value={ciudad.Nombre}>
+                  {ciudad.Nombre}
+                </option>
+              ))}
+            </select>
           </div>
         </form>
       </div>

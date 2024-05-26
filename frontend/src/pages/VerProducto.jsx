@@ -3,7 +3,7 @@ import { FaExchangeAlt, FaPlus } from "react-icons/fa";
 
 import "../Estilos/Productos.css";
 
-const URI = "http://localhost:8080/productos";
+const URI = "http://localhost:8080/productosSucursal";
 
 const VerProducto = () => {
     const [productos, setProductos] = useState([]);

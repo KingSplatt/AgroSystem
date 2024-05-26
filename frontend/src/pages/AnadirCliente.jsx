@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
+import ClienteForm from "../Componentes/ClienteForm";
 import "../Estilos/AddClientes.css";
 import useInputChange from "../Hooks/useInputChange";
-import ClienteForm from "../Componentes/ClienteForm";
 
-import Option from "../Componentes/Option";
 
 const URI_Ciudades = "http://localhost:8080/ciudades";
 const URI_Clientes = "http://localhost:8080/clientes";
@@ -70,7 +69,12 @@ const AnadirCliente = () => {
             const data = await response.json();
             console.log(data);
             //Mensaje de confirmación
-            alert("Cliente añadido correctamente");
+
+
+            if (response.ok) {
+                alert("Cliente añadido correctamente");
+            }
+
         } catch (error) {
             console.error("Error en la petición de clientes", error);
         }

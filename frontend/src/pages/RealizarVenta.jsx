@@ -5,7 +5,7 @@ import { MdOutlinePointOfSale } from "react-icons/md";
 import { TbBasketCancel } from "react-icons/tb";
 import '../Estilos/RealizarVenta.css';
 
-const URI = "http://localhost:8080/productos";
+const URI = "http://localhost:8080/productosSucursal";
 
 const RealizarVenta = () => {
     const [productos, setProductos] = useState([]);
@@ -23,7 +23,6 @@ const RealizarVenta = () => {
         anticipominimo: '',
         anticipo: ''
     });
-
     const [cantidad, setCantidad] = useState({});
 
     useEffect(() => {
@@ -54,17 +53,13 @@ const RealizarVenta = () => {
     };
 
     const handleCantidadChange = (producto, value) => {
-
         setCantidad(prevCantidad => ({
             ...prevCantidad,
             [producto.IDproducto]: parseInt(value)
         }));
-
-
     };
 
     const agregarProducto = (producto) => {
-
         const productoCantidad = cantidad[producto.IDproducto];
         if (!productoCantidad || productoCantidad <= 0) {
             alert('La cantidad debe ser mayor que 0.');
@@ -76,22 +71,40 @@ const RealizarVenta = () => {
             return;
         }
 
+        setProductos(prevProductos =>
+            prevProductos.map(p =>
+                p.IDproducto === producto.IDproducto
+                    ? { ...p, Stock: p.Stock - productoCantidad }
+                    : p
+            )
+        );
+
         setProductosSeleccionados(prevSeleccionados => {
             const productoExistenteIndex = prevSeleccionados.findIndex(p => p.IDproducto === producto.IDproducto);
             if (productoExistenteIndex !== -1) {
                 const updatedProductosSeleccionados = [...prevSeleccionados];
                 updatedProductosSeleccionados[productoExistenteIndex].cantidad += productoCantidad;
+                setCantidad(prevCantidad => ({
+                    ...prevCantidad,
+                    [producto.IDproducto]: 0
+                }));
                 return updatedProductosSeleccionados;
             } else {
                 return [...prevSeleccionados, { ...producto, cantidad: productoCantidad }];
             }
         });
+    };
 
-        setCantidad((prevCantidad) => ({
-            ...prevCantidad,
-            [producto.IDproducto]: 0
-        }));
-
+    const eliminarProducto = (index) => {
+        const productoAEliminar = productosSeleccionados[index];
+        setProductos(prevProductos =>
+            prevProductos.map(p =>
+                p.IDproducto === productoAEliminar.IDproducto
+                    ? { ...p, Stock: p.Stock + productoAEliminar.cantidad }
+                    : p
+            )
+        );
+        setProductosSeleccionados(productosSeleccionados.filter((_, i) => i !== index));
     };
 
     const realizarVenta = () => {
@@ -110,9 +123,19 @@ const RealizarVenta = () => {
             anticipo: ''
         });
         setCantidad({});
+        fetchProductos(); // Refetch products to reset the stock
     };
 
     const cancelarVenta = () => {
+        productosSeleccionados.forEach(producto => {
+            setProductos(prevProductos =>
+                prevProductos.map(p =>
+                    p.IDproducto === producto.IDproducto
+                        ? { ...p, Stock: p.Stock + producto.cantidad }
+                        : p
+                )
+            );
+        });
         setProductosSeleccionados([]);
         setMetodoPago('');
         setMontoRecibido('');
@@ -175,9 +198,9 @@ const RealizarVenta = () => {
                                         type="number"
                                         min="1"
                                         placeholder="Cantidad"
+                                        value={cantidad[producto.IDproducto] || ''}
                                         onChange={(e) => handleCantidadChange(producto, e.target.value)}
                                         className="cantidad-input"
-
                                     />
                                 </td>
                                 <td className='centro-td'>
@@ -206,9 +229,7 @@ const RealizarVenta = () => {
                                 <td className='centro-td'>{producto.cantidad} unidades</td>
                                 <td className='centro-td'>${producto.PrecioUnitario * producto.cantidad}</td>
                                 <td className='centro-td'>
-                                    <button className='btn-eliminar' onClick={() => setProductosSeleccionados(
-                                        productosSeleccionados.filter((_, i) => i !== index)
-                                    )}><FaTrashAlt /></button>
+                                    <button className='btn-eliminar' onClick={() => eliminarProducto(index)}><FaTrashAlt /></button>
                                 </td>
                             </tr>
                         ))}
