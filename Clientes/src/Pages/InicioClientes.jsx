@@ -4,39 +4,15 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ProductList from '../Componentes/ProductList.jsx';
 
 const mockProducts = [
-  { id: 1, name: 'Producto 1', price: 19.99, image: 'https://via.placeholder.com/200' },
-  { id: 2, name: 'Producto 2', price: 29.99, image: 'https://via.placeholder.com/200' },
-  { id: 3, name: 'Producto 3', price: 39.99, image: 'https://via.placeholder.com/200' },
+  { id: 1, name: 'Herbicida Faena Fuerte', price: 49.99, image: 'https://avotools.com/cdn/shop/products/herbicida-faena-fuerte-360-1-litro-811830_800x.jpg?v=1606359467' },
+  { id: 2, name: 'Herbicida Amina', price: 39.99, image: 'https://interagro.mx/wp-content/uploads/2020/03/AMINA-1L.jpg' },
+  { id: 3, name: 'Herbicida Centella', price: 39.99, image: 'https://interagro.mx/wp-content/uploads/2020/03/CENTELLA-1L.jpg' },
   // Añade más productos según sea necesario
 ];
-
-// Componente de detalles del producto (debes crearlo)
-const ProductDetail = ({ match }) => {
-  const productId = match.params.id;
-  const product = mockProducts.find(p => p.id === parseInt(productId));
-
-  if (!product) {
-    return <div>Producto no encontrado</div>;
-  }
-
-  return (
-    <div className="product-detail">
-      <img src={product.image} alt={product.name} className="product-detail-image" />
-      <h1>{product.name}</h1>
-      <p>${product.price.toFixed(2)}</p>
-      <p>Detalles del producto...</p>
-    </div>
-  );
-};
 
 const InicioClientes =() =>
   {
     return(
-      
-      
-      
-
-
         <div className="Encabezado">
           <h2>
             Gallo Giro - Agroquimicos.
@@ -65,13 +41,7 @@ const InicioClientes =() =>
           </div>
           <div className="txtSugerencias">
             Sugerencias
-              <Switch>
-                <Route path="/" exact>
-                  <ProductList products={mockProducts} />
-                </Route>
-                {/* Ruta para los detalles del producto */}
-                <Route path="/product/:id" component={ProductDetail} />
-              </Switch>
+                <ProductList products={mockProducts} />
           </div>
         </div>
     )
