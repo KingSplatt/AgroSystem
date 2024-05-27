@@ -58,7 +58,7 @@ CREATE TABLE Empleado (
     CURP varchar(18) not null,
     IDSucursal int null,
     IDCiudad int not null,
-    IDCEDI int null --Añadi el respectivo constraint abajo
+    IDCEDI int null -- Añadi el respectivo constraint abajo
 );
 
 CREATE TABLE Sucursal (

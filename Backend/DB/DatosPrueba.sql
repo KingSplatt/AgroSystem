@@ -189,7 +189,7 @@ INSERT INTO Sucursal (IDSucursal, Correo, Telefono, IDCedi, IDCiudad) VALUES (9,
 INSERT INTO Sucursal (IDSucursal, Correo, Telefono, IDCedi, IDCiudad) VALUES (10, 'sucursal10@example.com', '3691472583', 10, 1); 
 
 -- Inserciones de ejemplo a la tabla Empleado
---empleados Sucursal
+-- empleados Sucursal
 INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad) 
 VALUES (1, 'Juan', 'García', 'López', 'juan.garcia@example.com', '1234567890', 'Vendedor', 'juangarcia', 'password123', '1990-05-10', '2022-01-15', 'GARJ900510XXX', 'GALJ900510HDFLRN09', 1, 1);
 
