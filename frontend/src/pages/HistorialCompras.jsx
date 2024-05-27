@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaFileExport, FaPlus, FaPrint } from "react-icons/fa";
+import { FaPlus, FaPrint } from "react-icons/fa";
 
 import "../Estilos/HistorialCompras.css"; // Cambiar a la ruta correcta
 
@@ -8,6 +8,8 @@ const URI = "http://localhost:8080/Compras";
 const HistorialCompras = () => {
     const [buscar, setBuscar] = useState("");
     const [compras, setCompras] = useState([]);
+    const savedEmpleado = JSON.parse(localStorage.getItem("empleado"));
+    console.log("Empleado (inicial):", savedEmpleado);
 
     useEffect(() => {
         fetchCompras();
@@ -37,8 +39,8 @@ const HistorialCompras = () => {
         setBuscar(e.target.value);
     };
 
-    const BusquedaCompras = compras.filter((compra) => 
-        compra.IDCompra?.toString().includes(buscar) || 
+    const BusquedaCompras = compras.filter((compra) =>
+        compra.IDCompra?.toString().includes(buscar) ||
         compra.Total?.toString().includes(buscar)
     );
 
@@ -49,10 +51,19 @@ const HistorialCompras = () => {
 
     const handlePrint = (compra) => {
         const content = preparePrintContent(compra);
-        const windowPrint = window.open("", "Impresión");
-        windowPrint.document.body.innerHTML = content;
-        windowPrint.print();
+
+        const windowPrint = window.open('', 'Impresión');
+
+        windowPrint.document.write(content);
+        windowPrint.document.close();
+
+        windowPrint.onload = () => {
+
+            windowPrint.print();
+            windowPrint.close();
+        };
     };
+
 
     const preparePrintContent = (compra) => {
         return `
@@ -81,6 +92,10 @@ const HistorialCompras = () => {
                 </head>
                 <body>
                     <h2>Detalles de Compra</h2>
+                    <h4> Copia expedida por:</h4>
+                    <p>${savedEmpleado.Nombre} ${savedEmpleado.ApellidoPaterno} </p> 
+                
+                    <h5>Fecha: ${new Date().toLocaleDateString()}</h5>
                     <table>
                         <tr>
                             <th>Clave</th>
@@ -95,26 +110,31 @@ const HistorialCompras = () => {
                             <td>${formatDate(compra.FechaEntrega)}</td>
                         </tr>
                         <tr>
+                            <th>Subotal</th>
+                            <td>${compra.SubTotal}</td>
+                        </tr>
+                        <tr>
                             <th>Total</th>
                             <td>${compra.Total}</td>
                         </tr>
-                        <!-- Agrega más detalles según sea necesario -->
+                        <tr>
+                            <th>Productos</th>
+                            <td>${compra.Productos}</td>
+                        </tr>
+                        <!-- Agregar más detalles según sea necesario -->
                     </table>
                 </body>
             </html>
         `;
     };
 
-    const handleExport = (compra) => {
-        // Aquí deberías implementar la lógica para exportar
-        alert("Exportando detalles de compra");
-    };
+
 
     return (
         <div className="Principal">
             <h2>Historial de compras</h2>
             <div className="containerVP">
-                
+
                 <div className="barraSuperior">
                     <input
                         type="search"
@@ -153,11 +173,6 @@ const HistorialCompras = () => {
                                             onClick={() => handlePrint(compra)}
                                         >
                                             <FaPrint />
-                                        </button>
-                                        <button
-                                            onClick={() => handleExport(compra)}
-                                        >
-                                            <FaFileExport />
                                         </button>
                                     </td>
                                 </tr>

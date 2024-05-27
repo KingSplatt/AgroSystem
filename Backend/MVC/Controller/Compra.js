@@ -29,15 +29,34 @@ const NuevaCompra = async (req, res) => {
 // Ver el historial de compras
 const HistorialCompras = async (req, res) => {
     try {
-        const [rows, fields] = await pool.query('SELECT C.IDCompra, C.FechaPedido, C.FechaEntrega, C.SubTotal, C.Total, C.IDCedi, C.IDEmpleado, DC.Cantidad, DC.PrecioUnitario FROM Compra C ' +
-            'INNER JOIN DetalleCompra DC ON C.IDCompra = DC.IDCompra ');
+        const [rows, fields] = await pool.query(`
+            SELECT 
+                C.IDCompra, 
+                C.FechaPedido, 
+                C.FechaEntrega, 
+                SUM(DC.Cantidad * DC.PrecioUnitario) AS SubTotal, 
+                ROUND(SUM(DC.Cantidad * DC.PrecioUnitario) * 1.16, 2) AS Total, 
+                C.IDCedi, 
+                C.IDEmpleado, 
+                GROUP_CONCAT(CONCAT(DC.Cantidad, ' piezas de ', P.Nombre) ORDER BY DC.IDCompra SEPARATOR '; ') AS Productos
+            FROM 
+                Compra C
+            INNER JOIN 
+                DetalleCompra DC ON C.IDCompra = DC.IDCompra
+            INNER JOIN 
+                Producto P ON P.IDProducto = DC.IDProducto
+            GROUP BY 
+                C.IDCompra
+        `);
+
         console.log('Compras hechas hasta el momento', rows);
-        res.status(201).send({ success: true, message: 'Compras realizadas existosamente', rows: rows });
+        res.status(200).send({ success: true, message: 'Compras realizadas existosamente', rows: rows });
     } catch (err) {
-        console.error('Error al consultar las ventas', err);
+        console.error('Error al consultar las compras', err);
         res.status(500).send({ success: false, message: 'Error al consultar las compras' });
     }
 }
+
 
 // Eliminar compras del historial
 const EliminarCompra = async (req, res) => {
