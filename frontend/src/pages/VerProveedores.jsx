@@ -15,6 +15,14 @@ const VerProveedores = () => {
     }, []);
 
     const fetchProveedores = async () => {
+        let savedEmpleado = localStorage.getItem('empleado');
+        savedEmpleado = JSON.parse(savedEmpleado);
+        if (!savedEmpleado.IDCEDI) {
+            console.error("No hay un empleado logueado con CEDI asignado");
+            alert("No hay un empleado CEDI, inice sesión primero");
+            window.location.href = "./";
+            return;
+        }
         try {
             const response = await fetch(URI);
             const data = await response.json();

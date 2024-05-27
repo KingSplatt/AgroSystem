@@ -1,14 +1,13 @@
-//CEDI
-import React, { useEffect, useState } from "react";
+//pendiente, hacer añadir producto sucursal, menu izquierdo tods los productos del CEDI asignado y buscador de productos, derecha canasta abajo comprar y eliminar, al sumar aqui disminuyen cedi
+
+//SUCURSAL import React, { useEffect, useState } from "react";
 import { FaPlus, FaRegSave, FaRegTimesCircle, FaTrash } from "react-icons/fa";
 import "../Estilos/AddProductos.css";
-//MODIFICADO PARA QUE SE AÑADA LOS PRODUCTOS AL CEDI, NO A LA SUCURSAL ESA DESPUES XD
-const URI_Categorias = "http://localhost:8080/categorias";
-const URI_Proveedores = "http://localhost:8080/proveedores";
+//MODIFICADO PARA QUE SE AÑADA LOS PRODUCTOS AL SUCURSAL, NO A LA SUCURSAL ESA DESPUES XD
 
 const AnadirProductos = () => {
-  const [Categorias, setCategorias] = useState([]);
-  const [Proveedores, setProveedores] = useState([]);
+const [productosCEDI, setProductosCEDI] = useState([]);
+const [sucursales, setSucursales] = useState([]);
   const [empleado, setEmpleado] = useState(null);
   const [filas, setFilas] = useState([
     { IDProducto: 1, Nombre: "", Descripcion: "", PrecioUnitario: "", Descontinuado: "", IDProveedor: "", IDCategoria: "" }
@@ -18,6 +17,7 @@ const AnadirProductos = () => {
     const savedEmpleado = localStorage.getItem('empleado');
     if (savedEmpleado) {
         setEmpleado(JSON.parse(savedEmpleado));
+        fetchProductosCEDI();
     }
     console.log("Empleado (inicial):", savedEmpleado);
 }, []);
@@ -25,45 +25,9 @@ const AnadirProductos = () => {
   useEffect(() => {
     if (empleado) {
         console.log("Empleado:", empleado);
-        fetchCategorias();
-        fetchProveedores();
     }
 }, [empleado]);
 
-  const fetchCategorias = async () => {
-        if (!empleado.IDCEDI) {
-            console.error("No hay un empleado logueado");
-            alert("No hay un empleado de CEDI logueado, inice sesión primero");
-            window.location.href = "./";
-            return;
-        }
-    try {
-      const responseC = await fetch(URI_Categorias);
-      const Categorias = await responseC.json();
-      const rowsC = Categorias.rows;
-      if (Array.isArray(rowsC)) {
-        setCategorias(rowsC);
-      }
-      console.log("Categorias:", rowsC);
-    } catch (error) {
-      alert("Error al obtener las categorias:", error);
-    }
-  };
-
-  const fetchProveedores = async () => {
-    if (!empleado) return;
-    try {
-      const responseP = await fetch(URI_Proveedores);
-      const Proveedores = await responseP.json();
-      const rowsP = Proveedores.rows;
-      if (Array.isArray(rowsP)) {
-        setProveedores(rowsP);
-      }
-      console.log("Proveedores:", rowsP);
-    } catch (error) {
-      alert("Error al obtener los proveedores:", error);
-    }
-  };
 
   const agregarFila = () => {
   
@@ -81,69 +45,33 @@ const AnadirProductos = () => {
     );
     setFilas(filasActualizadas);
   };
-  const Guardar  = async (e) => {
-    console.log(empleado.IDCEDI);
-    let count = 0;
-    for (let i = 0; i < filas.length; i++) {
-      if(filas[i].Nombre === "" || filas[i].Descripcion === "" || filas[i].PrecioUnitario === "" || filas[i].Descontinuado === "" || filas[i].IDProveedor === "" || filas[i].IDCategoria === ""){
-        alert("Por favor llene todos los campos");
-        return;
-      }
-      filas[i].IDProveedor = Proveedores.find(proveedor => proveedor.Nombre === filas[i].IDProveedor).IDProveedor;
-      filas[i].IDCategoria = Categorias.find(categoria => categoria.NombreCategoria === filas[i].IDCategoria).IDCategoria;
-      filas[i].Descontinuado = filas[i].Descontinuado === "Si" ? 1 : 0;
-      filas[i].PrecioUnitario = parseInt(filas[i].PrecioUnitario);
-      console.log( JSON.stringify(filas[i]));
-      try {
-        const response = await fetch("http://localhost:8080/productos", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(filas[i]),
-        });
-        const data = await response.json();
-        console.log(data);
-        
-      } catch (error) {
-        console.error("Error al añadir producto:", error);
-        alert("Error al añadir producto:", error);
-        count++;
-      }
-      try {
-        const valorFechaSurtido = document.getElementById("fecha-surtido").value;
-        const valorFechaCaducidad = document.getElementById("fecha-caducidad").value;
-        console.log(valorFechaSurtido);
-        console.log(valorFechaCaducidad);
-        const cuerpo = {valorFechaSurtido: valorFechaSurtido,valorFechaCaducidad:valorFechaCaducidad,IDProducto: filas[i].IDProducto, IDCedi: empleado.IDCEDI};
-        console.log(cuerpo)
-        const response = await fetch("http://localhost:8080/productosCEDI/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(cuerpo),
-        });
-        const data = await response.json();
-        console.log(data);
-      } catch (error) {
-        console.error("Error al añadir producto:", error);
-        alert("Error al añadir producto:", error);
-        count++;
-      }
-    }
+  const fetchSucursales = async (e) =>{
+    URI = "http://localhost:8080/sucursales";
+  };
+  const fetchProductosCEDI  = async (e) => {
+    try {
+        const IDCEDI = empleado.IDSucursal.IDCEDI;
 
-    if(count === 0){
-          alert("Productos añadidos correctamente");
-          setFilas([{ IDProducto: 1, Nombre: "", Descripcion: "", PrecioUnitario: "", Descontinuado: "", IDProveedor: "", IDCategoria: "" }]);
+        //const IDCEDI = donde empleado.IDSucursal = IDSucursal en la tabla se sucursales .IDCEDI
+
+        const response = await fetch(URI);
+        const data = await response.json();
+        const rows = data.rows;
+
+        console.log("Data:", data.rows);
+
+        // Asegúrate de que `data` es un array
+        if (Array.isArray(rows)) {
+            setProveedores(rows);
+        } else {
+            console.error("La respuesta no es un array", data);
+            alert("Error al obtener los Proveedores: la respuesta no es un array");
         }
-      else{
-        alert("Error al añadir productos");
-      }
-      count = filas.length;
-    console.log(filas);
-
-  
+    } catch (error) {
+        console.error("Error al obtener los Proveedores:", error);
+        alert("Error al obtener los Proveedores:", error);
+    }
+    }
   };
   const Cancelar = () => {
     setFilas([{ IDProducto: 1, Nombre: "", Descripcion: "", PrecioUnitario: "", Descontinuado: "", IDProveedor: "", IDCategoria: "" }]);

@@ -8,7 +8,7 @@ const URI = "http://localhost:8080/Compras";
 const HistorialCompras = () => {
     const [buscar, setBuscar] = useState("");
     const [compras, setCompras] = useState([]);
-    const savedEmpleado = JSON.parse(localStorage.getItem("empleado"));
+    const savedEmpleado = localStorage.getItem("empleado");
     console.log("Empleado (inicial):", savedEmpleado);
 
     useEffect(() => {
@@ -16,6 +16,15 @@ const HistorialCompras = () => {
     }, []);
 
     const fetchCompras = async () => {
+        const savedEmpleadoJ = JSON.parse(savedEmpleado);
+        console.log(savedEmpleadoJ);
+        if (!savedEmpleadoJ.IDSucursal) {
+            console.error("No hay un empleado logueado");
+            alert("No hay un empleado de Sucursal logueado, inice sesión primero");
+            window.location.href = "./";
+            return;
+        }
+
         try {
             const response = await fetch(URI);
             const data = await response.json();

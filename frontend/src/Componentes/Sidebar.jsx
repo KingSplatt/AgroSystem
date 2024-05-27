@@ -13,6 +13,16 @@ const Sidebar = ({ nose }) => {
     console.log("Empleado (inicial):", savedEmpleado);
     const [isOpen, setIsOpen] = useState(false);
     const [expandedMenuIndex, setExpandedMenuIndex] = useState(null);
+    let IDTipo;
+    if(savedEmpleado){
+        if(savedEmpleado.IDCEDI){
+            IDTipo = "CEDI: "+savedEmpleado.IDCEDI;
+        }else{
+            IDTipo = "Sucursal: "+savedEmpleado.IDSucursal;
+        }
+
+    }
+    
 
     const toggle = () => {
         if (isOpen) {
@@ -44,7 +54,8 @@ const Sidebar = ({ nose }) => {
             icon: <FaProductHunt />,
             submenu: [
                 { name: 'Ver Productos', path: '/VerProducto' },
-                { name: 'Añadir Productos', path: '/AnadirProductos' },
+                { name: 'Añadir Productos CEDI', path: '/AnadirProductos' },
+                { name: 'Añadir Productos Sucursal', path: '/AnadirProductosSucursal' },
                 { name: 'Modificar Productos', path: '/ModificarProductos' }
             ]
         },
@@ -97,54 +108,43 @@ const Sidebar = ({ nose }) => {
         }
     ];
 
-    /*
+    
     if (savedEmpleado && savedEmpleado.IDSucursal) {
+        menuItems = menuItems.filter(item => item.name !== 'Proveedores');
+
         menuItems = menuItems.map(item => {
             if (item.name === 'Productos') {
-                item.submenu = item.submenu.filter(subitem => subitem.name !== 'Añadir Productos' && subitem.name !== 'Modificar Productos');
+                item.submenu = item.submenu.filter(subitem => subitem.name !== 'Añadir Productos CEDI' && subitem.name !== 'Modificar Productos');
             }
             return item;
         });
-    }
-    */
-
-    if (savedEmpleado && savedEmpleado.IDCEDI) {
-        menuItems = menuItems.filter(item => {
+    } else if (savedEmpleado && savedEmpleado.IDCEDI) {
+        menuItems = menuItems.map(item => {
             if (item.name === 'Productos') {
-                item.submenu = item.submenu.filter(subitem => subitem.name !== 'Añadir Productos' && subitem.name !== 'Modificar Productos');
-                item.submenu = item.submenu.filter(subitem => subitem.name !== 'Modificar Productos');
+                item.submenu = item.submenu.filter(subitem => subitem.name !== 'Añadir Productos Sucursal');
             }
             return item;
         });
     }
-    if (savedEmpleado && savedEmpleado.IDCEDI) {
-        menuItems = menuItems.filter(item => item.name !== 'Clientes');
-    }
+    
 
-    if (savedEmpleado && savedEmpleado.IDCEDI) {
-        menuItems = menuItems.filter(item => item.name !== 'Ventas');
-    }
-
-    if (savedEmpleado && savedEmpleado.IDSucursal) {
-        menuItems = menuItems.filter(item => item.name !== 'Cotizar');
-    }
-
-    if (savedEmpleado && savedEmpleado.IDSucursal) {
-        menuItems = menuItems.filter(item => item.name !== 'Compras');
-    }
-
-
+    
 
     const renderMenuItem = (item, index) => {
         const isExpanded = expandedMenuIndex === index;
         if (item.submenu) {
             return (
                 <div key={index}>
+                     
+
                     <div className="link" onClick={() => toggleSubMenu(index)}>
                         <div className="icon">{item.icon}</div>
+                        
                         <div style={{ display: isOpen ? "block" : "none" }} className="link_text">{item.name}</div>
                     </div>
+                   
                     {isExpanded && item.submenu.map((subitem, subindex) => (
+
                         <NavLink to={subitem.path} key={subindex} className="link sublink" activeclassname="active">
                             <div className="submenu_text">{subitem.name}</div>
                         </NavLink>
@@ -166,10 +166,13 @@ const Sidebar = ({ nose }) => {
             <div style={{ width: isOpen ? "200px" : "60px" }} className="sidebar">
                 <div className="top">
                     <h1 style={{ display: isOpen ? "block" : "none" }} className="logo"><img src={logo} width="100" height="100" alt="logo" /></h1>
+                    
                     <div style={{ display: isOpen ? "0px" : "0px" }} className="bars" onClick={toggle}>
                         <FaBars />
                     </div>
                 </div>
+                <div><label style={{ display: isOpen ? "block" : "none" }}> {IDTipo}</label></div>
+                <div><label style={{ display: isOpen ? "block" : "none" }}> Usuario: {savedEmpleado.Usuario}</label></div>
                 {menuItems.map(renderMenuItem)}
             </div>
             <main>{nose}</main>

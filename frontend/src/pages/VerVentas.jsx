@@ -13,6 +13,15 @@ const VerVentas = () => {
     }, []);
 
     const fetchVentas = async () => {
+        let savedEmpleado = localStorage.getItem('empleado');
+        savedEmpleado = JSON.parse(savedEmpleado);
+        console.log(savedEmpleado);
+        if (!savedEmpleado.IDSucursal) {
+            console.error("No hay un empleado logueado");
+            alert("No hay un empleado de Sucursal logueado, inice sesión primero");
+            window.location.href = "./";
+            return;
+        }
         try {
             const response = await fetch(URI);
             const data = await response.json();

@@ -27,7 +27,14 @@ const ActualizarProveedor = () => {
   }, [IDProveedorBusqueda]);
 
   const fetchCiudades = async () => {
-    
+    let savedEmpleado = localStorage.getItem('empleado');
+    savedEmpleado = JSON.parse(savedEmpleado);
+        if (!savedEmpleado.IDCEDI) {
+            console.error("No hay un empleado logueado");
+            alert("No hay un empleado de CEDI logueado, inice sesión primero");
+            window.location.href = "./";
+            return;
+        }
 
     try {
       const response = await fetch(URI_Ciudades);
