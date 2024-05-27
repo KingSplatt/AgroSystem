@@ -1,0 +1,69 @@
+.Resumen {
+    display: flex;
+    margin-top: 100px;
+    margin-left: 100px;
+}
+
+.Inicio {
+    color: cyan;
+}
+
+.ResumenEncabezado {
+    color: cyan;
+}
+
+.OpcionesEncabezado {
+    color: cyan;
+}
+
+
+
+.Total-Productos,
+.Total-Proveedores,
+.Total-Compras {
+    margin: 50px;
+    border: 2px solid #ccc;
+    background-color: white;
+    padding: 50px 100px;
+    border-radius: 30px;
+    text-align: center;
+    font-weight: bold;
+    width: 200px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.titulo {
+    background-image: url('../Images/fondo.jpg');
+    height: 500;
+    background-size: cover;
+    background-position: center;
+
+}
+
+.Opciones {
+    display: flex;
+    margin-top: 100px;
+    margin-left: 100px;
+}
+
+.Productos,
+.Proveedores,
+.Compras,
+.Ventas,
+.Salir {
+    margin-top: 100px;
+    border: 2px solid #ccc;
+    background-color: white;
+    padding: 50px 30px;
+    border-radius: 30px;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    margin-top: 100px;
+    margin-right: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}

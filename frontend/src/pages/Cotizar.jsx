@@ -63,15 +63,16 @@ const Cotizar = () => {
         proveedores: proveedors,
         productos: productors
       };
+      console.log('estos son los datos:', cotizacion);
 
-      const response = await fetch('URI_Cotizacion', {
+      const response = await fetch(URI_Cotizacion, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(cotizacion)
       });
-      console.log(cotizacion);
+
       if (response.ok) {
         alert('Cotización enviada correctamente');
         // Reset state

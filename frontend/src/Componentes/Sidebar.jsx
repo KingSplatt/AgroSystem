@@ -5,6 +5,7 @@ import {
 } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 import '../Estilos/Sidebar.css';
+import logo from '../Images/3.jpg';
 
 const Sidebar = ({ nose }) => {
 
@@ -164,7 +165,7 @@ const Sidebar = ({ nose }) => {
         <div className="contenedor">
             <div style={{ width: isOpen ? "200px" : "60px" }} className="sidebar">
                 <div className="top">
-                    <h1 style={{ display: isOpen ? "block" : "none" }} className="logo">Logo</h1>
+                    <h1 style={{ display: isOpen ? "block" : "none" }} className="logo"><img src={logo} width="100" height="100" alt="logo" /></h1>
                     <div style={{ display: isOpen ? "0px" : "0px" }} className="bars" onClick={toggle}>
                         <FaBars />
                     </div>
