@@ -4,6 +4,7 @@ import "./App.css";
 import "./Estilos/InicioClientes.css";
 import InicioClientes from "./Pages/InicioClientes.jsx";
 import producto1 from "./Pages/producto1.jsx";
+import registrarse from "./Pages/registrarse.jsx";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
             element={
               <>
                 <Routes>
+                  <Route path="/registrarse" element={<registrarse />} />
                   <Route path="/producto1" element={<producto1 />} />
                 </Routes>
               </>

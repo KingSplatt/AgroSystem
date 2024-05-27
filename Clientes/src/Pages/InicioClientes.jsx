@@ -7,7 +7,7 @@ const mockProducts = [
   { id: 1, name: 'Herbicida Faena Fuerte', price: 49.99, image: 'https://avotools.com/cdn/shop/products/herbicida-faena-fuerte-360-1-litro-811830_800x.jpg?v=1606359467' },
   { id: 2, name: 'Herbicida Amina', price: 39.99, image: 'https://interagro.mx/wp-content/uploads/2020/03/AMINA-1L.jpg' },
   { id: 3, name: 'Herbicida Centella', price: 39.99, image: 'https://interagro.mx/wp-content/uploads/2020/03/CENTELLA-1L.jpg' },
-  // Añade más productos según sea necesario
+  // Se añaden productos según sea necesario.
 ];
 
 const InicioClientes =() =>
@@ -16,12 +16,13 @@ const InicioClientes =() =>
         <div className="Encabezado">
           <h2>
             Gallo Giro - Agroquimicos.
-              <div className="barraSuperior">
+              <div className="">
               <input className="input" type='search' placeholder="Buscar" />
               </div>
           </h2>
           <div>
             <nav className="centrado">
+              
               <a href="#" className="separacion">
               Inicio
               </a>
@@ -32,10 +33,13 @@ const InicioClientes =() =>
                 Productos
               </a>
               <a href="#" className="separacion">
-                Contacto
+                Carrito
+              </a>
+              <a href="/Registrarse" className="separacion">
+                Registrarse
               </a>
               <a href="#" className="separacion">
-                Carrito
+                Iniciar sesion
               </a>
             </nav>
           </div>

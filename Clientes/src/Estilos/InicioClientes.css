@@ -1,9 +1,10 @@
 
 .Encabezado {
+text-align: left;
 margin-top: 0%;
 padding-top: 0px;
 width: 100%;
-height: 100px;
+height: 140px;
 background-color: rgb(55, 202, 170);
 }
 a {
@@ -20,7 +21,7 @@ a:hover{
   }
 .separacion{
     padding-left: 50px;
-    padding-right: 100px;
+    padding-right: 80px;
 }
 
 .barraSuperior {
