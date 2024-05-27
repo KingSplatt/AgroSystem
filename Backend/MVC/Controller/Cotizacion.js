@@ -2,9 +2,10 @@ const pool = require('../Model/Connection');
 
 const VerCotizacion = async (req, res) => {
     try {
-        const [rows, fields] = await pool.query("SELECT  C.IDCotizacion, C.FechaCotizacion,group_concat(distinct DC.IDProducto ORDER BY C.IDCotizacion SEPARATOR ', ') AS Productos, DC.IDProveedor FROM Cotizacion AS C " +
+        const [rows, fields] = await pool.query("SELECT C.IDCotizacion, C.FechaCotizacion,group_concat(distinct DC.IDProducto ORDER BY C.IDCotizacion SEPARATOR ', ') AS Productos, " +
+            "group_concat(distinct DC.IDProveedor ORDER BY C.IDCotizacion SEPARATOR ', ') AS Proveedores FROM Cotizacion AS C " +
             "INNER JOIN DetalleCotizacion AS DC ON C.IDCotizacion = DC.IDCotizacion " +
-            "GROUP BY C.IDCotizacion, C.FechaCotizacion, DC.IDProveedor;");
+            "GROUP BY C.IDCotizacion, C.FechaCotizacion;");
         console.log('Cotizacion obtenidas', rows);
         res.status(201).send({ success: true, message: 'Cotizaciones consultadas existosamente', rows: rows });
     } catch (err) {

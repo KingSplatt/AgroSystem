@@ -72,7 +72,7 @@ const HistorialCotizacion = () => {
                                 <tr key={index}>
                                     <td>{cotizacion.IDCotizacion}</td>
                                     <td>{formatDate(cotizacion.FechaCotizacion)}</td>
-                                    <td>{cotizacion.IDProveedor}</td>
+                                    <td>{cotizacion.Proveedores}</td>
                                     <td>{cotizacion.Productos}</td>
                                 </tr>
                             ))}
