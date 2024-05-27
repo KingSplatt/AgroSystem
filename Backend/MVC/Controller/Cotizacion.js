@@ -13,6 +13,7 @@ const VerCotizacion = async (req, res) => {
     }
 }
 
+//agregar una cotizacion con N detalles cotiazaciones
 const AgregarCotizacion = async (req, res) => {
     console.log('Añadiendo cotizacion');
     console.log('Body:', req.body);
@@ -28,11 +29,13 @@ const AgregarCotizacion = async (req, res) => {
         const [query] = await pool.query('SELECT count(IDCotizacion)+1 as IDCotizacion FROM Cotizacion');
         const IDCotizacion = query[0].IDCotizacion;
 
-        //insertar la cotizacion
-        for (const proveedor of proveedores) {
-            for (const producto of productos) {
-                const insertSQL = 'INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDProveedor, IDProducto ) VALUES (?, ?, ?, ?)';
-                await pool.query(insertSQL, [IDCotizacion, FechaCotizacion, proveedor, producto]);
+        //inicia la cotizacion
+        await pool.query('INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion) VALUES (?,?)', [IDCotizacion, FechaCotizacion]);
+
+        //agregar los detalles de la cotizacion
+        for (let i = 0; i < productos.length; i++) {
+            for (let j = 0; j < proveedores.length; j++) {
+                await pool.query('INSERT INTO DetalleCotizacion (IDCotizacion, IDProducto, IDProveedor) VALUES (?,?,?)', [IDCotizacion, productos[i].IDProducto, proveedores[j].IDProveedor]);
             }
         }
         console.log('Cotizacion añadida');
