@@ -38,7 +38,7 @@ const AgregarProducto = async (req, res) => {
         res.status(201).send({ success: true, message: "Producto añadido" });
     } catch (err) {
         console.error('Error al añadir producto:', err);
-        res.status(500).send({ success: false, message: req.body.IDProveedor});
+        res.status(500).send({ success: false, message: req.body.IDProveedor });
     }
 };
 

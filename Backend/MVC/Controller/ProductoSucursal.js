@@ -16,7 +16,7 @@ const ObtenerProductoSucursal = async (req, res) => {
             [IDSucursal]
         );
 
-        res.status(200).send({ success: true, rows: rows, message: IDSucursal});
+        res.status(200).send({ success: true, rows: rows, message: IDSucursal });
     } catch (err) {
         console.error('Error al obtener productos:', err);
         res.status(500).send({ success: false, message: 'Error al obtener productos' });
@@ -55,16 +55,13 @@ const EliminarProductoSucursal = async (req, res) => {
     }
 };
 const ActualizarProductoSucursal = async (req, res) => {
+    console.log('Actualizar productojj:', req.body);
     try {
-        const { IDproducto, Nombre, Descripcion, PrecioUnitario, Descontinuado } = req.body;
+        const { Nombre, Descripcion, PrecioUnitario, Descontinuado } = req.body;
         const id = req.params.id; // Obtener el ID del producto desde el parámetro de la URL
         console.log('ID del producto:', id);
 
         //VALIDAR QUE LA ID SI EXISTA EN LA BASE DE DATOS
-
-        if (!Nombre || !Descripcion || !PrecioUnitario || !Descontinuado) {
-            return res.status(400).send({ success: false, message: 'Faltan campos por llenar' });
-        }
 
         // Aquí puedes ejecutar la consulta de actualización utilizando el ID obtenido
         const sql = 'UPDATE Producto SET Nombre = ?, Descripcion = ?, PrecioUnitario = ?, Descontinuado = ? WHERE IDProducto = ?';
