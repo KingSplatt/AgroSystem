@@ -1,159 +1,284 @@
-import React, { useEffect, useState } from "react";
-import { FaRegSave, FaRegTimesCircle } from "react-icons/fa";
+import React, { useEffect, useState } from 'react';
+import { FaRegSave, FaRegTimesCircle, FaSearch } from "react-icons/fa";
+import "../Estilos/ActProveedores.css";
 
-const ModificarProductos = () => {
-  const [productosOriginales, setProductosOriginales] = useState([]);
-  const [filas, setFilas] = useState([]);
-  const [busqueda, setBusqueda] = useState("");
-  const [productosModificados, setProductosModificados] = useState([]);
+const URI_Ciudades = "http://localhost:8080/ciudades";
 
-  const [empleado, setEmpleado] = useState(null);
+const ActualizarProveedor = () => {
+  const [Ciudades, setCiudades] = useState([]);
+  const [IDProveedorBusqueda, setIDProveedorBusqueda] = useState('');
+  const [proveedor, setProveedor] = useState({
+    IDProveedor: '',
+    Nombre: '',
+    Telefono: '',
+    Correo: '',
+    RFC: '',
+    CURP: '',
+    Legalizado: false,
+    IDCiudad: ''
+  });
 
   useEffect(() => {
-    fetchProductos();
-  }, []);
+    fetchCiudades();
+    if (IDProveedorBusqueda) {
+      console.log('Buscando proveedor con IDProveedor:', IDProveedorBusqueda);
+      fetchProveedor(IDProveedorBusqueda);
+    }
+  }, [IDProveedorBusqueda]);
 
-  const fetchProductos = async () => {
+  const fetchCiudades = async () => {
     try {
-      // Aqui se llama a la API para obtener los productos
-      const response = await fetch("http://localhost:8080/productoSucursal/${producto.IDproducto}");
-      const data = await response.json();
-      const rows = data.rows;
-      setProductosOriginales(rows);
-      setFilas(rows);
-
-      console.log("Productos: ", rows);
+      const response = await fetch(URI_Ciudades);
+      const Ciudades = await response.json();
+      const rows = Ciudades.rows;
+      if (Array.isArray(rows)) {
+        setCiudades(rows);
+      } else {
+        alert("Error al obtener las ciudades: la respuesta no es un array");
+      }
     } catch (error) {
-      console.error("Error al obtener los productos:", error);
+      alert("Error al obtener las ciudades:", error);
     }
   };
 
-  const manejarCambioInput = (id, campo, valor) => {
-    const filasActualizadas = filas.map((fila) =>
-      fila.IDproducto === id ? { ...fila, [campo]: valor } : fila
-    );
-    setFilas(filasActualizadas);
+  const fetchProveedor = async (IDProveedor) => {
+    try {
+      const response = await fetch(`http://localhost:8080/proveedores/${IDProveedor}`);
+      if (!response.ok) {
+        throw new Error('Proveedor no encontrado');
+      }
+      const data = await response.json();
+      const nuevoProveedor = {
+        IDProveedor: data.proveedor.IDProveedor,
+        Nombre: data.proveedor.Nombre || '',
+        Telefono: data.proveedor.Telefono || '',
+        Correo: data.proveedor.Correo || '',
+        RFC: data.proveedor.RFC || '',
+        CURP: data.proveedor.CURP || '',
+        Legalizado: data.proveedor.Legalizado === 1,
+        IDCiudad: data.proveedor.IDCiudad || ''
+      };
+      setProveedor(nuevoProveedor);
+      actualizarLabels(nuevoProveedor);
+    } catch (error) {
+      console.error('Error al obtener el proveedor:', error);
+      const limpiarProveedor = {
+        IDProveedor: '',
+        Nombre: '',
+        Telefono: '',
+        Correo: '',
+        RFC: '',
+        CURP: '',
+        Legalizado: false,
+        IDCiudad: ''
+      };
+      setProveedor(limpiarProveedor);
+      actualizarLabels(limpiarProveedor);
+    }
+  };
 
-    // Añadir el producto modificado a productosModificados
-    const productoModificado = filasActualizadas.find(fila => fila.IDproducto === id);
-    setProductosModificados(prev => {
-      const yaModificado = prev.find(prod => prod.IDproducto === id);
-      if (yaModificado) {
-        return prev.map(prod => prod.IDproducto === id ? productoModificado : prod);
-      } else {
-        return [...prev, productoModificado];
+  const actualizarLabels = (data) => {
+    const ciudadesBuscar = Ciudades.find(ciudad => ciudad.IDCiudad === data.IDCiudad);
+    const fields = ['Nombre', 'RFC', 'CURP', 'Telefono', 'Correo', 'Legalizado', 'IDCiudad'];
+    fields.forEach(field => {
+      const label = document.querySelector(`.valor-anterior-${field}`);
+      if (label) {
+        if (field === 'IDCiudad') {
+          label.textContent = ciudadesBuscar ? ciudadesBuscar.Nombre : '';
+        } else if (field === 'Legalizado') {
+          label.textContent = data[field] ? 'Sí' : 'No';
+        } else {
+          label.textContent = data[field] !== undefined ? data[field] : '';
+        }
       }
     });
   };
 
-  const guardarCambios = async () => {
-    console.log("Productos modificados: ", productosModificados);
+  const manejarCambioInput = (campo, valor) => {
+    console.log('campo:', campo, 'valor:', valor);
+    let newValue = valor;
+
+    if (campo === "Telefono") {
+      if (!/^\d*$/.test(valor) || valor.length > 10) {
+        return;
+      }
+    }
+
+    if (campo === "RFC" || campo === "CURP") {
+      newValue = valor.toUpperCase();
+    }
+
+    setProveedor({
+      ...proveedor,
+      [campo]: newValue
+    });
+  };
+
+  const manejarCambioCheckbox = () => {
+    setProveedor({
+      ...proveedor,
+      Legalizado: !proveedor.Legalizado
+    });
+  };
+
+  const guardarCambios = async (e) => {
+    e.preventDefault();
+    if (isNaN(proveedor.IDCiudad)) {
+      const ciudad = Ciudades.find(ciudad => ciudad.Nombre === proveedor.IDCiudad);
+      if (!ciudad) {
+        alert("Ciudad no encontrada");
+        return;
+      }
+      proveedor.IDCiudad = ciudad.IDCiudad;
+    }
+    proveedor.Legalizado = proveedor.Legalizado ? 1 : 0;
+
+    console.log(proveedor);
 
     try {
-      const promises = productosModificados.map(async (producto) => {
-        console.log("Actualizando producto:", producto.IDproducto);
-        const response = await fetch(`http://localhost:8080/productoSucursal/${producto.IDproducto}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(producto),
-        });
-        if (!response.ok) {
-          throw new Error(`Error al actualizar el producto ${producto.IDproducto}`);
-        }
-        return response.json();
+      const response = await fetch(`http://localhost:8080/proveedores`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(proveedor),
       });
 
-      const results = await Promise.all(promises);
-      console.log("Resultados de actualización:", results);
-      alert("Productos actualizados con éxito");
-      setProductosModificados([]); // Limpiar los productos modificados una vez guardados
-      fetchProductos(); // Recargar los productos después de guardar cambios
+      const data = await response.json();
+      console.log(data);
+      alert("Proveedor modificado correctamente");
     } catch (error) {
-      console.error("Error al guardar los cambios:", error);
-      alert("Ocurrió un error al guardar los cambios.");
+      console.error("Error en la petición de proveedores", error);
+      alert("Error al actualizar el proveedor:", error.message);
     }
+
+    cancelarCambios(e);
   };
 
-  const cancelarCambios = () => {
-    setFilas(productosOriginales);
-
-    setProductosModificados([]); // Limpiar los productos modificados
-  };
-
-  const manejarCambioBusqueda = (e) => {
-    setBusqueda(e.target.value);
-    filtrarProductos(e.target.value);
-  };
-
-  const filtrarProductos = (terminoBusqueda) => {
-    const productosFiltrados = productosOriginales.filter((producto) =>
-      producto.Nombre.toLowerCase().includes(terminoBusqueda.toLowerCase())
-    );
-    setFilas(productosFiltrados);
+  const cancelarCambios = (e) => {
+    e.preventDefault();
+    const limpiarProveedor = {
+      IDProveedor: '',
+      Nombre: '',
+      Telefono: '',
+      Correo: '',
+      RFC: '',
+      CURP: '',
+      Legalizado: false,
+      IDCiudad: ''
+    };
+    document.getElementById('Nombre').value = '';
+    document.getElementById('RFC').value = '';
+    document.getElementById('CURP').value = '';
+    document.getElementById('Telefono').value = '';
+    document.getElementById('Correo').value = '';
+    document.getElementById('Legalizado').checked = false;
+    document.getElementById('valor-anterior-ciudad-select').value = 'Seleccionar:';
+    setProveedor(limpiarProveedor);
+    actualizarLabels(limpiarProveedor);
+    setIDProveedorBusqueda('');
   };
 
   return (
-    <div className="IngresarProductos">
-      <h2>Modificar Productos</h2>
-      <div className="barraSuperior">
-        <input
-          type="search"
-          placeholder="Buscar producto"
-          value={busqueda}
-          onChange={manejarCambioBusqueda}
-        />
-        <button className="Busqueda">Buscar</button>
+    <div className="Formulario-Proveedor">
+      <h2>Actualizar proveedor</h2>
+      <div className="buscador">
+        <div className="grupo-buscador">
+          <label htmlFor="IDProveedorBusqueda"><FaSearch className='lupa' /></label>
+          <input
+            type="text"
+            id="IDProveedorBusqueda"
+            placeholder='IDProveedor del proveedor'
+            value={IDProveedorBusqueda}
+            onChange={(e) => setIDProveedorBusqueda(e.target.value)}
+          />
+        </div>
       </div>
-      <div className="AddTabla">
-        <table>
-          <thead>
-            <tr>
-              <th>Clave</th>
-              <th>Artículo</th>
-              <th>Descripción</th>
-              <th>Precio</th>
-              <th>Proveedor</th>
-              <th>Descontinuado</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filas.map((fila) => (
-              <tr key={fila.IDproducto}>
-                <td>{fila.IDproducto}</td>
-                <td>{fila.Nombre}</td>
-                <td>{fila.Descripcion}</td>
-                <td>
-                  <input
-                    type="number"
-                    value={fila.PrecioUnitario}
-                    onChange={(e) =>
-                      manejarCambioInput(fila.IDproducto, "PrecioUnitario", e.target.value)
-                    }
-                  />
-                </td>
-                <td>{fila.ProveedorN}</td>
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={fila.Descontinuado === 1}
-                    onChange={(e) =>
-                      manejarCambioInput(fila.IDproducto, "Descontinuado", e.target.checked ? 1 : 0)
-                    }
-                  />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="Datos-del-usuario">
+        <form className="Datos-del-usuario-form">
+          <h3>Datos generales</h3>
+          <div className="grupo1">
+            <label htmlFor="Nombre">Nombre:</label>
+            <label className="valor-anterior-Nombre"></label>
+            <input
+              type="text"
+              id="Nombre"
+              placeholder={proveedor.Nombre}
+              onChange={(e) => manejarCambioInput('Nombre', e.target.value)}
+            />
+            <label htmlFor="RFC">RFC:</label>
+            <label className="valor-anterior-RFC"></label>
+            <input
+              type="text"
+              id="RFC"
+              placeholder={proveedor.RFC}
+              onChange={(e) => manejarCambioInput('RFC', e.target.value)}
+            />
+            <label htmlFor="CURP">CURP:</label>
+            <label className="valor-anterior-CURP"></label>
+            <input
+              type="text"
+              id="CURP"
+              placeholder={proveedor.CURP}
+              onChange={(e) => manejarCambioInput('CURP', e.target.value)}
+            />
+          </div>
+        </form>
       </div>
+      <div className="Datos-de-contacto">
+        <form className="Datos-de-contacto-form">
+          <h3>Datos de contacto</h3>
+          <div className="grupo2">
+            <label htmlFor="Telefono">Teléfono:</label>
+            <label className="valor-anterior-Telefono"></label>
+            <input
+              type="tel"
+              id="Telefono"
+              placeholder={proveedor.Telefono}
+              onChange={(e) => manejarCambioInput('Telefono', e.target.value)}
+            />
+            <label htmlFor="Correo">Correo:</label>
+            <label className="valor-anterior-Correo"></label>
+            <input
+              type="email"
+              id="Correo"
+              placeholder={proveedor.Correo}
+              onChange={(e) => manejarCambioInput('Correo', e.target.value)}
+            />
+          </div>
+        </form>
+      </div>
+      <div className="Otros-datos">
+        <form className="Otros-datos-form">
+          <h3>Otros datos</h3>
+          <div className="grupo3">
+            <label htmlFor="Legalizado">Estado de legalización:</label>
+            <label className="valor-anterior-Legalizado">{proveedor.Legalizado ? 'Sí' : 'No'}</label>
+            <input
+              type="checkbox"
+              id="Legalizado"
+              checked={proveedor.Legalizado}
+              onChange={manejarCambioCheckbox}
+            />
+            <label htmlFor="IDCiudad">Ciudad:</label>
+            <label className="valor-anterior-IDCiudad"></label>
 
-      <div className="CyG">
-        <button className="Cancel" onClick={cancelarCambios}>
+            <select id="valor-anterior-ciudad-select" onChange={(e) => manejarCambioInput('IDCiudad', e.target.value)} value={proveedor.IDCiudad}>
+              <option>Seleccionar: </option>
+              {Ciudades.map((ciudad, index) => (
+                <option key={index} value={ciudad.Nombre}>
+                  {ciudad.Nombre}
+                </option>
+              ))}
+            </select>
+          </div>
+        </form>
+      </div>
+      <div className="Cancelar-y-Guardar">
+        <button className="Cancelar" onClick={cancelarCambios}>
           <FaRegTimesCircle /> Cancelar
         </button>
-        <button className="Save" onClick={guardarCambios}>
+        <button className="Guardar" onClick={guardarCambios}>
           <FaRegSave /> Guardar
         </button>
       </div>
@@ -161,4 +286,4 @@ const ModificarProductos = () => {
   );
 };
 
-export default ModificarProductos;
+export default ActualizarProveedor;

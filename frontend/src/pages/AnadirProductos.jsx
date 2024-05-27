@@ -1,23 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { FaPlus, FaRegSave, FaRegTimesCircle, FaTrash } from "react-icons/fa";
 import "../Estilos/AddProductos.css";
-
+//MODIFICADO PARA QUE SE AÑADA LOS PRODUCTOS AL CEDI, NO A LA SUCURSAL ESA DESPUES XD
 const URI_Categorias = "http://localhost:8080/categorias";
 const URI_Proveedores = "http://localhost:8080/proveedores";
 
 const AnadirProductos = () => {
   const [Categorias, setCategorias] = useState([]);
   const [Proveedores, setProveedores] = useState([]);
+  const [empleado, setEmpleado] = useState(null);
   const [filas, setFilas] = useState([
     { IDProducto: 1, Nombre: "", Descripcion: "", PrecioUnitario: "", Descontinuado: "", IDProveedor: "", IDCategoria: "" }
   ]);
 
   useEffect(() => {
-    fetchCategorias();
-    fetchProveedores();
-  }, []);
+    const savedEmpleado = localStorage.getItem('empleado');
+    if (savedEmpleado) {
+        setEmpleado(JSON.parse(savedEmpleado));
+    }
+    console.log("Empleado (inicial):", savedEmpleado);
+}, []);
+
+  useEffect(() => {
+    if (empleado) {
+        console.log("Empleado:", empleado);
+        fetchCategorias();
+        fetchProveedores();
+    }
+}, [empleado]);
 
   const fetchCategorias = async () => {
+    if (!empleado) return;
     try {
       const responseC = await fetch(URI_Categorias);
       const Categorias = await responseC.json();
@@ -32,6 +45,7 @@ const AnadirProductos = () => {
   };
 
   const fetchProveedores = async () => {
+    if (!empleado) return;
     try {
       const responseP = await fetch(URI_Proveedores);
       const Proveedores = await responseP.json();
@@ -46,6 +60,7 @@ const AnadirProductos = () => {
   };
 
   const agregarFila = () => {
+  
     const nuevaFila = { IDProducto: Date.now(), Nombre: "", Descripcion: "", PrecioUnitario: "", Descontinuado: "", IDProveedor: "", IDCategoria: "" };
     setFilas([...filas, nuevaFila]);
   };
@@ -61,6 +76,7 @@ const AnadirProductos = () => {
     setFilas(filasActualizadas);
   };
   const Guardar  = async (e) => {
+    console.log(empleado.IDCEDI);
     let count = 0;
     for (let i = 0; i < filas.length; i++) {
       if(filas[i].Nombre === "" || filas[i].Descripcion === "" || filas[i].PrecioUnitario === "" || filas[i].Descontinuado === "" || filas[i].IDProveedor === "" || filas[i].IDCategoria === ""){
@@ -88,7 +104,29 @@ const AnadirProductos = () => {
         alert("Error al añadir producto:", error);
         count++;
       }
+      try {
+        const valorFechaSurtido = document.getElementById("fecha-surtido").value;
+        const valorFechaCaducidad = document.getElementById("fecha-caducidad").value;
+        console.log(valorFechaSurtido);
+        console.log(valorFechaCaducidad);
+        const cuerpo = {valorFechaSurtido: valorFechaSurtido,valorFechaCaducidad:valorFechaCaducidad,IDProducto: filas[i].IDProducto, IDCedi: empleado.IDCEDI};
+        console.log(cuerpo)
+        const response = await fetch("http://localhost:8080/productosCEDI/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(cuerpo),
+        });
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error("Error al añadir producto:", error);
+        alert("Error al añadir producto:", error);
+        count++;
+      }
     }
+
     if(count === 0){
           alert("Productos añadidos correctamente");
           setFilas([{ IDProducto: 1, Nombre: "", Descripcion: "", PrecioUnitario: "", Descontinuado: "", IDProveedor: "", IDCategoria: "" }]);
@@ -119,6 +157,8 @@ const AnadirProductos = () => {
                 <th>Proveedor</th>
                 <th>Categoria</th>
                 <th>Descontinuado</th>
+                <th>Fecha de Surtido</th>
+                <th>Fecha de Caducidad</th>
                 <th>Eliminar</th>
               </tr>
             </thead>
@@ -180,11 +220,21 @@ const AnadirProductos = () => {
 
 
                   </td>
+                  <td>
+                    <input type="date" id="fecha-surtido" name="fecha">
+                      </input>
+
+                  </td>
+                  <td>
+                    <input type="date" id="fecha-caducidad" name="fecha">
+                      </input>
+
+                  </td>
                   <td><button onClick={() => eliminarFila(fila.IDProducto)}><FaTrash /></button></td>
                 </tr>
               ))}
               <tr>
-                <td colSpan="7" style={{ textAlign: 'center' }}>
+                <td colSpan="9" style={{ textAlign: 'center' }}>
                   <button className="Add" onClick={agregarFila}><FaPlus /> Añadir compra</button>
                 </td>
               </tr>

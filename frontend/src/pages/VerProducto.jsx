@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { FaExchangeAlt, FaPlus } from "react-icons/fa";
 import "../Estilos/Productos.css";
 
-const URI = "http://localhost:8080/productosSucursal";
-
 const VerProducto = () => {
     const [productos, setProductos] = useState([]);
     const [empleado, setEmpleado] = useState(null);
@@ -25,16 +23,29 @@ const VerProducto = () => {
 
     const fetchProductos = async () => {
         if (!empleado) return; // Verificación adicional
-        console.log("Empleado (fetchProductos):", empleado.IDSucursal);
+        let url = '';
+        if (empleado.IDSucursal) {
+            url = `http://localhost:8080/productosSucursal/${empleado.IDSucursal}`;
+            console.log("Fetching productos from sucursal:", empleado.IDSucursal);
+        } else if (empleado.IDCEDI) {
+            url = `http://localhost:8080/productosCEDI/${empleado.IDCEDI}`;
+            console.log("Fetching productos from CEDI:", empleado.IDCEDI);
+        } else {
+            console.error("Empleado no tiene ni IDSucursal ni IDCEDI");
+            return;
+        }
+
         try {
-            const response = await fetch(`http://localhost:8080/productosSucursal/${empleado.IDSucursal}`);
+            const response = await fetch(url);
             const data = await response.json();
-            const rows = data.rows;
-
-            console.log("Data:", data.rows);
-
+            let rows = data.rows;
+            if(empleado.IDCEDI){
+                rows = rows[0];
+            }
+            console.log("Data:", rows);
             // Asegúrate de que `data` es un array
             if (Array.isArray(rows)) {
+
                 setProductos(rows);
             } else {
                 console.error("La respuesta no es un array", data);
@@ -53,9 +64,9 @@ const VerProducto = () => {
     }
 
     const BusquedaProductos = productos.filter((producto) => (
-        producto.IDproducto?.toString().toLowerCase().includes(buscar.toLowerCase()) || 
+        producto.IDProducto?.toString().toLowerCase().includes(buscar.toLowerCase()) || 
         producto.Nombre.toLowerCase()?.includes(buscar.toLowerCase()) || 
-        producto.ProveedorN.toLowerCase()?.includes(buscar.toLowerCase())
+        producto.NombreProveedor.toLowerCase()?.includes(buscar.toLowerCase())
     ));
 
     return (
@@ -64,7 +75,7 @@ const VerProducto = () => {
                 <h2>Productos</h2>
                 {empleado && (
                     <>
-                        <h3>Sucursal {empleado.IDSucursal}</h3>
+                        <h3>{empleado.IDSucursal ? `Sucursal ${empleado.IDSucursal}` : `CEDI ${empleado.IDCEDI}`}</h3>
                         <div>
                             <p>Empleado: {empleado.Nombre} </p>                       
                             <p>Puesto: {empleado.Puesto}</p>
@@ -94,13 +105,13 @@ const VerProducto = () => {
                         <tbody>
                             {BusquedaProductos.map((producto, index) => (
                                 <tr key={index}>
-                                    <td>{producto.IDproducto}</td>
+                                    <td>{producto.IDProducto}</td>
                                     <td>{producto.Nombre}</td>
                                     <td>{producto.Descripcion}</td>
                                     <td>{producto.PrecioUnitario}</td>
                                     <td>{producto.Stock}</td>
                                     <td>{producto.Descontinuado ? "Sí" : "No"}</td>
-                                    <td>{producto.ProveedorN}</td>
+                                    <td>{producto.NombreProveedor}</td>
                                 </tr>
                             ))}
                         </tbody>

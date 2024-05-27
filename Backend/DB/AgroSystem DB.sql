@@ -56,8 +56,9 @@ CREATE TABLE Empleado (
     FechaInicio datetime not null,
     RFC varchar(13) not null,
     CURP varchar(18) not null,
-    IDSucursal int not null,
-    IDCiudad int not null
+    IDSucursal int null,
+    IDCiudad int not null,
+    IDCEDI int null --Añadi el respectivo constraint abajo
 );
 
 CREATE TABLE Sucursal (
@@ -183,6 +184,13 @@ ALTER TABLE Categoria ADD PRIMARY KEY PK_Categoria (IDCategoria);
 ALTER TABLE Estado ADD PRIMARY KEY PK_Estado (IDEstado);
 
 ALTER TABLE Ciudad ADD PRIMARY KEY PK_Ciudad (IDCiudad);
+
+-- IDCEDI o IDSucursal
+ALTER TABLE Empleado
+ADD CONSTRAINT CHK_Empleado_IDSucursal_IDCEDI CHECK (
+    (IDSucursal IS NOT NULL AND IDCEDI IS NULL) OR 
+    (IDSucursal IS NULL AND IDCEDI IS NOT NULL)
+);
 
 -- LLAVES FORANEAS
 

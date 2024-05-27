@@ -46,6 +46,13 @@ function Login() {
       // Guardar los datos del empleado en el localStorage
       localStorage.setItem('empleado', JSON.stringify(empleado));
       console.log("Empleado:", empleado);
+      if(empleado.IDSucursal){
+        console.log("ID de la sucursal:", empleado.IDSucursal);
+
+      }
+      if(empleado.IDCEDI){
+        console.log("ID del CEDI:", empleado.IDCEDI);
+      }
       // Navegar a la siguiente página
       navigate('/App');
     } else {
