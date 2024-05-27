@@ -4,11 +4,13 @@ import '../Estilos/Cotizar.css';
 
 const URL = 'http://localhost:8080/productosCEDI';
 const URI = 'http://localhost:8080/proveedores';
+const URI_Cotizacion = 'http://localhost:8080/cotizaciones';
+
 
 const Cotizar = () => {
   const [nuevoProveedor, setNuevoProveedor] = useState('');
   const [nuevoProducto, setNuevoProducto] = useState('');
-
+  const savedEmpleado = JSON.parse(localStorage.getItem('empleado'));
   const [proveedores, setProveedores] = useState([]);
   const [productos, setProductos] = useState([]);
 
@@ -40,9 +42,9 @@ const Cotizar = () => {
 
   const fetchProductos = async () => {
     try {
-      const response = await fetch(URL);
+      const response = await fetch(`http://localhost:8080/productosCEDI/${savedEmpleado.IDCEDI}`);
       const data = await response.json();
-      const rows = data.rows;
+      const rows = data.rows[0];
 
       if (Array.isArray(rows)) {
         setProductos(rows);
@@ -55,6 +57,40 @@ const Cotizar = () => {
       alert('Error al obtener los datos de los productos');
     }
   };
+  const enviarCotizacion = async () => {
+    try {
+      const cotizacion = {
+        proveedores: proveedors,
+        productos: productors
+      };
+
+      const response = await fetch('URI_Cotizacion', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(cotizacion)
+      });
+      console.log(cotizacion);
+      if (response.ok) {
+        alert('Cotización enviada correctamente');
+        // Reset state
+        setNuevoProveedor('');
+        setNuevoProducto('');
+        setProveedors([]);
+        setProductors([]);
+      } else {
+        console.error('Error al enviar la cotización');
+        alert('Error al enviar la cotización');
+      }
+    } catch (error) {
+      console.error('Error al enviar la cotización', error);
+      alert('Error al enviar la cotización');
+    }
+  };
+
+  // Call enviarCotizacion when the "Guardar" button is clicked
+  <button className="Save" onClick={enviarCotizacion}><FaRegSave /> Guardar</button>
 
   const handleProveedorChange = (event) => {
     setNuevoProveedor(event.target.value);
@@ -149,7 +185,7 @@ const Cotizar = () => {
               ))}
             </div>
           </div>
-          <div>
+          <div className='Tablas'>
             <h3>Productos: </h3>
             <table className='Tabla'>
               <thead>
@@ -179,7 +215,7 @@ const Cotizar = () => {
       </div>
       <div className="CyG">
         <button className="Cancel" onClick={cancelar}><FaRegTimesCircle /> Cancelar</button>
-        <button className="Save"><FaRegSave /> Guardar</button>
+        <button className="Save" onClick={enviarCotizacion}><FaRegSave /> Guardar</button>
       </div>
     </div>
   );
