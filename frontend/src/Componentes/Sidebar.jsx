@@ -96,7 +96,7 @@ const Sidebar = ({ nose }) => {
         }
     ];
 
-    // Filter the menu items if savedEmpleado has IDSucursal
+    /*
     if (savedEmpleado && savedEmpleado.IDSucursal) {
         menuItems = menuItems.map(item => {
             if (item.name === 'Productos') {
@@ -105,6 +105,34 @@ const Sidebar = ({ nose }) => {
             return item;
         });
     }
+    */
+
+    if (savedEmpleado && savedEmpleado.IDCEDI) {
+        menuItems = menuItems.filter(item => {
+            if (item.name === 'Productos') {
+                item.submenu = item.submenu.filter(subitem => subitem.name !== 'Añadir Productos' && subitem.name !== 'Modificar Productos');
+                item.submenu = item.submenu.filter(subitem => subitem.name !== 'Modificar Productos');
+            }
+            return item;
+        });
+    }
+    if (savedEmpleado && savedEmpleado.IDCEDI) {
+        menuItems = menuItems.filter(item => item.name !== 'Clientes');
+    }
+
+    if (savedEmpleado && savedEmpleado.IDCEDI) {
+        menuItems = menuItems.filter(item => item.name !== 'Ventas');
+    }
+
+    if (savedEmpleado && savedEmpleado.IDSucursal) {
+        menuItems = menuItems.filter(item => item.name !== 'Cotizar');
+    }
+
+    if (savedEmpleado && savedEmpleado.IDSucursal) {
+        menuItems = menuItems.filter(item => item.name !== 'Compras');
+    }
+
+
 
     const renderMenuItem = (item, index) => {
         const isExpanded = expandedMenuIndex === index;
