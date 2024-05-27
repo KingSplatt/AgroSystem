@@ -123,9 +123,13 @@ CREATE TABLE Proveedor (
 
 CREATE TABLE Cotizacion (
 	IDCotizacion int not null,
-    FechaCotizacion date not null,
+    FechaCotizacion date not null
+);
+
+CREATE TABLE DetalleCotizacion(
+	IDProducto int not null,
     IDProveedor int not null,
-    IDProducto int not null
+    IDCotizacion int not null
 );
 
 CREATE TABLE ProductoSucursal(
@@ -133,8 +137,6 @@ CREATE TABLE ProductoSucursal(
 	FechaCaducidad datetime not null,
 	IDSucursal int not null,
 	IDProducto int not null
-
-
 );
 
 CREATE TABLE ProductoCEDI (
@@ -159,6 +161,7 @@ CREATE TABLE ProductoProveedor (
     IDProveedor int not null,
     IDProducto int not null
 );
+
 -- LLAVES PRIMARIAS
 
 ALTER TABLE Cotizacion ADD PRIMARY KEY PK_Cotizacion (IDCotizacion);
@@ -194,9 +197,10 @@ ADD CONSTRAINT CHK_Empleado_IDSucursal_IDCEDI CHECK (
 
 -- LLAVES FORANEAS
 
-ALTER TABLE Cotizacion
+ALTER TABLE DetalleCotizacion
 ADD CONSTRAINT FK_Cotizacion_Producto FOREIGN KEY (IDProducto) REFERENCES Producto (IDProducto),
-ADD CONSTRAINT FK_Cotizacion_Proveedor FOREIGN KEY (IDProveedor) REFERENCES Proveedor (IDProveedor);
+ADD CONSTRAINT FK_Cotizacion_Proveedor FOREIGN KEY (IDProveedor) REFERENCES Proveedor (IDProveedor),
+ADD CONSTRAINT FK_DET_Cotizacion FOREIGN KEY(IDCotizacion) REFERENCES Cotizacion (IDCotizacion);
 
 ALTER TABLE ProductoProveedor
 ADD CONSTRAINT FK_ProductoProveedor_Proveedor FOREIGN KEY (IDProveedor) REFERENCES Proveedor (IDProveedor),
@@ -297,4 +301,5 @@ ALTER TABLE DetalleVenta
 MODIFY COLUMN PrecioUnitario DECIMAL(10, 2) DEFAULT 0,
 MODIFY COLUMN Cantidad INT DEFAULT 1;
 
- -- drop database agrosystem;
+-- use sys;
+-- drop database agrosystem;

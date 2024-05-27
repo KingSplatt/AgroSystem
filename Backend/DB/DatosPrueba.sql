@@ -152,16 +152,16 @@ INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontin
 VALUES(10, 'Neemix 4.5', 'Insecticida orgánico a base de aceite de neem', 2600, 0, 10, 10);
 
 -- Insercion para la tabla Cotizacion
-INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDProveedor, IDProducto) VALUES (1,'2023-10-10', 1, 1);
-INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDProveedor, IDProducto) VALUES (2, '2023-11-11', 2, 2);
-INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDProveedor, IDProducto) VALUES (3, '2023-12-5', 3, 3);
-INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDProveedor, IDProducto) VALUES (4, '2024-01-14', 4, 4);
-INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDProveedor, IDProducto) VALUES (5, '2024-01-15', 5, 5);
-INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDProveedor, IDProducto) VALUES (6, '2024-01-20', 6, 6);
-INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDProveedor, IDProducto) VALUES (7, '2024-02-10', 7, 3);
-INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDProveedor, IDProducto) VALUES (8, '2024-02-11', 3, 7);
-INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDProveedor, IDProducto) VALUES (9, '2024-02-20', 9,  6);
-INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDProveedor, IDProducto) VALUES (10, '2024-03-01', 10, 4);
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion) VALUES (1,'2023-10-10');
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion) VALUES (2, '2023-11-11');
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion) VALUES (3, '2023-12-5');
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion) VALUES (4, '2024-01-14');
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion) VALUES (5, '2024-01-15');
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion) VALUES (6, '2024-01-20');
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion) VALUES (7, '2024-02-10');
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion) VALUES (8, '2024-02-11');
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion) VALUES (9, '2024-02-20');
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion) VALUES (10, '2024-03-01');
 
 -- Insercion de ejemplo a la tabla CEDI
 
@@ -189,7 +189,7 @@ INSERT INTO Sucursal (IDSucursal, Correo, Telefono, IDCedi, IDCiudad) VALUES (9,
 INSERT INTO Sucursal (IDSucursal, Correo, Telefono, IDCedi, IDCiudad) VALUES (10, 'sucursal10@example.com', '3691472583', 10, 1); 
 
 -- Inserciones de ejemplo a la tabla Empleado
---empleados Sucursal
+-- empleados Sucursal
 INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad) 
 VALUES (1, 'Juan', 'García', 'López', 'juan.garcia@example.com', '1234567890', 'Vendedor', 'juangarcia', 'password123', '1990-05-10', '2022-01-15', 'GARJ900510XXX', 'GALJ900510HDFLRN09', 1, 1);
 
@@ -220,7 +220,6 @@ VALUES (9, 'Javier', 'González', 'López', 'javier.gonzalez@example.com', '1473
 INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDSucursal, IDCiudad) 
 VALUES (10, 'Sofía', 'Pérez', 'García', 'sofia.perez@example.com', '3691472583', 'Gerente', 'sofiaperez', 'passwordstu', '1987-06-28', '2022-10-10', 'PEGM870628XXX', 'PEGM870628MDFLRN10', 10, 1);
 -- Empleados en CEDI
--- Empleados en CEDI
 INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDCEDI, IDCiudad) 
 VALUES (11, 'José', 'Ramírez', 'Núñez', 'jose.ramirez@example.com', '1231231234', 'Operador', 'joseramirez', 'password12345', '1985-03-15', '2022-01-20', 'RAMJ850315XXX', 'RANJ850315HDFLRN01', 1, 1);
 
@@ -249,8 +248,7 @@ INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Corr
 VALUES (19, 'Juan', 'Pérez', 'Sánchez', 'juan.perez@example.com', '1091091098', 'Logística', 'juanperez', 'pass2wordpqr', '1991-04-14', '2022-09-14', 'PEJH910414XXX', 'PEJH910414HDFLRN09', 9, 3);
 
 INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDCEDI, IDCiudad) 
-VALUES (20, 'Sofía', 'González', 'Ramírez', 'sofia.gonzalez@example.com', '2102102101', 'Jefe de Almacén', 'sofiagonzalez', 'passwordstu1', '1995-11-22', '2022-10-15', 'GORR951122XXX', 'GORN951122MDFLRN10', 10, 1);
-
+VALUES (20, 'Sofía', 'González', 'Ramírez', 'sofia.gonzalez@example.com', '2102102101', 'Jefe de Almacén', 'sofiagonzalez', 'passwordstu1', '1995-11-22', '2022-10-15', 'GORR951122XXX', 'GORN951122MDFLRN10', 10, 1);
 
 -- Inserciones de ejemplo a la tabla Venta
 INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
@@ -332,7 +330,7 @@ INSERT INTO DetalleCompra (Cantidad, PrecioUnitario, IDCompra, IDProducto) VALUE
 INSERT INTO DetalleCompra (Cantidad, PrecioUnitario, IDCompra, IDProducto) VALUES (55, 45.75, 10, 10);
 
 -- Inserciones de ejemplo a la tabla ProductoSucursal
-INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 1, 1);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 1, 5);
 INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-02 09:00:00', '2024-12-31 23:59:59', 2, 2);
 INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-03 10:00:00', '2024-12-31 23:59:59', 3, 3);
 INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-04 11:00:00', '2024-12-31 23:59:59', 4, 4);
@@ -346,7 +344,7 @@ INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProduc
 -- Inserciones de ejemplo a la tabla ProductoCEDI
 INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-01', '2024-12-31', 1, 1);
 INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-02', '2024-12-31', 2, 2);
-INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-03', '2024-12-31', 3, 3);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-03', '2024-12-31', 4, 3);
 INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-04', '2024-12-31', 4, 4);
 INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-05', '2024-12-31', 5, 5);
 INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-06', '2024-12-31', 6, 6);
@@ -354,3 +352,8 @@ INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALU
 INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-08', '2024-12-31', 8, 8);
 INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-09', '2024-12-31', 9, 9);
 INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-10', '2024-12-31', 10, 10);
+
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (2,1,1);
+
+SELECT DISTINCT DC.IDProducto, COUNT(DC.IDProducto) as CANTIDAD FROM COTIZACION AS C INNER JOIN DetalleCotizacion AS DC ON C.IDCotizacion = DC.IDCotizacion
+WHERE C.IDCotizacion = 1 GROUP BY DC.IDProducto;

@@ -56,8 +56,8 @@ const HistorialCotizacion = () => {
                     />
                 </div>
 
-                <div className="tabla">
-                    <table>
+                <div className="tablas">
+                    <table className="tabla">
                         <thead>
                             <tr>
                                 <th>Numero de cot.</th>
@@ -73,7 +73,7 @@ const HistorialCotizacion = () => {
                                     <td>{cotizacion.IDCotizacion}</td>
                                     <td>{formatDate(cotizacion.FechaCotizacion)}</td>
                                     <td>{cotizacion.IDProveedor}</td>
-                                    <td>{cotizacion.IDProducto}</td>
+                                    <td>{cotizacion.Productos}</td>
                                 </tr>
                             ))}
                         </tbody>

@@ -1,0 +1,23 @@
+.tabla thead {
+    padding: 50px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.tabla tbody {
+    padding: 50px;
+    text-align: center;
+}
+
+.tabla th {
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #f2f2f2;
+}
+
+.tabla td {
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
