@@ -7,6 +7,9 @@ import { NavLink } from 'react-router-dom';
 import '../Estilos/Sidebar.css';
 
 const Sidebar = ({ nose }) => {
+
+    const savedEmpleado = JSON.parse(localStorage.getItem('empleado'));
+    console.log("Empleado (inicial):", savedEmpleado);
     const [isOpen, setIsOpen] = useState(false);
     const [expandedMenuIndex, setExpandedMenuIndex] = useState(null);
 
@@ -26,7 +29,7 @@ const Sidebar = ({ nose }) => {
         }
     };
 
-    const menuItems = [
+    let menuItems = [
         {
             name: 'Inicio',
             path: '/inicio',
@@ -93,15 +96,22 @@ const Sidebar = ({ nose }) => {
         }
     ];
 
+    // Filter the menu items if savedEmpleado has IDSucursal
+    if (savedEmpleado && savedEmpleado.IDSucursal) {
+        menuItems = menuItems.map(item => {
+            if (item.name === 'Productos') {
+                item.submenu = item.submenu.filter(subitem => subitem.name !== 'Añadir Productos' && subitem.name !== 'Modificar Productos');
+            }
+            return item;
+        });
+    }
+
     const renderMenuItem = (item, index) => {
         const isExpanded = expandedMenuIndex === index;
         if (item.submenu) {
             return (
-
                 <div key={index}>
-
                     <div className="link" onClick={() => toggleSubMenu(index)}>
-
                         <div className="icon">{item.icon}</div>
                         <div style={{ display: isOpen ? "block" : "none" }} className="link_text">{item.name}</div>
                     </div>
@@ -124,7 +134,6 @@ const Sidebar = ({ nose }) => {
 
     return (
         <div className="contenedor">
-
             <div style={{ width: isOpen ? "200px" : "60px" }} className="sidebar">
                 <div className="top">
                     <h1 style={{ display: isOpen ? "block" : "none" }} className="logo">Logo</h1>
@@ -133,7 +142,6 @@ const Sidebar = ({ nose }) => {
                     </div>
                 </div>
                 {menuItems.map(renderMenuItem)}
-
             </div>
             <main>{nose}</main>
         </div>
