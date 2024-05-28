@@ -35,7 +35,8 @@ const AnadirProveedor = () => {
 
   //funcion para obtener ciudades
   const fetchCiudades = async () => {
-    const savedEmpleado = localStorage.getItem('empleado');
+    let savedEmpleado = localStorage.getItem('empleado');
+    savedEmpleado = JSON.parse(savedEmpleado);
         if (!savedEmpleado.IDCEDI) {
             console.error("No hay un empleado logueado");
             alert("No hay un empleado de CEDI logueado, inice sesión primero");

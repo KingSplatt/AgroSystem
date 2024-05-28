@@ -134,6 +134,7 @@ const IngresarProductos = () => {
             });
         }
         
+        
     });    // fetch para guardar los productos
   };
 
