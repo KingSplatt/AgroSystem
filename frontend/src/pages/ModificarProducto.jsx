@@ -19,6 +19,8 @@ const ModificarProductos = () => {
       const response = await fetch("http://localhost:8080/productos");
       const data = await response.json();
       const rows = data.rows;
+      console.log("Productos: ", rows);
+
       setProductosOriginales(rows);
       setFilas(rows);
 

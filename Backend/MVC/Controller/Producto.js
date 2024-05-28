@@ -43,5 +43,22 @@ const AgregarProducto = async (req, res) => {
 };
 
 
+//ver productos
+const VerProductos = async (req, res) => {
 
-module.exports = { AgregarProducto };
+    try {
+        const [rows] = await pool.query('SELECT IDproducto, Nombre, Descripcion, PrecioUnitario, Descontinuado FROM Producto '
+        );
+        res.status(200).send({ success: true, rows: rows });
+        console.log('Producjstos:', rows);
+    }
+    catch (err) {
+        console.error('Error al obtener productos:', err);
+        res.status(500).send({ success: false, message: 'Error al obtener productos' });
+    }
+
+};
+
+
+
+module.exports = { AgregarProducto, VerProductos };
