@@ -3,12 +3,16 @@ import React from 'react';
 import { FaUser } from 'react-icons/fa';
 import '../Estilos/Topbar.css';
 
-const Topbar = ({ usuario }) => {
+
+const Topbar = () => {
+
+    const savedEmpleado = JSON.parse(localStorage.getItem('empleado'));
+
     return (
         <div className="topbar">
             <div className="usuario">
                 <FaUser className="user-icon" />
-                <p><i>{usuario}</i></p>
+                <p><i>{savedEmpleado.Usuario}</i></p>
             </div>
         </div>
     );
