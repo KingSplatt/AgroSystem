@@ -6,7 +6,7 @@ const Logout = () => {
             <div className="logat">
                 <h1>¿Estas seguro que deseas salir?</h1>
                 <h2>Como consecuencia se cerrara tu sesion y tendras que iniciar sesion de nuevo</h2>
-                <div className="botones">
+                <div className="botonesl">
                     <button onClick={() => {
                         alert("Sesión cerrada");
                         localStorage.clear();

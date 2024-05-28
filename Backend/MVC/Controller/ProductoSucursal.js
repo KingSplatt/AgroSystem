@@ -7,8 +7,8 @@ const ObtenerProductoSucursal = async (req, res) => {
     try {
         // Obtener ID de los productos de la sucursal
         const [rows] = await pool.query(
-            'SELECT DISTINCT PS.IDproducto, P.Nombre, P.Descripcion, P.PrecioUnitario, P.Descontinuado, ' +
-            'Pr.Nombre AS ProveedorN, PS.IDSucursal, COUNT(PS.IDProducto) AS Stock ' +
+            'SELECT DISTINCT PS.IDProducto, P.Nombre, P.Descripcion, P.PrecioUnitario, P.Descontinuado, ' +
+            'Pr.Nombre AS NombreProveedor, PS.IDSucursal, COUNT(PS.IDProducto) AS Stock ' +
             'FROM ProductoSucursal PS ' +
             'INNER JOIN Producto AS P ON PS.IDproducto = P.IDProducto ' +
             'INNER JOIN Proveedor AS Pr ON Pr.IDProveedor = P.IDProveedor ' +

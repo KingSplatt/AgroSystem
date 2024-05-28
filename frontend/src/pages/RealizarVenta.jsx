@@ -56,12 +56,12 @@ const RealizarVenta = () => {
     const handleCantidadChange = (producto, value) => {
         setCantidad(prevCantidad => ({
             ...prevCantidad,
-            [producto.IDproducto]: parseInt(value)
+            [producto.IDProducto]: parseInt(value)
         }));
     };
 
     const agregarProducto = (producto) => {
-        const productoCantidad = cantidad[producto.IDproducto];
+        const productoCantidad = cantidad[producto.IDProducto];
         if (!productoCantidad || productoCantidad <= 0) {
             alert('La cantidad debe ser mayor que 0.');
             return;
@@ -74,14 +74,14 @@ const RealizarVenta = () => {
 
         setProductos(prevProductos =>
             prevProductos.map(p =>
-                p.IDproducto === producto.IDproducto
+                p.IDProducto === producto.IDProducto
                     ? { ...p, Stock: p.Stock - productoCantidad }
                     : p
             )
         );
 
         setProductosSeleccionados(prevSeleccionados => {
-            const productoExistenteIndex = prevSeleccionados.findIndex(p => p.IDproducto === producto.IDproducto);
+            const productoExistenteIndex = prevSeleccionados.findIndex(p => p.IDProducto === producto.IDProducto);
             if (productoExistenteIndex !== -1) {
                 const updatedProductosSeleccionados = [...prevSeleccionados];
                 console.log(productoCantidad);
@@ -94,7 +94,7 @@ const RealizarVenta = () => {
 
         setCantidad(prevCantidad => ({
             ...prevCantidad,
-            [producto.IDproducto]: 0
+            [producto.IDProducto]: 0
         }));
     };
 
@@ -102,7 +102,7 @@ const RealizarVenta = () => {
         const productoAEliminar = productosSeleccionados[index];
         setProductos(prevProductos =>
             prevProductos.map(p =>
-                p.IDproducto === productoAEliminar.IDproducto
+                p.IDProducto === productoAEliminar.IDProducto
                     ? { ...p, Stock: p.Stock + productoAEliminar.cantidad }
                     : p
             )
@@ -133,7 +133,7 @@ const RealizarVenta = () => {
         productosSeleccionados.forEach(producto => {
             setProductos(prevProductos =>
                 prevProductos.map(p =>
-                    p.IDproducto === producto.IDproducto
+                    p.IDProducto === producto.IDProducto
                         ? { ...p, Stock: p.Stock + producto.cantidad }
                         : p
                 )
@@ -164,7 +164,7 @@ const RealizarVenta = () => {
     };
 
     const productosFiltrados = productos.filter(producto =>
-        (producto.Nombre?.toLowerCase().includes(busqueda.toLowerCase()) || producto.IDproducto?.toString().includes(busqueda))
+        (producto.Nombre?.toLowerCase().includes(busqueda.toLowerCase()) || producto.IDProducto?.toString().includes(busqueda))
     );
 
     return (
@@ -191,9 +191,9 @@ const RealizarVenta = () => {
                     </thead>
                     <tbody>
                         {productosFiltrados.map((producto) => (
-                            <tr key={producto.IDproducto}>
+                            <tr key={producto.IDProducto}>
                                 <td className='centro-td'>{producto.Nombre}</td>
-                                <td className='centro-td'>{producto.IDproducto}</td>
+                                <td className='centro-td'>{producto.IDProducto}</td>
                                 <td className='centro-td'>${producto.PrecioUnitario}</td>
                                 <td className='centro-td'>{producto.Stock}</td>
                                 <td className='centro-td'>
@@ -201,7 +201,7 @@ const RealizarVenta = () => {
                                         type="number"
                                         min="1"
                                         placeholder="Cantidad"
-                                        value={cantidad[producto.IDproducto] || ''}
+                                        value={cantidad[producto.IDProducto] || ''}
                                         onChange={(e) => handleCantidadChange(producto, e.target.value)}
                                         className="cantidad-input"
                                     />

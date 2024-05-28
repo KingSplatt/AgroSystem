@@ -51,7 +51,7 @@
     color: #396479;
 }
 
-.botones {
+.botonesl {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,7 +59,7 @@
     font-weight: bold;
 }
 
-.botones button {
+.botonesl button {
     margin: 10px;
     padding: 10px;
     border-radius: 10px;
@@ -72,7 +72,7 @@
     transition: 0.5s;
 }
 
-.botones button:hover {
+.botonesl button:hover {
     background-color: #396479;
     color: #f8f9fa;
     border: 1px solid #000;
