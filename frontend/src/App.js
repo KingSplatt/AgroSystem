@@ -19,12 +19,9 @@ import VerClientes from "./Pages/VerCliente.jsx";
 import VerProducto from "./Pages/VerProducto.jsx";
 
 
+import Logout from "./Pages/Logout.jsx";
 import VerProveedores from "./Pages/VerProveedores.jsx";
 import VerVentas from "./Pages/VerVentas.jsx";
-
-
-
-
 
 const App = () => {
   return (
@@ -45,7 +42,7 @@ const App = () => {
                   <Route path="/HistorialCompras" element={<HistorialCompras />} />
                   <Route path="/IngresarProductos" element={<IngresarProductos />} />
                   <Route path="/VerProducto" element={<VerProducto />} />
-                  
+
 
 
 
@@ -58,10 +55,14 @@ const App = () => {
                   <Route path="/VerClientes" element={<VerClientes />} />
                   <Route path="/ModificarCliente" element={<ModificarCliente />} />
                   <Route path="/HistorialCotizaciones" element={<HistorialCotizaciones />} />
+
                 </Routes>
               </>
+
             }
           />
+
+          <Route path="/Logout" element={<Logout />} />
         </Routes>
       </BrowserRouter>
     </div>

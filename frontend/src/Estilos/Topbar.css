@@ -1,0 +1,31 @@
+/* Topbar.css */
+.topbar {
+    width: 100%;
+    height: 70px;
+    background-color: #0056b3;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    /*z-index: 1100;*/
+
+}
+
+.usuario {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 400;
+    padding-right: 20px;
+}
+
+.user-icon {
+    margin-right: 10px;
+    font-size: 28px;
+
+
+}

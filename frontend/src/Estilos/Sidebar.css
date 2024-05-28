@@ -1,23 +1,27 @@
+/* Sidebar.css */
 .contenedor {
-
-    position: fixed;
-
+    display: flex;
 }
 
 main {
     width: 100%;
     padding: 20px;
+    margin-top: 50px;
+    /* Altura de la barra superior */
 }
 
 .sidebar {
     height: 100vh;
     background: #333;
     color: #fff;
-
     width: 300px;
     transition: all 0.5s;
     overflow: auto;
-
+    position: fixed;
+    top: 0;
+    left: 0;
+    /*z-index: 1100;*/
+    /* Asegúrate de que el sidebar tenga un z-index mayor que el topbar */
 }
 
 .top {
@@ -43,29 +47,22 @@ main {
     padding: 10px 15px;
     gap: 15px;
     transition: all 0.5s;
-
 }
 
 .link:hover {
     background: #555;
     color: #fff;
     transition: all 0.5s;
-
 }
 
 .active {
     background: #555;
     color: #fff;
-
 }
 
 .icon,
 .link_text {
     font-size: 20px;
-}
-
-h2 {
-    margin-top: 0cm;
 }
 
 .Usuario {

@@ -13,6 +13,7 @@ const ModificarProductos = () => {
   }, []);
 
   const fetchProductos = async () => {
+    console.log("Obteniendo productos...");
     try {
       // Aqui se llama a la API para obtener los productos
       const response = await fetch("http://localhost:8080/productos");
@@ -57,7 +58,9 @@ const ModificarProductos = () => {
 
     try {
       const promises = productosModificados.map(async (producto) => {
+
         console.log("Actualizando producto:", producto.IDproducto);
+
         const response = await fetch(`http://localhost:8080/productosSucursal/${producto.IDproducto}`, {
           method: "PATCH",
           headers: {

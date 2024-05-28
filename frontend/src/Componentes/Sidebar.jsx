@@ -1,14 +1,12 @@
+// Sidebar.js
 import React, { useState } from 'react';
-import {
-    FaBars, FaHandHoldingUsd, FaMoneyCheckAlt, FaProductHunt,
-    FaShoppingCart, FaSignOutAlt, FaTh, FaTruck, FaUsers
-} from "react-icons/fa";
+import { FaBars, FaHandHoldingUsd, FaMoneyCheckAlt, FaProductHunt, FaShoppingCart, FaSignOutAlt, FaTh, FaTruck, FaUsers } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 import '../Estilos/Sidebar.css';
 import logo from '../Images/3.jpg';
+import Topbar from './Topbar';
 
 const Sidebar = ({ nose }) => {
-
     const savedEmpleado = JSON.parse(localStorage.getItem('empleado'));
     console.log("Empleado (inicial):", savedEmpleado);
     const [isOpen, setIsOpen] = useState(false);
@@ -20,9 +18,7 @@ const Sidebar = ({ nose }) => {
         } else {
             IDTipo = "Sucursal: " + savedEmpleado.IDSucursal;
         }
-
     }
-
 
     const toggle = () => {
         if (isOpen) {
@@ -139,22 +135,16 @@ const Sidebar = ({ nose }) => {
         })
     }
 
-
     const renderMenuItem = (item, index) => {
         const isExpanded = expandedMenuIndex === index;
         if (item.submenu) {
             return (
                 <div key={index}>
-
-
                     <div className="link" onClick={() => toggleSubMenu(index)}>
                         <div className="icon">{item.icon}</div>
-
                         <div style={{ display: isOpen ? "block" : "none" }} className="link_text">{item.name}</div>
                     </div>
-
                     {isExpanded && item.submenu.map((subitem, subindex) => (
-
                         <NavLink to={subitem.path} key={subindex} className="link sublink" activeclassname="active">
                             <div className="submenu_text">{subitem.name}</div>
                         </NavLink>
@@ -173,10 +163,10 @@ const Sidebar = ({ nose }) => {
 
     return (
         <div className="contenedor">
+            <Topbar usuario={savedEmpleado ? savedEmpleado.Usuario : 'Invitado'} />
             <div style={{ width: isOpen ? "200px" : "60px" }} className="sidebar">
                 <div className="top">
                     <h1 style={{ display: isOpen ? "block" : "none" }} className="logo"><img src={logo} width="100" height="100" alt="logo" /></h1>
-
                     <div style={{ display: isOpen ? "0px" : "0px" }} className="bars" onClick={toggle}>
                         <FaBars />
                     </div>
