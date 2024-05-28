@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaExchangeAlt, FaPlus } from "react-icons/fa";
-
+import { useHistory } from "react-router-dom";
 import "../Estilos/VerClientes.css";
 
 const URL = "http://localhost:8080/Clientes";
@@ -9,14 +9,11 @@ const VerClientes = () => {
   const [Clientes, setClientes] = useState([]);
   const [empleado, setEmpleado] = useState(null);
 
-
   useEffect(() => {
-    // Funcion para cargar los Clientes
     const savedEmpleado = localStorage.getItem('empleado');
     if (savedEmpleado) {
       setEmpleado(JSON.parse(savedEmpleado));
     }
-    console.log("Empleado:", empleado);
     fetchClientes();
   }, []);
 
@@ -26,17 +23,12 @@ const VerClientes = () => {
       const data = await response.json();
       const rows = data.rows;
 
-      console.log("Data: ", data.rows);
-
-      // Verificando de que data sea un array
       if (Array.isArray(rows)) {
         setClientes(rows);
       } else {
-        console.log("La respuesta no es un array", data);
         alert("Error al obtener los datos de los clientes");
       }
     } catch (error) {
-      console.error("Error al obtener los datos de los clientes", error);
       alert("Error al obtener los datos de los clientes");
     }
   };
@@ -57,8 +49,14 @@ const VerClientes = () => {
     setBuscar(e.target.value);
   };
 
-  return (
+  const handleModificar = (id) => {
+    localStorage.setItem('clienteId', id);
+    console.log("Guardando ID del cliente para modificar: ", id);
+    window.location.href = "./ModificarCliente";
+    
+  };
 
+  return (
     <div className="todo">
       <div className="containerVP">
         <h2>Clientes</h2>
@@ -68,10 +66,6 @@ const VerClientes = () => {
             <button className="Add" onClick={() => window.location.href = "./AnadirCliente"} >
               <FaPlus />
               Añadir Cliente
-            </button>
-            <button className="Modify" onClick={() => window.location.href = "./ModificarCliente"}  >
-              <FaExchangeAlt />
-              Modificar Cliente
             </button>
           </div>
         </div>
@@ -87,6 +81,7 @@ const VerClientes = () => {
                 <th>RFC</th>
                 <th>CURP</th>
                 <th>Ciudad</th>
+                <th>Modificar</th>
               </tr>
             </thead>
             <tbody>
@@ -99,6 +94,9 @@ const VerClientes = () => {
                   <td>{cliente.RFC}</td>
                   <td>{cliente.CURP}</td>
                   <td>{cliente.Ciudad}</td>
+                  <td>
+                    <button onClick={() => handleModificar(cliente.IDCliente)}>Modificar</button>
+                  </td>
                 </tr>
               ))}
             </tbody>

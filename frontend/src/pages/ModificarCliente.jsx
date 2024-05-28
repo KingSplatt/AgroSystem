@@ -19,10 +19,13 @@ const ModificarCliente = () => {
   });
 
   useEffect(() => {
+    const clienteId = localStorage.getItem('clienteId');
+    if (clienteId) {
+      setFormClientes(prevState => ({ ...prevState, Clave: clienteId }));
+    }
     fetchCiudades();
   }, []);
 
-  //ver ciudades en el combobox
   const fetchCiudades = async () => {
     try {
       const response = await fetch(URI_Ciudades);
@@ -39,11 +42,8 @@ const ModificarCliente = () => {
   const handleInputChange = (e) => {
     const { id, value } = e.target;
 
-    // Validar número de teléfono solo acepta números
-    if (id === "Telefono") {
-      if (!/^\d*$/.test(value) || value.length > 10) {
-        return;
-      }
+    if (id === "Telefono" && (!/^\d*$/.test(value) || value.length > 10)) {
+      return;
     }
 
     if (id === "RFC" && value.length > 13) {
@@ -54,7 +54,6 @@ const ModificarCliente = () => {
       return;
     }
 
-    // Convertir RFC y CURP a mayúsculas
     let newValue = value;
     if (id === "RFC" || id === "CURP") {
       newValue = value.toUpperCase();
@@ -63,14 +62,10 @@ const ModificarCliente = () => {
     setFormClientes({ ...formClientes, [id]: newValue });
   };
 
-
-
-  //funcion para enviar los datos del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      console.log("Enviando datos del cliente... ", formClientes);
       const response = await fetch(`http://localhost:8080/clientes/${formClientes.Clave}`, {
         method: "PATCH",
         headers: {
@@ -82,7 +77,6 @@ const ModificarCliente = () => {
         throw new Error("Error al modificar el cliente");
       }
       const data = await response.json();
-      console.log(data);
       alert("Cliente modificado correctamente");
     } catch (error) {
       console.error("Error en la petición de clientes", error);
@@ -98,14 +92,12 @@ const ModificarCliente = () => {
       Telefono: "",
       Ciudad: "",
     });
-
   }
 
   return (
     <div className="Formulario-Cliente">
       <h2>Modificar cliente</h2>
       <div className="Clientes">
-
         <form className="Datos-del-usuario">
           <h3>Datos del usuario</h3>
           <div className="grupo1">
@@ -142,7 +134,6 @@ const ModificarCliente = () => {
               id="Correo"
               value={formClientes.Correo}
               type="email"
-
             />
             <Input
               label="Teléfono: "
@@ -150,7 +141,6 @@ const ModificarCliente = () => {
               id="Telefono"
               value={formClientes.Telefono}
               type="text"
-
             />
           </div>
         </form>
@@ -176,7 +166,7 @@ const ModificarCliente = () => {
           <FaRegSave /> Guardar
         </button>
       </div>
-    </div >
+    </div>
   );
 };
 
