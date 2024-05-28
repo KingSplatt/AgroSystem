@@ -2,10 +2,11 @@ const pool = require('../Model/Connection');
 
 const VerCotizacion = async (req, res) => {
     try {
+        const IDCEDI = req.params.ID;
         const [rows, fields] = await pool.query("SELECT C.IDCotizacion, C.FechaCotizacion,group_concat(distinct DC.IDProducto ORDER BY C.IDCotizacion SEPARATOR ', ') AS Productos, " +
             "group_concat(distinct DC.IDProveedor ORDER BY C.IDCotizacion SEPARATOR ', ') AS Proveedores FROM Cotizacion AS C " +
-            "INNER JOIN DetalleCotizacion AS DC ON C.IDCotizacion = DC.IDCotizacion " +
-            "GROUP BY C.IDCotizacion, C.FechaCotizacion;");
+            "INNER JOIN DetalleCotizacion AS DC ON C.IDCotizacion = DC.IDCotizacion WHERE IDCedi = ?" +
+            "GROUP BY C.IDCotizacion, C.FechaCotizacion;", [IDCEDI]);
         console.log('Cotizacion obtenidas', rows);
         res.status(201).send({ success: true, message: 'Cotizaciones consultadas existosamente', rows: rows });
     } catch (err) {
@@ -20,6 +21,7 @@ const AgregarCotizacion = async (req, res) => {
     console.log('Body:', req.body);
     try {
         const { proveedores, productos } = req.body;
+        const IDCEDI = req.body.IDCEDI;
         if (!proveedores || !productos || !Array.isArray(proveedores) || !Array.isArray(productos)) {
             res.status(400).send({ success: false, message: 'Faltan datos' });
             return;
@@ -31,7 +33,7 @@ const AgregarCotizacion = async (req, res) => {
         const IDCotizacion = query[0].IDCotizacion;
 
         //inicia la cotizacion
-        await pool.query('INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion) VALUES (?,?)', [IDCotizacion, FechaCotizacion]);
+        await pool.query('INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDCedi) VALUES (?,?,?)', [IDCotizacion, FechaCotizacion, IDCEDI]);
 
         //agregar los detalles de la cotizacion
         for (let i = 0; i < productos.length; i++) {

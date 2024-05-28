@@ -121,35 +121,35 @@ INSERT INTO Categoria (IDCategoria, NombreCategoria, DescripcionCategoria)
 VALUES (10, 'Electrodomésticos', 'Productos electrónicos para el hogar y la cocina.');
 
 -- Inserciones de ejemplo a la tabla Producto
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDCategoria)
-VALUES(1, 'Roundup Ultra', 'Herbicida sistémico no selectivo para control de malezas', 3500, 0, 1);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
+VALUES(1, 'Roundup Ultra', 'Herbicida sistémico no selectivo para control de malezas', 3500, 0, 1, 1);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDCategoria)
-VALUES(2, 'Folicur EW', 'Fungicida sistémico de amplio espectro para cultivos', 4200, 0, 2);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
+VALUES(2, 'Folicur EW', 'Fungicida sistémico de amplio espectro para cultivos', 4200, 0, 2, 2);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDCategoria)
-VALUES(3, 'Actara 25 WG', 'Insecticida sistémico para el control de plagas en cultivos', 3100, 0, 3);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
+VALUES(3, 'Actara 25 WG', 'Insecticida sistémico para el control de plagas en cultivos', 3100, 0, 3, 3);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDCategoria)
-VALUES(4, 'YaraMila Complex', 'Fertilizante granulado NPK 12-11-18', 2700, 0, 4);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
+VALUES(4, 'YaraMila Complex', 'Fertilizante granulado NPK 12-11-18', 2700, 0, 4, 4);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDCategoria)
-VALUES(5, 'ProGibb T&O', 'Regulador de crecimiento para mejorar el tamaño de los frutos', 1500, 0, 5);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
+VALUES(5, 'ProGibb T&O', 'Regulador de crecimiento para mejorar el tamaño de los frutos', 1500, 0, 5, 5);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDCategoria)
-VALUES(6, 'Silwet L-77', 'Adyuvante para mejorar la adherencia de pesticidas', 1200, 0, 6);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
+VALUES(6, 'Silwet L-77', 'Adyuvante para mejorar la adherencia de pesticidas', 1200, 0, 6, 6);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDCategoria)
-VALUES(7, 'Viva', 'Bioestimulante líquido para aumentar la resistencia de las plantas', 5400, 0, 7);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
+VALUES(7, 'Viva', 'Bioestimulante líquido para aumentar la resistencia de las plantas', 5400, 0, 7, 7);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDCategoria)
-VALUES(8, 'Prowl H2O', 'Herbicida pre-emergente para control de malezas en cultivos de maíz', 3800, 1, 8);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
+VALUES(8, 'Prowl H2O', 'Herbicida pre-emergente para control de malezas en cultivos de maíz', 3800, 1, 8, 8);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDCategoria)
-VALUES(9, 'Score 250 EC', 'Fungicida sistémico para el control de enfermedades foliares', 2900, 0, 9);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
+VALUES(9, 'Score 250 EC', 'Fungicida sistémico para el control de enfermedades foliares', 2900, 0, 9, 9);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDCategoria)
-VALUES(10, 'Neemix 4.5', 'Insecticida orgánico a base de aceite de neem', 2600, 0, 10);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
+VALUES(10, 'Neemix 4.5', 'Insecticida orgánico a base de aceite de neem', 2600, 0, 10, 10);
 
 INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (1,1);
 INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (1,2);
@@ -519,6 +519,6 @@ INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (2,3,
 INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (3,3,2);
 INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (1,3,2);
 
-INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (1,1,3);
-INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (2,1,3);
-INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (3,1,3);
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (1,1,7);
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (2,1,8);
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (3,1,9);

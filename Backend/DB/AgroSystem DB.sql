@@ -100,6 +100,7 @@ CREATE TABLE Producto (
     Descripcion nvarchar (100) not null,
     PrecioUnitario int not null,
     Descontinuado boolean not null,
+    IDProveedor int not null,
     IDCategoria int not null
 );
 
@@ -227,8 +228,8 @@ ALTER TABLE Compra
 ADD CONSTRAINT FK_Compra_CEDI FOREIGN KEY (IDCedi) REFERENCES CEDI (IDCedi),
 ADD CONSTRAINT FK_Compra_Empleado FOREIGN KEY (IDEmpleado) REFERENCES Empleado (IDEmpleado);
 
-ALTER TABLE Producto ADD CONSTRAINT FK_Producto_Categoria FOREIGN KEY (IDCategoria) REFERENCES Categoria (IDCategoria); -- ahora la tabla es en ProductoProveedor
--- ADD CONSTRAINT FK_Producto_Proveedor FOREIGN KEY (IDProveedor) REFERENCES Proveedor (IDProveedor),
+ALTER TABLE Producto ADD CONSTRAINT FK_Producto_Categoria FOREIGN KEY (IDCategoria) REFERENCES Categoria (IDCategoria),
+ADD CONSTRAINT FK_Producto_Proveedor FOREIGN KEY (IDProveedor) REFERENCES Proveedor (IDProveedor);
 
 ALTER TABLE ProductoSucursal
 ADD CONSTRAINT FK_Sucursal_PS FOREIGN KEY (IDSucursal) REFERENCES Sucursal (IDSucursal),
@@ -299,3 +300,4 @@ MODIFY COLUMN Cantidad INT DEFAULT 1;
 
 -- use sys;
 -- drop database agrosystem;
+

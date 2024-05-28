@@ -61,7 +61,8 @@ const Cotizar = () => {
     try {
       const cotizacion = {
         proveedores: proveedors,
-        productos: productors
+        productos: productors,
+        IDCEDI: savedEmpleado.IDCEDI
       };
       console.log('estos son los datos:', cotizacion);
 
@@ -72,7 +73,6 @@ const Cotizar = () => {
         },
         body: JSON.stringify(cotizacion)
       });
-
       if (response.ok) {
         alert('Cotización enviada correctamente');
         // Reset state

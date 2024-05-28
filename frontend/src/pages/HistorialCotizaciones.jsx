@@ -6,6 +6,7 @@ const URI = "http://localhost:8080/cotizaciones";
 const HistorialCotizacion = () => {
     const [buscar, setBuscar] = useState("");
     const [Cotizacion, setCotizacion] = useState([]);
+    const savedEmpleado = JSON.parse(localStorage.getItem("empleado"))
 
     useEffect(() => {
         fetchCotizacion();
@@ -13,10 +14,10 @@ const HistorialCotizacion = () => {
 
     const fetchCotizacion = async () => {
         try {
-            const response = await fetch(URI);
+            const response = await fetch(`http://localhost:8080/cotizaciones/${savedEmpleado.IDCEDI}`);
             const data = await response.json();
             const rows = data.rows;
-
+            console.log("Cotizacion obtenidas", rows);
             if (Array.isArray(rows)) {
                 setCotizacion(rows);
             } else {
