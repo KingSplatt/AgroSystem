@@ -6,8 +6,8 @@ import {
 import { NavLink, Route } from 'react-router-dom';
 import '../Estilos/Sidebar.css';
 import logo from '../Images/3.jpg';
-import Topbar from './Topbar.jsx';
 import Login from "../Login";
+import Topbar from './Topbar.jsx';
 
 const Sidebar = ({ nose }) => {
 
@@ -140,8 +140,6 @@ const Sidebar = ({ nose }) => {
         menuItems = menuItems.filter(item => {
             if (item.name === 'Productos') {
                 item.submenu = item.submenu.filter(subitem => subitem.name !== 'Añadir Productos CEDI');
-
-                item.submenu = item.submenu.filter(subitem => subitem.name !== 'Modificar Productos');
                 item.submenu = item.submenu.filter(subitem => subitem.name !== 'Añadir Productos Sucursal');
             }
             return item;
