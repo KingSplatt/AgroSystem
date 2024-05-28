@@ -6,13 +6,12 @@ import "../Estilos/InicioClientes.css";
 import "../Estilos/Productos.css";
 
 const mockProducts = [
-  { id: 1, name: 'Herbicida Faena Fuerte', price: 390.0, image: 'https://avotools.com/cdn/shop/products/herbicida-faena-fuerte-360-1-litro-811830_800x.jpg?v=1606359467' },
-  { id: 2, name: 'Herbicida Amina', price: 249.99, image: 'https://interagro.mx/wp-content/uploads/2020/03/AMINA-1L.jpg' },
-  { id: 3, name: 'Herbicida Centella', price: 499.00, image: 'https://interagro.mx/wp-content/uploads/2020/03/CENTELLA-1L.jpg' },
-  // Se añaden productos según sea necesario.
-];
+    { id: 4, name: 'Plaguicida Cipermetrina', price: 797, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNfQFpAQfKmDNrCIADSfBWeNVEjKfeDJsmCQ&s' },
+    { id: 5, name: 'Plaguicida Plagus', price: 4140.00, image: 'https://soporte4.jlmarketing.com.mx/wp-content/uploads/2023/10/VIGOR-PRODUCTOS_palgus-1.jpg' },
+    { id: 6, name: 'Plaguicida It Enzym', price: 326.00, image: 'https://bioaplicaciones.com/cdn/shop/products/ITEnzym1080x1080.png?v=1650337734' },
+  ];
 
-const Producto3 =() => {
+const Producto6 =() => {
   const handleAddToCart = () => {
     alert('Selecciona exitosa')
     // Add code here to handle adding the product to the cart
@@ -55,27 +54,27 @@ const Producto3 =() => {
           <form action="">
             <div className="element01">
             <img
-              src="https://interagro.mx/wp-content/uploads/2020/03/CENTELLA-1L.jpg"
-              alt="Herbicida"
+              src="https://bioaplicaciones.com/cdn/shop/products/ITEnzym1080x1080.png?v=1650337734"
+              alt="Plaguicida"
               className="element02"
             />
         </div>
           </form>
         <div className="elemnt03">
           <div>
-            <h2 className="element04"> Centella</h2>
+            <h2 className="element04"> It Enzym</h2>
             <p className="element05">
-              <strong>Precio:</strong> $ 499.00
+              <strong>Precio:</strong> $ 326.00
             </p>
             <h3 className="element06">Descripción</h3>
             <p className="element07">
-            CENTELLA® FUERTE es un herbicida sistémico del grupo de las Glicinas no selectivo para aplicación 
-            post emergente en aplicación al follaje. Controla la maleza de hoja ancha y angosta (zacates) ya 
-            sean de tipo anual o perenne. Es absorbido en el follaje por el proceso de difusión pasiva, 
-            traslocándose posteriormente por el floema hacia todo el follaje afectando rizomas, bulbos y raíces.
+            IT ENZYM es un Insecticida y Acaricida Orgánico. Por su acción combate eficazmente Diaphoryna, 
+            Minadores de la hoja, Mosca blanca, Araña roja, Pulgones, Paratrioza, Arador, Aedes Aegypti y 
+            otros insectos de cuerpo blando, en todos sus estadios, como huevecillos, larvas y adultos que 
+            afectan la producción agrícola.
             </p>
             <p className="element08">
-              <strong>Categoría:</strong> Herbicida
+              <strong>Categoría:</strong> Plaguicida
             </p>
           </div>
           <div className="element09">
@@ -97,7 +96,6 @@ const Producto3 =() => {
         </div>
       </div>
 
-
       <div className="txtSugerencias">
             Sugerencias
                 <ProductList products={mockProducts} />
@@ -107,4 +105,4 @@ const Producto3 =() => {
   )
 }
 
-export default Producto3
+export default Producto6

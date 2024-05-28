@@ -4,12 +4,12 @@ import ProductList from '../Componentes/ProductList.jsx';
 
 const mockProducts = [
   { id: 1, name: 'Herbicida Faena Fuerte', price: 390.00, image: 'https://avotools.com/cdn/shop/products/herbicida-faena-fuerte-360-1-litro-811830_800x.jpg?v=1606359467' },
-  { id: 4, name: 'Plaguicida Cipermetrina', price: 797.00, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNfQFpAQfKmDNrCIADSfBWeNVEjKfeDJsmCQ&s' },
+  { id: 2, name: 'Herbicida Amina', price: 249.99, image: 'https://interagro.mx/wp-content/uploads/2020/03/AMINA-1L.jpg' },
   { id: 3, name: 'Herbicida Centella', price: 499.00, image: 'https://interagro.mx/wp-content/uploads/2020/03/CENTELLA-1L.jpg' },
-  { id: 5, name: 'Plaguicida Plagus', price: 4140.00, image: 'https://soporte4.jlmarketing.com.mx/wp-content/uploads/2023/10/VIGOR-PRODUCTOS_palgus-1.jpg' },
+  // Se añaden productos según sea necesario.
 ];
 
-const InicioClientes =() =>
+const Herbicidas =() =>
   {
     return(
         <div className="EncabezadoTop">
@@ -21,7 +21,7 @@ const InicioClientes =() =>
           </h2>
           <div>
             <nav className="centrado">
-              <a href="#" className="separacion">
+              <a href="/InicioClientes" className="separacion">
               Inicio
               </a>
               <Menu />
@@ -46,4 +46,4 @@ const InicioClientes =() =>
         </div>
     )
   }
-  export default InicioClientes
+  export default Herbicidas

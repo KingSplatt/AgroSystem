@@ -1,13 +1,14 @@
 import React from 'react'
 import "../Componentes/ProductCardv2.jsx";
 import ProductList from '../Componentes/ProductList.jsx';
+import Menu from "../Componentes/MenuProductos.jsx";
 import "../Estilos/InicioClientes.css";
 import "../Estilos/Productos.css";
 
 const mockProducts = [
-  { id: 1, name: 'Herbicida Faena Fuerte', price: 49.99, image: 'https://avotools.com/cdn/shop/products/herbicida-faena-fuerte-360-1-litro-811830_800x.jpg?v=1606359467' },
-  { id: 2, name: 'Herbicida Amina', price: 39.99, image: 'https://interagro.mx/wp-content/uploads/2020/03/AMINA-1L.jpg' },
-  { id: 3, name: 'Herbicida Centella', price: 39.99, image: 'https://interagro.mx/wp-content/uploads/2020/03/CENTELLA-1L.jpg' },
+  { id: 1, name: 'Herbicida Faena Fuerte', price: 390.00, image: 'https://avotools.com/cdn/shop/products/herbicida-faena-fuerte-360-1-litro-811830_800x.jpg?v=1606359467' },
+  { id: 2, name: 'Herbicida Amina', price: 249.99, image: 'https://interagro.mx/wp-content/uploads/2020/03/AMINA-1L.jpg' },
+  { id: 3, name: 'Herbicida Centella', price: 499.00, image: 'https://interagro.mx/wp-content/uploads/2020/03/CENTELLA-1L.jpg' },
   // Se añaden productos según sea necesario.
 ];
 
@@ -32,11 +33,9 @@ const Producto2 =() => {
               <a href="/InicioClientes" className="separacion">
               Inicio
               </a>
+              <Menu />
               <a href="#" className="separacion">
                 Nosotros
-              </a>
-              <a href="#" className="separacion">
-                Productos
               </a>
               <a href="#" className="separacion">
                 Carrito
@@ -66,18 +65,17 @@ const Producto2 =() => {
           <div>
             <h2 className="element04"> Amina</h2>
             <p className="element05">
-              <strong>Precio:</strong> $ 39.99
+              <strong>Precio:</strong> $ 249.99
             </p>
             <h3 className="element06">Descripción</h3>
             <p className="element07">
-              Lorem ipsum dolor sit amet consectetur adipiscing elit tempor vulputate, primis ornare
-              magna a senectus conubia malesuada vestibulum, metus euismod dictumst posuere
-              scelerisque dis nascetur litora. Aliquet urna neque facilisis sodales iaculis non dis
-              velit, dui phasellus per nostra maecenas suscipit risus, egestas pharetra condimentum
-              ultrices congue varius platea.
+            AMINA FUERTE es un herbicida agrícola a base de ácido 2,4-D AMINA que actúa en forma sistémica 
+            a través de hojas y tallos, afectando los tejidos de crecimiento. Es selectivo a gramíneas y 
+            elimina maleza de hoja ancha anual y perene. No es residual ni volátil, por lo tanto no afecta 
+            cultivos susceptibles.
             </p>
             <p className="element08">
-              <strong>Categoría:</strong> Categoria ejemplo
+              <strong>Categoría:</strong> Herbicida
             </p>
           </div>
           <div className="element09">

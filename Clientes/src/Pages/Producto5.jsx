@@ -1,3 +1,4 @@
+
 import React from 'react'
 import "../Componentes/ProductCardv2.jsx";
 import ProductList from '../Componentes/ProductList.jsx';
@@ -6,13 +7,12 @@ import "../Estilos/InicioClientes.css";
 import "../Estilos/Productos.css";
 
 const mockProducts = [
-  { id: 1, name: 'Herbicida Faena Fuerte', price: 390.0, image: 'https://avotools.com/cdn/shop/products/herbicida-faena-fuerte-360-1-litro-811830_800x.jpg?v=1606359467' },
-  { id: 2, name: 'Herbicida Amina', price: 249.99, image: 'https://interagro.mx/wp-content/uploads/2020/03/AMINA-1L.jpg' },
-  { id: 3, name: 'Herbicida Centella', price: 499.00, image: 'https://interagro.mx/wp-content/uploads/2020/03/CENTELLA-1L.jpg' },
-  // Se añaden productos según sea necesario.
-];
+    { id: 4, name: 'Plaguicida Cipermetrina', price: 797, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNfQFpAQfKmDNrCIADSfBWeNVEjKfeDJsmCQ&s' },
+    { id: 5, name: 'Plaguicida Plagus', price: 4140.00, image: 'https://soporte4.jlmarketing.com.mx/wp-content/uploads/2023/10/VIGOR-PRODUCTOS_palgus-1.jpg' },
+    { id: 6, name: 'Plaguicida It Enzym', price: 326.00, image: 'https://bioaplicaciones.com/cdn/shop/products/ITEnzym1080x1080.png?v=1650337734' },
+  ];
 
-const Producto3 =() => {
+const Producto5 =() => {
   const handleAddToCart = () => {
     alert('Selecciona exitosa')
     // Add code here to handle adding the product to the cart
@@ -55,27 +55,26 @@ const Producto3 =() => {
           <form action="">
             <div className="element01">
             <img
-              src="https://interagro.mx/wp-content/uploads/2020/03/CENTELLA-1L.jpg"
-              alt="Herbicida"
+              src="https://http2.mlstatic.com/D_NQ_NP_637776-MLM49533411520_032022-O.webp"
+              alt="Plaguicida"
               className="element02"
             />
         </div>
           </form>
         <div className="elemnt03">
           <div>
-            <h2 className="element04"> Centella</h2>
+            <h2 className="element04"> Plagus</h2>
             <p className="element05">
-              <strong>Precio:</strong> $ 499.00
+              <strong>Precio:</strong> $ 4140.00
             </p>
             <h3 className="element06">Descripción</h3>
             <p className="element07">
-            CENTELLA® FUERTE es un herbicida sistémico del grupo de las Glicinas no selectivo para aplicación 
-            post emergente en aplicación al follaje. Controla la maleza de hoja ancha y angosta (zacates) ya 
-            sean de tipo anual o perenne. Es absorbido en el follaje por el proceso de difusión pasiva, 
-            traslocándose posteriormente por el floema hacia todo el follaje afectando rizomas, bulbos y raíces.
+            Palgus es un insecticida que cuenta con gran poder residual y amplio espectro de control de 
+            plagas para muchos cultivos en dosis bajas. Es un gran aliado para el manejo integrado de 
+            gusano cogollero, en múltiples cultivos.
             </p>
             <p className="element08">
-              <strong>Categoría:</strong> Herbicida
+              <strong>Categoría:</strong> Plaguicida
             </p>
           </div>
           <div className="element09">
@@ -107,4 +106,4 @@ const Producto3 =() => {
   )
 }
 
-export default Producto3
+export default Producto5

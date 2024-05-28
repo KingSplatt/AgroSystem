@@ -20,6 +20,7 @@ a:hover{
     text-align: center;
   }
 .separacion{
+    position:static;
     padding-left: 50px;
     padding-right: 80px;
 }
