@@ -13,7 +13,7 @@ const RealizarVenta = () => {
     const [busqueda, setBusqueda] = useState('');
     const [metodoPago, setMetodoPago] = useState('');
     const [montoRecibido, setMontoRecibido] = useState('');
-    const saveEmpleado = JSON.parse(localStorage.getItem("empleado"))
+    const saveEmpleado = JSON.parse(localStorage.getItem("empleado"));
     const [tarjetaInfo, setTarjetaInfo] = useState({
         numero: '',
         vencimiento: '',
@@ -61,7 +61,6 @@ const RealizarVenta = () => {
     };
 
     const agregarProducto = (producto) => {
-        console.log("Producto cant:", cantidad[producto.IDproducto]);
         const productoCantidad = cantidad[producto.IDproducto];
         if (!productoCantidad || productoCantidad <= 0) {
             alert('La cantidad debe ser mayor que 0.');
@@ -81,18 +80,12 @@ const RealizarVenta = () => {
             )
         );
 
-        console.log("Prev ", productosSeleccionados);
         setProductosSeleccionados(prevSeleccionados => {
             const productoExistenteIndex = prevSeleccionados.findIndex(p => p.IDproducto === producto.IDproducto);
             if (productoExistenteIndex !== -1) {
                 const updatedProductosSeleccionados = [...prevSeleccionados];
-                updatedProductosSeleccionados[productoExistenteIndex].cantidad += productoCantidad;
-                console.log("Producto existente ca:", updatedProductosSeleccionados[productoExistenteIndex].cantidad);
-                setCantidad(prevCantidad => ({
-                    ...prevCantidad,
-                    [producto.IDproducto]: 0
-                }));
-
+                console.log(productoCantidad);
+                updatedProductosSeleccionados[productoExistenteIndex].cantidad += productoCantidad/2;
                 return updatedProductosSeleccionados;
             } else {
                 return [...prevSeleccionados, { ...producto, cantidad: productoCantidad }];
