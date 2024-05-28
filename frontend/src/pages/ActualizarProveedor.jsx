@@ -20,6 +20,15 @@ const ActualizarProveedor = () => {
 
   useEffect(() => {
     fetchCiudades();
+    const savedIDProveedor = localStorage.getItem('idProveedor');
+    console.log('IDProveedor:', savedIDProveedor);
+    if (savedIDProveedor) {
+      setIDProveedorBusqueda(savedIDProveedor);
+      fetchProveedor(savedIDProveedor);
+    }
+  }, []);
+
+  useEffect(() => {
     if (IDProveedorBusqueda) {
       console.log('Buscando proveedor con IDProveedor:', IDProveedorBusqueda);
       fetchProveedor(IDProveedorBusqueda);
@@ -32,7 +41,7 @@ const ActualizarProveedor = () => {
     savedEmpleado = JSON.parse(savedEmpleado);
     if (!savedEmpleado.IDCEDI) {
       console.error("No hay un empleado logueado");
-      alert("No hay un empleado de CEDI logueado, inice sesión primero");
+      alert("No hay un empleado de CEDI logueado, inicie sesión primero");
       window.location.href = "./";
       return;
     }
@@ -139,7 +148,7 @@ const ActualizarProveedor = () => {
   const guardarCambios = async (e) => {
     e.preventDefault();
     if (proveedor.IDProveedor === '') {
-      alert("Valor de Id proveedor no valido");
+      alert("Valor de Id proveedor no válido");
       return;
     }
 
@@ -198,6 +207,7 @@ const ActualizarProveedor = () => {
     setProveedor(limpiarProveedor);
     actualizarLabels(limpiarProveedor);
     setIDProveedorBusqueda('');
+    localStorage.removeItem('IDProveedor');
   };
 
   return (
@@ -283,7 +293,6 @@ const ActualizarProveedor = () => {
             />
             <label htmlFor="IDCiudad">Ciudad:</label>
             <label className="valor-anterior-IDCiudad"></label>
-
             <select id="valor-anterior-ciudad-select" onChange={(e) => manejarCambioInput('IDCiudad', e.target.value)} value={proveedor.IDCiudad}>
               <option>Seleccionar: </option>
               {Ciudades.map((ciudad, index) => (

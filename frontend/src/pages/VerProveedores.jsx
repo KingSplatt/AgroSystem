@@ -3,7 +3,6 @@ import { FaExchangeAlt, FaPlus } from "react-icons/fa";
 
 import "../Estilos/Proveedores.css";
 
-
 const URI = "http://localhost:8080/proveedores";
 
 const VerProveedores = () => {
@@ -11,7 +10,6 @@ const VerProveedores = () => {
 
     useEffect(() => {
         fetchProveedores();
-        // Llamamos a una función para cargar los Proveedores
     }, []);
 
     const fetchProveedores = async () => {
@@ -30,7 +28,6 @@ const VerProveedores = () => {
 
             console.log("Data:", data.rows);
 
-            // Asegúrate de que `data` es un array
             if (Array.isArray(rows)) {
                 setProveedores(rows);
             } else {
@@ -49,19 +46,29 @@ const VerProveedores = () => {
         setBuscar(e.target.value);
     }
 
-    const BusquedaProveedores = Proveedores.filter((proveedor => (proveedor.IDProveedor?.toString().includes(buscar) || proveedor.Nombre?.includes(buscar) || proveedor.RFC?.includes(buscar) || proveedor.CURP?.includes(buscar))));
+    const BusquedaProveedores = Proveedores.filter((proveedor => 
+        (proveedor.IDProveedor?.toString().includes(buscar) || 
+         proveedor.Nombre?.includes(buscar) || 
+         proveedor.RFC?.includes(buscar) || 
+         proveedor.CURP?.includes(buscar))
+    ));
 
+    const handleModificar = (idProveedor) => {
+        localStorage.setItem('idProveedor', idProveedor);
+        window.location.href = "./ActualizarProveedor";
+    };
 
     return (
         <div className="TodoP">
             <div className="containerVPr">
                 <h2>Proveedores</h2>
                 <div className="barraSuperiorP">
-                    <input type="searchP" placeholder="Buscar proveedor" value={buscar} onChange={handleBuscar} />
+                    <input type="search" placeholder="Buscar proveedor" value={buscar} onChange={handleBuscar} />
 
                     <div className="OpcionesP">
-                        <button className="Add" onClick={() => window.location.href = "./AnadirProveedor"}> <FaPlus /> Añadir proveedor </button>
-                        <button className="Modify" onClick={() => window.location.href = "./ActualizarProveedor"}><FaExchangeAlt /> Modificar proveedor</button>
+                        <button className="Add" onClick={() => window.location.href = "./AnadirProveedor"}> 
+                            <FaPlus /> Añadir proveedor 
+                        </button>
                     </div>
                 </div>
 
@@ -76,6 +83,7 @@ const VerProveedores = () => {
                                 <th>RFC</th>
                                 <th>CURP</th>
                                 <th>Legalizado</th>
+                                <th>Modificar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -88,6 +96,11 @@ const VerProveedores = () => {
                                     <td>{proveedor.RFC}</td>
                                     <td>{proveedor.CURP}</td>
                                     <td>{proveedor.Legalizado ? "Sí" : "No"}</td>
+                                    <td>
+                                        <button onClick={() => handleModificar(proveedor.IDProveedor)}>
+                                            Modificar
+                                        </button>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
@@ -95,7 +108,6 @@ const VerProveedores = () => {
                 </div>
             </div>
         </div>
-
     );
 };
 
