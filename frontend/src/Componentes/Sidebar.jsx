@@ -6,6 +6,7 @@ import {
 import { NavLink } from 'react-router-dom';
 import '../Estilos/Sidebar.css';
 import logo from '../Images/3.jpg';
+import Topbar from './Topbar.jsx';
 
 const Sidebar = ({ nose }) => {
 
@@ -173,6 +174,7 @@ const Sidebar = ({ nose }) => {
 
     return (
         <div className="contenedor">
+            <Topbar>{savedEmpleado.Nombre}</Topbar>
             <div style={{ width: isOpen ? "200px" : "60px" }} className="sidebar">
                 <div className="top">
                     <h1 style={{ display: isOpen ? "block" : "none" }} className="logo"><img src={logo} width="100" height="100" alt="logo" /></h1>
