@@ -149,64 +149,62 @@ const RealizarVenta = () => {
             const producto = productosSeleccionados[i];
             console.log(producto);
             Subtotal += producto.PrecioUnitario * producto.cantidad;
-            Total += Subtotal* 1.16;        
+            Total += Subtotal * 1.16;
         }
 
-        if(credito === 1){
-            
-            console.log(credito);
-        }else{
-            const body = { productos: productosSeleccionados,IDEmpleado: IDEmpleado, IDCliente: IDCliente };    
-            const ddmmaa = new Date().toLocaleDateString() ;
-            console.log(ddmmaa);   
-             console.log("Realizando Venta Normal:", JSON.stringify(body));
+        if (credito === 1) {
+            const body = { productos: productosSeleccionados, IDEmpleado: IDEmpleado, IDCliente: IDCliente, ...tarjetaInfo };
+            console.log("Realizando Venta a Crédito:", JSON.stringify(body));
+            fetch("http://localhost:8080/ventasC", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(body),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
+        } else {
+            const body = { productos: productosSeleccionados, IDEmpleado: IDEmpleado, IDCliente: IDCliente };
+            const ddmmaa = new Date().toLocaleDateString();
+            console.log(ddmmaa);
+            console.log("Realizando Venta Normal:", JSON.stringify(body));
             fetch("http://localhost:8080/ventasN", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(body),
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(body),
             })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-            })
-            .catch((error) => {
-                console.error("Error:", error);
-            });
-
-
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
         }
-        
-
-
-
-
-
-
         alert('Venta realizada con éxito');
-
-
-
-
-
-
-
-       /* setProductosSeleccionados([]);
-        setMetodoPago('');
-        setMontoRecibido('');
-        setTarjetaInfo({
-            numero: '',
-            vencimiento: '',
-            cvv: '',
-            nombre: '',
-            nombreCliente: '',
-            cantidad: '',
-            anticipominimo: '',
-            anticipo: ''
-        });
-        setCantidad({});
-        fetchProductos();*/ // Refetch products to reset the stock
+        /* setProductosSeleccionados([]);
+         setMetodoPago('');
+         setMontoRecibido('');
+         setTarjetaInfo({
+             numero: '',
+             vencimiento: '',
+             cvv: '',
+             nombre: '',
+             nombreCliente: '',
+             cantidad: '',
+             anticipominimo: '',
+             anticipo: ''
+         });
+         setCantidad({});
+         fetchProductos();*/ // Refetch products to reset the stock
     };
 
     const cancelarVenta = () => {
@@ -362,7 +360,7 @@ const RealizarVenta = () => {
                 {metodoPago === 'credito' && (
                     <table className="detalles-tarjeta">
                         <tbody>
-                    
+
                             <tr>
                                 <td><label>Anticipo mínimo:</label></td>
                                 <td>
@@ -438,7 +436,7 @@ const RealizarVenta = () => {
                                     />
                                 </td>
                             </tr>
-  
+
                         </tbody>
                     </table>
                 )}

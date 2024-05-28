@@ -3,38 +3,43 @@ const pool = require('../Model/Connection');
 // agregar venta a credito
 const NuevaVentaCredito = async (req, res) => {
     try {
-        const { IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado, PrecioUnitario, Cantidad, IDProducto, FechaPlazo, PagoInicial } = req.body;
-        if (!IDVenta || !FechaPedido || !Subtotal || !Total || !Credito || !IDCliente || !IDEmpleado || !PrecioUnitario || !Cantidad || !IDProducto || !FechaPlazo || !PagoInicial) {
-            return res.status(400).send({ success: false, message: 'Faltan campos por llenar' });
-        }
-        Credito = 1;
-        Subtotal = PrecioUnitario * Cantidad;
-        Total = Subtotal * 1.16;
-        const ventaC = 'INSERT INTO Venta (  IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) VALUES (?,?, ?, ?, ?, ?, ?)';
-        const result = await pool.query(ventaC, [parseInt(IDVenta), FechaPedido, parseFloat(Subtotal), parseFloat(Total), Credito, parseInt(IDCliente), parseInt(IDEmpleado)]);
-        const detalleVenta = 'INSERT INTO DetalleVentaCredito (PrecioUnitario, Cantidad, FechaPlazo, PagoInicial, IDVenta, IDProducto) VALUES (?, ?, ?, ?, ? , ?)';
-        const detalleVentaResult = await pool.query(detalleVenta, [parseInt(IDVenta), parseInt(IDProducto), parseInt(Cantidad), parseFloat(PrecioUnitario), FechaPlazo, PagoInicial]);
-        console.log('Venta a credito añadida', result, detalleVentaResult);
-        res.status(201).send({ success: true, message: "Venta a credido creada" });
-    } catch (err) {
-        console.error('Error al crear la venta', err);
-        res.status(500).send({ success: false, message: 'Error al crear la venta a credotp' });
+        const { productos } = req.body;
+        const IDEmpleado = req.body.IDEmpleado;
+        const IDCliente = req.body.IDCliente;
+        const PagoInicial = req.body.anticipo;
+        let Subtotal = 0;
+        productos.forEach(producto => {
+            Subtotal += producto.PrecioUnitario * producto.cantidad;
+        });
+        const Total = Subtotal * 1.16;
+        console.log(PagoInicial);
+        const IDVenta = await pool.query('SELECT count(IDVenta)+1  AS IDVenta FROM Venta;');
+        const FechaPedido = new Date();
+        const sqlVenta = 'INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) VALUES ( ?, ?, ?, ?, ?, ?, ?)';
+        await pool.query(sqlVenta, [parseInt(IDVenta[0][0].IDVenta), FechaPedido, parseFloat(Subtotal), parseFloat(Total), 1, IDCliente, IDEmpleado]);
+        productos.forEach(async producto => {
+            FechaPlazo = new Date();
+            const sqlDetalleVenta = 'INSERT INTO DetalleVentaCredito (IDVenta, IDProducto, Cantidad, PrecioUnitario, FechaPlazo, PagoInicial) VALUES ( ?, ?, ?, ?, ?, ?)';
+            await pool.query(sqlDetalleVenta, [parseInt(IDVenta[0][0].IDVenta), producto.IDProducto, producto.cantidad, producto.PrecioUnitario, FechaPlazo, PagoInicial]);
+        });
+        res.status(201).send({ success: true, message: IDVenta[0][0].IDVenta });
+    } catch (error) {
+        console.error('Error al registrar la venta', error);
+        res.status(500).send({ success: false, message: error });
+
     }
 }
 
 // Ver los creditos registrados
 const HistorialCreditos = async (req, res) => {
+    const Credito = req.params.id;
     try {
-        const [rows, fields] = await pool.query('SELECT V.IDVenta,P.Nombre, V.FechaPedido, V.Subtotal, V.Total, DVC.Cantidad, DVC.PrecioUnitario,DVC.FechaPlazo, DVC.PagoInicial, C.Nombre, E.Nombre FROM Venta AS V ' +
-            'INNER JOIN DetalleVentaCredito AS DVC ON DVC.IDVenta = V.IDVenta ' +
-            'INNER JOIN Cliente AS C ON V.IDCliente = C.IDCLiente ' +
-            'INNER JOIN Empleado AS E ON V.IDEmpleado = E.IDEmpleado ' +
-            'INNER JOIN Producto AS P ON P.IDProducto = DVC.IDProducto WHERE Credito = 1');
+        const [rows, fields] = await pool.query(`SELECT * FROM Venta AS V WHERE Credito = ?`, [Credito]);
         console.log('Ventas a credito', rows);
-        res.status(201).send({ success: true, message: 'Ventas a credito registradas', rows: rows });
+        res.status(201).send({ success: true, message: 'Ventas registradas', rows: rows });
     } catch (err) {
         console.error('Error al consultar los creditos', err);
-        res.status(500).send({ success: false, message: 'Error al consultar los creditos' });
+        res.status(500).send({ success: false, message: 'Error al consultar las ventas' });
     }
 }
 

@@ -36,6 +36,7 @@ const NuevaVentaNormal = async (req, res) => {
 }
 
 const HistorialVentas = async (req, res) => {
+    const Credito = req.params.id;
     try {
         const [rows, fields] = await pool.query(`SELECT 
         V.IDVenta,
@@ -54,9 +55,9 @@ const HistorialVentas = async (req, res) => {
         INNER JOIN Empleado AS E ON E.IDEmpleado = V.IDEmpleado
         INNER JOIN Cliente AS C ON C.IDCliente = V.IDCliente
     WHERE 
-        Credito = 0
+        Credito = ?
     GROUP BY 
-        V.IDVenta, V.FechaPedido, V.Subtotal, V.Total, E.Nombre, C.Nombre`);
+        V.IDVenta, V.FechaPedido, V.Subtotal, V.Total, E.Nombre, C.Nombre`, [Credito]);
         console.log('Ventas a credito', rows);
         res.status(201).send({ success: true, message: 'Ventas registradas', rows: rows });
     } catch (err) {

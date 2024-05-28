@@ -12,7 +12,7 @@ const VerVentas = () => {
         fetchVentas();
     }, []);
 
-    const fetchVentas = async () => {
+    const fetchVentas = async (credito) => {
         let savedEmpleado = localStorage.getItem('empleado');
         savedEmpleado = JSON.parse(savedEmpleado);
         console.log(savedEmpleado);
@@ -23,7 +23,20 @@ const VerVentas = () => {
             return;
         }
         try {
-            const response = await fetch(URI);
+            if (credito) {
+                const response = await fetch(`http://localhost:8080/VentasC/${credito}`);
+                const data = await response.json();
+                const rows = data.rows;
+                console.log("Data:", data.rows);
+                if (Array.isArray(rows)) {
+                    setVentas(rows);
+                }
+                else {
+                    console.error("La respuesta no es un array", data);
+                    alert("Error al obtener las ventas: la respuesta no es un array");
+                }
+            }
+            const response = await fetch(`http://localhost:8080/VentasC/${credito}`);
             const data = await response.json();
             const rows = data.rows;
 
@@ -50,19 +63,26 @@ const VerVentas = () => {
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
 
+    const handleCreditoSeleccionado = (event) => {
+        console.log("Credito seleccionado:", event.target.checked);
+        let credito = 0;
+        if (event.target.checked) {
+            let credito = 1;
+            fetchVentas(credito);
+        }
+        fetchVentas(credito);
+
+    }
+
     return (
-
-        //shhdhd
-
         <div className="todo">
-
-
             <div className="containerVP">
                 <h2>Ventas</h2>
-
                 <div className="barraSuperior">
                     <input type="search" placeholder="Buscar venta" />
                     <div className="OpcionesP">
+                        <label>Credito</label>
+                        <input type="checkbox" onChange={(e) => handleCreditoSeleccionado(e)} />
                         <button className="Add" onClick={() => window.location.href = "./RealizarVenta"}><FaPlus /> Nueva venta</button>
                     </div>
                 </div>
