@@ -1,69 +1,154 @@
-.Resumen {
-    display: flex;
-    margin-top: 100px;
-    margin-left: 100px;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-size: cover;
 }
 
-.Inicio {
-    color: cyan;
-}
-
-.ResumenEncabezado {
-    color: cyan;
-}
-
-.OpcionesEncabezado {
-    color: cyan;
-}
-
-
-
-.Total-Productos,
-.Total-Proveedores,
-.Total-Compras {
-    margin: 50px;
-    border: 2px solid #ccc;
-    background-color: white;
-    padding: 50px 100px;
-    border-radius: 30px;
-    text-align: center;
-    font-weight: bold;
-    width: 200px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+#Div {
+    background-color: rgba(167, 167, 167, 0.8); /* Fondo blanco con transparencia */
+    border-radius: 15px;
+    padding: 20px;
+    margin: 50px auto;
+    max-width: 1200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .titulo {
-    background-image: url('../Images/fondo.jpg');
-    height: 500;
-    background-size: cover;
-    background-position: center;
-
+    text-align: center;
 }
 
+.Inicio {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.Resumen, 
 .Opciones {
-    display: flex;
-    margin-top: 100px;
-    margin-left: 100px;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.ResumenEncabezado {
+    font-size: 2rem;
+    color: #ffffff;
+    background-color: #34495e;
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    margin-bottom: 20px;
+    font-weight: bold; 
+    text-align: center;
+}
+
+.OpcionesEncabezado{
+    font-size: 2rem;
+    color: #ffffff;
+    background-color: #34495e;
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    margin-bottom: 350px;
+    font-weight: bold; 
+    text-align: center;
+}
+
+.Total-Productos, 
+.Total-Proveedores, 
+.Total-Compras, 
+.Productos, 
+.Proveedores, 
+.Clientes, 
+.Cotizar,
+.Ventas,
+.Compras, 
+.Salir {
+    display: inline-block;
+    width: 150px; 
+    height: 200px;
+    margin: 15px;
+    text-align: center;
+    vertical-align: top;
+    padding: 50px 20px;
+    background-color: #b2b4b6;
+    border-radius: 10px;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.Total-Productos:hover, 
+.Total-Proveedores:hover, 
+.Total-Compras:hover, 
+.Productos:hover, 
+.Proveedores:hover, 
+.Cotizar:hover, 
+.Clientes:hover,
+.Compras:hover, 
+.Ventas:hover,
+.Salir:hover {
+    transform: scale(1.05);
+    background-color: #babfc2;
+}
+
+.Total-Productos, 
+.Total-Proveedores, 
+.Total-Compras {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #34495e;
 }
 
 .Productos,
-.Proveedores,
-.Compras,
+.Proveedores, 
+.Clientes, 
+.Cotizar,
+.Compras, 
 .Ventas,
 .Salir {
-    margin-top: 100px;
-    border: 2px solid #ccc;
-    background-color: white;
-    padding: 50px 30px;
-    border-radius: 30px;
-    text-align: center;
-    font-weight: bold;
+    height: 150px;
+    font-size: 1.2rem;
+    color: #2c3e50;
+    margin-right: 20px;
+}
+
+.Productos:hover, 
+.Proveedores:hover, 
+.Clientes:hover, 
+.Cotizar:hover,
+.Compras:hover, 
+.Ventas:hover,
+.Salir:hover {
+    cursor: pointer;
+}
+
+.FaShoppingCart
+.FaShop, 
+.BsFillBriefcaseFill, 
+.FaPeopleGroup, 
+.FaCoins, 
+.IoExit {
+    font-size: 100px;
+    margin-bottom: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.Productos span,
+.Proveedores span, 
+.Clientes span, 
+.Cotizar span,
+.Compras span, 
+.Ventas span,
+.Salir span {
+    display: block;
+    margin-top: 10px;
+}
+
+
+.Opciones {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    width: 150px;
-    margin-top: 100px;
-    margin-right: 50px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    align-items: center;
+    flex-wrap: nowrap;
 }
