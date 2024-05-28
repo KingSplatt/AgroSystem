@@ -76,9 +76,9 @@ const VerProducto = () => {
                 {empleado && (
                     <>
                         <h3>{empleado.IDSucursal ? `Sucursal ${empleado.IDSucursal}` : `CEDI ${empleado.IDCEDI}`}</h3>
-                        <div>
-                            <p>Empleado: {empleado.Nombre} </p>
-                            <p>Puesto: {empleado.Puesto}</p>
+                        <div style={{ display: 'flex' }}>
+                            <p><b>Empleado:</b> {empleado.Nombre}    </p>
+                            <p style={{ paddingLeft: '20px' }}><b>Puesto:</b> {empleado.Puesto}</p>
                         </div>
                     </>
                 )}
@@ -118,7 +118,7 @@ const VerProducto = () => {
                     </table>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
