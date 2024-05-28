@@ -45,7 +45,6 @@ const VerProducto = () => {
             console.log("Data:", rows);
             // Asegúrate de que `data` es un array
             if (Array.isArray(rows)) {
-
                 setProductos(rows);
             } else {
                 console.error("La respuesta no es un array", data);
@@ -77,7 +76,7 @@ const VerProducto = () => {
                     <>
                         <h3>{empleado.IDSucursal ? `Sucursal ${empleado.IDSucursal}` : `CEDI ${empleado.IDCEDI}`}</h3>
                         <div style={{ display: 'flex' }}>
-                            <p><b>Empleado:</b> {empleado.Nombre}    </p>
+                            <p><b>Empleado:</b> {empleado.Nombre}</p>
                             <p style={{ paddingLeft: '20px' }}><b>Puesto:</b> {empleado.Puesto}</p>
                         </div>
                     </>
@@ -85,10 +84,18 @@ const VerProducto = () => {
                 <div className="barraSuperior">
                     <input type="search" placeholder="Buscar producto" onChange={handleBuscar} value={buscar} />
                     <div className="OpcionesP">
-
-
-                        <button className="Add" onClick={() => window.location.href = "./AnadirProductos"}><FaPlus /> Añadir producto</button>
-                        <button className="Modify" onClick={() => window.location.href = "./ModificarProductos"}><FaExchangeAlt /> Modificar producto</button>
+                        <button 
+                            className="Add" 
+                            onClick={() => {
+                                const url = empleado.IDSucursal ? "./AnadirProductosSucursal" : "./AnadirProductos";
+                                window.location.href = url;
+                            }}
+                        >
+                            <FaPlus /> Añadir producto
+                        </button>
+                        <button className="Modify" onClick={() => window.location.href = "./ModificarProductos"}>
+                            <FaExchangeAlt /> Modificar producto
+                        </button>
                     </div>
                 </div>
                 <div className="tabla">
@@ -120,7 +127,7 @@ const VerProducto = () => {
                     </table>
                 </div>
             </div>
-        </div >
+        </div>
     );
 };
 
