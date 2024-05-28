@@ -3,34 +3,34 @@ import { useNavigate } from 'react-router-dom';
 import logo from './Images/login.png';
 import './Login.css';
 
-const URI = 'http://localhost:8080/Empleados';
+const URI = 'http://localhost:8080/Cliente';
 
 function Login() {
   const navigate = useNavigate();
-  const [Empleados, setEmpleados] = useState([]);
+  const [Cliente, setCliente] = useState([]);
   const [usuario, setUsuario] = useState('');
   const [contrasena, setContrasena] = useState('');
   
   useEffect(() => {
-    fetchEmpleados();
+    fetchCliente();
   }, []);
 
-  const fetchEmpleados = async () => {
+  const fetchCliente = async () => {
     try {
       const response = await fetch(URI);
       const data = await response.json();
       const rows = data.rows;
 
       if (Array.isArray(rows)) {
-        setEmpleados(rows);
-        console.log("Empleados:", rows);
+        setCliente(rows); 
+        console.log("Cliente:", rows);
       } else {
         console.error("La respuesta no es un array", data);
-        alert("Error al obtener los Empleados: la respuesta no es un array");
+        alert("Error al obtener los Clientes: la respuesta no es un array");
       }
     } catch (error) {
-      console.error("Error al obtener los Empleados:", error);
-      alert("Error al obtener los Empleados:", error);
+      console.error("Error al obtener los Clientes:", error);
+      alert("Error al obtener los Clientes:", error);
     }
   };
 
@@ -38,14 +38,14 @@ function Login() {
     e.preventDefault();
 
     //RECORRER ARREGLO DE EMPLEADOS para validar 
-    const empleado = Empleados.find((empleado) => {
-      if (empleado.Usuario === usuario && empleado.Contrasena === contrasena) {
-        return empleado;
+    const cliente = Cliente.find((cliente) => {
+      if (cliente.Usuario === usuario && cliente.Contrasena === contrasena) {
+        return cliente;
       }
     });
 
-    if (empleado) {
-      navigate('/App');
+    if (cliente) {
+      navigate('/InicioClientes');
     } else {
       alert("Usuario o contraseña incorrectos");
     }

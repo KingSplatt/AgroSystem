@@ -11,7 +11,7 @@ const mockProducts = [
   // Se añaden productos según sea necesario.
 ];
 
-const Producto1 =() => {
+const Producto3 =() => {
   const handleAddToCart = () => {
     alert('Selecciona exitosa')
     // Add code here to handle adding the product to the cart
@@ -56,7 +56,7 @@ const Producto1 =() => {
           <form action="">
             <div className="element01">
             <img
-              src="https://avotools.com/cdn/shop/products/herbicida-faena-fuerte-360-1-litro-811830_800x.jpg?v=1606359467"
+              src="https://interagro.mx/wp-content/uploads/2020/03/CENTELLA-1L.jpg"
               alt="Herbicida"
               className="element02"
             />
@@ -64,9 +64,9 @@ const Producto1 =() => {
           </form>
         <div className="elemnt03">
           <div>
-            <h2 className="element04"> Faena Fuerte</h2>
+            <h2 className="element04"> Centella</h2>
             <p className="element05">
-              <strong>Precio:</strong> $ 49.99
+              <strong>Precio:</strong> $ 39.99
             </p>
             <h3 className="element06">Descripción</h3>
             <p className="element07">
@@ -109,4 +109,4 @@ const Producto1 =() => {
   )
 }
 
-export default Producto1
+export default Producto3

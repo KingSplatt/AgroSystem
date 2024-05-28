@@ -5,7 +5,38 @@ import Option from "../Componentes/Option";
 
 const ClienteForm = ({ formData, handleSubmit, handleChange, ciudades, Cancell }) => {
     return (
-        <div className="Formulario-Cliente">
+        <div className="EncabezadoTop">
+        <h2>
+            Gallo Giro - Agroquimicos.
+              <div>
+                <input className="inputBarra" type='search' placeholder="Buscar" />
+              </div>
+          </h2>
+          <div>
+            <nav className="centrado">
+              
+              <a href="/InicioClientes" className="separacion">
+              Inicio
+              </a>
+              <a href="#" className="separacion">
+                Nosotros
+              </a>
+              <a href="#" className="separacion">
+                Productos
+              </a>
+              <a href="#" className="separacion">
+                Carrito
+              </a>
+              <a href="/Registrarse" className="separacion">
+                Registrarse
+              </a>
+              <a href="#" className="separacion">
+                Iniciar sesion
+              </a>
+            </nav>
+          </div>
+
+          <div className="Formulario-Cliente">
             <h2>Registrarse</h2>
             <div className="Clientes">
 
@@ -112,6 +143,7 @@ const ClienteForm = ({ formData, handleSubmit, handleChange, ciudades, Cancell }
                 </button>
             </div>
         </div >
+    </div>
     );
 };
 

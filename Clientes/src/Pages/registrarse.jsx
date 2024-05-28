@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ClienteForm from "../Componentes/ClienteForm";
 import "../Estilos/AddClientes.css";
+import "../Estilos/InicioClientes.css";
 import useInputChange from "../Hooks/useInputChange";
 
 

@@ -38,7 +38,7 @@ const InicioClientes =() =>
               <a href="/Registrarse" className="separacion">
                 Registrarse
               </a>
-              <a href="#" className="separacion">
+              <a href="/Login" className="separacion">
                 Iniciar sesion
               </a>
             </nav>
