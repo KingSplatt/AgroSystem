@@ -24,6 +24,8 @@ const NuevaVentaNormal = async (req, res) => {
         await pool.query(sqlVenta, [parseInt(IDVenta[0][0].IDVenta), FechaPedido, parseFloat(Subtotal), parseFloat(Total), 0, IDCliente, IDEmpleado]);
 
         productos.forEach(async producto => {
+            const sqlEliminarFromProductos ="DELETE FROM ProductoSucursal WHERE IDProducto = ?  ORDER BY IDProducto LIMIT 1";
+            await pool.query(sqlEliminarFromProductos,[producto.IDProducto]);
             const sqlDetalleVenta = 'INSERT INTO DetalleVenta (IDVenta, IDProducto, Cantidad, PrecioUnitario) VALUES ( ?, ?, ?, ?)';
             await pool.query(sqlDetalleVenta, [parseInt(IDVenta[0][0].IDVenta), producto.IDProducto, producto.cantidad, producto.PrecioUnitario]);
         });
