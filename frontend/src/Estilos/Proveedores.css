@@ -51,6 +51,18 @@ table {
   text-align: center;
 }
 
+.tablaP td {
+  margin-top: 20px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.tablaP th {
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #f2f2f2;
+}
 
 th,
 td {

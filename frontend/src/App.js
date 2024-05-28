@@ -41,7 +41,7 @@ const App = () => {
                   <Route path="/HistorialCompras" element={<HistorialCompras />} />
                   <Route path="/IngresarProductos" element={<IngresarProductos />} />
                   <Route path="/VerProducto" element={<VerProducto />} />
-                  
+
                   <Route path="/Cotizar" element={<Cotizar />} />
                   <Route path="/AnadirProductos" element={<AnadirProductos />} />
                   <Route path="/AnadirProductosSucursal" element={<AnadirProductoSucursal />} />

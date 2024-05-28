@@ -1,49 +1,69 @@
 /* Proveedores.css */
-.todoProd{
+.todoProd {
   padding-top: 60px;
 }
+
 .containerVP {
-  
-    width: 80%;
-    margin: 0 auto;
-  }
-  
-  .barraSuperior {
-    display: flex;
-    padding:1%;
-    align-items: center;
-    margin-bottom: 20px;
-    background-color: #f2f2f2;
-    
-  }
-  
-  .barraSuperior input {
-    
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-right: auto;
-  }
-  
-  .barraSuperior button {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 5%;;
 
-  }
+  width: 80%;
+  margin: 0 auto;
+}
 
-  .tabla{
-    text-align: center;
-  }
+.barraSuperior {
+  display: flex;
+  padding: 1%;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #f2f2f2;
 
+}
+
+.barraSuperior input {
+
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: auto;
+}
+
+.barraSuperior button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 5%;
+  ;
+
+}
+
+.tabla {
+  text-align: center;
+}
+
+.tabla thead {
+  padding: 50px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.tabla td {
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.tabla th {
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #f2f2f2;
+}
 
 /*
 .Cancel{
@@ -69,47 +89,49 @@
   }
 */
 
-.Busqueda{
-    padding: 8px;
-    color: black;
-    border-radius: 4px;
-    margin-right: auto;
+.Busqueda {
+  padding: 8px;
+  color: black;
+  border-radius: 4px;
+  margin-right: auto;
 }
-  .Save{
 
-    padding: 8px 16px;
-    background-color: #A5DA8C;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;
-  }
+.Save {
 
-  .Cancel {
+  padding: 8px 16px;
+  background-color: #A5DA8C;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
 
-    padding: 8px 16px;
-    background-color: #C85859;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;
+.Cancel {
 
-  }
+  padding: 8px 16px;
+  background-color: #C85859;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+
+}
 
 
-  
-  th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
 
-  h2 {
-    margin-top: 0cm;
-  }
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+h2 {
+  margin-top: 0cm;
+}

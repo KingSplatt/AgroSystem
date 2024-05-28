@@ -2,13 +2,14 @@
 .todo {
     padding-left: 60px;
 }
+
 .containerVP {
     width: 80%;
     margin: 0 auto;
     padding: 20px;
-    background-color:#e7e4e4;
+    background-color: #e7e4e4;
     border-radius: 10px;
-   
+
 }
 
 .barraSuperior {
@@ -72,10 +73,11 @@ table {
     margin-right: 10px;
 }
 
-th, td {
+th,
+td {
     padding: 8px;
     text-align: left;
-    
+
     border-bottom: 1px solid #ddd;
 }
 
@@ -101,5 +103,28 @@ h2 {
 
 /* pruebas, no las borren jeje*/
 table {
-    background-color:#ccc;
+    background-color: #ccc;
+}
+
+.tablaVen {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.tablaVen thead {
+    background-color: #f2f2f2;
+}
+
+.tablaVen th {
+    padding: 10px;
+    vertical-align: top;
+    text-align: center;
+}
+
+.tablaVen td {
+    padding: 10px;
+    vertical-align: top;
+    text-align: center;
 }

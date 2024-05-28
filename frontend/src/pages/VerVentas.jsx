@@ -66,7 +66,7 @@ const VerVentas = () => {
                         <button className="Add" onClick={() => window.location.href = "./RealizarVenta"}><FaPlus /> Nueva venta</button>
                     </div>
                 </div>
-                <table>
+                <table className='tablaVen'>
                     <thead>
                         <tr>
                             <th>Orden</th>

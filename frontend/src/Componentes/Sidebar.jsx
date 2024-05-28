@@ -3,10 +3,11 @@ import {
     FaBars, FaHandHoldingUsd, FaMoneyCheckAlt, FaProductHunt,
     FaShoppingCart, FaSignOutAlt, FaTh, FaTruck, FaUsers
 } from "react-icons/fa";
-import { NavLink } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 import '../Estilos/Sidebar.css';
 import logo from '../Images/3.jpg';
 import Topbar from './Topbar.jsx';
+import Login from "../Login";
 
 const Sidebar = ({ nose }) => {
 
@@ -104,8 +105,17 @@ const Sidebar = ({ nose }) => {
         },
         {
             name: 'Salir',
-            path: '/logout',
-            icon: <FaSignOutAlt />
+            path: '/Logout',
+            icon: <FaSignOutAlt />,
+
+            onClick: () => {
+                alert("Sesión cerrada");
+                localStorage.clear();
+                window.location.href = "/";
+                <Route path="/logout" element={<Login />} />
+            }
+
+
         }
     ];
 

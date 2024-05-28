@@ -39,7 +39,7 @@ const VerProducto = () => {
             const response = await fetch(url);
             const data = await response.json();
             let rows = data.rows;
-            if(empleado.IDCEDI){
+            if (empleado.IDCEDI) {
                 rows = rows[0];
             }
             console.log("Data:", rows);
@@ -63,10 +63,10 @@ const VerProducto = () => {
         setBuscar(e.target.value);
     }
 
-    const BusquedaProductos = productos.filter((producto) => (
-        producto.IDProducto?.toString().toLowerCase().includes(buscar.toLowerCase()) || 
-        producto.Nombre.toLowerCase()?.includes(buscar.toLowerCase()) || 
-        producto.NombreProveedor.toLowerCase()?.includes(buscar.toLowerCase())
+    const BusquedaProductos = productos.filter((productos) => (
+        productos.IDProducto?.toString().toLowerCase().includes(buscar.toLowerCase()) ||
+        productos.Nombre.toLowerCase()?.includes(buscar.toLowerCase()) ||
+        productos.NombreProveedor.toLowerCase()?.includes(buscar.toLowerCase())
     ));
 
     return (
@@ -77,7 +77,7 @@ const VerProducto = () => {
                     <>
                         <h3>{empleado.IDSucursal ? `Sucursal ${empleado.IDSucursal}` : `CEDI ${empleado.IDCEDI}`}</h3>
                         <div>
-                            <p>Empleado: {empleado.Nombre} </p>                       
+                            <p>Empleado: {empleado.Nombre} </p>
                             <p>Puesto: {empleado.Puesto}</p>
                         </div>
                     </>
@@ -103,15 +103,15 @@ const VerProducto = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {BusquedaProductos.map((producto, index) => (
+                            {BusquedaProductos.map((productos, index) => (
                                 <tr key={index}>
-                                    <td>{producto.IDProducto}</td>
-                                    <td>{producto.Nombre}</td>
-                                    <td>{producto.Descripcion}</td>
-                                    <td>{producto.PrecioUnitario}</td>
-                                    <td>{producto.Stock}</td>
-                                    <td>{producto.Descontinuado ? "Sí" : "No"}</td>
-                                    <td>{producto.NombreProveedor}</td>
+                                    <td>{productos.IDProducto}</td>
+                                    <td>{productos.Nombre}</td>
+                                    <td>{productos.Descripcion}</td>
+                                    <td>{productos.PrecioUnitario}</td>
+                                    <td>{productos.Stock}</td>
+                                    <td>{productos.Descontinuado ? "Sí" : "No"}</td>
+                                    <td>{productos.NombreProveedor}</td>
                                 </tr>
                             ))}
                         </tbody>
