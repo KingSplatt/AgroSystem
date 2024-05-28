@@ -18,7 +18,7 @@ const HistorialCompras = () => {
     const fetchCompras = async () => {
         const savedEmpleadoJ = JSON.parse(savedEmpleado);
         console.log(savedEmpleadoJ);
-        if (!savedEmpleadoJ.IDSucursal) {
+        if (!savedEmpleadoJ.IDCEDI) {
             console.error("No hay un empleado logueado");
             alert("No hay un empleado de Sucursal logueado, inice sesión primero");
             window.location.href = "./";

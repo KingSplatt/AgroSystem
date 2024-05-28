@@ -181,8 +181,8 @@ const Sidebar = ({ nose }) => {
                         <FaBars />
                     </div>
                 </div>
-                <div><label style={{ display: isOpen ? "block" : "none" }}> {IDTipo}</label></div>
-                <div><label style={{ display: isOpen ? "block" : "none" }}> Usuario: {savedEmpleado.Usuario}</label></div>
+                <div><label className='Tipo' style={{ display: isOpen ? "block" : "none" }}> {IDTipo}</label></div>
+                <div><label className='Usuario' style={{ display: isOpen ? "block" : "none" }}> Usuario: {savedEmpleado.Usuario}</label></div>
                 {menuItems.map(renderMenuItem)}
             </div>
             <main>{nose}</main>

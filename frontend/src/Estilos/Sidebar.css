@@ -1,8 +1,9 @@
 .contenedor {
-    
-    position: fixed;  
- 
+
+    position: fixed;
+
 }
+
 main {
     width: 100%;
     padding: 20px;
@@ -12,11 +13,11 @@ main {
     height: 100vh;
     background: #333;
     color: #fff;
-  
-    width: 300px; 
+
+    width: 300px;
     transition: all 0.5s;
-    overflow: auto; 
-  
+    overflow: auto;
+
 }
 
 .top {
@@ -33,7 +34,7 @@ main {
     display: flex;
     font-size: 25px;
     cursor: pointer;
-    margin-left : auto;
+    margin-left: auto;
 }
 
 .link {
@@ -65,4 +66,23 @@ main {
 
 h2 {
     margin-top: 0cm;
-  }
+}
+
+.Usuario {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-align: center;
+    font-style: italic;
+}
+
+.Tipo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: bolder;
+    font-variant: normal;
+}
