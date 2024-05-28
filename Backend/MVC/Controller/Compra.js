@@ -5,6 +5,7 @@ const NuevaCompra = async (req, res) => {
     try {
         const { FechaPedido, FechaEntrega, SubTotal, Total, CEDI, Empleado } = req.body;
         const { Cantidad, PrecioUnitario, Producto } = req.body;
+        const fechaActual = new Date();
         if (!FechaPedido || !FechaEntrega || !SubTotal || !Total || !CEDI || !Empleado || !Cantidad || !PrecioUnitario || !Producto) {
             return res.status(400).send({ success: false, message: 'Faltan campos por llenar' });
         }

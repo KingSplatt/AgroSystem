@@ -6,6 +6,7 @@ import "../Estilos/AddProductos.css";
 const URI_Categorias = "http://localhost:8080/categorias";
 const URI_Proveedores = "http://localhost:8080/proveedores";
 
+
 const AnadirProductos = () => {
   const [Categorias, setCategorias] = useState([]);
   const [Proveedores, setProveedores] = useState([]);
@@ -83,12 +84,15 @@ const AnadirProductos = () => {
   };
   const Guardar  = async (e) => {
     console.log(empleado.IDCEDI);
-    let count = 0;
-    for (let i = 0; i < filas.length; i++) {
-      if(filas[i].Nombre === "" || filas[i].Descripcion === "" || filas[i].PrecioUnitario === "" || filas[i].Descontinuado === "" || filas[i].IDProveedor === "" || filas[i].IDCategoria === ""){
-        alert("Por favor llene todos los campos");
+    const allFieldsComplete  = filas.every(fila => fila.Nombre && fila.Descripcion && fila.PrecioUnitario && fila.Descontinuado && fila.IDProveedor && fila.IDCategoria);
+    if (!allFieldsComplete) {
+        alert("Porfavor llene todos los campos");
         return;
-      }
+    }
+    let count = 0;
+    
+    for (let i = 0; i < filas.length; i++) {
+      let IDProductoObtenido;
       filas[i].IDProveedor = Proveedores.find(proveedor => proveedor.Nombre === filas[i].IDProveedor).IDProveedor;
       filas[i].IDCategoria = Categorias.find(categoria => categoria.NombreCategoria === filas[i].IDCategoria).IDCategoria;
       filas[i].Descontinuado = filas[i].Descontinuado === "Si" ? 1 : 0;
@@ -104,18 +108,21 @@ const AnadirProductos = () => {
         });
         const data = await response.json();
         console.log(data);
+        IDProductoObtenido = data.message;
+        console.log(IDProductoObtenido);
+
         
       } catch (error) {
         console.error("Error al añadir producto:", error);
         alert("Error al añadir producto:", error);
         count++;
-      }
+      }/*
       try {
         const valorFechaSurtido = document.getElementById("fecha-surtido").value;
         const valorFechaCaducidad = document.getElementById("fecha-caducidad").value;
         console.log(valorFechaSurtido);
         console.log(valorFechaCaducidad);
-        const cuerpo = {valorFechaSurtido: valorFechaSurtido,valorFechaCaducidad:valorFechaCaducidad,IDProducto: filas[i].IDProducto, IDCedi: empleado.IDCEDI};
+        const cuerpo = {valorFechaSurtido: valorFechaSurtido,valorFechaCaducidad:valorFechaCaducidad,IDProducto: IDProductoObtenido, IDCedi: empleado.IDCEDI};
         console.log(cuerpo)
         const response = await fetch("http://localhost:8080/productosCEDI/", {
           method: "POST",
@@ -130,7 +137,7 @@ const AnadirProductos = () => {
         console.error("Error al añadir producto:", error);
         alert("Error al añadir producto:", error);
         count++;
-      }
+      }*/
     }
 
     if(count === 0){
@@ -142,7 +149,6 @@ const AnadirProductos = () => {
       }
       count = filas.length;
     console.log(filas);
-
   
   };
   const Cancelar = () => {
@@ -163,8 +169,7 @@ const AnadirProductos = () => {
                 <th>Proveedor</th>
                 <th>Categoria</th>
                 <th>Descontinuado</th>
-                <th>Fecha de Surtido</th>
-                <th>Fecha de Caducidad</th>
+
                 <th>Eliminar</th>
               </tr>
             </thead>
@@ -226,16 +231,7 @@ const AnadirProductos = () => {
 
 
                   </td>
-                  <td>
-                    <input type="date" id="fecha-surtido" name="fecha">
-                      </input>
-
-                  </td>
-                  <td>
-                    <input type="date" id="fecha-caducidad" name="fecha">
-                      </input>
-
-                  </td>
+                
                   <td><button onClick={() => eliminarFila(fila.IDProducto)}><FaTrash /></button></td>
                 </tr>
               ))}

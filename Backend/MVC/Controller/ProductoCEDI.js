@@ -12,7 +12,7 @@ const AgregarProductoCEDI = async (req, res) => {
         res.status(201).send({ success: true, message: "Producto añadido" });
     } catch (err) {
         console.error('Error al añadir producto:', err);
-        res.status(500).send({ success: false, message: "FechaCaducidad"});
+        res.status(500).send({ success: false, message: 'Error al añadir producto: ' + err});
     }
 
 };

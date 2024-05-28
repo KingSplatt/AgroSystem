@@ -1,13 +1,10 @@
 const express = require('express');
-const { AgregarProducto, VerProductos } = require('../Controller/Producto');
+const { AgregarProducto, ObtenerProductos } = require('../Controller/Producto');
 
 const router = express.Router();
 
 
 router.post('/', AgregarProducto);
-router.get('/', VerProductos);
-
-
-
+router.get('/', ObtenerProductos);
 
 module.exports = router;
