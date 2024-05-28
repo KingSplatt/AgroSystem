@@ -54,7 +54,7 @@ function Login() {
         console.log("ID del CEDI:", empleado.IDCEDI);
       }
       // Navegar a la siguiente página
-      navigate('/App');
+      navigate('/Inicio');
     } else {
       alert("Usuario o contraseña incorrectos");
     }

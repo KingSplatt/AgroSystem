@@ -18,7 +18,8 @@ const ModificarProductos = () => {
       // Aqui se llama a la API para obtener los productos
       const response = await fetch("http://localhost:8080/productos");
       const data = await response.json();
-      const rows = data.rows;
+      let rows = data.rows;
+      rows = rows[0];
       console.log("Productos: ", rows);
 
       setProductosOriginales(rows);
@@ -34,16 +35,16 @@ const ModificarProductos = () => {
     console.log("Cambiando producto", id, campo, valor);
 
     const filasActualizadas = filas.map((fila) =>
-      fila.IDproducto === id ? { ...fila, [campo]: valor } : fila
+      fila.IDProducto === id ? { ...fila, [campo]: valor } : fila
     );
     setFilas(filasActualizadas);
 
     // Añadir el producto modificado a productosModificados
-    const productoModificado = filasActualizadas.find(fila => fila.IDproducto === id);
+    const productoModificado = filasActualizadas.find(fila => fila.IDProducto === id);
     setProductosModificados(prev => {
-      const yaModificado = prev.find(prod => prod.IDproducto === id);
+      const yaModificado = prev.find(prod => prod.IDProducto === id);
       if (yaModificado) {
-        return prev.map(prod => prod.IDproducto === id ? productoModificado : prod);
+        return prev.map(prod => prod.IDProducto === id ? productoModificado : prod);
       } else {
         return [...prev, productoModificado];
       }
@@ -61,9 +62,9 @@ const ModificarProductos = () => {
     try {
       const promises = productosModificados.map(async (producto) => {
 
-        console.log("Actualizando producto:", producto.IDproducto);
+        console.log("Actualizando producto:", producto.IDProducto);
 
-        const response = await fetch(`http://localhost:8080/productosSucursal/${producto.IDproducto}`, {
+        const response = await fetch(`http://localhost:8080/productosSucursal/${producto.IDProducto}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -71,7 +72,7 @@ const ModificarProductos = () => {
           body: JSON.stringify(producto),
         });
         if (!response.ok) {
-          throw new Error(`Error al actualizar el producto ${producto.IDproducto}`);
+          throw new Error(`Error al actualizar el producto ${producto.IDProducto}`);
         }
         return response.json();
       });
@@ -125,14 +126,14 @@ const ModificarProductos = () => {
               <th>Artículo</th>
               <th>Descripción</th>
               <th>Precio</th>
-              <th>Proveedor</th>
+        
               <th>Descontinuado</th>
             </tr>
           </thead>
           <tbody>
             {filas.map((fila) => (
-              <tr key={fila.IDproducto}>
-                <td>{fila.IDproducto}</td>
+              <tr key={fila.IDProducto}>
+                <td>{fila.IDProducto}</td>
                 <td>{fila.Nombre}</td>
                 <td>{fila.Descripcion}</td>
                 <td>
@@ -140,17 +141,17 @@ const ModificarProductos = () => {
                     type="number"
                     value={fila.PrecioUnitario}
                     onChange={(e) =>
-                      manejarCambioInput(fila.IDproducto, "PrecioUnitario", e.target.value)
+                      manejarCambioInput(fila.IDProducto, "PrecioUnitario", e.target.value)
                     }
                   />
                 </td>
-                <td>{fila.ProveedorN}</td>
+            
                 <td>
                   <input
                     type="checkbox"
                     checked={fila.Descontinuado === 1}
                     onChange={(e) =>
-                      manejarCambioInput(fila.IDproducto, "Descontinuado", e.target.checked ? 1 : 0)
+                      manejarCambioInput(fila.IDProducto, "Descontinuado", e.target.checked ? 1 : 0)
                     }
                   />
                 </td>

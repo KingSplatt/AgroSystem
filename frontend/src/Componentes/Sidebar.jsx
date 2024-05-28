@@ -118,12 +118,19 @@ const Sidebar = ({ nose }) => {
         menuItems = menuItems.filter(item => item.name !== 'Proveedores');
         menuItems = menuItems.filter(item => item.name !== 'Cotizar');
         menuItems = menuItems.filter(item => item.name !== 'Compras');
+        menuItems = menuItems.filter(item => {
+            if (item.name === 'Productos') {
+                item.submenu = item.submenu.filter(subitem => subitem.name !== 'Modificar Productos');
+            }
+            return item;
+        })
     }
 
     if (savedEmpleado && savedEmpleado.IDCEDI) {
         menuItems = menuItems.filter(item => {
             if (item.name === 'Productos') {
                 item.submenu = item.submenu.filter(subitem => subitem.name !== 'Añadir Productos CEDI');
+
                 item.submenu = item.submenu.filter(subitem => subitem.name !== 'Modificar Productos');
                 item.submenu = item.submenu.filter(subitem => subitem.name !== 'Añadir Productos Sucursal');
             }
