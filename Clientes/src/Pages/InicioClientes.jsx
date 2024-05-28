@@ -21,11 +21,11 @@ const InicioClientes =() =>
           </h2>
           <div>
             <nav className="centrado">
-              <a href="#" className="separacion">
+              <a href="/" className="separacion">
               Inicio
               </a>
               <Menu />
-              <a href="#" className="separacion">
+              <a href="/Nosotros" className="separacion">
                 Nosotros
               </a>
               <a href="#" className="separacion">

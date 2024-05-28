@@ -20,7 +20,7 @@ const Plaguicidas =() =>
           </h2>
           <div>
             <nav className="centrado">
-              <a href="/InicioClientes" className="separacion">
+              <a href="/" className="separacion">
               Inicio
               </a>
               <Menu />
@@ -39,7 +39,7 @@ const Plaguicidas =() =>
             </nav>
           </div>
           <div className="txtSugerencias">
-            Sugerencias
+            Plaguicidas
                 <ProductList products={mockProducts} />
           </div>
         </div>

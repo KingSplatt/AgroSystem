@@ -1,5 +1,4 @@
 import React from 'react'
-import "../Componentes/ProductCardv2.jsx";
 import ProductList from '../Componentes/ProductList.jsx';
 import Menu from "../Componentes/MenuProductos.jsx";
 import "../Estilos/InicioClientes.css";
@@ -29,11 +28,11 @@ const Producto6 =() => {
           <div>
             <nav className="centrado">
               
-              <a href="/InicioClientes" className="separacion">
+              <a href="/" className="separacion">
               Inicio
               </a>
               <Menu />
-              <a href="#" className="separacion">
+              <a href="/Nosotros" className="separacion">
                 Nosotros
               </a>
               <a href="#" className="separacion">

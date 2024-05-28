@@ -123,3 +123,16 @@ a:hover{
 .element11:hover{
   background-color: #FFD600; /* hover:bg-yellow-600 */
 }
+
+.subtitulo{
+  font-size: 1.25rem; /* text-lg */
+  font-weight: 600; /* font-semibold */
+  margin-top: 0.3rem; /* mt-4 */
+  margin-left: 170px;
+}
+.texto{
+  font-size: 1.15rem; /* text-sm */
+  margin-top: 0.3rem; /* mt-2 */
+  margin-left: 170px;
+  margin-right: 200px;
+}

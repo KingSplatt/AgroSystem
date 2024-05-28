@@ -2,6 +2,7 @@ import React from "react";
 import { FaRegSave, FaRegTimesCircle } from "react-icons/fa";
 import Input from "../Componentes/Input";
 import Option from "../Componentes/Option";
+import Menu from "../Componentes/MenuProductos.jsx";
 
 const ClienteForm = ({ formData, handleSubmit, handleChange, ciudades, Cancell }) => {
     return (
@@ -15,14 +16,12 @@ const ClienteForm = ({ formData, handleSubmit, handleChange, ciudades, Cancell }
           <div>
             <nav className="centrado">
               
-              <a href="/InicioClientes" className="separacion">
+              <a href="/" className="separacion">
               Inicio
               </a>
-              <a href="#" className="separacion">
+              <Menu />
+              <a href="/Nosotros" className="separacion">
                 Nosotros
-              </a>
-              <a href="#" className="separacion">
-                Productos
               </a>
               <a href="#" className="separacion">
                 Carrito
@@ -30,7 +29,7 @@ const ClienteForm = ({ formData, handleSubmit, handleChange, ciudades, Cancell }
               <a href="/Registrarse" className="separacion">
                 Registrarse
               </a>
-              <a href="#" className="separacion">
+              <a href="/Login" className="separacion">
                 Iniciar sesion
               </a>
             </nav>

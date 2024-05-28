@@ -12,6 +12,7 @@ import Producto6 from "./Pages/Producto6.jsx";
 import Herbicidas from "./Pages/Herbicidas.jsx";
 import Plaguicidas from "./Pages/Plaguicidas.jsx";
 import Registrarse from "./Pages/Registrarse.jsx";
+import Nosotros from "./Pages/Nosotros.jsx";
 import Login from "./Login";
 
 const App = () => {
@@ -19,7 +20,7 @@ const App = () => {
     <div className="Todo">
       <BrowserRouter>
         <Routes>
-          <Route path="/InicioClientes" element={<InicioClientes />} />
+          <Route path="/" element={<InicioClientes />} />
           <Route path="/Producto1" element={<Producto1 />} />
           <Route path="/Producto2" element={<Producto2 />} />
           <Route path="/Producto3" element={<Producto3 />} />
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/Herbicidas" element={<Herbicidas />} />
           <Route path="/Plaguicidas" element={<Plaguicidas />} />
           <Route path="/Registrarse" element={<Registrarse />} />
+          <Route path="/Nosotros" element={<Nosotros />} />
           <Route path="/Login" element={<Login />} />
         </Routes>
       </BrowserRouter>
