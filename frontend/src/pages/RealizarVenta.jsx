@@ -9,6 +9,8 @@ const URI = "http://localhost:8080/productosSucursal";
 
 const RealizarVenta = () => {
     const [productos, setProductos] = useState([]);
+    let clienteVar;
+    const [cliente, setCliente] = useState('');
     const [productosSeleccionados, setProductosSeleccionados] = useState([]);
     const [busqueda, setBusqueda] = useState('');
     const [metodoPago, setMetodoPago] = useState('');
@@ -26,9 +28,30 @@ const RealizarVenta = () => {
     });
     const [cantidad, setCantidad] = useState({});
 
+    const [clientes, setClientes] = useState([]);
+
     useEffect(() => {
         fetchProductos();
+        fetchClientes();
     }, []);
+
+    const fetchClientes = async () => {
+        try {
+            const responseP = await fetch("http://localhost:8080/clientes");
+            const Clientes = await responseP.json();
+            const rowsP = Clientes.rows;
+            if (Array.isArray(rowsP)) {
+                setClientes(rowsP);
+            }
+            console.log("Clientes:", rowsP);
+        } catch (error) {
+            alert("Error al obtener los Clientes:", error);
+        }
+    };
+
+    const handleClienteChange = (e) => {
+        setCliente(e.target.value);
+    }
 
     const fetchProductos = async () => {
         try {
@@ -85,7 +108,7 @@ const RealizarVenta = () => {
             if (productoExistenteIndex !== -1) {
                 const updatedProductosSeleccionados = [...prevSeleccionados];
                 console.log(productoCantidad);
-                updatedProductosSeleccionados[productoExistenteIndex].cantidad += productoCantidad/2;
+                updatedProductosSeleccionados[productoExistenteIndex].cantidad += productoCantidad / 2;
                 return updatedProductosSeleccionados;
             } else {
                 return [...prevSeleccionados, { ...producto, cantidad: productoCantidad }];
@@ -111,8 +134,65 @@ const RealizarVenta = () => {
     };
 
     const realizarVenta = () => {
+        const FechaPedido = new Date();
+        let Subtotal = 0;
+        let Total = 0;
+        const credito = metodoPago === 'credito' ? 1 : 0;
+        const IDCliente = parseInt(cliente);
+        const IDEmpleado = saveEmpleado.IDEmpleado;
+
+
+
+
+
+        for (let i = 0; i < productosSeleccionados.length; i++) {
+            const producto = productosSeleccionados[i];
+            console.log(producto);
+            Subtotal += producto.PrecioUnitario * producto.cantidad;
+            Total += Subtotal* 1.16;        
+        }
+
+        if(credito === 1){
+            
+            console.log(credito);
+        }else{
+            const body = { productos: productosSeleccionados,IDEmpleado: IDEmpleado, IDCliente: IDCliente };    
+            const ddmmaa = new Date().toLocaleDateString() ;
+            console.log(ddmmaa);   
+             console.log("Realizando Venta Normal:", JSON.stringify(body));
+            fetch("http://localhost:8080/ventasN", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body),
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+
+
+        }
+        
+
+
+
+
+
+
         alert('Venta realizada con éxito');
-        setProductosSeleccionados([]);
+
+
+
+
+
+
+
+       /* setProductosSeleccionados([]);
         setMetodoPago('');
         setMontoRecibido('');
         setTarjetaInfo({
@@ -126,7 +206,7 @@ const RealizarVenta = () => {
             anticipo: ''
         });
         setCantidad({});
-        fetchProductos(); // Refetch products to reset the stock
+        fetchProductos();*/ // Refetch products to reset the stock
     };
 
     const cancelarVenta = () => {
@@ -238,6 +318,7 @@ const RealizarVenta = () => {
                         ))}
                     </tbody>
                 </table>
+
                 <div className="metodo-pago">
                     <label>Método de Pago:</label>
                     <select value={metodoPago} onChange={(e) => setMetodoPago(e.target.value)}>
@@ -246,6 +327,19 @@ const RealizarVenta = () => {
                         <option value="transferencia">Transferencia</option>
                         <option value="tarjeta">Tarjeta</option>
                         <option value="credito">Credito</option>
+                    </select>
+                </div>
+                <div className='clientesSelect'>
+                    <label>Cliente:</label>
+                    <select value={cliente} onChange={handleClienteChange}>
+                        <option value="">Seleccionar</option>
+                        {clientes
+                            ? clientes.map((cliente, index) => (
+                                <option key={index} value={cliente.IDCliente}>
+                                    {cliente.Nombre}
+                                </option>
+                            ))
+                            : ""}
                     </select>
                 </div>
                 {metodoPago === 'efectivo' && (
@@ -268,18 +362,7 @@ const RealizarVenta = () => {
                 {metodoPago === 'credito' && (
                     <table className="detalles-tarjeta">
                         <tbody>
-                            <tr>
-                                <td><label>Cliente:</label></td>
-                                <td>
-                                    <input className='tarjeta-input'
-                                        type="text"
-                                        name="nombreCliente"
-                                        placeholder="Nombre Cliente"
-                                        value={tarjetaInfo.nombreCliente}
-                                        onChange={handleTarjetaInfoChange}
-                                    />
-                                </td>
-                            </tr>
+                    
                             <tr>
                                 <td><label>Anticipo mínimo:</label></td>
                                 <td>
@@ -355,18 +438,7 @@ const RealizarVenta = () => {
                                     />
                                 </td>
                             </tr>
-                            <tr>
-                                <td><label>Nombre del Titular:</label></td>
-                                <td>
-                                    <input className='tarjeta-input'
-                                        type="text"
-                                        name="nombre"
-                                        placeholder="Nombre del Titular"
-                                        value={tarjetaInfo.nombre}
-                                        onChange={handleTarjetaInfoChange}
-                                    />
-                                </td>
-                            </tr>
+  
                         </tbody>
                     </table>
                 )}

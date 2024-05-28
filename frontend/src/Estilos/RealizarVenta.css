@@ -124,7 +124,7 @@ button:hover {
     margin-bottom: 5px;
 }
 
-.metodo-pago select, .monto-recibido input {
+.metodo-pago select, .monto-recibido input, .clientesSelect select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -187,7 +187,7 @@ button:hover {
 }
 
 td {
-    text-align: center;
+    text-align: left;
     font-size: 1em;
     padding: 10px;
     border-bottom: 1px solid #dddddd00;
@@ -199,6 +199,8 @@ th {
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
+
+
 
 /* Media query para dispositivos móviles */
 @media (max-width: 768px) {
