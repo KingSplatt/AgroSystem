@@ -181,7 +181,7 @@ const Sidebar = ({ nose }) => {
 
     return (
         <div className="contenedor">
-            <Topbar>{savedEmpleado.Nombre}</Topbar>
+            <Topbar usuario={savedEmpleado.Usuario} />
             <div style={{ width: isOpen ? "200px" : "60px" }} className="sidebar">
                 <div className="top">
                     <h1 style={{ display: isOpen ? "block" : "none" }} className="logo"><img src={logo} width="100" height="100" alt="logo" /></h1>
