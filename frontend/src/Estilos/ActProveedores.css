@@ -1,132 +1,131 @@
 .Formulario-Proveedor {
-    width: 80%;
-    margin: 0 auto;
-    text-align: center;
-    padding-top: 40px;
-  }
-  
-  .Encabezado {
-    text-align: center;
-  }
-  
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 40px;
+}
 
-  
-  h3 {
-    margin-top: 0;
-    text-align: left;
-    padding: 5px;
-  }
-  
-  .Datos-del-usuario,
-  .Datos-de-contacto,
-  .Otros-datos {
-    display: block;
-    padding: 1%;
-    align-items: center;
-    margin-bottom: 20px;
-    background-color: #f2f2f2;
-  }
-  
-  .Datos-del-usuario-form,
-  .Datos-de-contacto-form,
-  .Otros-datos-form {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-    
-  }
+.Encabezado {
+  text-align: center;
+}
 
-  .buscador{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 40px;
-  }
-  
-  input,
-  select {
-    padding: 4px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-right: auto;
-  }
-  
-  .form-group {
-    display: flex;
-    padding: 1%;
-    align-items: center;
-    margin-bottom: 20px;
-    background-color: #f2f2f2;
-    width: 100%;
-  }
-  
-  .grupo1,
-  .grupo2,
-  .grupo3,
-  .grupo4,
-  .grupo-buscador {
-    display: flex;
-  }
-  
-  select,
-  input[type="text"],
-  input[type="password"],
-  input[type="email"],
-  input[type="tel"], .lupa {
-    width: 85%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-top: 5px;
-    font-size: 16px;
-  }
-  
-  input[type="checkbox"] {
-    width: auto;
-    margin-top: 5px;
-  }
-  
-  h2 {
-    margin-top: 0;
-    text-align: center;
-  }
-  
-  label {
-    padding: 10px;
-  }
-  
-  .valor-anterior {
-    font-weight: bold;
-    margin-right: 10px;
-  }
-  
-  .Cancelar-y-Guardar {
-    margin-top: 30px;
-    text-align: center;
-  }
-  
-  button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 0 10px;
-    font-size: 16px;
-  }
-  
-  button:hover {
-    opacity: 0.8;
-  }
-  
-  .Cancelar {
-    background-color: #C85859;
-    color: white;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  }
-  
-  .Guardar {
-    background-color: #4CAF50;
-    color: white;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  }
+h3 {
+  margin-top: 0;
+  text-align: left;
+  padding: 5px;
+}
+
+.Datos-del-usuario,
+.Datos-de-contacto,
+.Otros-datos {
+  display: block;
+  padding: 1%;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #f2f2f2;
+}
+
+.Datos-del-usuario-form,
+.Datos-de-contacto-form,
+.Otros-datos-form {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+
+}
+
+.buscador {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 40px;
+}
+
+input,
+select {
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: auto;
+}
+
+.form-group {
+  display: flex;
+  padding: 1%;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #f2f2f2;
+  width: 100%;
+}
+
+.grupo1,
+.grupo2,
+.grupo3,
+.grupo4,
+.grupo-buscador {
+  display: flex;
+}
+
+select,
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+.lupa {
+  width: 85%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+input[type="checkbox"] {
+  width: auto;
+  margin-top: 5px;
+}
+
+h2 {
+  margin-top: 0;
+  text-align: center;
+}
+
+label {
+  padding: 10px;
+}
+
+.valor-anterior {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.Cancelar-y-Guardar {
+  margin-top: 30px;
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 10px;
+  font-size: 16px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.Cancelar {
+  background-color: #C85859;
+  color: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.Guardar {
+  background-color: #4CAF50;
+  color: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}

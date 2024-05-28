@@ -90,7 +90,6 @@ input[type="email"] {
   border-radius: 4px;
   margin-top: 5px;
   font-size: 16px;
-  /* added font size for consistency */
 }
 
 h2 {
@@ -100,13 +99,10 @@ h2 {
 
 label {
   padding: 10px;
-  /* added font size for consistency */
-
 }
 
 .Cancelar-y-Guardar {
   margin-top: 30px;
-  /* increased margin for better spacing */
   text-align: center;
 }
 
@@ -117,7 +113,6 @@ button {
   cursor: pointer;
   margin: 0 10px;
   font-size: 16px;
-  /* added font size for consistency */
 }
 
 button:hover {
@@ -129,7 +124,6 @@ button:hover {
   color: white;
   border: none;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  /* removed border for a cleaner look */
 }
 
 .Guardar {
@@ -137,5 +131,4 @@ button:hover {
   color: white;
   border: none;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  /* removed border for a cleaner look */
 }

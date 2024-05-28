@@ -26,15 +26,16 @@ const ActualizarProveedor = () => {
     }
   }, [IDProveedorBusqueda]);
 
+  // Obtener las ciudades
   const fetchCiudades = async () => {
     let savedEmpleado = localStorage.getItem('empleado');
     savedEmpleado = JSON.parse(savedEmpleado);
-        if (!savedEmpleado.IDCEDI) {
-            console.error("No hay un empleado logueado");
-            alert("No hay un empleado de CEDI logueado, inice sesión primero");
-            window.location.href = "./";
-            return;
-        }
+    if (!savedEmpleado.IDCEDI) {
+      console.error("No hay un empleado logueado");
+      alert("No hay un empleado de CEDI logueado, inice sesión primero");
+      window.location.href = "./";
+      return;
+    }
 
     try {
       const response = await fetch(URI_Ciudades);
@@ -50,6 +51,7 @@ const ActualizarProveedor = () => {
     }
   };
 
+  // Obtener el proveedor
   const fetchProveedor = async (IDProveedor) => {
     try {
       const response = await fetch(`http://localhost:8080/proveedores/${IDProveedor}`);
@@ -86,6 +88,7 @@ const ActualizarProveedor = () => {
     }
   };
 
+  // Mostrar los valores anteriores en los labels
   const actualizarLabels = (data) => {
     const ciudadesBuscar = Ciudades.find(ciudad => ciudad.IDCiudad === data.IDCiudad);
     const fields = ['Nombre', 'RFC', 'CURP', 'Telefono', 'Correo', 'Legalizado', 'IDCiudad'];
@@ -103,6 +106,7 @@ const ActualizarProveedor = () => {
     });
   };
 
+  // Manejar cambios en los inputs
   const manejarCambioInput = (campo, valor) => {
     console.log('campo:', campo, 'valor:', valor);
     let newValue = valor;
@@ -123,6 +127,7 @@ const ActualizarProveedor = () => {
     });
   };
 
+  // Manejar cambios en el checkbox
   const manejarCambioCheckbox = () => {
     setProveedor({
       ...proveedor,
@@ -130,9 +135,10 @@ const ActualizarProveedor = () => {
     });
   };
 
+  // Guardar los cambios de el proveedor en la base de datos
   const guardarCambios = async (e) => {
     e.preventDefault();
-    if(proveedor.IDProveedor === '') {
+    if (proveedor.IDProveedor === '') {
       alert("Valor de Id proveedor no valido");
       return;
     }
@@ -169,6 +175,7 @@ const ActualizarProveedor = () => {
     cancelarCambios(e);
   };
 
+  // Cancelar los cambios y limpiar los campos
   const cancelarCambios = (e) => {
     e.preventDefault();
     const limpiarProveedor = {

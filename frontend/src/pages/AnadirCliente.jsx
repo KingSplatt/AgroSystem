@@ -22,6 +22,7 @@ const AnadirCliente = () => {
         Ciudad: "",
     });
 
+    // si se le da a cancelar se limpian los campos
     const Cancell = () => {
 
         setFormClientes({
@@ -42,7 +43,7 @@ const AnadirCliente = () => {
         fetchCiudades();
     }, []);
 
-    //ver ciudades en el combobox
+    //ver ciudades en el combobox 
     const fetchCiudades = async () => {
         try {
             const response = await fetch(URI_Ciudades);
@@ -56,6 +57,7 @@ const AnadirCliente = () => {
         }
     };
 
+    //Añadir clientes a la base de datos
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -80,6 +82,7 @@ const AnadirCliente = () => {
         }
     };
 
+    //Formulario de añadir clientes
     return (
         <div className="AddClientes">
             <ClienteForm

@@ -89,4 +89,4 @@ const EliminarCompra = async (req, res) => {
 }
 
 module.exports = { NuevaCompra, HistorialCompras, EliminarCompra };
-//ya quedo parseada, y comprobada en postman
+

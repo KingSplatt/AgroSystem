@@ -1,12 +1,15 @@
 .ContenedorC {
     width: 80%;
     margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
+    border-radius: 10px;
 
 }
 
 .Completo {
     padding-top: 20px;
-
+    padding: 20px;
 }
 
 .Superior {
@@ -15,6 +18,7 @@
     align-items: center;
     margin-bottom: 20px;
     background-color: #f2f2f2;
+    padding: 20px;
 
 }
 
@@ -72,4 +76,6 @@
 
 .CyG {
     text-align: center;
+    padding: 5px;
+
 }

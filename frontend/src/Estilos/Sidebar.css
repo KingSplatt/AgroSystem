@@ -21,7 +21,7 @@ main {
     top: 0;
     left: 0;
     /*z-index: 1100;*/
-    /* Asegúrate de que el sidebar tenga un z-index mayor que el topbar */
+
 }
 
 .top {

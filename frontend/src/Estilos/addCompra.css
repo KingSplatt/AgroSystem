@@ -1,12 +1,12 @@
 .IngresarProductosIP {
-    display: flex;
-    flex-direction: column;
-    padding-top: 22px;
-    margin-top: 0px;
-    margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 22px;
+  margin-top: 0px;
+  margin-bottom: 50px;
 }
 
-.CuadroIP{
+.CuadroIP {
   background-color: #fff;
   padding: 30px;
   border-radius: 10px;
@@ -18,30 +18,28 @@
 }
 
 .CyGIP {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .CancelIP {
-    background-color: #C85859;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    /* removed border for a cleaner look */
-  }
-  
-  .SaveIP {
-    background-color: #4CAF50;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    /* removed border for a cleaner look */
-  }
+  background-color: #C85859;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
 
-  tbody {
-    background-color:rgb(255, 255, 255);
-  }
+.SaveIP {
+  background-color: #4CAF50;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
 
-input[type="number"]{
-    width: 85%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-top: 5px;
-    font-size: 16px;
+tbody {
+  background-color: rgb(255, 255, 255);
+}
+
+input[type="number"] {
+  width: 85%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
+  font-size: 16px;
 }
