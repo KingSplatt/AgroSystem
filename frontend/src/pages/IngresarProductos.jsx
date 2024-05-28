@@ -10,7 +10,7 @@ const IngresarProductos = () => {
   const [empleado, setEmpleado] = useState(null);
   const [productos, setProductos] = useState([]);
   const [filas, setFilas] = useState([
-    { IDFila: 1, IDProveedor: "", IDProducto: "", Cantidad: "", FechaSurtido: "", FechaCaducidad: "" }
+    { IDFila: 1, IDProveedor: "", IDProducto: "", Cantidad: "",FechaSurtido: new Date().toISOString().split('T')[0], FechaCaducidad: "" }
   ]);
   const [productosFiltrados, setProductosFiltrados] = useState({});
 
@@ -64,7 +64,7 @@ const IngresarProductos = () => {
   };
 
   const agregarFila = () => {
-    const nuevaFila = { IDFila: Date.now(), IDProveedor: "", IDProducto: "", Cantidad: "", FechaSurtido: "", FechaCaducidad: "" };
+    const nuevaFila = { IDFila: Date.now(), IDProveedor: "", IDProducto: "", Cantidad: "", FechaSurtido: new Date().toISOString().split('T')[0], FechaCaducidad: "" };
     setFilas([...filas, nuevaFila]);
   };
 
@@ -99,7 +99,7 @@ const IngresarProductos = () => {
 
   const Cancelar = () => {
     setProductosFiltrados({});
-    setFilas([{ IDFila: 1, IDProveedor: "", IDProducto: "", Cantidad: "", FechaSurtido: "", FechaCaducidad: "" }]);
+    setFilas([{ IDFila: 1, IDProveedor: "", IDProducto: "", Cantidad: "", FechaSurtido: new Date().toISOString().split('T')[0], FechaCaducidad: "" }]);
   };
 
   const Guardar = async () => {
