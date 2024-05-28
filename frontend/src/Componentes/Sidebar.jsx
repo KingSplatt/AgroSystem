@@ -14,15 +14,15 @@ const Sidebar = ({ nose }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [expandedMenuIndex, setExpandedMenuIndex] = useState(null);
     let IDTipo;
-    if(savedEmpleado){
-        if(savedEmpleado.IDCEDI){
-            IDTipo = "CEDI: "+savedEmpleado.IDCEDI;
-        }else{
-            IDTipo = "Sucursal: "+savedEmpleado.IDSucursal;
+    if (savedEmpleado) {
+        if (savedEmpleado.IDCEDI) {
+            IDTipo = "CEDI: " + savedEmpleado.IDCEDI;
+        } else {
+            IDTipo = "Sucursal: " + savedEmpleado.IDSucursal;
         }
 
     }
-    
+
 
     const toggle = () => {
         if (isOpen) {
@@ -108,41 +108,51 @@ const Sidebar = ({ nose }) => {
         }
     ];
 
-    
+    if (savedEmpleado && savedEmpleado.IDCEDI) {
+        menuItems = menuItems.filter(item => item.name !== 'Clientes');
+        menuItems = menuItems.filter(item => item.name !== 'Ventas');
+    }
+
     if (savedEmpleado && savedEmpleado.IDSucursal) {
         menuItems = menuItems.filter(item => item.name !== 'Proveedores');
+        menuItems = menuItems.filter(item => item.name !== 'Cotizar');
+        menuItems = menuItems.filter(item => item.name !== 'Compras');
+    }
 
-        menuItems = menuItems.map(item => {
+    if (savedEmpleado && savedEmpleado.IDCEDI) {
+        menuItems = menuItems.filter(item => {
             if (item.name === 'Productos') {
-                item.submenu = item.submenu.filter(subitem => subitem.name !== 'Añadir Productos CEDI' && subitem.name !== 'Modificar Productos');
-            }
-            return item;
-        });
-    } else if (savedEmpleado && savedEmpleado.IDCEDI) {
-        menuItems = menuItems.map(item => {
-            if (item.name === 'Productos') {
+                item.submenu = item.submenu.filter(subitem => subitem.name !== 'Añadir Productos CEDI');
+                item.submenu = item.submenu.filter(subitem => subitem.name !== 'Modificar Productos');
                 item.submenu = item.submenu.filter(subitem => subitem.name !== 'Añadir Productos Sucursal');
             }
             return item;
-        });
+        })
     }
-    
 
-    
+    if (savedEmpleado && savedEmpleado.IDSucursal) {
+        menuItems = menuItems.filter(item => {
+            if (item.name === 'Productos') {
+                item.submenu = item.submenu.filter(subitem => subitem.name !== 'Añadir Productos CEDI');
+            }
+            return item;
+        })
+    }
+
 
     const renderMenuItem = (item, index) => {
         const isExpanded = expandedMenuIndex === index;
         if (item.submenu) {
             return (
                 <div key={index}>
-                     
+
 
                     <div className="link" onClick={() => toggleSubMenu(index)}>
                         <div className="icon">{item.icon}</div>
-                        
+
                         <div style={{ display: isOpen ? "block" : "none" }} className="link_text">{item.name}</div>
                     </div>
-                   
+
                     {isExpanded && item.submenu.map((subitem, subindex) => (
 
                         <NavLink to={subitem.path} key={subindex} className="link sublink" activeclassname="active">
@@ -166,7 +176,7 @@ const Sidebar = ({ nose }) => {
             <div style={{ width: isOpen ? "200px" : "60px" }} className="sidebar">
                 <div className="top">
                     <h1 style={{ display: isOpen ? "block" : "none" }} className="logo"><img src={logo} width="100" height="100" alt="logo" /></h1>
-                    
+
                     <div style={{ display: isOpen ? "0px" : "0px" }} className="bars" onClick={toggle}>
                         <FaBars />
                     </div>
