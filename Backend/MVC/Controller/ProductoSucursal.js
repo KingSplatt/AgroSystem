@@ -2,6 +2,8 @@ const pool = require("../Model/Connection");
 //obtener los productos de la sucursal
 const ObtenerProductoSucursal = async (req, res) => {
     const IDSucursal = req.params.IDSucursal;
+    console.log('ID de la sucursal:', IDSucursal);
+    console.log(req.params);
     try {
         // Obtener ID de los productos de la sucursal
         const [rows] = await pool.query(

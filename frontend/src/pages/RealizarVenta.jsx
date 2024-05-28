@@ -13,6 +13,7 @@ const RealizarVenta = () => {
     const [busqueda, setBusqueda] = useState('');
     const [metodoPago, setMetodoPago] = useState('');
     const [montoRecibido, setMontoRecibido] = useState('');
+    const saveEmpleado = JSON.parse(localStorage.getItem("empleado"))
     const [tarjetaInfo, setTarjetaInfo] = useState({
         numero: '',
         vencimiento: '',
@@ -31,7 +32,7 @@ const RealizarVenta = () => {
 
     const fetchProductos = async () => {
         try {
-            const response = await fetch(URI);
+            const response = await fetch(`${URI}/${saveEmpleado.IDSucursal}`);
             const data = await response.json();
             const rows = data.rows;
 
