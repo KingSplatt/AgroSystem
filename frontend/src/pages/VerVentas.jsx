@@ -93,7 +93,6 @@ const VerVentas = () => {
                             <th>Fecha de Orden</th>
                             <th>Subtotal</th>
                             <th>Total</th>
-                            <th>Cliente</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -103,7 +102,6 @@ const VerVentas = () => {
                                 <td>{formatDate(venta.FechaPedido)}</td>
                                 <td>{venta.Subtotal}</td>
                                 <td>{venta.Total}</td>
-                                <td>{venta.Cliente}</td>
                             </tr>
                         ))}
                     </tbody>
