@@ -80,7 +80,6 @@ CREATE TABLE CEDI (
 CREATE TABLE Compra (
     IDCompra int not null,
     FechaPedido datetime not null,
-    FechaEntrega datetime not null,
     SubTotal double not null,
     Total double not null,
     IDCedi int not null,

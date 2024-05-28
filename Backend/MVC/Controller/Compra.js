@@ -2,30 +2,44 @@ const pool = require('../Model/Connection');
 
 // Crear una nueva compra
 const NuevaCompra = async (req, res) => {
+    console.log('Nueva compra');
     try {
-        const { FechaPedido, FechaEntrega, SubTotal, Total, CEDI, Empleado } = req.body;
-        const { Cantidad, PrecioUnitario, Producto } = req.body;
+        const { productos, i, r } = req.body; // i = IDCedi, r = IDEmpleado
+
         const fechaActual = new Date();
-        if (!FechaPedido || !FechaEntrega || !SubTotal || !Total || !CEDI || !Empleado || !Cantidad || !PrecioUnitario || !Producto) {
-            return res.status(400).send({ success: false, message: 'Faltan campos por llenar' });
+        const FechaPedido = fechaActual.toISOString().split('T')[0];
+
+        // Insertar la compra
+        const [IDCompra] = await pool.query('SELECT COUNT(IDCompra)+1 AS IDCompra FROM Compra');
+
+
+        const compraSQL = 'INSERT INTO Compra (IDCompra, FechaPedido, SubTotal, Total, IDCedi, IDEmpleado) VALUES (?, ?, ?, ?, ?, ?)';
+        const compraResult = await pool.query(compraSQL, [IDCompra[0].IDCompra, FechaPedido, 0, 0, i, r]);
+
+        // Insertar los detalles de la compra
+
+        for (let i = 0; i < productos.length; i++) {
+
+            const detalleCompraSQL = 'INSERT INTO DetalleCompra (IDCompra, IDProducto, Cantidad, PrecioUnitario) VALUES (?, ?, ?, ?)';
+
+            // Obtener el PrecioUnitario del producto desde la tabla Producto
+            const [productoInfo] = await pool.query('SELECT PrecioUnitario FROM Producto WHERE IDProducto = ?;', [productos[i].IDProducto]);
+            const PrecioUnitario = productoInfo[0].PrecioUnitario;
+
+            // Insertar el detalle de la compra
+            await pool.query(detalleCompraSQL, [IDCompra[0].IDCompra, productos[i].IDProducto, productos[i].Cantidad, PrecioUnitario]);
         }
-        const [IDCompra, fields] = await pool.query('SELECT COUNT(IDCompra)+1 AS IDCompra FROM Compra');
-        const [IDCedi, campos] = await pool.query('SELECT IDCedi FROM CEDI WHERE Nombre = ?;', [CEDI]);
-        const [IDEmpleado, campos2] = await pool.query('SELECT IDEmpleado FROM Empleado WHERE Nombre = ?;', [Empleado]);
-        const [IDProducto, campos3] = await pool.query('SELECT IDProducto FROM Producto WHERE Nombre = ?;', [Producto]);
-        SubTotal = Cantidad * PrecioUnitario;
-        Total = SubTotal * 1.16;
-        const compraSQL = 'INSERT INTO Compra (IDCompra, FechaPedido, FechaEntrega, SubTotal, Total, IDCedi, IDEmpleado) VALUES ( ? , ? , ?, ?, ?, ?, ?)';
-        const compraResult = await pool.query(compraSQL, [parseInt(IDCompra[0].IDCompra), FechaPedido, FechaEntrega, parseFloat(SubTotal), parseFloat(Total), parseInt(IDCedi[0].IDCedi), parseInt(IDEmpleado[0].IDEmpleado)]);
-        const detalleCompraSQL = 'INSERT INTO DetalleCompra (IDCompra, IDProducto, Cantidad, PrecioUnitario) VALUES (?, ?, ?, ?)';
-        const detalleCompraResult = await pool.query(detalleCompraSQL, [parseInt(IDCompra[0].IDCompra), parseInt(IDProducto[0].IDEmpleado), parseInt(Cantidad), parseFloat(PrecioUnitario)]);
-        console.log('Compra exitosa', compraResult, detalleCompraResult);
+
+
         res.status(201).send({ success: true, message: "Compra creada exitosamente" });
+
     } catch (err) {
-        console.error('Error al crear la venta', err);
-        res.status(500).send({ success: false, message: 'Error al crear la venta' });
+        console.error('Error al crear la compra:', err);
+        res.status(500).send({ success: false, message: 'Error al crear la compra' });
     }
 }
+
+
 
 // Ver el historial de compras
 const HistorialCompras = async (req, res) => {
@@ -34,7 +48,6 @@ const HistorialCompras = async (req, res) => {
             SELECT 
                 C.IDCompra, 
                 C.FechaPedido, 
-                C.FechaEntrega, 
                 SUM(DC.Cantidad * DC.PrecioUnitario) AS SubTotal, 
                 ROUND(SUM(DC.Cantidad * DC.PrecioUnitario) * 1.16, 2) AS Total, 
                 C.IDCedi, 

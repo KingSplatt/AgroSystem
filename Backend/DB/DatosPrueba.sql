@@ -334,16 +334,16 @@ INSERT INTO DetalleVentaCredito (PrecioUnitario, Cantidad, FechaPlazo, PagoInici
 INSERT INTO DetalleVentaCredito (PrecioUnitario, Cantidad, FechaPlazo, PagoInicial, IDVenta, IDProducto) VALUES (400.00, 2, '2024-06-25 11:00:00', 150.00, 10, 10);
 
 --  Inserciones de ejemplo a la tabla Compra
-INSERT INTO Compra (IDCompra, FechaPedido, FechaEntrega, SubTotal, Total, IDCedi, IDEmpleado) VALUES (1, '2024-05-01 08:00:00', '2024-05-05 10:00:00', 500.00, 550.00, 1, 1);
-INSERT INTO Compra (IDCompra, FechaPedido, FechaEntrega, SubTotal, Total, IDCedi, IDEmpleado) VALUES (2, '2024-05-02 09:00:00', '2024-05-06 11:00:00', 700.00, 770.00, 2, 2);
-INSERT INTO Compra (IDCompra, FechaPedido, FechaEntrega, SubTotal, Total, IDCedi, IDEmpleado) VALUES (3, '2024-05-03 10:00:00', '2024-05-07 09:00:00', 900.00, 990.00, 3, 3);
-INSERT INTO Compra (IDCompra, FechaPedido, FechaEntrega, SubTotal, Total, IDCedi, IDEmpleado) VALUES (4, '2024-05-04 11:00:00', '2024-05-08 08:00:00', 1100.00, 1210.00, 4, 4);
-INSERT INTO Compra (IDCompra, FechaPedido, FechaEntrega, SubTotal, Total, IDCedi, IDEmpleado) VALUES (5, '2024-05-05 12:00:00', '2024-05-09 10:00:00', 1300.00, 1430.00, 5, 5);
-INSERT INTO Compra (IDCompra, FechaPedido, FechaEntrega, SubTotal, Total, IDCedi, IDEmpleado) VALUES (6, '2024-05-06 13:00:00', '2024-05-10 11:00:00', 1500.00, 1650.00, 6, 6);
-INSERT INTO Compra (IDCompra, FechaPedido, FechaEntrega, SubTotal, Total, IDCedi, IDEmpleado) VALUES (7, '2024-05-07 14:00:00', '2024-05-11 09:00:00', 1700.00, 1870.00, 7, 7);
-INSERT INTO Compra (IDCompra, FechaPedido, FechaEntrega, SubTotal, Total, IDCedi, IDEmpleado) VALUES (8, '2024-05-08 15:00:00', '2024-05-12 08:00:00', 1900.00, 2090.00, 8, 8);
-INSERT INTO Compra (IDCompra, FechaPedido, FechaEntrega, SubTotal, Total, IDCedi, IDEmpleado) VALUES (9, '2024-05-09 16:00:00', '2024-05-13 10:00:00', 2100.00, 2310.00, 9, 9);
-INSERT INTO Compra (IDCompra, FechaPedido, FechaEntrega, SubTotal, Total, IDCedi, IDEmpleado) VALUES (10, '2024-05-10 17:00:00', '2024-05-14 11:00:00', 2300.00, 2530.00, 10, 10);
+INSERT INTO Compra (IDCompra, FechaPedido,  SubTotal, Total, IDCedi, IDEmpleado) VALUES (1, '2024-05-01 08:00:00', 500.00, 550.00, 1, 1);
+INSERT INTO Compra (IDCompra, FechaPedido,  SubTotal, Total, IDCedi, IDEmpleado) VALUES (2, '2024-05-02 09:00:00', 700.00, 770.00, 2, 2);
+INSERT INTO Compra (IDCompra, FechaPedido,  SubTotal, Total, IDCedi, IDEmpleado) VALUES (3, '2024-05-03 10:00:00', 900.00, 990.00, 3, 3);
+INSERT INTO Compra (IDCompra, FechaPedido,  SubTotal, Total, IDCedi, IDEmpleado) VALUES (4, '2024-05-04 11:00:00', 1100.00, 1210.00, 4, 4);
+INSERT INTO Compra (IDCompra, FechaPedido,  SubTotal, Total, IDCedi, IDEmpleado) VALUES (5, '2024-05-05 12:00:00', 1300.00, 1430.00, 5, 5);
+INSERT INTO Compra (IDCompra, FechaPedido,  SubTotal, Total, IDCedi, IDEmpleado) VALUES (6, '2024-05-06 13:00:00', 1500.00, 1650.00, 6, 6);
+INSERT INTO Compra (IDCompra, FechaPedido,  SubTotal, Total, IDCedi, IDEmpleado) VALUES (7, '2024-05-07 14:00:00', 1700.00, 1870.00, 7, 7);
+INSERT INTO Compra (IDCompra, FechaPedido,  SubTotal, Total, IDCedi, IDEmpleado) VALUES (8, '2024-05-08 15:00:00', 1900.00, 2090.00, 8, 8);
+INSERT INTO Compra (IDCompra, FechaPedido,  SubTotal, Total, IDCedi, IDEmpleado) VALUES (9, '2024-05-09 16:00:00', 2100.00, 2310.00, 9, 9);
+INSERT INTO Compra (IDCompra, FechaPedido,  SubTotal, Total, IDCedi, IDEmpleado) VALUES (10, '2024-05-10 17:00:00', 2300.00, 2530.00, 10, 10);
 
 -- Inserciones de ejemplo a la tabla DetalleCompra
 INSERT INTO DetalleCompra (Cantidad, PrecioUnitario, IDCompra, IDProducto) VALUES (10, 20.50, 1, 1);

@@ -115,10 +115,6 @@ const HistorialCompras = () => {
                             <td>${formatDate(compra.FechaPedido)}</td>
                         </tr>
                         <tr>
-                            <th>Fecha de Entrega</th>
-                            <td>${formatDate(compra.FechaEntrega)}</td>
-                        </tr>
-                        <tr>
                             <th>Subotal</th>
                             <td>${compra.SubTotal}</td>
                         </tr>
@@ -164,7 +160,6 @@ const HistorialCompras = () => {
                             <tr>
                                 <th>Clave</th>
                                 <th>Fecha de pedido</th>
-                                <th>Fecha de recibido</th>
                                 <th>Total</th>
                                 <th>Opciones</th>
                             </tr>
@@ -175,7 +170,6 @@ const HistorialCompras = () => {
                                 <tr key={index}>
                                     <td>{compra.IDCompra}</td>
                                     <td>{formatDate(compra.FechaPedido)}</td>
-                                    <td>{formatDate(compra.FechaEntrega)}</td>
                                     <td>{compra.Total}</td>
                                     <td>
                                         <button
