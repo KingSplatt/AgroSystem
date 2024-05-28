@@ -133,9 +133,17 @@ const IngresarProductos = () => {
                 console.error("Error:", error);
             });
         }
+      
+     
         
         
-    });    // fetch para guardar los productos
+    });   
+    alert("Productos guardados correctamente");
+    setProductosFiltrados({});
+    setFilas([{ IDFila: 1, IDProveedor: "", IDProducto: "", Cantidad: "", FechaSurtido: "", FechaCaducidad: ""}]);
+
+    
+    // fetch para guardar los productos
   };
 
   return (

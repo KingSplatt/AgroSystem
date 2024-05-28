@@ -30,7 +30,8 @@ const routerCategoria = require('./MVC/Routers/routhCategorias');
 const routerCotizacion = require('./MVC/Routers/routhCotizacion');
 const routerProductos = require('./MVC/Routers/routhProductos');
 const routerProductoCEDI = require('./MVC/Routers/routhProductoCEDI');
-
+const routerSucursal = require('./MVC/Routers/routhSucursal');
+const routerCEDI = require('./MVC/Routers/routhCEDI');
 
 app.use('/ciudades', routerCiudad);
 app.use('/estados', routerEstado);
@@ -45,6 +46,8 @@ app.use('/compras', routerCompra);
 app.use('/clientes', routerCliente);
 app.use('/categorias', routerCategoria);
 app.use('/cotizaciones', routerCotizacion);
+app.use('/cedis', routerCEDI);
+app.use('/sucursales', routerSucursal);
 
 
 

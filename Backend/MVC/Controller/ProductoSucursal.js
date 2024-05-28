@@ -27,14 +27,14 @@ const ObtenerProductoSucursal = async (req, res) => {
 //pedir productos a CEDI
 const AgregarProductoSucursal = async (req, res) => {
     try {
-        const { IDproducto, IDSucursal, FechaCaducidad, FechaSurtido } = req.body;
-        if (!IDproducto || !IDSucursal || !FechaCaducidad || !FechaSurtido) {
+        const { IDProducto, IDSucursal, FechaCaducidad, FechaSurtido } = req.body;
+        if (!IDProducto || !IDSucursal || !FechaCaducidad || !FechaSurtido) {
             return res.status(400).send({ success: false, message: 'Faltan campos por llenar' });
         }
         const insertSQL = 'INSERT INTO ProductoSucursal (IDproducto, IDSucursal, FechaCaducidad, FechaSurtido) VALUES (?, ?, ?, ?)';
-        const insertResult = await pool.query(insertSQL, [parseInt(IDproducto), parseInt(IDSucursal), FechaCaducidad, FechaSurtido]);
-        const deleteSQL = 'DELETE FROM ProductoCEDI WHERE IDProducto = ?';
-        const deleteResult = await pool.query(deleteSQL, [parseInt(IDproducto)]);
+        const insertResult = await pool.query(insertSQL, [parseInt(IDProducto), parseInt(IDSucursal), FechaCaducidad, FechaSurtido]);
+        const deleteSQL = 'DELETE FROM ProductoCEDI WHERE IDProducto = ? ORDER BY FechaSurtido LIMIT 1';
+        const deleteResult = await pool.query(deleteSQL, [parseInt(IDProducto)]);
         console.log('Producto añadido:', insertResult, deleteResult);
         res.status(201).send({ success: true, message: "Producto añadido" });
     } catch (err) {
