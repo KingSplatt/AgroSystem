@@ -7,7 +7,7 @@ import useInputChange from "../Hooks/useInputChange";
 const URI_Ciudades = "http://localhost:8080/ciudades";
 const URI_Clientes = "http://localhost:8080/clientes";
 
-const AnadirCliente = () => {
+const Registrarse = () => {
     const [Ciudades, setCiudades] = useState([]);
     const { formValues: formClientes, setFormClientes, handleChange } = useInputChange({
         Nombre: "",
@@ -94,4 +94,4 @@ const AnadirCliente = () => {
 
 };
 
-export default AnadirCliente;
+export default Registrarse;

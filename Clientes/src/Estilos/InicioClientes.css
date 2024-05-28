@@ -1,5 +1,5 @@
 
-.Encabezado {
+.EncabezadoTop {
 text-align: left;
 margin-top: 0%;
 padding-top: 0px;
@@ -42,7 +42,7 @@ a:hover{
     object-fit: cover;
   }
 
-.input{
+.inputBarra{
     width: 40%;
     padding: 5px;
     border: 1px solid #ccc;
@@ -71,7 +71,8 @@ a:hover{
   flex-shrink: 0;
 }
 .element02 {
-  width: 100%; /* w-full */
+  width: 20%; /* w-full */
+  height: auto;
 }
 .element03 {
   margin-top: 1rem; /* mt-4 */

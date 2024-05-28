@@ -13,11 +13,11 @@ const mockProducts = [
 const InicioClientes =() =>
   {
     return(
-        <div className="Encabezado">
+        <div className="EncabezadoTop">
           <h2>
             Gallo Giro - Agroquimicos.
               <div className="">
-              <input className="input" type='search' placeholder="Buscar" />
+              <input className="inputBarra" type='search' placeholder="Buscar" />
               </div>
           </h2>
           <div>

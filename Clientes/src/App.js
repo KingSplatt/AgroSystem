@@ -3,26 +3,17 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import "./Estilos/InicioClientes.css";
 import InicioClientes from "./Pages/InicioClientes.jsx";
-import producto1 from "./Pages/producto1.jsx";
-import registrarse from "./Pages/registrarse.jsx";
+import Producto1 from "./Pages/Producto1.jsx";
+import Registrarse from "./Pages/Registrarse.jsx";
 
 const App = () => {
   return (
-    <div className="Encabezado">
+    <div className="Todo">
       <BrowserRouter>
         <Routes>
           <Route path="/InicioClientes" element={<InicioClientes />} />
-          <Route
-            path="*"
-            element={
-              <>
-                <Routes>
-                  <Route path="/registrarse" element={<registrarse />} />
-                  <Route path="/producto1" element={<producto1 />} />
-                </Routes>
-              </>
-            }
-          />
+          <Route path="/Producto1" element={<Producto1 />} />
+          <Route path="/Registrarse" element={<Registrarse />} />
         </Routes>
       </BrowserRouter>
     </div>

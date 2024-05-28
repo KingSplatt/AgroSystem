@@ -6,7 +6,7 @@ import Option from "../Componentes/Option";
 const ClienteForm = ({ formData, handleSubmit, handleChange, ciudades, Cancell }) => {
     return (
         <div className="Formulario-Cliente">
-            <h2>Añadir cliente</h2>
+            <h2>Registrarse</h2>
             <div className="Clientes">
 
                 <form className="Datos-del-usuario">

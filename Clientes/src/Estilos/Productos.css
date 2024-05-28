@@ -1,0 +1,42 @@
+.Formulario {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 40px;
+    ;
+  }
+  .form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  .container {
+    display: flex;
+    background-color: white;
+    padding: 16px;
+    border-Radius: 8px;
+    box-Shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-bottom: 16px;
+  }
+  .image {
+    width: 150px;
+    height: 150px;
+    object-Fit: cover;
+    margin-Right: 16px;
+  }
+  .details {
+    flex: 1;
+  }
+  .input {
+    width: 50px;
+    margin-Right: 8px;
+  }
+  .button {
+    padding: 8px 16px;
+    background-Color: #007BFF;
+    color: white;
+    border: none;
+    border-Radius: 4px;
+    cursor: pointer;
+  }
