@@ -25,7 +25,7 @@ const Inicio = () => {
                         <div className="pPluma" onClick={() => window.location.href = "./AnadirProductoSucursal"}><FaShop style={{ fontSize: '90px' }} />Producto</div>
                         <div className="CliPluma" onClick={() => window.location.href = "./VerClientes"}><FaPeopleGroup style={{ fontSize: '90px' }} />Clientes</div>
                         <div className="ventasPL" onClick={() => window.location.href = "./RealizarVenta"}><FaCoins style={{ fontSize: '90px' }} />ventas</div>
-                        <div className="Closn"><IoExit style={{ fontSize: '90px' }} />Closn</div>
+                        <div className="Closn" onClick={() => window.location.href = "./Logout"}><IoExit style={{ fontSize: '90px' }} />Cerrar</div>
                     </div>
                 </div>
             </div>
