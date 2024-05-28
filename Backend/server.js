@@ -7,6 +7,7 @@ dotenv.config();
 //inicias la app
 const app = express();
 app.use(cors({ origin: "http://localhost:3000" }));
+//app.use(cors({ origin: ["http://localhost:3000", "http://localhost:3001"] }));
 app.use(morgan("dev"));
 
 app.use(express.json()); //para que entienda los json que le mandamos
