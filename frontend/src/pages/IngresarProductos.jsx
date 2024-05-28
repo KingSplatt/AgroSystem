@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaPlus, FaRegSave, FaRegTimesCircle, FaTrash } from "react-icons/fa";
 import '../Estilos/IngresarProductos.css';
 const URI_Proveedores = "http://localhost:8080/proveedores";
 const URI_Productos = "http://localhost:8080/productos";
+const URI_compra = "http://localhost:8080/compras";
 
 const IngresarProductos = () => {
   const [Proveedores, setProveedores] = useState([]);
@@ -98,52 +99,73 @@ const IngresarProductos = () => {
 
   const Cancelar = () => {
     setProductosFiltrados({});
-    setFilas([{ IDFila: 1, IDProveedor: "", IDProducto: "", Cantidad: "", FechaSurtido: "", FechaCaducidad: ""}]);
+    setFilas([{ IDFila: 1, IDProveedor: "", IDProducto: "", Cantidad: "", FechaSurtido: "", FechaCaducidad: "" }]);
   };
 
-  const Guardar = () => {
+  const Guardar = async () => {
     const allFieldsComplete = filas.every(fila => fila.IDProveedor && fila.IDProducto && fila.Cantidad && fila.FechaSurtido && fila.FechaCaducidad);
     if (!allFieldsComplete) {
-        alert("Porfavor llene todos los campos");
-        return;
+      alert("Porfavor llene todos los campos");
+      return;
     }
-    // Rest of the code for saving the products...
-    filas.map(fila => {
+
+    try {
+      // Rest of the code for saving the products...
+      filas.map(fila => {
         const cantidad = parseInt(fila.Cantidad);
         const IDProducto = parseInt(fila.IDProducto);
         const IDCedi = empleado.IDCEDI;
         const valorFechaSurtido = fila.FechaSurtido;
         const valorFechaCaducidad = fila.FechaCaducidad;
-        const body = { valorFechaSurtido: valorFechaSurtido, valorFechaCaducidad:valorFechaCaducidad, IDProducto:IDProducto,  IDCedi:IDCedi };
-        console.log("Guardando Producto en CEDI:" , body);
-        for(let i = 0; i < cantidad; i++){
-            console.log(i+1);
-        fetch("http://localhost:8080/productosCEDI", {
+        const body = { valorFechaSurtido: valorFechaSurtido, valorFechaCaducidad: valorFechaCaducidad, IDProducto: IDProducto, IDCedi: IDCedi };
+        console.log("Guardando Producto en CEDI:", body);
+        for (let i = 0; i < cantidad; i++) {
+          console.log(i + 1);
+          fetch("http://localhost:8080/productosCEDI", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+              "Content-Type": "application/json",
             },
             body: JSON.stringify(body),
-            })
+          })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
+              console.log(data);
             })
             .catch((error) => {
-                console.error("Error:", error);
+              console.error("Error:", error);
             });
         }
-      
-     
-        
-        
-    });   
-    alert("Productos guardados correctamente");
-    setProductosFiltrados({});
-    setFilas([{ IDFila: 1, IDProveedor: "", IDProducto: "", Cantidad: "", FechaSurtido: "", FechaCaducidad: ""}]);
+      });
 
-    
-    // fetch para guardar los productos
+      const compras = {
+        productos: filas,
+        i: empleado.IDCEDI,
+        r: empleado.IDEmpleado
+      };
+      console.log("Estos son los datos de compras:", compras);
+
+      // Enviar la solicitud de compras
+      const response = await fetch(URI_compra, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(compras)
+      });
+
+      if (response.ok) {
+        alert("Compra enviada correctamente");
+        console.log("Respuesta:", await response.json());
+      } else {
+        console.error("Error al enviar la compra");
+        alert("Error al enviar la compra");
+      }
+    } catch (error) {
+      console.error("Error al enviar la compra", error);
+      alert("Error al enviar la compra");
+    }
+
   };
 
   return (
@@ -195,13 +217,13 @@ const IngresarProductos = () => {
                     />
                   </td>
                   <td>
-                    <input type="date"  value = {fila.FechaSurtido} onChange = {(e) => manejarCambioInput(fila.IDFila, 'FechaSurtido', e.target.value)}>
-                      </input>
+                    <input type="date" value={fila.FechaSurtido} onChange={(e) => manejarCambioInput(fila.IDFila, 'FechaSurtido', e.target.value)}>
+                    </input>
 
                   </td>
                   <td>
-                    <input type="date" value = {fila.FechaCaducidad} onChange = {(e) => manejarCambioInput(fila.IDFila, 'FechaCaducidad', e.target.value)}>
-                      </input>
+                    <input type="date" value={fila.FechaCaducidad} onChange={(e) => manejarCambioInput(fila.IDFila, 'FechaCaducidad', e.target.value)}>
+                    </input>
                   </td>
                   <td><button onClick={() => eliminarFila(fila.IDFila)}><FaTrash /></button></td>
                 </tr>

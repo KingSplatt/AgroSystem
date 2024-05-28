@@ -11,6 +11,9 @@ const HistorialCompras = () => {
     const savedEmpleado = localStorage.getItem("empleado");
     console.log("Empleado (inicial):", savedEmpleado);
 
+    const nombre = JSON.parse(savedEmpleado);
+
+
     useEffect(() => {
         fetchCompras();
     }, []);
@@ -102,7 +105,7 @@ const HistorialCompras = () => {
                 <body>
                     <h2>Detalles de Compra</h2>
                     <h4> Copia expedida por:</h4>
-                    <p>${savedEmpleado.Nombre} ${savedEmpleado.ApellidoPaterno} </p> 
+                    <p>${nombre.Nombre} ${nombre.ApellidoPaterno} </p> 
                 
                     <h5>Fecha: ${new Date().toLocaleDateString()}</h5>
                     <table>

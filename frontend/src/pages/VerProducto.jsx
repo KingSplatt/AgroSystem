@@ -85,6 +85,8 @@ const VerProducto = () => {
                 <div className="barraSuperior">
                     <input type="search" placeholder="Buscar producto" onChange={handleBuscar} value={buscar} />
                     <div className="OpcionesP">
+
+
                         <button className="Add" onClick={() => window.location.href = "./AnadirProductos"}><FaPlus /> Añadir producto</button>
                         <button className="Modify" onClick={() => window.location.href = "./ModificarProductos"}><FaExchangeAlt /> Modificar producto</button>
                     </div>

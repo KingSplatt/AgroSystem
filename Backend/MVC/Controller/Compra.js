@@ -40,7 +40,6 @@ const NuevaCompra = async (req, res) => {
 }
 
 
-
 // Ver el historial de compras
 const HistorialCompras = async (req, res) => {
     try {

@@ -16,13 +16,13 @@ const Inicio = () => {
                         <h3 className="ResumenEncabezado">Resumen</h3>
                         <div className="Total-pPluma" onClick={() => window.location.href = "./VerProducto"}>Total prod.</div>
                         <div className="Total-Proveedores" onClick={() => window.location.href = "./VerVentas"}>Total ventas</div>
-                        <div className="Total-Compras" onClick={() => window.location.href = "./VerProducto"}>Añadir prod.</div>
+                        <div className="Total-Compras" onClick={() => window.location.href = "./AnadirProductosSucursal"}>Añadir prod.</div>
                     </div>
 
 
                     <div className="pluma2">
                         <h3 className="pluma2Encabezado">Opciones</h3>
-                        <div className="pPluma" onClick={() => window.location.href = "./AnadirProductoSucursal"}><FaShop style={{ fontSize: '90px' }} />Producto</div>
+                        <div className="pPluma" onClick={() => window.location.href = "./AnadirProductosSucursal"}><FaShop style={{ fontSize: '90px' }} />Producto</div>
                         <div className="CliPluma" onClick={() => window.location.href = "./VerClientes"}><FaPeopleGroup style={{ fontSize: '90px' }} />Clientes</div>
                         <div className="ventasPL" onClick={() => window.location.href = "./RealizarVenta"}><FaCoins style={{ fontSize: '90px' }} />ventas</div>
                         <div className="Closn" onClick={() => window.location.href = "./Logout"}><IoExit style={{ fontSize: '90px' }} />Cerrar</div>
