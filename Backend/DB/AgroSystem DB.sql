@@ -100,7 +100,6 @@ CREATE TABLE Producto (
     Descripcion nvarchar (100) not null,
     PrecioUnitario int not null,
     Descontinuado boolean not null,
-    IDProveedor int not null,
     IDCategoria int not null
 );
 
@@ -123,7 +122,8 @@ CREATE TABLE Proveedor (
 
 CREATE TABLE Cotizacion (
 	IDCotizacion int not null,
-    FechaCotizacion date not null
+    FechaCotizacion date not null,
+    IDCedi int not null
 );
 
 CREATE TABLE DetalleCotizacion(
@@ -188,14 +188,12 @@ ALTER TABLE Estado ADD PRIMARY KEY PK_Estado (IDEstado);
 
 ALTER TABLE Ciudad ADD PRIMARY KEY PK_Ciudad (IDCiudad);
 
--- IDCEDI o IDSucursal
-ALTER TABLE Empleado
-ADD CONSTRAINT CHK_Empleado_IDSucursal_IDCEDI CHECK (
+ALTER TABLE Empleado ADD CONSTRAINT CHK_Empleado_IDSucursal_IDCEDI CHECK (
     (IDSucursal IS NOT NULL AND IDCEDI IS NULL) OR 
     (IDSucursal IS NULL AND IDCEDI IS NOT NULL)
 );
 
--- LLAVES FORANEAS
+-- llaves foraneas
 
 ALTER TABLE DetalleCotizacion
 ADD CONSTRAINT FK_Cotizacion_Producto FOREIGN KEY (IDProducto) REFERENCES Producto (IDProducto),
@@ -205,7 +203,6 @@ ADD CONSTRAINT FK_DET_Cotizacion FOREIGN KEY(IDCotizacion) REFERENCES Cotizacion
 ALTER TABLE ProductoProveedor
 ADD CONSTRAINT FK_ProductoProveedor_Proveedor FOREIGN KEY (IDProveedor) REFERENCES Proveedor (IDProveedor),
 ADD CONSTRAINT FK_ProductoProveedor_Producto FOREIGN KEY (IDProducto) REFERENCES Producto (IDProducto);
-
 
 ALTER TABLE Venta
 ADD CONSTRAINT FK_OrdenVenta_Cliente FOREIGN KEY (IDCliente) REFERENCES Cliente (IDCliente),
@@ -230,9 +227,8 @@ ALTER TABLE Compra
 ADD CONSTRAINT FK_Compra_CEDI FOREIGN KEY (IDCedi) REFERENCES CEDI (IDCedi),
 ADD CONSTRAINT FK_Compra_Empleado FOREIGN KEY (IDEmpleado) REFERENCES Empleado (IDEmpleado);
 
-ALTER TABLE Producto
-ADD CONSTRAINT FK_Producto_Proveedor FOREIGN KEY (IDProveedor) REFERENCES Proveedor (IDProveedor),
-ADD CONSTRAINT FK_Producto_Categoria FOREIGN KEY (IDCategoria) REFERENCES Categoria (IDCategoria);
+ALTER TABLE Producto ADD CONSTRAINT FK_Producto_Categoria FOREIGN KEY (IDCategoria) REFERENCES Categoria (IDCategoria); -- ahora la tabla es en ProductoProveedor
+-- ADD CONSTRAINT FK_Producto_Proveedor FOREIGN KEY (IDProveedor) REFERENCES Proveedor (IDProveedor),
 
 ALTER TABLE ProductoSucursal
 ADD CONSTRAINT FK_Sucursal_PS FOREIGN KEY (IDSucursal) REFERENCES Sucursal (IDSucursal),

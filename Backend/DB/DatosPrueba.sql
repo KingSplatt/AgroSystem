@@ -121,47 +121,77 @@ INSERT INTO Categoria (IDCategoria, NombreCategoria, DescripcionCategoria)
 VALUES (10, 'Electrodomésticos', 'Productos electrónicos para el hogar y la cocina.');
 
 -- Inserciones de ejemplo a la tabla Producto
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
-VALUES(1, 'Roundup Ultra', 'Herbicida sistémico no selectivo para control de malezas', 3500, 0, 1, 1);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDCategoria)
+VALUES(1, 'Roundup Ultra', 'Herbicida sistémico no selectivo para control de malezas', 3500, 0, 1);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
-VALUES(2, 'Folicur EW', 'Fungicida sistémico de amplio espectro para cultivos', 4200, 0, 2, 2);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDCategoria)
+VALUES(2, 'Folicur EW', 'Fungicida sistémico de amplio espectro para cultivos', 4200, 0, 2);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
-VALUES(3, 'Actara 25 WG', 'Insecticida sistémico para el control de plagas en cultivos', 3100, 0, 3, 3);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDCategoria)
+VALUES(3, 'Actara 25 WG', 'Insecticida sistémico para el control de plagas en cultivos', 3100, 0, 3);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
-VALUES(4, 'YaraMila Complex', 'Fertilizante granulado NPK 12-11-18', 2700, 0, 4, 4);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDCategoria)
+VALUES(4, 'YaraMila Complex', 'Fertilizante granulado NPK 12-11-18', 2700, 0, 4);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
-VALUES(5, 'ProGibb T&O', 'Regulador de crecimiento para mejorar el tamaño de los frutos', 1500, 0, 5, 5);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDCategoria)
+VALUES(5, 'ProGibb T&O', 'Regulador de crecimiento para mejorar el tamaño de los frutos', 1500, 0, 5);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
-VALUES(6, 'Silwet L-77', 'Adyuvante para mejorar la adherencia de pesticidas', 1200, 0, 6, 6);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDCategoria)
+VALUES(6, 'Silwet L-77', 'Adyuvante para mejorar la adherencia de pesticidas', 1200, 0, 6);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
-VALUES(7, 'Viva', 'Bioestimulante líquido para aumentar la resistencia de las plantas', 5400, 0, 7, 7);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDCategoria)
+VALUES(7, 'Viva', 'Bioestimulante líquido para aumentar la resistencia de las plantas', 5400, 0, 7);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
-VALUES(8, 'Prowl H2O', 'Herbicida pre-emergente para control de malezas en cultivos de maíz', 3800, 1, 8, 8);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDCategoria)
+VALUES(8, 'Prowl H2O', 'Herbicida pre-emergente para control de malezas en cultivos de maíz', 3800, 1, 8);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
-VALUES(9, 'Score 250 EC', 'Fungicida sistémico para el control de enfermedades foliares', 2900, 0, 9, 9);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDCategoria)
+VALUES(9, 'Score 250 EC', 'Fungicida sistémico para el control de enfermedades foliares', 2900, 0, 9);
 
-INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDProveedor, IDCategoria)
-VALUES(10, 'Neemix 4.5', 'Insecticida orgánico a base de aceite de neem', 2600, 0, 10, 10);
+INSERT INTO Producto (IDProducto, Nombre, Descripcion, PrecioUnitario, Descontinuado, IDCategoria)
+VALUES(10, 'Neemix 4.5', 'Insecticida orgánico a base de aceite de neem', 2600, 0, 10);
 
--- Insercion para la tabla Cotizacion
-INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion) VALUES (1,'2023-10-10');
-INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion) VALUES (2, '2023-11-11');
-INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion) VALUES (3, '2023-12-5');
-INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion) VALUES (4, '2024-01-14');
-INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion) VALUES (5, '2024-01-15');
-INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion) VALUES (6, '2024-01-20');
-INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion) VALUES (7, '2024-02-10');
-INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion) VALUES (8, '2024-02-11');
-INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion) VALUES (9, '2024-02-20');
-INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion) VALUES (10, '2024-03-01');
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (1,1);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (1,2);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (1,3);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (1,4);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (1,5);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (1,6);
+
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (2,1);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (2,2);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (2,3);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (2,4);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (2,5);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (2,6);
+
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (3,1);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (3,2);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (3,3);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (3,4);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (3,5);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (3,6);
+
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (4,1);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (4,2);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (4,3);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (4,4);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (4,5);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (4,6);
+
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (5,1);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (5,2);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (5,3);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (5,4);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (5,5);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (5,6);
+
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (6,1);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (6,2);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (6,3);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (6,4);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (6,5);
+INSERT INTO PRODUCTOPROVEEDOR (IDProveedor, IDProducto) VALUES (6,6);
 
 -- Insercion de ejemplo a la tabla CEDI
 
@@ -221,34 +251,32 @@ INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Corr
 VALUES (10, 'Sofía', 'Pérez', 'García', 'sofia.perez@example.com', '3691472583', 'Gerente', 'sofiaperez', 'passwordstu', '1987-06-28', '2022-10-10', 'PEGM870628XXX', 'PEGM870628MDFLRN10', 10, 1);
 -- Empleados en CEDI
 INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDCEDI, IDCiudad) 
-VALUES (11, 'José', 'Ramírez', 'Núñez', 'jose.ramirez@example.com', '1231231234', 'Operador', 'joseramirez', 'password12345', '1985-03-15', '2022-01-20', 'RAMJ850315XXX', 'RANJ850315HDFLRN01', 1, 1);
+VALUES (11, 'José', 'Ramírez', 'Núñez', 'jose.ramirez@example.com', '1231231234', 'Jefe de Compra', 'joseramirez', 'password12345', '1985-03-15', '2022-01-20', 'RAMJ850315XXX', 'RANJ850315HDFLRN01', 1, 1);
 
 INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDCEDI, IDCiudad) 
-VALUES (12, 'Laura', 'Fernández', 'Gómez', 'laura.fernandez@example.com', '4324324321', 'Almacén', 'laurafernandez', 'password456234', '1990-07-10', '2022-02-25', 'FERL900710XXX', 'FEGL900710MDFLRN02', 2, 2);
+VALUES (12, 'Laura', 'Fernández', 'Gómez', 'laura.fernandez@example.com', '4324324321', 'Jefe de Compra', 'laurafernandez', 'password456234', '1990-07-10', '2022-02-25', 'FERL900710XXX', 'FEGL900710MDFLRN02', 2, 2);
 
 INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDCEDI, IDCiudad) 
-VALUES (13, 'Miguel', 'Santos', 'Hernández', 'miguel.santos@example.com', '5435435432', 'Logística', 'miguelsantos', 'password78923423', '1982-12-25', '2022-03-15', 'SANM821225XXX', 'SAHM821225HDFLRN03', 3, 3);
+VALUES (13, 'Miguel', 'Santos', 'Hernández', 'miguel.santos@example.com', '5435435432', 'Jefe de Compra', 'miguelsantos', 'password78923423', '1982-12-25', '2022-03-15', 'SANM821225XXX', 'SAHM821225HDFLRN03', 3, 3);
 
 INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDCEDI, IDCiudad) 
-VALUES (14, 'Lucía', 'García', 'Martínez', 'lucia.garcia@example.com', '6546546543', 'Supervisor', 'luciagarcia', 'passwordabc1', '1989-11-11', '2022-04-05', 'GALM891111XXX', 'GAMM891111MDFLRN04', 4, 1);
+VALUES (14, 'Lucía', 'García', 'Martínez', 'lucia.garcia@example.com', '6546546543', 'Jefe de Compra', 'luciagarcia', 'passwordabc1', '1989-11-11', '2022-04-05', 'GALM891111XXX', 'GAMM891111MDFLRN04', 4, 1);
 
 INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDCEDI, IDCiudad) 
-VALUES (15, 'Roberto', 'López', 'Pérez', 'roberto.lopez@example.com', '7657657654', 'Jefe de Almacén', 'robertolopez', 'passworddef1', '1987-05-20', '2022-05-20', 'LOPR870520XXX', 'LOPP870520HDFLRN05', 5, 2);
+VALUES (15, 'Roberto', 'López', 'Pérez', 'roberto.lopez@example.com', '7657657654', 'Jefe de Compra', 'robertolopez', 'passworddef1', '1987-05-20', '2022-05-20', 'LOPR870520XXX', 'LOPP870520HDFLRN05', 5, 2);
 
 INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDCEDI, IDCiudad) 
-VALUES (16, 'Elena', 'Martínez', 'Soto', 'elena.martinez@example.com', '8768768765', 'Coordinador', 'elenamartinez', 'passwordghi1', '1992-08-18', '2022-06-15', 'MASE920818XXX', 'MASO920818MDFLRN06', 6, 3);
+VALUES (16, 'Elena', 'Martínez', 'Soto', 'elena.martinez@example.com', '8768768765', 'Jefe de Compra', 'elenamartinez', 'passwordghi1', '1992-08-18', '2022-06-15', 'MASE920818XXX', 'MASO920818MDFLRN06', 6, 3);
 
 INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDCEDI, IDCiudad) 
-VALUES (17, 'Luis', 'Vargas', 'Díaz', 'luis.vargas@example.com', '9879879876', 'Operador', 'luisvargas', 'passwordjkl2', '1983-10-10', '2022-07-10', 'VADL831010XXX', 'VADL831010HDFLRN07', 7, 1);
+VALUES (17, 'Luis', 'Vargas', 'Díaz', 'luis.vargas@example.com', '9879879876', 'Operador', 'Jefe de Compra', 'passwordjkl2', '1983-10-10', '2022-07-10', 'VADL831010XXX', 'VADL831010HDFLRN07', 7, 1);
 
 INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDCEDI, IDCiudad) 
-VALUES (18, 'María', 'Hernández', 'Núñez', 'maria.hernandez@example.com', '0980980987', 'Supervisor', 'mariahernandez', 'passwordmn2o', '1986-01-01', '2022-08-01', 'HERM860101XXX', 'HERM860101MDFLRN08', 8, 2);
+VALUES (18, 'María', 'Hernández', 'Núñez', 'maria.hernandez@example.com', '0980980987', 'Jefe de Compra', 'mariahernandez', 'passwordmn2o', '1986-01-01', '2022-08-01', 'HERM860101XXX', 'HERM860101MDFLRN08', 8, 2);
 
 INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDCEDI, IDCiudad) 
-VALUES (19, 'Juan', 'Pérez', 'Sánchez', 'juan.perez@example.com', '1091091098', 'Logística', 'juanperez', 'pass2wordpqr', '1991-04-14', '2022-09-14', 'PEJH910414XXX', 'PEJH910414HDFLRN09', 9, 3);
+VALUES (19, 'Juan', 'Pérez', 'Sánchez', 'juan.perez@example.com', '1091091098', 'Jefe de Compra', 'juanperez', 'pass2wordpqr', '1991-04-14', '2022-09-14', 'PEJH910414XXX', 'PEJH910414HDFLRN09', 9, 3);
 
-INSERT INTO Empleado (IDEmpleado, Nombre, ApellidoPaterno, ApellidoMaterno, Correo, Telefono, Puesto, Usuario, Contrasena, FechaNacimiento, FechaInicio, RFC, CURP, IDCEDI, IDCiudad) 
-VALUES (20, 'Sofía', 'González', 'Ramírez', 'sofia.gonzalez@example.com', '2102102101', 'Jefe de Almacén', 'sofiagonzalez', 'passwordstu1', '1995-11-22', '2022-10-15', 'GORR951122XXX', 'GORN951122MDFLRN10', 10, 1);
 
 -- Inserciones de ejemplo a la tabla Venta
 INSERT INTO Venta (IDVenta, FechaPedido, Subtotal, Total, Credito, IDCliente, IDEmpleado) 
@@ -330,30 +358,167 @@ INSERT INTO DetalleCompra (Cantidad, PrecioUnitario, IDCompra, IDProducto) VALUE
 INSERT INTO DetalleCompra (Cantidad, PrecioUnitario, IDCompra, IDProducto) VALUES (55, 45.75, 10, 10);
 
 -- Inserciones de ejemplo a la tabla ProductoSucursal
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 1, 1);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 1, 2);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 1, 3);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 1, 4);
 INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 1, 5);
-INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-02 09:00:00', '2024-12-31 23:59:59', 2, 2);
-INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-03 10:00:00', '2024-12-31 23:59:59', 3, 3);
-INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-04 11:00:00', '2024-12-31 23:59:59', 4, 4);
-INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-05 12:00:00', '2024-12-31 23:59:59', 5, 5);
-INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-06 13:00:00', '2024-12-31 23:59:59', 6, 6);
-INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-07 14:00:00', '2024-12-31 23:59:59', 7, 7);
-INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-08 15:00:00', '2024-12-31 23:59:59', 8, 8);
-INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-09 16:00:00', '2024-12-31 23:59:59', 9, 9);
-INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-10 17:00:00', '2024-12-31 23:59:59', 10, 10);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 1, 6);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 1, 7);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 1, 8);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 1, 9);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 1, 10);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 1, 1);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 1, 2);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 1, 3);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 1, 4);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 1, 5);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 1, 6);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 1, 7);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 1, 8);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 1, 9);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 1, 10);
+
+
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 2, 1);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 2, 2);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 2, 3);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 2, 4);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 2, 5);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 2, 6);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 2, 7);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 2, 8);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 2, 9);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 2, 10);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 2, 1);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 2, 2);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 2, 3);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 2, 4);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 2, 5);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 2, 6);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 2, 7);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 2, 8);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 2, 9);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 2, 10);
+
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 3, 1);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 3, 2);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 3, 3);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 3, 4);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 3, 5);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 3, 6);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 3, 7);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 3, 8);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 3, 9);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 3, 10);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 3, 1);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 3, 2);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 3, 3);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 3, 4);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 3, 5);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 3, 6);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 3, 7);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 3, 8);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 3, 9);
+INSERT INTO ProductoSucursal (FechaSurtido, FechaCaducidad, IDSucursal, IDProducto) VALUES ('2024-05-01 08:00:00', '2024-12-31 23:59:59', 3, 10);
 
 -- Inserciones de ejemplo a la tabla ProductoCEDI
 INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-01', '2024-12-31', 1, 1);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-02', '2024-12-31', 2, 1);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-03', '2024-12-31', 5, 1);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-04', '2024-12-31', 5, 1);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-05', '2024-12-31', 5, 1);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-06', '2024-12-31', 6, 1);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-07', '2024-12-31', 7, 1);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-08', '2024-12-31', 8, 1);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-09', '2024-12-31', 9, 1);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-10', '2024-12-31', 10, 1);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-01', '2024-12-31', 1, 1);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-02', '2024-12-31', 2, 1);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-03', '2024-12-31', 5, 1);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-04', '2024-12-31', 5, 1);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-05', '2024-12-31', 5, 1);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-06', '2024-12-31', 6, 1);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-07', '2024-12-31', 7, 1);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-08', '2024-12-31', 8, 1);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-09', '2024-12-31', 9, 1);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-10', '2024-12-31', 10, 1);
+
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-01', '2024-12-31', 1, 2);
 INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-02', '2024-12-31', 2, 2);
-INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-03', '2024-12-31', 4, 3);
-INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-04', '2024-12-31', 4, 4);
-INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-05', '2024-12-31', 5, 5);
-INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-06', '2024-12-31', 6, 6);
-INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-07', '2024-12-31', 7, 7);
-INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-08', '2024-12-31', 8, 8);
-INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-09', '2024-12-31', 9, 9);
-INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-10', '2024-12-31', 10, 10);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-03', '2024-12-31', 5, 2);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-04', '2024-12-31', 5, 2);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-05', '2024-12-31', 5, 2);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-06', '2024-12-31', 6, 2);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-07', '2024-12-31', 7, 2);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-08', '2024-12-31', 8, 2);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-09', '2024-12-31', 9, 2);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-10', '2024-12-31', 10,2);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-01', '2024-12-31', 1, 2);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-02', '2024-12-31', 2, 2);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-03', '2024-12-31', 5, 2);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-04', '2024-12-31', 5, 2);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-05', '2024-12-31', 5, 2);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-06', '2024-12-31', 6, 2);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-07', '2024-12-31', 7, 2);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-08', '2024-12-31', 8, 2);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-09', '2024-12-31', 9, 2);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-10', '2024-12-31', 10,2);
 
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-01', '2024-12-31', 1, 3);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-02', '2024-12-31', 2, 3);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-03', '2024-12-31', 5, 3);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-04', '2024-12-31', 5, 3);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-05', '2024-12-31', 5, 3);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-06', '2024-12-31', 6, 3);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-07', '2024-12-31', 7, 3);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-08', '2024-12-31', 8, 3);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-09', '2024-12-31', 9, 3);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-10', '2024-12-31', 10,3);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-01', '2024-12-31', 1, 3);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-02', '2024-12-31', 2, 3);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-03', '2024-12-31', 5, 3);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-04', '2024-12-31', 5, 3);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-05', '2024-12-31', 5, 3);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-06', '2024-12-31', 6, 3);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-07', '2024-12-31', 7, 3);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-08', '2024-12-31', 8, 3);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-09', '2024-12-31', 9, 3);
+INSERT INTO ProductoCEDI (FechaSurtido, FechaCaducidad, IDProducto, IDCedi) VALUES ('2024-05-10', '2024-12-31', 10,3);
+
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDCedi) VALUES (1, '2024-05-27', 1);
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDCedi) VALUES (2, '2024-05-27', 1);
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDCedi) VALUES (3, '2024-05-27', 1);
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDCedi) VALUES (4, '2024-05-27', 2);
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDCedi) VALUES (5, '2024-05-27', 2);
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDCedi) VALUES (6, '2024-05-27', 2);
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDCedi) VALUES (7, '2024-05-27', 3);
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDCedi) VALUES (8, '2024-05-27', 3);
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDCedi) VALUES (9, '2024-05-27', 3);
+INSERT INTO Cotizacion (IDCotizacion, FechaCotizacion, IDCedi) VALUES (10, '2024-05-27', 4);
+
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (1,1,1);
 INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (2,1,1);
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (3,1,1);
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (1,2,1);
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (2,2,1);
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (3,2,1);
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (1,3,1);
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (2,3,1);
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (3,3,1);
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (1,3,1);
 
-SELECT DISTINCT DC.IDProducto, COUNT(DC.IDProducto) as CANTIDAD FROM COTIZACION AS C INNER JOIN DetalleCotizacion AS DC ON C.IDCotizacion = DC.IDCotizacion
-WHERE C.IDCotizacion = 1 GROUP BY DC.IDProducto;
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (1,1,2);
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (2,1,2);
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (3,1,2);
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (1,2,2);
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (2,2,2);
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (3,2,2);
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (1,3,2);
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (2,3,2);
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (3,3,2);
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (1,3,2);
+
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (1,1,3);
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (2,1,3);
+INSERT INTO DetalleCotizacion (IDProducto,IDProveedor,IDCotizacion) VALUES (3,1,3);
